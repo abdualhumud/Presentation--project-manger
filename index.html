@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Evolution of Impact — Abdulrahman Alhumud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg-deep: #050a0f;
+    --bg-card: rgba(10, 20, 35, 0.85);
+    --bg-glass: rgba(255, 255, 255, 0.04);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --gold: #c9a227;
+    --gold-light: #f0c040;
+    --green: #00c853;
+    --green-dark: #00843d;
+    --cyan: #00e5ff;
+    --cyan-dim: rgba(0, 229, 255, 0.15);
+    --text-primary: #e8edf2;
+    --text-secondary: #8b9ab0;
+    --text-muted: #4a5568;
+    --accent-1: #00e5ff;
+    --accent-2: #c9a227;
+    --gradient-hero: linear-gradient(135deg, #050a0f 0%, #0a1628 50%, #050f1a 100%);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%; height: 100%;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    overflow: hidden;
+  }
+
+  /* ── Progress Bar ── */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
+    background: linear-gradient(90deg, var(--cyan), var(--gold));
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px var(--cyan);
+  }
+
+  /* ── Nav Dots ── */
+  #nav-dots {
+    position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+    z-index: 999; display: flex; flex-direction: column; gap: 12px;
+  }
+  .nav-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--text-muted); border: 1px solid var(--border-glass);
+    cursor: pointer; transition: all 0.3s ease; position: relative;
+  }
+  .nav-dot.active { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); transform: scale(1.4); }
+  .nav-dot:hover { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+  .nav-dot-label {
+    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+    background: var(--bg-card); border: 1px solid var(--border-glass);
+    color: var(--text-primary); font-size: 11px; white-space: nowrap;
+    padding: 4px 10px; border-radius: 4px; opacity: 0; pointer-events: none;
+    transition: opacity 0.2s ease; backdrop-filter: blur(8px);
+  }
+  .nav-dot:hover .nav-dot-label { opacity: 1; }
+
+  /* ── Slide Container ── */
+  #slides-container {
+    width: 100%; height: 100vh;
+    overflow-y: scroll; scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  #slides-container::-webkit-scrollbar { display: none; }
+
+  .slide {
+    width: 100%; height: 100vh;
+    scroll-snap-align: start; scroll-snap-stop: always;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Background Particles ── */
+  .slide-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: var(--gradient-hero);
+  }
+  .grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .glow-orb {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
+    animation: pulse-orb 6s ease-in-out infinite alternate;
+  }
+  @keyframes pulse-orb { from { opacity: 0.25; transform: scale(1); } to { opacity: 0.5; transform: scale(1.1); } }
+
+  /* ── Slide Content ── */
+  .slide-content {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 1200px;
+    padding: 60px 48px;
+  }
+
+  /* ── Typography ── */
+  .eyebrow {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--cyan); }
+
+  h1.hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 700; line-height: 1.1;
+    background: linear-gradient(135deg, #e8edf2 0%, var(--cyan) 50%, var(--gold-light) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: 8px;
+  }
+  h2.slide-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 700; line-height: 1.15;
+    color: var(--text-primary); margin-bottom: 8px;
+  }
+  .title-accent { color: var(--cyan); }
+  .title-gold { color: var(--gold-light); }
+
+  .hero-sub {
+    font-size: clamp(13px, 1.8vw, 18px); color: var(--text-secondary);
+    max-width: 540px; line-height: 1.7; margin-top: 20px; margin-bottom: 40px;
+  }
+  .slide-lead {
+    font-size: clamp(12px, 1.5vw, 16px); color: var(--text-secondary);
+    line-height: 1.7; max-width: 540px; margin-bottom: 36px;
+  }
+
+  /* ── Glassmorphism Card ── */
+  .glass-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    backdrop-filter: blur(16px);
+    padding: 28px 32px;
+    transition: all 0.35s ease;
+  }
+  .glass-card:hover {
+    background: rgba(0,229,255,0.06);
+    border-color: rgba(0,229,255,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(0,229,255,0.08);
+  }
+
+  /* ── Metric Cards ── */
+  .metric-card {
+    background: var(--bg-glass); border: 1px solid var(--border-glass);
+    border-radius: 16px; padding: 28px 24px; text-align: center;
+    backdrop-filter: blur(16px);
+    transition: all 0.35s ease; cursor: default;
+  }
+  .metric-card:hover {
+    border-color: rgba(0,229,255,0.3);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+    transform: translateY(-4px) scale(1.02);
+  }
+  .metric-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 4.5vw, 56px); font-weight: 700;
+    background: linear-gradient(135deg, var(--cyan), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .metric-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+  .metric-sub {
+    font-size: 12px; color: var(--text-muted); margin-top: 6px;
+  }
+
+  /* ── Badge ── */
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .badge-cyan { background: rgba(0,229,255,0.12); border: 1px solid rgba(0,229,255,0.25); color: var(--cyan); }
+  .badge-gold { background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.25); color: var(--gold-light); }
+  .badge-green { background: rgba(0,200,83,0.12); border: 1px solid rgba(0,200,83,0.25); color: var(--green); }
+
+  /* ── Timeline ── */
+  .timeline-line {
+    position: absolute; left: 20px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(180deg, var(--cyan), var(--gold), transparent);
+  }
+  .timeline-item { position: relative; padding-left: 52px; margin-bottom: 32px; }
+  .timeline-dot {
+    position: absolute; left: 12px; top: 6px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--bg-deep); border: 2px solid var(--cyan);
+    box-shadow: 0 0 12px var(--cyan);
+  }
+
+  /* ── Skill Bars ── */
+  .skill-bar-track {
+    height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;
+    margin-top: 8px;
+  }
+  .skill-bar-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, var(--cyan), var(--gold-light));
+    width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 8px rgba(0,229,255,0.5);
+  }
+
+  /* ── Hero CTA ── */
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px; border-radius: 10px; font-size: 14px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+    border: none; transition: all 0.3s ease; text-decoration: none;
+  }
+  .cta-primary {
+    background: linear-gradient(135deg, var(--cyan), rgba(0,180,200,0.8));
+    color: #050a0f; box-shadow: 0 8px 24px rgba(0,229,255,0.3);
+  }
+  .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,229,255,0.4); }
+  .cta-ghost {
+    background: transparent; color: var(--text-secondary);
+    border: 1px solid var(--border-glass); margin-left: 12px;
+  }
+  .cta-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ── Phase Tag ── */
+  .phase-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 5px 14px; border-radius: 6px; font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;
+  }
+  .phase-1 { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); color: var(--cyan); }
+  .phase-2 { background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.2); color: var(--gold-light); }
+  .phase-3 { background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.2); color: var(--green); }
+  .phase-4 { background: rgba(180,100,255,0.1); border: 1px solid rgba(180,100,255,0.2); color: #c084fc; }
+
+  /* ── Icon ── */
+  .icon-box {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .icon-cyan { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); }
+  .icon-gold { background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.2); }
+  .icon-green { background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.2); }
+
+  /* ── Grid Layouts ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .grid-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+    margin: 28px 0;
+  }
+
+  /* ── Entrance Animations ── */
+  .anim-fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .anim-fade-left {
+    opacity: 0; transform: translateX(-30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .anim-fade-right {
+    opacity: 0; transform: translateX(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .anim-scale {
+    opacity: 0; transform: scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .slide.active .anim-fade-up,
+  .slide.active .anim-fade-left,
+  .slide.active .anim-fade-right,
+  .slide.active .anim-scale { opacity: 1; transform: none; }
+
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+  .delay-5 { transition-delay: 0.5s; }
+  .delay-6 { transition-delay: 0.6s; }
+  .delay-7 { transition-delay: 0.7s; }
+
+  /* ── Decorative elements ── */
+  .deco-line {
+    position: absolute; background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    height: 1px; opacity: 0.3;
+  }
+  .hex-grid {
+    position: absolute; opacity: 0.04; font-size: 80px;
+    color: var(--cyan); letter-spacing: 20px; line-height: 1.2;
+    pointer-events: none; user-select: none; white-space: nowrap;
+  }
+
+  /* ── Vision 2030 Pillars ── */
+  .pillar-card {
+    background: var(--bg-glass); border: 1px solid var(--border-glass);
+    border-radius: 14px; padding: 24px 20px;
+    backdrop-filter: blur(12px); transition: all 0.3s ease;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .pillar-card:hover {
+    border-color: rgba(201,162,39,0.3);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 20px rgba(201,162,39,0.08);
+    transform: translateY(-3px);
+  }
+
+  /* ── Scroll Hint ── */
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--text-muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    animation: bounce-hint 2s ease-in-out infinite;
+  }
+  @keyframes bounce-hint {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+  .scroll-arrow { font-size: 18px; }
+
+  /* ── Counter ── */
+  .counter { display: inline-block; }
+
+  /* ── Tag List ── */
+  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 500;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass);
+    color: var(--text-secondary); transition: all 0.2s ease;
+  }
+  .tag:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .grid-hero, .grid-2 { grid-template-columns: 1fr; gap: 20px; }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .slide-content { padding: 40px 24px; }
+    #nav-dots { display: none; }
+  }
+  @media (max-width: 600px) {
+    .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  /* ── Floating shapes ── */
+  @keyframes float-shape {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+  .float-shape {
+    position: absolute; border-radius: 50%; opacity: 0.06;
+    animation: float-shape 8s ease-in-out infinite;
+  }
+
+  /* ── Slide-specific overrides ── */
+  #slide-1 .glow-orb-1 { width: 600px; height: 600px; right: -150px; top: -150px; background: radial-gradient(var(--cyan), transparent 70%); }
+  #slide-1 .glow-orb-2 { width: 400px; height: 400px; left: -100px; bottom: -100px; background: radial-gradient(var(--gold), transparent 70%); }
+  #slide-2 .glow-orb-1 { width: 500px; height: 500px; right: 0; top: -100px; background: radial-gradient(var(--cyan), transparent 70%); }
+  #slide-3 .glow-orb-1 { width: 500px; height: 500px; left: -100px; top: 50%; transform: translateY(-50%); background: radial-gradient(var(--gold), transparent 70%); }
+  #slide-4 .glow-orb-1 { width: 600px; height: 600px; right: -100px; bottom: -100px; background: radial-gradient(var(--green), transparent 70%); }
+  #slide-5 .glow-orb-1 { width: 700px; height: 700px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--cyan), transparent 70%); }
+  #slide-6 .glow-orb-1 { width: 500px; height: 500px; right: 0; top: 0; background: radial-gradient(#c084fc, transparent 70%); }
+  #slide-7 .glow-orb-1 { width: 600px; height: 600px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div id="progress-bar" style="width:0%"></div>
+
+<!-- Nav Dots -->
+<nav id="nav-dots">
+  <div class="nav-dot active" data-slide="0"><span class="nav-dot-label">Hero</span></div>
+  <div class="nav-dot" data-slide="1"><span class="nav-dot-label">Mojaz — Agility</span></div>
+  <div class="nav-dot" data-slide="2"><span class="nav-dot-label">Rased — Governance</span></div>
+  <div class="nav-dot" data-slide="3"><span class="nav-dot-label">GCP Leap</span></div>
+  <div class="nav-dot" data-slide="4"><span class="nav-dot-label">Impact Numbers</span></div>
+  <div class="nav-dot" data-slide="5"><span class="nav-dot-label">PMO Mastery</span></div>
+  <div class="nav-dot" data-slide="6"><span class="nav-dot-label">Future Vision</span></div>
+</nav>
+
+<!-- Slides -->
+<div id="slides-container">
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLIDE 1 — HERO LANDING
+  ═══════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-1">
+    <div class="slide-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+      <div class="glow-orb glow-orb-2"></div>
+    </div>
+
+    <div class="slide-content grid-hero">
+      <!-- Left -->
+      <div>
+        <div class="eyebrow anim-fade-up delay-1">PMO Leadership Interview</div>
+        <h1 class="hero-title anim-fade-up delay-2">The Evolution<br/>of Impact</h1>
+        <div style="font-family:'Space Grotesk',sans-serif; font-size:clamp(18px,2.5vw,30px); font-weight:300; color:var(--gold-light); margin-bottom:4px;" class="anim-fade-up delay-3">
+          Abdulrahman Alhumud
+        </div>
+        <div style="font-size:13px; color:var(--text-muted); letter-spacing:2px; text-transform:uppercase; margin-bottom:24px;" class="anim-fade-up delay-3">
+          Project Management Professional · PMP®
+        </div>
+        <p class="hero-sub anim-fade-up delay-4">
+          Transforming complex sectors — B2C, B2B &amp; B2G — through strategic innovation, disciplined governance, and scalable technology leadership.
+        </p>
+        <div class="anim-fade-up delay-5" style="display:flex; gap:12px; flex-wrap:wrap;">
+          <span class="badge badge-cyan">PMP® Certified</span>
+          <span class="badge badge-gold">GCP Infrastructure</span>
+          <span class="badge badge-green">Design Thinking</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <button class="cta-btn cta-primary anim-fade-up delay-6" onclick="scrollToSlide(1)">
+          Begin the Journey <span>→</span>
+        </button>
+        <button class="cta-ghost cta-btn anim-fade-up delay-6" onclick="scrollToSlide(4)">
+          See Impact
+        </button>
+      </div>
+
+      <!-- Right — Stats preview -->
+      <div class="anim-fade-right delay-4" style="display:flex; flex-direction:column; gap:16px;">
+        <div class="glass-card" style="display:flex; align-items:center; gap:20px;">
+          <div class="icon-box icon-cyan">🚀</div>
+          <div>
+            <div style="font-size:26px; font-weight:700; color:var(--cyan);">4×</div>
+            <div style="font-size:12px; color:var(--text-secondary);">Revenue Growth Achieved</div>
+          </div>
+        </div>
+        <div class="glass-card" style="display:flex; align-items:center; gap:20px;">
+          <div class="icon-box icon-gold">📱</div>
+          <div>
+            <div style="font-size:26px; font-weight:700; color:var(--gold-light);">#1</div>
+            <div style="font-size:12px; color:var(--text-secondary);">App Store Ranking · Mojaz</div>
+          </div>
+        </div>
+        <div class="glass-card" style="display:flex; align-items:center; gap:20px;">
+          <div class="icon-box icon-green">🏢</div>
+          <div>
+            <div style="font-size:26px; font-weight:700; color:var(--green);">280+</div>
+            <div style="font-size:12px; color:var(--text-secondary);">Enterprise Accounts · 2025</div>
+          </div>
+        </div>
+        <div class="glass-card" style="display:flex; align-items:center; gap:20px;">
+          <div class="icon-box icon-cyan">👥</div>
+          <div>
+            <div style="font-size:26px; font-weight:700; color:var(--cyan);">40</div>
+            <div style="font-size:12px; color:var(--text-secondary);">Team Members Managed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span class="scroll-arrow">↓</span>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLIDE 2 — MOJAZ (THE SPRINT)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-2">
+    <div class="slide-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+    </div>
+
+    <div class="slide-content">
+      <div class="phase-tag phase-1 anim-fade-up delay-1">⚡ Phase 01 · Mojaz Era</div>
+      <div class="grid-hero" style="grid-template-columns: 1fr 1fr; align-items: start;">
+        <!-- Left -->
+        <div>
+          <h2 class="slide-title anim-fade-up delay-2">The <span class="title-accent">Sprint</span><br/>Agility at Scale</h2>
+          <p class="slide-lead anim-fade-up delay-3">
+            Entering the B2C arena, Abdulrahman orchestrated a high-velocity product launch that captured Saudi consumers, dominating the App Store charts and setting new benchmarks for digital engagement.
+          </p>
+
+          <div style="display:flex; flex-direction:column; gap:16px; position:relative;" class="anim-fade-up delay-4">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="glass-card" style="padding:16px 20px;">
+                <div style="font-size:12px; color:var(--cyan); font-weight:600; margin-bottom:4px;">MARKET ENTRY</div>
+                <div style="font-size:14px; color:var(--text-primary);">Identified &amp; executed B2C strategy for Saudi automotive inspection market</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="glass-card" style="padding:16px 20px;">
+                <div style="font-size:12px; color:var(--gold-light); font-weight:600; margin-bottom:4px;">GROWTH SPRINT</div>
+                <div style="font-size:14px; color:var(--text-primary);">Drove +250% download surge through data-driven campaign orchestration</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="glass-card" style="padding:16px 20px;">
+                <div style="font-size:12px; color:var(--green); font-weight:600; margin-bottom:4px;">PEAK IMPACT</div>
+                <div style="font-size:14px; color:var(--text-primary);">Achieved #1 App Store ranking — cementing brand authority in 4 months</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right — Metrics -->
+        <div style="display:flex; flex-direction:column; gap:20px;" class="anim-fade-right delay-3">
+          <div class="grid-2" style="gap:16px;">
+            <div class="metric-card">
+              <div class="metric-value"><span class="counter" data-target="1" data-prefix="#">#1</span></div>
+              <div class="metric-label">App Store Rank</div>
+              <div class="metric-sub">Saudi Market</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value"><span class="counter" data-target="250" data-suffix="%">250%</span></div>
+              <div class="metric-label">Download Growth</div>
+              <div class="metric-sub">Sustained momentum</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" style="font-size:clamp(28px,4vw,48px);"><span class="counter" data-target="25">25</span>M+</div>
+            <div class="metric-label">Impressions Generated</div>
+            <div class="metric-sub">4-month campaign window · B2C</div>
+          </div>
+
+          <div class="glass-card" style="padding:20px 24px;">
+            <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:2px; margin-bottom:14px;">Core Competencies Applied</div>
+            <div class="tag-list">
+              <span class="tag">Product Launch</span>
+              <span class="tag">Agile Methodology</span>
+              <span class="tag">Growth Strategy</span>
+              <span class="tag">KPI Management</span>
+              <span class="tag">Stakeholder Alignment</span>
+              <span class="tag">B2C Marketing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLIDE 3 — RASED TURNAROUND (THE TURNAROUND)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-3">
+    <div class="slide-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+    </div>
+
+    <div class="slide-content">
+      <div class="phase-tag phase-2 anim-fade-up delay-1">🛡️ Phase 02 · Rased — Crisis &amp; Governance 2023</div>
+      <div class="grid-hero" style="align-items:start;">
+        <!-- Left -->
+        <div>
+          <h2 class="slide-title anim-fade-up delay-2">The <span class="title-gold">Turnaround</span><br/>Governance &amp; Leadership</h2>
+          <p class="slide-lead anim-fade-up delay-3">
+            Inherited a critical situation — legacy technical debt, team misalignment, and eroding stakeholder trust. Abdulrahman stepped in as the stabilizing force, applying PMO governance frameworks to orchestrate a full organizational recovery.
+          </p>
+
+          <div class="glass-card anim-fade-up delay-4" style="background:rgba(201,162,39,0.06); border-color:rgba(201,162,39,0.2); margin-bottom:20px; padding:20px 24px;">
+            <div style="font-size:11px; color:var(--gold-light); text-transform:uppercase; letter-spacing:2px; margin-bottom:12px; font-weight:600;">🔥 Crisis Context</div>
+            <p style="font-size:13px; color:var(--text-secondary); line-height:1.65;">
+              Faced inherited technical reliability failures and organizational fragmentation across a 20-member team. Legacy challenges threatened service continuity and stakeholder confidence in the platform.
+            </p>
+          </div>
+
+          <div class="glass-card anim-fade-up delay-5" style="background:rgba(0,200,83,0.06); border-color:rgba(0,200,83,0.2); padding:20px 24px;">
+            <div style="font-size:11px; color:var(--green); text-transform:uppercase; letter-spacing:2px; margin-bottom:12px; font-weight:600;">✅ Resolution Approach</div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; gap:10px; align-items:start; font-size:13px; color:var(--text-secondary);">
+                <span style="color:var(--green); flex-shrink:0;">▹</span> Instituted PMO governance structure — clear ownership, escalation paths, decision logs
+              </div>
+              <div style="display:flex; gap:10px; align-items:start; font-size:13px; color:var(--text-secondary);">
+                <span style="color:var(--green); flex-shrink:0;">▹</span> Rebuilt sprint cadences, introduced retrospectives &amp; dependency mapping
+              </div>
+              <div style="display:flex; gap:10px; align-items:start; font-size:13px; color:var(--text-secondary);">
+                <span style="color:var(--green); flex-shrink:0;">▹</span> Restored technical reliability through systematic root-cause analysis
+              </div>
+              <div style="display:flex; gap:10px; align-items:start; font-size:13px; color:var(--text-secondary);">
+                <span style="color:var(--green); flex-shrink:0;">▹</span> Re-aligned team of 20 around shared OKRs and delivery milestones
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right -->
+        <div class="anim-fade-right delay-3" style="display:flex; flex-direction:column; gap:20px;">
+          <div class="glass-card" style="text-align:center; padding:36px 28px;">
+            <div style="font-size:72px; line-height:1; margin-bottom:16px;">🏛️</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:700; color:var(--gold-light); margin-bottom:6px;">
+              <span class="counter" data-target="20">20</span> Members
+            </div>
+            <div style="font-size:13px; color:var(--text-secondary);">Team led through crisis &amp; recovery</div>
+          </div>
+
+          <div class="grid-2" style="gap:16px;">
+            <div class="glass-card" style="text-align:center; padding:20px 16px;">
+              <div style="font-size:28px; margin-bottom:8px;">⚖️</div>
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">PMO Governance</div>
+              <div style="font-size:11px; color:var(--text-muted);">Framework enforced</div>
+            </div>
+            <div class="glass-card" style="text-align:center; padding:20px 16px;">
+              <div style="font-size:28px; margin-bottom:8px;">🔧</div>
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">Tech Reliability</div>
+              <div style="font-size:11px; color:var(--text-muted);">Legacy resolved</div>
+            </div>
+            <div class="glass-card" style="text-align:center; padding:20px 16px;">
+              <div style="font-size:28px; margin-bottom:8px;">🤝</div>
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">Stakeholder Trust</div>
+              <div style="font-size:11px; color:var(--text-muted);">Fully restored</div>
+            </div>
+            <div class="glass-card" style="text-align:center; padding:20px 16px;">
+              <div style="font-size:28px; margin-bottom:8px;">📋</div>
+              <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">Delivery Cadence</div>
+              <div style="font-size:11px; color:var(--text-muted);">Normalized &amp; tracked</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLIDE 4 — GCP LEAP (INNOVATION)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-4">
+    <div class="slide-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+    </div>
+
+    <div class="slide-content">
+      <div class="phase-tag phase-3 anim-fade-up delay-1">☁️ Phase 03 · Rased — Tech Innovation 2024</div>
+      <div class="grid-hero" style="align-items:start;">
+        <!-- Left -->
+        <div>
+          <h2 class="slide-title anim-fade-up delay-2">The <span class="title-accent" style="color:var(--green);">Leap</span><br/>Cloud &amp; Innovation</h2>
+          <p class="slide-lead anim-fade-up delay-3">
+            With stability restored, Abdulrahman pivoted to offense — pioneering a full GCP cloud migration and launching a suite of digital products that redefined Rased's technical capabilities.
+          </p>
+
+          <div class="anim-fade-up delay-4" style="display:flex; flex-direction:column; gap:16px; margin-bottom:24px;">
+            <div class="glass-card" style="display:flex; align-items:center; gap:16px; padding:18px 22px;">
+              <div style="font-size:32px;">☁️</div>
+              <div>
+                <div style="font-size:14px; font-weight:600; color:var(--green); margin-bottom:4px;">GCP Migration Pioneer</div>
+                <div style="font-size:13px; color:var(--text-secondary);">Led end-to-end migration to Google Cloud Platform — zero downtime, full continuity</div>
+              </div>
+            </div>
+            <div class="glass-card" style="display:flex; align-items:center; gap:16px; padding:18px 22px;">
+              <div style="font-size:32px;">🚀</div>
+              <div>
+                <div style="font-size:14px; font-weight:600; color:var(--cyan); margin-bottom:4px;">Core Product Launch</div>
+                <div style="font-size:13px; color:var(--text-secondary);">Delivered 1 flagship product — on schedule, within budget, with full stakeholder sign-off</div>
+              </div>
+            </div>
+            <div class="glass-card" style="display:flex; align-items:center; gap:16px; padding:18px 22px;">
+              <div style="font-size:32px;">⚙️</div>
+              <div>
+                <div style="font-size:14px; font-weight:600; color:var(--gold-light); margin-bottom:4px;">Service Ecosystem Built</div>
+                <div style="font-size:13px; color:var(--text-secondary);">Launched 4 supporting services powering the product portfolio</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tag-list anim-fade-up delay-5">
+            <span class="tag">GCP Infrastructure</span>
+            <span class="tag">Cloud Architecture</span>
+            <span class="tag">DevOps Integration</span>
+            <span class="tag">Product Management</span>
+            <span class="tag">Service Design</span>
+            <span class="tag">Technical Leadership</span>
+          </div>
+        </div>
+
+        <!-- Right — Visual -->
+        <div class="anim-fade-right delay-3" style="display:flex; flex-direction:column; gap:20px;">
+          <div class="glass-card" style="padding:32px; text-align:center; background:rgba(0,200,83,0.04); border-color:rgba(0,200,83,0.15);">
+            <div style="font-size:64px; margin-bottom:16px;">☁️</div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; color:var(--text-primary); margin-bottom:20px; letter-spacing:1px; text-transform:uppercase;">GCP Migration Complete</div>
+            <div class="grid-2" style="gap:12px; text-align:center;">
+              <div style="background:rgba(0,200,83,0.08); border:1px solid rgba(0,200,83,0.15); border-radius:10px; padding:16px 12px;">
+                <div style="font-size:28px; font-weight:700; color:var(--green);">1</div>
+                <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">Core Product</div>
+              </div>
+              <div style="background:rgba(0,229,255,0.08); border:1px solid rgba(0,229,255,0.15); border-radius:10px; padding:16px 12px;">
+                <div style="font-size:28px; font-weight:700; color:var(--cyan);">4</div>
+                <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:4px;">Services Launched</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card" style="padding:24px 28px;">
+            <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Innovation Framework</div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
+                  <span style="color:var(--text-secondary);">Cloud Readiness</span>
+                  <span style="color:var(--green);">100%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="100"></div></div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
+                  <span style="color:var(--text-secondary);">Product Delivery</span>
+                  <span style="color:var(--cyan);">95%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+              </div>
+              <div>
+                <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
+                  <span style="color:var(--text-secondary);">Service Adoption</span>
+                  <span style="color:var(--gold-light);">88%</span>
+                </div>
+                <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLIDE 5 — PORTFOLIO SCALE (IMPACT IN NUMBERS)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-5">
+    <div class="slide-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+    </div>
+
+    <div class="slide-content" style="max-width:1100px;">
+      <div class="phase-tag phase-4 anim-fade-up delay-1">📊 Phase 04 · Strategic Portfolio Scaling 2025</div>
+      <h2 class="slide-title anim-fade-up delay-2" style="margin-bottom:6px;">The Portfolio <span style="color:#c084fc;">Scale</span></h2>
+      <p style="font-size:14px; color:var(--text-secondary); margin-bottom:36px;" class="anim-fade-up delay-3">
+        From turnaround to transformation — Rased 2025 represents the full realization of strategic PMO leadership at enterprise scale.
+      </p>
+
+      <!-- Big 4 Metrics -->
+      <div class="grid-4 anim-scale delay-3" style="margin-bottom:28px;">
+        <div class="metric-card">
+          <div class="metric-value"><span class="counter" data-target="4">4</span>×</div>
+          <div class="metric-label">Revenue Growth</div>
+          <div class="metric-sub">Total organizational impact</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value"><span class="counter" data-target="270" data-suffix="%">270%</span></div>
+          <div class="metric-label">Vehicle Base</div>
+          <div class="metric-sub">Fleet expansion under management</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value"><span class="counter" data-target="280">280</span>+</div>
+          <div class="metric-label">Enterprise Accounts</div>
+          <div class="metric-sub">B2B &amp; B2G portfolio</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value"><span class="counter" data-target="85" data-suffix="%">85%</span></div>
+          <div class="metric-label">On-Time Delivery</div>
+          <div class="metric-sub">PMP® standards enforced</div>
+        </div>
+      </div>
+
+      <!-- Secondary Row -->
+      <div class="grid-3 anim-fade-up delay-4" style="margin-bottom:28px;">
+        <div class="glass-card" style="display:flex; align-items:center; gap:16px;">
+          <div style="font-size:36px;">🛠️</div>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:var(--cyan);"><span class="counter" data-target="3">3</span></div>
+            <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">New Products Launched</div>
+          </div>
+        </div>
+        <div class="glass-card" style="display:flex; align-items:center; gap:16px;">
+          <div style="font-size:36px;">⚡</div>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:var(--gold-light);"><span class="counter" data-target="7">7</span></div>
+            <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Services Deployed</div>
+          </div>
+        </div>
+        <div class="glass-card" style="display:flex; align-items:center; gap:16px;">
+          <div style="font-size:36px;">👥</div>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:var(--green);"><span class="counter" data-target="40">40</span></div>
+            <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px;">Team Members Led</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Banner -->
+      <div class="glass-card anim-fade-up delay-5" style="background:linear-gradient(135deg, rgba(0,229,255,0.05), rgba(201,162,39,0.05)); border-color:rgba(201,162,39,0.2); padding:20px 28px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;">
+        <div style="font-size:32px;">🏆</div>
+        <div style="flex:1;">
+          <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">Full Portfolio Command · B2C → B2B → B2G</div>
+          <div style="font-size:13px; color:var(--text-secondary);">Managing cross-sector enterprise relationships while simultaneously scaling products, services, and teams — a complete PMO portfolio leadership achievement.</div>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <span class="badge badge-cyan">B2C</span>
+          <span class="badge badge-gold">B2B</span>
+          <span class="badge badge-green">B2G</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLIDE 6 — STRATEGIC MASTERY (PMO SKILLS)
+  ═══════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-6">
+    <div class="slide-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+    </div>
+
+    <div class="slide-content">
+      <div class="eyebrow anim-fade-up delay-1">Strategic Mastery</div>
+      <h2 class="slide-title anim-fade-up delay-2">The PMO <span style="color:#c084fc;">Arsenal</span></h2>
+      <p class="slide-lead anim-fade-up delay-3" style="max-width:600px;">
+        A triple-domain mastery combining formal PMP® certification, hands-on cloud infrastructure leadership, and human-centered design thinking.
+      </p>
+
+      <div class="grid-3 anim-fade-up delay-3" style="margin-bottom:24px;">
+        <!-- PMP -->
+        <div class="pillar-card" style="border-color:rgba(0,229,255,0.2);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div class="icon-box icon-cyan" style="font-size:22px;">📋</div>
+            <div style="font-size:15px; font-weight:600; color:var(--text-primary);">PMP® Execution</div>
+          </div>
+          <p style="font-size:12px; color:var(--text-secondary); line-height:1.6; flex:1;">
+            Project Management Professional certified. Applied PMBOK frameworks across full project lifecycles — from initiation to closure — with rigorous risk management and quality assurance protocols.
+          </p>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:5px;">
+              <span style="color:var(--text-muted);">Proficiency</span>
+              <span style="color:var(--cyan);">Expert</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="tag-list" style="margin-top:8px;">
+            <span class="tag">PMBOK</span><span class="tag">Risk Mgmt</span><span class="tag">Portfolio</span>
+          </div>
+        </div>
+
+        <!-- GCP -->
+        <div class="pillar-card" style="border-color:rgba(0,200,83,0.2);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div class="icon-box icon-green" style="font-size:22px;">☁️</div>
+            <div style="font-size:15px; font-weight:600; color:var(--text-primary);">GCP Infrastructure</div>
+          </div>
+          <p style="font-size:12px; color:var(--text-secondary); line-height:1.6; flex:1;">
+            Led full-scale enterprise migration to Google Cloud Platform. Deep experience in cloud architecture, containerization, CI/CD pipelines, and infrastructure-as-code for production systems.
+          </p>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:5px;">
+              <span style="color:var(--text-muted);">Proficiency</span>
+              <span style="color:var(--green);">Advanced</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88" style="background:linear-gradient(90deg,var(--green),var(--cyan));"></div></div>
+          </div>
+          <div class="tag-list" style="margin-top:8px;">
+            <span class="tag">GCP</span><span class="tag">DevOps</span><span class="tag">Architecture</span>
+          </div>
+        </div>
+
+        <!-- Design Thinking -->
+        <div class="pillar-card" style="border-color:rgba(180,100,255,0.2);">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div style="width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; background:rgba(180,100,255,0.1); border:1px solid rgba(180,100,255,0.2);">🎨</div>
+            <div style="font-size:15px; font-weight:600; color:var(--text-primary);">Design Thinking</div>
+          </div>
+          <p style="font-size:12px; color:var(--text-secondary); line-height:1.6; flex:1;">
+            Human-centered approach to product &amp; service design. Applied empathy mapping, rapid prototyping, and iterative testing across product launches — bridging user needs with business objectives.
+          </p>
+          <div>
+            <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:5px;">
+              <span style="color:var(--text-muted);">Proficiency</span>
+              <span style="color:#c084fc;">Advanced</span>
+            </div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90" style="background:linear-gradient(90deg,#c084fc,var(--gold-light));"></div></div>
+          </div>
+          <div class="tag-list" style="margin-top:8px;">
+            <span class="tag">UX Strategy</span><span class="tag">Prototyping</span><span class="tag">Innovation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Competencies -->
+      <div class="glass-card anim-fade-up delay-5" style="padding:20px 28px;">
+        <div style="font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Full Competency Stack</div>
+        <div class="tag-list">
+          <span class="tag">Agile / Scrum</span>
+          <span class="tag">OKR Frameworks</span>
+          <span class="tag">Stakeholder Management</span>
+          <span class="tag">Cross-functional Leadership</span>
+          <span class="tag">Budget Governance</span>
+          <span class="tag">Enterprise Accounts</span>
+          <span class="tag">Crisis Management</span>
+          <span class="tag">Digital Transformation</span>
+          <span class="tag">Team Building (40+)</span>
+          <span class="tag">B2C / B2B / B2G</span>
+          <span class="tag">Product Roadmapping</span>
+          <span class="tag">Data-driven Decisions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SLIDE 7 — FUTURE VISION
+  ═══════════════════════════════════════════════════════ -->
+  <section class="slide" id="slide-7">
+    <div class="slide-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+    </div>
+
+    <div class="slide-content" style="text-align:center; max-width:900px;">
+      <div class="eyebrow anim-fade-up delay-1" style="justify-content:center;">
+        Future Vision · Saudi Vision 2030
+      </div>
+      <h2 class="slide-title anim-fade-up delay-2" style="text-align:center; margin-bottom:16px;">
+        Bridging <span class="title-gold">National</span><br/>Aspirations
+      </h2>
+      <p style="font-size:clamp(13px,1.6vw,16px); color:var(--text-secondary); line-height:1.75; max-width:640px; margin:0 auto 40px; text-align:center;" class="anim-fade-up delay-3">
+        The journey from Mojaz to Rased's enterprise scale is not an end — it is a foundation. Abdulrahman's vision aligns the next chapter of PMO leadership with the ambitions of Saudi Vision 2030: digital transformation, economic diversification, and world-class service delivery.
+      </p>
+
+      <div class="grid-3 anim-fade-up delay-4" style="margin-bottom:36px; text-align:left;">
+        <div class="pillar-card" style="border-color:rgba(201,162,39,0.2); align-items:center; text-align:center;">
+          <div style="font-size:40px; margin-bottom:8px;">🏙️</div>
+          <div style="font-size:14px; font-weight:600; color:var(--gold-light); margin-bottom:8px;">Digital Transformation</div>
+          <p style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+            Leading enterprise-grade digital initiatives that accelerate Saudi Arabia's transition to a data-driven, technology-first economy.
+          </p>
+        </div>
+        <div class="pillar-card" style="border-color:rgba(0,229,255,0.2); align-items:center; text-align:center;">
+          <div style="font-size:40px; margin-bottom:8px;">📈</div>
+          <div style="font-size:14px; font-weight:600; color:var(--cyan); margin-bottom:8px;">Economic Diversification</div>
+          <p style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+            Scaling B2B &amp; B2G product portfolios that create diversified revenue streams aligned with Vision 2030 national programs.
+          </p>
+        </div>
+        <div class="pillar-card" style="border-color:rgba(0,200,83,0.2); align-items:center; text-align:center;">
+          <div style="font-size:40px; margin-bottom:8px;">🌐</div>
+          <div style="font-size:14px; font-weight:600; color:var(--green); margin-bottom:8px;">World-Class Delivery</div>
+          <p style="font-size:12px; color:var(--text-secondary); line-height:1.6;">
+            Applying PMP® rigor and cloud-native architecture to build delivery excellence that meets international standards.
+          </p>
+        </div>
+      </div>
+
+      <!-- Final Quote -->
+      <div class="glass-card anim-scale delay-5" style="background:linear-gradient(135deg, rgba(0,229,255,0.04), rgba(201,162,39,0.04)); border-color:rgba(201,162,39,0.15); padding:32px 40px; max-width:700px; margin:0 auto 32px;">
+        <div style="font-size:20px; color:var(--gold-light); margin-bottom:12px;">"</div>
+        <p style="font-size:clamp(14px,1.8vw,18px); color:var(--text-primary); font-style:italic; line-height:1.7; margin-bottom:16px;">
+          The best PMO leaders don't just manage projects — they architect futures. Every sprint, every governance framework, every cloud migration has been a step toward building organizations that endure and inspire.
+        </p>
+        <div style="font-size:13px; color:var(--gold-light); font-weight:600;">Abdulrahman Alhumud · PMP®</div>
+      </div>
+
+      <!-- Restart -->
+      <div class="anim-fade-up delay-6">
+        <button class="cta-btn cta-primary" onclick="scrollToSlide(0)" style="margin:0 auto;">
+          ↑ Return to Beginning
+        </button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /slides-container -->
+
+<script>
+(function() {
+  const container = document.getElementById('slides-container');
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.nav-dot');
+  const progressBar = document.getElementById('progress-bar');
+  const totalSlides = slides.length;
+  let currentSlide = 0;
+  let isAnimating = false;
+  let countersRun = new Set();
+
+  // ── Slide Activation ──
+  function activateSlide(index) {
+    slides.forEach((s, i) => {
+      s.classList.toggle('active', i === index);
+    });
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === index);
+    });
+    const pct = ((index) / (totalSlides - 1)) * 100;
+    progressBar.style.width = pct + '%';
+    currentSlide = index;
+
+    // Run counters for this slide
+    if (!countersRun.has(index)) {
+      countersRun.add(index);
+      setTimeout(() => runCounters(slides[index]), 400);
+      triggerSkillBars(slides[index]);
+    }
+  }
+
+  // ── Scroll Observer ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        const idx = Array.from(slides).indexOf(entry.target);
+        activateSlide(idx);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(s => observer.observe(s));
+
+  // ── Nav Dots ──
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const i = parseInt(dot.dataset.slide);
+      scrollToSlide(i);
+    });
+  });
+
+  // ── Scroll to Slide ──
+  window.scrollToSlide = function(index) {
+    slides[index].scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // ── Keyboard Navigation ──
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+      e.preventDefault();
+      if (currentSlide < totalSlides - 1) scrollToSlide(currentSlide + 1);
+    }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      if (currentSlide > 0) scrollToSlide(currentSlide - 1);
+    }
+    if (e.key === 'Home') { e.preventDefault(); scrollToSlide(0); }
+    if (e.key === 'End') { e.preventDefault(); scrollToSlide(totalSlides - 1); }
+  });
+
+  // ── Counter Animation ──
+  function runCounters(slide) {
+    slide.querySelectorAll('.counter[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1200;
+      const steps = 60;
+      const inc = target / steps;
+      let current = 0;
+      let step = 0;
+      const timer = setInterval(() => {
+        step++;
+        current = Math.min(Math.round(inc * step), target);
+        el.textContent = prefix + current.toLocaleString() + suffix;
+        if (step >= steps) clearInterval(timer);
+      }, duration / steps);
+    });
+  }
+
+  // ── Skill Bar Animation ──
+  function triggerSkillBars(slide) {
+    setTimeout(() => {
+      slide.querySelectorAll('.skill-bar-fill[data-width]').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    }, 300);
+  }
+
+  // ── Initial activation ──
+  activateSlide(0);
+
+})();
+</script>
+</body>
+</html>
