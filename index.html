@@ -408,7 +408,12 @@
   #slide-7 .glow-orb-1 { width: 600px; height: 600px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); }
   #slide-8 .glow-orb-1 { width: 700px; height: 700px; right: -100px; top: 50%; transform: translateY(-50%); background: radial-gradient(var(--cyan), transparent 70%); opacity: 0.2; }
   #slide-9 .glow-orb-1 { width: 600px; height: 600px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(#c084fc, transparent 70%); }
-  #slide-10 .glow-orb-1 { width: 700px; height: 700px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); }
+  #slide-10 .glow-orb-1 { width: 700px; height: 700px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); opacity: 0.25; }
+  #slide-10 .slide-content {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; height: 100%; padding: 48px 32px; max-width: 720px; margin: 0 auto;
+    box-sizing: border-box;
+  }
 
   /* ── Responsive ── */
   @media (max-width: 900px) {
@@ -1154,7 +1159,7 @@
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px;" class="anim-scale delay-2">
       <div class="ach-metric" style="border-color:rgba(0,229,255,0.2);">
         <div style="font-size:22px;margin-bottom:6px;">🚀</div>
-        <div class="ach-val"><span class="counter" data-target="4">4</span></div>
+        <div class="ach-val"><span class="counter" data-target="5">5</span></div>
         <div class="ach-label" data-i18n="ach.prod">Products Launched</div>
       </div>
       <div class="ach-metric" style="border-color:rgba(201,162,39,0.2);">
@@ -1323,55 +1328,61 @@
     <div class="glow-orb glow-orb-1"></div>
   </div>
 
-  <div class="slide-content" style="text-align:center;max-width:720px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;">
+  <div class="slide-content">
 
-    <!-- Thank You -->
-    <div class="anim-fade-up delay-1" style="margin-bottom:16px;">
-      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(64px,9vw,112px);font-weight:800;line-height:1;background:linear-gradient(135deg,#ffffff 0%,var(--gold-light) 60%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0;" data-i18n="s10.thanks">Thank You</div>
+    <!-- Thank You headline -->
+    <div class="anim-fade-up delay-1" style="margin-bottom:12px;">
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(60px,9vw,110px);font-weight:800;line-height:1;margin:0;background:linear-gradient(135deg,#ffffff 0%,#f0c040 55%,#00e5ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="s10.thanks">Thank You</h1>
     </div>
 
-    <!-- Thin divider -->
-    <div class="anim-scale delay-2" style="width:80px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--gold-light));border-radius:2px;margin-bottom:44px;"></div>
+    <!-- Divider bar -->
+    <div class="anim-scale delay-2" style="width:72px;height:2px;background:linear-gradient(90deg,#00e5ff,#f0c040);border-radius:2px;margin-bottom:36px;"></div>
 
     <!-- Name + Role -->
-    <div class="anim-fade-up delay-2" style="margin-bottom:48px;">
-      <div style="font-size:clamp(18px,2.2vw,26px);font-weight:600;color:var(--text-primary);letter-spacing:1px;margin-bottom:6px;" data-i18n="s10.name">Abdulrahman Alhumud</div>
-      <div style="font-size:13px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;" data-i18n="s10.role">Project Management Professional · PMP®</div>
+    <div class="anim-fade-up delay-2" style="margin-bottom:40px;">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,2.4vw,28px);font-weight:700;color:#f0c040;letter-spacing:2px;margin-bottom:8px;" data-i18n="s10.name">Abdulrahman Alhumud</div>
+      <div style="font-size:12px;color:rgba(200,210,230,0.7);letter-spacing:3.5px;text-transform:uppercase;font-weight:400;" data-i18n="s10.role">Project Management Professional · PMP®</div>
     </div>
 
-    <!-- Contact Block -->
-    <div class="anim-scale delay-3" style="display:inline-grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%;max-width:620px;margin-bottom:44px;">
+    <!-- Contact Cards -->
+    <div class="anim-scale delay-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:600px;margin:0 auto 40px;">
+
       <!-- Phone -->
-      <div class="glass-card" style="padding:22px 16px;text-align:center;border-color:rgba(0,229,255,0.25);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="margin:0 auto 10px;display:block;" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.51 5.13 2 2 0 015.5 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 10.09a16 16 0 006 6l.88-.88a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#00e5ff" stroke-width="1.8" fill="rgba(0,229,255,0.06)" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="glass-card" style="padding:24px 14px;text-align:center;border-color:rgba(0,229,255,0.3);background:rgba(0,229,255,0.04);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 12px;" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.51 5.13 2 2 0 015.5 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 10.09a16 16 0 006 6l.88-.88a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#00e5ff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;" data-i18n="s10.phone.label">Phone</div>
-        <div style="font-size:12px;font-weight:700;color:var(--cyan);" data-i18n="s10.phone">+966 59 393 5677</div>
+        <div style="font-size:9px;color:rgba(180,200,220,0.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:7px;" data-i18n="s10.phone.label">Phone</div>
+        <div style="font-size:13px;font-weight:700;color:#00e5ff;letter-spacing:0.5px;" data-i18n="s10.phone">+966 59 393 5677</div>
       </div>
+
       <!-- Email -->
-      <div class="glass-card" style="padding:22px 16px;text-align:center;border-color:rgba(240,192,64,0.25);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="margin:0 auto 10px;display:block;" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="4" width="20" height="16" rx="3" stroke="#f0c040" stroke-width="1.8" fill="rgba(240,192,64,0.06)"/>
+      <div class="glass-card" style="padding:24px 14px;text-align:center;border-color:rgba(240,192,64,0.3);background:rgba(240,192,64,0.04);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 12px;" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="4" width="20" height="16" rx="3" stroke="#f0c040" stroke-width="1.8" fill="none"/>
           <path d="M2 7L12 13L22 7" stroke="#f0c040" stroke-width="1.8" stroke-linecap="round"/>
         </svg>
-        <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;" data-i18n="s10.email.label">Email</div>
-        <div style="font-size:12px;font-weight:700;color:var(--gold-light);" data-i18n="s10.email">A.alhumud0@gmail.com</div>
+        <div style="font-size:9px;color:rgba(180,200,220,0.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:7px;" data-i18n="s10.email.label">Email</div>
+        <div style="font-size:12px;font-weight:700;color:#f0c040;letter-spacing:0.3px;word-break:break-all;" data-i18n="s10.email">A.alhumud0@gmail.com</div>
       </div>
+
       <!-- LinkedIn -->
-      <div class="glass-card" style="padding:22px 16px;text-align:center;border-color:rgba(0,200,83,0.25);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="margin:0 auto 10px;display:block;" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="20" height="20" rx="4" stroke="#00c853" stroke-width="1.8" fill="rgba(0,200,83,0.06)"/>
+      <div class="glass-card" style="padding:24px 14px;text-align:center;border-color:rgba(0,200,83,0.3);background:rgba(0,200,83,0.04);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 12px;" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="4" stroke="#00c853" stroke-width="1.8" fill="none"/>
           <path d="M7 8.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM6.5 10.5v7M11.5 10.5v7M11.5 13.5a3 3 0 016 0v4" stroke="#00c853" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;" data-i18n="s10.li.label">LinkedIn</div>
-        <div style="font-size:11px;font-weight:700;color:var(--green);" data-i18n="s10.li">in/aalhumud</div>
+        <div style="font-size:9px;color:rgba(180,200,220,0.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:7px;" data-i18n="s10.li.label">LinkedIn</div>
+        <div style="font-size:10px;font-weight:700;color:#00c853;letter-spacing:0.3px;word-break:break-all;" data-i18n="s10.li">www.linkedin.com/in/aalhumud</div>
       </div>
+
     </div>
 
+    <!-- Return CTA -->
     <div class="anim-fade-up delay-4">
       <button class="cta-btn cta-ghost" onclick="scrollToSlide(0)" style="margin:0 auto;" data-i18n="s10.back">↑ Return to Beginning</button>
     </div>
+
   </div>
 </section>
 </div><!-- /slides-container -->
@@ -1504,7 +1515,7 @@ const i18n = {
     's10.thanks':'Thank You',
     's10.phone.label':'Phone','s10.phone':'+966 59 393 5677',
     's10.email.label':'Email','s10.email':'A.alhumud0@gmail.com',
-    's10.li.label':'LinkedIn','s10.li':'in/aalhumud',
+    's10.li.label':'LinkedIn','s10.li':'www.linkedin.com/in/aalhumud',
     's10.name':'Abdulrahman Alhumud','s10.role':'Project Management Professional · PMP®',
     's10.back':'↑ Return to Beginning',
     's10.eyebrow':'Future Vision · Saudi Vision 2030',
@@ -1641,7 +1652,7 @@ const i18n = {
     's10.thanks':'شكراً لكم',
     's10.phone.label':'الهاتف','s10.phone':'+966 59 393 5677',
     's10.email.label':'البريد الإلكتروني','s10.email':'A.alhumud0@gmail.com',
-    's10.li.label':'لينكدإن','s10.li':'in/aalhumud',
+    's10.li.label':'لينكدإن','s10.li':'www.linkedin.com/in/aalhumud',
     's10.name':'عبدالرحمن الحمود','s10.role':'محترف إدارة المشاريع · PMP®',
     's10.back':'↑ العودة إلى البداية',
     's10.eyebrow':'رؤية المستقبل · رؤية السعودية 2030',
