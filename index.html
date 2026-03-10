@@ -124,6 +124,7 @@
   .slide-content {
     position: relative; z-index: 1;
     width: 100%; max-width: 1200px; padding: 60px 48px;
+    zoom: var(--deck-scale, 1);
   }
 
   /* ── Typography ── */
@@ -416,17 +417,35 @@
   }
 
   /* ── Responsive ── */
+  @media (max-width: 1400px) {
+    .slide-content { padding: 48px 40px; }
+  }
   @media (max-width: 900px) {
     .grid-hero, .grid-2 { grid-template-columns: 1fr; gap: 20px; }
     .grid-3 { grid-template-columns: repeat(2, 1fr); }
     .grid-4 { grid-template-columns: repeat(2, 1fr); }
-    .slide-content { padding: 40px 24px; }
+    .slide-content { padding: 32px 20px; }
     #nav-dots { display: none; }
+    #universe-side-panel { display: none !important; }
   }
   @media (max-width: 600px) {
     .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    .slide-content { padding: 20px 14px; }
+  }
+  @media (max-height: 820px) {
+    .slide-content { padding-top: 36px; padding-bottom: 36px; }
+  }
+  @media (max-height: 680px) {
+    .slide-content { padding-top: 20px; padding-bottom: 20px; }
   }
 </style>
+<script>
+// Apply deck scale before first paint to avoid layout jump
+(function(){
+  var s = Math.min(window.innerWidth/1440, window.innerHeight/900, 1.0);
+  document.documentElement.style.setProperty('--deck-scale', Math.max(s,0.55).toFixed(4));
+})();
+</script>
 </head>
 <body>
 
@@ -1128,7 +1147,7 @@
     </div>
   </div>
   <!-- Side Panel — Readable List -->
-  <div style="position:absolute;right:36px;top:50%;transform:translateY(-50%);z-index:3;width:200px;display:flex;flex-direction:column;gap:6px;">
+  <div id="universe-side-panel" style="position:absolute;right:36px;top:50%;transform:translateY(-50%);z-index:3;width:200px;display:flex;flex-direction:column;gap:6px;">
     <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border-glass);" data-i18n="s8.panel.title">All Stakeholders</div>
     <div style="font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;" data-i18n="s8.l1">Internal</div>
     <div style="font-size:11px;color:rgba(0,229,255,0.7);line-height:1.8;">🖥️ Infrastructure Team<br/>🔒 Cybersecurity Team<br/>📱 Application Team<br/>🗄️ Database Team<br/>⚙️ Technical Team<br/>💼 Sales Team<br/>🎧 Customer Service</div>
@@ -1765,13 +1784,19 @@ function setLanguage(lang) {
 // ══════════════════════════════════════════
 //  STAKEHOLDER UNIVERSE — ANIMATED NODE GRAPH
 // ══════════════════════════════════════════
+let universeRAF = null;
 function initUniverse() {
+  if (universeRAF) { cancelAnimationFrame(universeRAF); universeRAF = null; }
   const canvas = document.getElementById('universe-canvas');
   const tooltip = document.getElementById('node-tooltip');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+
+  // Scale factor: reference design at 1440×900
+  const vScale = Math.min(canvas.width / 1440, canvas.height / 900, 1.0);
+  const vs = Math.max(vScale, 0.5); // floor at 50%
 
   const COLORS = {
     internal: '#00e5ff',
@@ -1782,26 +1807,26 @@ function initUniverse() {
   };
 
   const nodes = [
-    { id: 0, label: 'Abdulrahman\nAlhumud', type: 'center', r: 44, desc: 'Senior Project Manager · PMP®', ar: 'عبدالرحمن الحمود · PMP®' },
-    { id: 1, label: 'Infrastructure\nTeam', type: 'internal', r: 28, desc: 'Cloud & Server Infrastructure', ar: 'فريق البنية التحتية' },
-    { id: 2, label: 'Cybersecurity\nTeam', type: 'internal', r: 28, desc: 'Security & Compliance', ar: 'فريق الأمن السيبراني' },
-    { id: 3, label: 'Application\nTeam', type: 'internal', r: 28, desc: 'App Development & QA', ar: 'فريق التطبيقات' },
-    { id: 4, label: 'Database\nTeam', type: 'internal', r: 28, desc: 'Data Architecture & Management', ar: 'فريق قواعد البيانات' },
-    { id: 5, label: 'Technical\nTeam', type: 'internal', r: 28, desc: 'Core Technical Operations', ar: 'الفريق التقني' },
-    { id: 6, label: 'Google Team', type: 'external', r: 30, desc: 'GCP Migration Partner', ar: 'فريق Google' },
-    { id: 7, label: 'External\nHosting', type: 'external', r: 26, desc: 'Hosting & CDN Partners', ar: 'الاستضافة الخارجية' },
-    { id: 8, label: 'Legal Team', type: 'business', r: 26, desc: 'Legal & Compliance Advisory', ar: 'الفريق القانوني' },
-    { id: 9, label: 'Procurement', type: 'business', r: 26, desc: 'Vendor & Contract Management', ar: 'فريق المشتريات' },
-    { id: 10, label: 'Finance Team', type: 'business', r: 26, desc: 'Budget & Financial Governance', ar: 'الفريق المالي' },
-    { id: 11, label: 'Marketing\nTeam', type: 'business', r: 26, desc: 'Go-to-Market & Brand', ar: 'فريق التسويق' },
-    { id: 12, label: 'Saudi Water\nAuthority', type: 'gov', r: 22, desc: 'Custom Solutions Client', ar: 'هيئة المياه' },
-    { id: 13, label: 'MEWA', type: 'gov', r: 22, desc: 'Ministry of Environment', ar: 'وزارة البيئة' },
-    { id: 14, label: 'Ministry of\nEnergy', type: 'gov', r: 22, desc: '3 Strategic Sectors', ar: 'وزارة الطاقة' },
-    { id: 15, label: 'ZATCA', type: 'gov', r: 22, desc: 'Zakat, Tax & Customs Authority', ar: 'هيئة الزكاة والضريبة والجمارك' },
-    { id: 16, label: 'Transport\nAuthority', type: 'gov', r: 22, desc: 'Legislative Compliance', ar: 'هيئة النقل' },
-    { id: 17, label: 'Ministry of\nInvestment', type: 'gov', r: 20, desc: 'Investment Facilitation', ar: 'وزارة الاستثمار' },
-    { id: 18, label: 'Petromin\n& SASCO', type: 'gov', r: 20, desc: 'Strategic Fuel Partnership', ar: 'بترومين وساسكو' },
-    { id: 19, label: 'IMAM / PNU', type: 'gov', r: 20, desc: 'Higher Education Digital Services', ar: 'جامعة الإمام / جامعة الأميرة نورة' },
+    { id: 0, label: 'Abdulrahman\nAlhumud', type: 'center', r: Math.round(44*vs), desc: 'Senior Project Manager · PMP®', ar: 'عبدالرحمن الحمود · PMP®' },
+    { id: 1, label: 'Infrastructure\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'Cloud & Server Infrastructure', ar: 'فريق البنية التحتية' },
+    { id: 2, label: 'Cybersecurity\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'Security & Compliance', ar: 'فريق الأمن السيبراني' },
+    { id: 3, label: 'Application\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'App Development & QA', ar: 'فريق التطبيقات' },
+    { id: 4, label: 'Database\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'Data Architecture & Management', ar: 'فريق قواعد البيانات' },
+    { id: 5, label: 'Technical\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'Core Technical Operations', ar: 'الفريق التقني' },
+    { id: 6, label: 'Google Team', type: 'external', r: Math.round(30*vs), desc: 'GCP Migration Partner', ar: 'فريق Google' },
+    { id: 7, label: 'External\nHosting', type: 'external', r: Math.round(26*vs), desc: 'Hosting & CDN Partners', ar: 'الاستضافة الخارجية' },
+    { id: 8, label: 'Legal Team', type: 'business', r: Math.round(26*vs), desc: 'Legal & Compliance Advisory', ar: 'الفريق القانوني' },
+    { id: 9, label: 'Procurement', type: 'business', r: Math.round(26*vs), desc: 'Vendor & Contract Management', ar: 'فريق المشتريات' },
+    { id: 10, label: 'Finance Team', type: 'business', r: Math.round(26*vs), desc: 'Budget & Financial Governance', ar: 'الفريق المالي' },
+    { id: 11, label: 'Marketing\nTeam', type: 'business', r: Math.round(26*vs), desc: 'Go-to-Market & Brand', ar: 'فريق التسويق' },
+    { id: 12, label: 'Saudi Water\nAuthority', type: 'gov', r: Math.round(22*vs), desc: 'Custom Solutions Client', ar: 'هيئة المياه' },
+    { id: 13, label: 'MEWA', type: 'gov', r: Math.round(22*vs), desc: 'Ministry of Environment', ar: 'وزارة البيئة' },
+    { id: 14, label: 'Ministry of\nEnergy', type: 'gov', r: Math.round(22*vs), desc: '3 Strategic Sectors', ar: 'وزارة الطاقة' },
+    { id: 15, label: 'ZATCA', type: 'gov', r: Math.round(22*vs), desc: 'Zakat, Tax & Customs Authority', ar: 'هيئة الزكاة والضريبة والجمارك' },
+    { id: 16, label: 'Transport\nAuthority', type: 'gov', r: Math.round(22*vs), desc: 'Legislative Compliance', ar: 'هيئة النقل' },
+    { id: 17, label: 'Ministry of\nInvestment', type: 'gov', r: Math.round(20*vs), desc: 'Investment Facilitation', ar: 'وزارة الاستثمار' },
+    { id: 18, label: 'Petromin\n& SASCO', type: 'gov', r: Math.round(20*vs), desc: 'Strategic Fuel Partnership', ar: 'بترومين وساسكو' },
+    { id: 19, label: 'IMAM / PNU', type: 'gov', r: Math.round(20*vs), desc: 'Higher Education Digital Services', ar: 'جامعة الإمام / جامعة الأميرة نورة' },
   ];
 
   const links = nodes.filter(n => n.id !== 0).map(n => ({ source: 0, target: n.id }));
@@ -1814,10 +1839,10 @@ function initUniverse() {
 
   const cx = canvas.width / 2, cy = canvas.height / 2;
   const groups = {
-    internal: { angle: -Math.PI/2, count: 5, r: 210 },
-    external:  { angle: Math.PI/6,  count: 2, r: 240 },
-    business:  { angle: Math.PI/2,  count: 4, r: 240 },
-    gov:       { angle: Math.PI + Math.PI/6, count: 7, r: 290 }
+    internal: { angle: -Math.PI/2, count: 5, r: Math.round(210*vs) },
+    external:  { angle: Math.PI/6,  count: 2, r: Math.round(240*vs) },
+    business:  { angle: Math.PI/2,  count: 4, r: Math.round(240*vs) },
+    gov:       { angle: Math.PI + Math.PI/6, count: 7, r: Math.round(290*vs) }
   };
   const groupCounts = {};
   nodes.forEach(n => {
@@ -1904,16 +1929,17 @@ function initUniverse() {
       // Label
       const lines = n.label.split('\n');
       ctx.fillStyle = isHov ? color : hexToRgba(color, 0.85);
-      ctx.font = `${isHov ? 600 : 500} ${n.type==='center' ? 11 : 9}px Inter, Cairo, sans-serif`;
+      const fz = Math.round((n.type==='center' ? 11 : 9) * vs);
+      ctx.font = `${isHov ? 600 : 500} ${fz}px Inter, Cairo, sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       lines.forEach((line, li) => {
-        const offset = (li - (lines.length-1)/2) * 11;
+        const offset = (li - (lines.length-1)/2) * Math.round(11 * vs);
         ctx.fillText(line, n.x, n.y + offset);
       });
     });
 
-    requestAnimationFrame(draw);
+    universeRAF = requestAnimationFrame(draw);
   }
 
   canvas.addEventListener('mousemove', e => {
@@ -1941,12 +1967,19 @@ function initUniverse() {
   draw();
 }
 
+function updateDeckScale() {
+  const s = Math.min(window.innerWidth / 1440, window.innerHeight / 900, 1.0);
+  document.documentElement.style.setProperty('--deck-scale', Math.max(s, 0.55).toFixed(4));
+}
+updateDeckScale();
+
+let _deckResizeTimer;
 window.addEventListener('resize', () => {
-  const canvas = document.getElementById('universe-canvas');
-  if (canvas && window.universeInitialized) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+  updateDeckScale();
+  clearTimeout(_deckResizeTimer);
+  _deckResizeTimer = setTimeout(() => {
+    if (window.universeInitialized) initUniverse();
+  }, 200);
 });
 </script>
 </body>
