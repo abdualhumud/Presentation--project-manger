@@ -441,9 +441,10 @@
 </style>
 <script>
 // Apply deck scale before first paint to avoid layout jump
+// Reference at 1200x750 (smaller than design) gives ~20% boost on 1280x800 laptops, capped at 1.1
 (function(){
-  var s = Math.min(window.innerWidth/1440, window.innerHeight/900, 1.0);
-  document.documentElement.style.setProperty('--deck-scale', Math.max(s,0.55).toFixed(4));
+  var s = Math.min(window.innerWidth/1200, window.innerHeight/750, 1.1);
+  document.documentElement.style.setProperty('--deck-scale', Math.max(s,0.6).toFixed(4));
 })();
 </script>
 </head>
@@ -776,7 +777,7 @@
       <div>
         <h2 class="slide-title anim-fade-up delay-2"><span data-i18n="s4.title1">The </span><span class="title-accent" style="color:var(--green);" data-i18n="s4.title2">Leap</span><br/><span data-i18n="s4.title3">Cloud &amp; Innovation</span></h2>
         <p class="slide-lead anim-fade-up delay-3" data-i18n="s4.lead">With stability restored, pivoted to offense — pioneering full GCP cloud migration and launching a suite of digital products that redefined Rased's technical capabilities.</p>
-        <div class="anim-fade-up delay-4" style="display:flex;flex-direction:column;gap:14px;margin-bottom:20px;">
+        <div class="anim-fade-up delay-4" style="display:flex;flex-direction:column;gap:14px;margin-bottom:16px;">
           <div class="glass-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;">
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 24C5.239 24 3 21.761 3 19C3 16.239 5.239 14 8 14C8.088 14 8.176 14.002 8.264 14.007C8.845 11.16 11.375 9 14.5 9C17.985 9 20.82 11.59 21.147 14.987C21.431 14.996 21.714 15 22 15C25.314 15 28 17.686 28 21C28 24.314 25.314 27 22 27H8C8 27 8 24 8 24Z" stroke="#00c853" stroke-width="1.8" fill="rgba(0,200,83,0.1)" stroke-linejoin="round"/>
@@ -808,33 +809,55 @@
           </div>
         </div>
 
-      </div>
-      <!-- Right: Stakeholder Ecosystem (primary) + compact GCP stats + Innovation bars -->
-      <div class="anim-fade-right delay-3" style="display:flex;flex-direction:column;gap:14px;">
-
-        <!-- GCP stat row — compact header -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          <div style="background:rgba(0,200,83,0.08);border:1px solid rgba(0,200,83,0.18);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
-            <svg width="28" height="28" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 40C8.477 40 4 35.523 4 30C4 24.477 8.477 20 14 20C14.143 20 14.285 20.004 14.426 20.011C15.391 15.267 19.583 12 24.5 12C29.972 12 34.455 16.233 34.951 21.645C35.453 21.663 35.955 21.682 36.444 21.7C41.847 22.098 46 26.57 46 32C46 37.523 41.523 42 36 42H14V40Z" stroke="#00c853" stroke-width="2" fill="rgba(0,200,83,0.1)" stroke-linejoin="round"/>
-            </svg>
+        <!-- Innovation Framework — positioned under Service Ecosystem (bottom-left) -->
+        <div class="glass-card anim-fade-up delay-5" style="padding:16px 20px;background:rgba(0,229,255,0.02);border-color:rgba(0,229,255,0.12);">
+          <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;" data-i18n="s4.innov">Innovation Framework</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
             <div>
-              <div style="font-size:22px;font-weight:700;color:var(--green);font-family:'Space Grotesk',sans-serif;line-height:1;">1</div>
-              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;" data-i18n="s4.cloud.p">Core Product</div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b1">Cloud Readiness</span><span style="color:var(--green);font-weight:600;">100%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="100"></div></div>
             </div>
-          </div>
-          <div style="background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.18);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2L15 8.5L22 9.3L17 14L18.5 21L12 17.5L5.5 21L7 14L2 9.3L9 8.5L12 2Z" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,0.1)" stroke-linejoin="round"/>
-            </svg>
             <div>
-              <div style="font-size:22px;font-weight:700;color:var(--cyan);font-family:'Space Grotesk',sans-serif;line-height:1;">4</div>
-              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;" data-i18n="s4.cloud.s">Services Launched</div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b2">Product Delivery</span><span style="color:var(--cyan);font-weight:600;">95%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b3">Service Adoption</span><span style="color:var(--gold-light);font-weight:600;">88%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88" style="background:linear-gradient(90deg,var(--gold-light),var(--green));"></div></div>
             </div>
           </div>
         </div>
 
-        <!-- Stakeholder Ecosystem — PRIMARY FOCUS -->
+      </div>
+      <!-- Right: Google Cloud Box (top primary) + Stakeholder Ecosystem -->
+      <div class="anim-fade-right delay-3" style="display:flex;flex-direction:column;gap:14px;">
+
+        <!-- Google Cloud Box — TOP RIGHT PRIMARY -->
+        <div class="glass-card" style="padding:20px 22px;background:rgba(0,200,83,0.05);border-color:rgba(0,200,83,0.3);">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
+            <div style="font-size:38px;line-height:1;flex-shrink:0;">☁️</div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:var(--green);margin-bottom:3px;" data-i18n="s4.gcp.title">Google Cloud</div>
+              <div style="font-size:11px;color:var(--text-secondary);" data-i18n="s4.gcp.sub">GCP Migration Partner · Strategic Cloud Alliance</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div style="text-align:center;background:rgba(0,200,83,0.08);border:1px solid rgba(0,200,83,0.2);border-radius:8px;padding:10px 6px;">
+              <div style="font-size:18px;font-weight:700;color:var(--green);font-family:'Space Grotesk',sans-serif;line-height:1;">1</div>
+              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:3px;" data-i18n="s4.cloud.p">Core Product</div>
+            </div>
+            <div style="text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);border-radius:8px;padding:10px 6px;">
+              <div style="font-size:18px;font-weight:700;color:var(--cyan);font-family:'Space Grotesk',sans-serif;line-height:1;">4</div>
+              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:3px;" data-i18n="s4.cloud.s">Services</div>
+            </div>
+            <div style="text-align:center;background:rgba(240,192,64,0.08);border:1px solid rgba(240,192,64,0.2);border-radius:8px;padding:10px 6px;">
+              <div style="font-size:18px;font-weight:700;color:var(--gold-light);font-family:'Space Grotesk',sans-serif;line-height:1;">100%</div>
+              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:3px;" data-i18n="s4.cloud.u">Uptime</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stakeholder Ecosystem — BELOW GOOGLE BOX -->
         <div class="glass-card" style="padding:22px 24px;background:rgba(0,200,83,0.03);border-color:rgba(0,200,83,0.25);flex:1;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
             <div style="font-size:13px;color:var(--green);text-transform:uppercase;letter-spacing:2px;font-weight:700;" data-i18n="s4.eco.title">Stakeholder Ecosystem</div>
@@ -870,24 +893,6 @@
           </div>
         </div>
 
-        <!-- Innovation Framework — compact bottom strip -->
-        <div class="glass-card" style="padding:16px 20px;background:rgba(0,229,255,0.02);border-color:rgba(0,229,255,0.12);">
-          <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;" data-i18n="s4.innov">Innovation Framework</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b1">Cloud Readiness</span><span style="color:var(--green);font-weight:600;">100%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="100"></div></div>
-            </div>
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b2">Product Delivery</span><span style="color:var(--cyan);font-weight:600;">95%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
-            </div>
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b3">Service Adoption</span><span style="color:var(--gold-light);font-weight:600;">88%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88" style="background:linear-gradient(90deg,var(--gold-light),var(--green));"></div></div>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -1472,7 +1477,8 @@ const i18n = {
     's4.c3t':'Service Ecosystem Built','s4.c3d':'Launched 4 supporting services powering the product portfolio',
     's4.tg1':'GCP Infrastructure','s4.tg2':'Cloud Architecture','s4.tg3':'DevOps Integration',
     's4.tg4':'Product Management','s4.tg5':'Service Design','s4.tg6':'Technical Leadership',
-    's4.cloud.t':'GCP Migration Complete','s4.cloud.p':'Core Product','s4.cloud.s':'Services Launched',
+    's4.cloud.t':'GCP Migration Complete','s4.cloud.p':'Core Product','s4.cloud.s':'Services','s4.cloud.u':'Uptime',
+    's4.gcp.title':'Google Cloud','s4.gcp.sub':'GCP Migration Partner · Strategic Cloud Alliance',
     's4.innov':'Innovation Framework','s4.b1':'Cloud Readiness','s4.b2':'Product Delivery','s4.b3':'Service Adoption',
     's4.i1':'Cloud','s4.i2':'Apps','s4.i3':'Scale','s4.i4':'Infra',
     's4.eco.title':'Stakeholder Ecosystem','s4.eco.badge':'Phase 03 — Expanded',
@@ -1609,7 +1615,8 @@ const i18n = {
     's4.c3t':'بناء النظام البيئي للخدمات','s4.c3d':'أطلق 4 خدمات داعمة تغذي محفظة المنتجات',
     's4.tg1':'بنية GCP التحتية','s4.tg2':'هندسة السحابة','s4.tg3':'تكامل DevOps',
     's4.tg4':'إدارة المنتجات','s4.tg5':'تصميم الخدمات','s4.tg6':'القيادة التقنية',
-    's4.cloud.t':'اكتملت هجرة GCP','s4.cloud.p':'المنتج الأساسي','s4.cloud.s':'خدمات مطلقة',
+    's4.cloud.t':'اكتملت هجرة GCP','s4.cloud.p':'المنتج الأساسي','s4.cloud.s':'الخدمات','s4.cloud.u':'التشغيل',
+    's4.gcp.title':'Google Cloud','s4.gcp.sub':'شريك هجرة GCP · تحالف سحابي استراتيجي',
     's4.innov':'إطار الابتكار','s4.b1':'جاهزية السحابة','s4.b2':'تسليم المنتج','s4.b3':'اعتماد الخدمة',
     's4.i1':'سحابة','s4.i2':'تطبيقات','s4.i3':'نمو','s4.i4':'بنية',
     's4.eco.title':'النظام البيئي لأصحاب المصلحة','s4.eco.badge':'المرحلة 03 — موسّع',
@@ -1814,26 +1821,26 @@ function initUniverse() {
   };
 
   const nodes = [
-    { id: 0, label: 'Abdulrahman\nAlhumud', type: 'center', r: Math.round(44*vs), desc: 'Senior Project Manager · PMP®', ar: 'عبدالرحمن الحمود · PMP®' },
-    { id: 1, label: 'Infrastructure\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'Cloud & Server Infrastructure', ar: 'فريق البنية التحتية' },
-    { id: 2, label: 'Cybersecurity\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'Security & Compliance', ar: 'فريق الأمن السيبراني' },
-    { id: 3, label: 'Application\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'App Development & QA', ar: 'فريق التطبيقات' },
-    { id: 4, label: 'Database\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'Data Architecture & Management', ar: 'فريق قواعد البيانات' },
-    { id: 5, label: 'Technical\nTeam', type: 'internal', r: Math.round(28*vs), desc: 'Core Technical Operations', ar: 'الفريق التقني' },
-    { id: 6, label: 'Google Team', type: 'external', r: Math.round(30*vs), desc: 'GCP Migration Partner', ar: 'فريق Google' },
-    { id: 7, label: 'External\nHosting', type: 'external', r: Math.round(26*vs), desc: 'Hosting & CDN Partners', ar: 'الاستضافة الخارجية' },
-    { id: 8, label: 'Legal Team', type: 'business', r: Math.round(26*vs), desc: 'Legal & Compliance Advisory', ar: 'الفريق القانوني' },
-    { id: 9, label: 'Procurement', type: 'business', r: Math.round(26*vs), desc: 'Vendor & Contract Management', ar: 'فريق المشتريات' },
-    { id: 10, label: 'Finance Team', type: 'business', r: Math.round(26*vs), desc: 'Budget & Financial Governance', ar: 'الفريق المالي' },
-    { id: 11, label: 'Marketing\nTeam', type: 'business', r: Math.round(26*vs), desc: 'Go-to-Market & Brand', ar: 'فريق التسويق' },
-    { id: 12, label: 'Saudi Water\nAuthority', type: 'gov', r: Math.round(22*vs), desc: 'Custom Solutions Client', ar: 'هيئة المياه' },
-    { id: 13, label: 'MEWA', type: 'gov', r: Math.round(22*vs), desc: 'Ministry of Environment', ar: 'وزارة البيئة' },
-    { id: 14, label: 'Ministry of\nEnergy', type: 'gov', r: Math.round(22*vs), desc: '3 Strategic Sectors', ar: 'وزارة الطاقة' },
-    { id: 15, label: 'ZATCA', type: 'gov', r: Math.round(22*vs), desc: 'Zakat, Tax & Customs Authority', ar: 'هيئة الزكاة والضريبة والجمارك' },
-    { id: 16, label: 'Transport\nAuthority', type: 'gov', r: Math.round(22*vs), desc: 'Legislative Compliance', ar: 'هيئة النقل' },
-    { id: 17, label: 'Ministry of\nInvestment', type: 'gov', r: Math.round(20*vs), desc: 'Investment Facilitation', ar: 'وزارة الاستثمار' },
-    { id: 18, label: 'Petromin\n& SASCO', type: 'gov', r: Math.round(20*vs), desc: 'Strategic Fuel Partnership', ar: 'بترومين وساسكو' },
-    { id: 19, label: 'IMAM / PNU', type: 'gov', r: Math.round(20*vs), desc: 'Higher Education Digital Services', ar: 'جامعة الإمام / جامعة الأميرة نورة' },
+    { id: 0, label: 'Abdulrahman\nAlhumud', type: 'center', r: Math.round(50*vs), desc: 'Senior Project Manager · PMP®', ar: 'عبدالرحمن الحمود · PMP®' },
+    { id: 1, label: 'Infrastructure\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'Cloud & Server Infrastructure', ar: 'فريق البنية التحتية' },
+    { id: 2, label: 'Cybersecurity\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'Security & Compliance', ar: 'فريق الأمن السيبراني' },
+    { id: 3, label: 'Application\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'App Development & QA', ar: 'فريق التطبيقات' },
+    { id: 4, label: 'Database\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'Data Architecture & Management', ar: 'فريق قواعد البيانات' },
+    { id: 5, label: 'Technical\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'Core Technical Operations', ar: 'الفريق التقني' },
+    { id: 6, label: 'Google Team', type: 'external', r: Math.round(34*vs), desc: 'GCP Migration Partner', ar: 'فريق Google' },
+    { id: 7, label: 'External\nHosting', type: 'external', r: Math.round(30*vs), desc: 'Hosting & CDN Partners', ar: 'الاستضافة الخارجية' },
+    { id: 8, label: 'Legal Team', type: 'business', r: Math.round(30*vs), desc: 'Legal & Compliance Advisory', ar: 'الفريق القانوني' },
+    { id: 9, label: 'Procurement', type: 'business', r: Math.round(30*vs), desc: 'Vendor & Contract Management', ar: 'فريق المشتريات' },
+    { id: 10, label: 'Finance Team', type: 'business', r: Math.round(30*vs), desc: 'Budget & Financial Governance', ar: 'الفريق المالي' },
+    { id: 11, label: 'Marketing\nTeam', type: 'business', r: Math.round(30*vs), desc: 'Go-to-Market & Brand', ar: 'فريق التسويق' },
+    { id: 12, label: 'Saudi Water\nAuthority', type: 'gov', r: Math.round(26*vs), desc: 'Custom Solutions Client', ar: 'هيئة المياه' },
+    { id: 13, label: 'MEWA', type: 'gov', r: Math.round(26*vs), desc: 'Ministry of Environment', ar: 'وزارة البيئة' },
+    { id: 14, label: 'Ministry of\nEnergy', type: 'gov', r: Math.round(26*vs), desc: '3 Strategic Sectors', ar: 'وزارة الطاقة' },
+    { id: 15, label: 'ZATCA', type: 'gov', r: Math.round(26*vs), desc: 'Zakat, Tax & Customs Authority', ar: 'هيئة الزكاة والضريبة والجمارك' },
+    { id: 16, label: 'Transport\nAuthority', type: 'gov', r: Math.round(26*vs), desc: 'Legislative Compliance', ar: 'هيئة النقل' },
+    { id: 17, label: 'Ministry of\nInvestment', type: 'gov', r: Math.round(24*vs), desc: 'Investment Facilitation', ar: 'وزارة الاستثمار' },
+    { id: 18, label: 'Petromin\n& SASCO', type: 'gov', r: Math.round(24*vs), desc: 'Strategic Fuel Partnership', ar: 'بترومين وساسكو' },
+    { id: 19, label: 'IMAM / PNU', type: 'gov', r: Math.round(24*vs), desc: 'Higher Education Digital Services', ar: 'جامعة الإمام / جامعة الأميرة نورة' },
   ];
 
   const links = nodes.filter(n => n.id !== 0).map(n => ({ source: 0, target: n.id }));
@@ -1846,10 +1853,10 @@ function initUniverse() {
 
   const cx = cssW / 2, cy = cssH / 2;
   const groups = {
-    internal: { angle: -Math.PI/2, count: 5, r: Math.round(210*vs) },
-    external:  { angle: Math.PI/6,  count: 2, r: Math.round(240*vs) },
-    business:  { angle: Math.PI/2,  count: 4, r: Math.round(240*vs) },
-    gov:       { angle: Math.PI + Math.PI/6, count: 7, r: Math.round(290*vs) }
+    internal: { angle: -Math.PI/2, count: 5, r: Math.round(260*vs) },
+    external:  { angle: Math.PI/6,  count: 2, r: Math.round(295*vs) },
+    business:  { angle: Math.PI/2,  count: 4, r: Math.round(295*vs) },
+    gov:       { angle: Math.PI + Math.PI/6, count: 7, r: Math.round(355*vs) }
   };
   const groupCounts = {};
   nodes.forEach(n => {
@@ -1893,8 +1900,8 @@ function initUniverse() {
       ctx.moveTo(s.x, s.y);
       ctx.lineTo(tgt.x, tgt.y);
       const isHovered = hoveredNode && (hoveredNode.id === s.id || hoveredNode.id === tgt.id);
-      ctx.strokeStyle = isHovered ? hexToRgba(color, 0.7) : hexToRgba(color, 0.22);
-      ctx.lineWidth = isHovered ? 2.5 : 1.5;
+      ctx.strokeStyle = isHovered ? hexToRgba(color, 0.75) : hexToRgba(color, 0.28);
+      ctx.lineWidth = isHovered ? 3.5 : 2.0;
       ctx.stroke();
     });
 
@@ -1933,29 +1940,35 @@ function initUniverse() {
         ctx.stroke();
       }
 
-      // Label — draw with crisp backdrop for contrast
+      // Label — drawn BELOW the node circle for clarity (not overlapping)
       const lines = n.label.split('\n');
-      const fz = Math.round((n.type==='center' ? 11 : 9) * vs);
-      const lineH = Math.round(12 * vs);
+      const fz = Math.round((n.type==='center' ? 12 : 10) * vs);
+      const lineH = Math.round(14 * vs);
       ctx.font = `${isHov ? 700 : 600} ${fz}px Inter, sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
+      // For center node, draw inside; for all others draw below circle
+      const labelY = n.type === 'center' ? n.y : n.y + r + Math.round(6 * vs) + (lines.length * lineH) / 2;
       // Measure max line width for backdrop
       const maxW = Math.max(...lines.map(l => ctx.measureText(l).width));
-      const padX = 4, padY = 3;
+      const padX = 6, padY = 4;
       const bh = lines.length * lineH + padY * 2;
       const bw = maxW + padX * 2;
-      const by = n.y - bh / 2;
+      const by = labelY - bh / 2;
       // Dark translucent backdrop
-      ctx.fillStyle = 'rgba(4,10,18,0.72)';
+      ctx.fillStyle = 'rgba(4,10,18,0.82)';
       ctx.beginPath();
-      ctx.roundRect(n.x - bw/2, by, bw, bh, 3);
+      ctx.roundRect(n.x - bw/2, by, bw, bh, 4);
       ctx.fill();
+      // Colored border line on backdrop
+      ctx.strokeStyle = hexToRgba(color, 0.3);
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
       // Text
-      ctx.fillStyle = isHov ? color : hexToRgba(color, 0.95);
+      ctx.fillStyle = isHov ? color : hexToRgba(color, 1.0);
       lines.forEach((line, li) => {
         const offset = (li - (lines.length - 1) / 2) * lineH;
-        ctx.fillText(line, n.x, n.y + offset);
+        ctx.fillText(line, n.x, labelY + offset);
       });
     });
 
@@ -1988,8 +2001,8 @@ function initUniverse() {
 }
 
 function updateDeckScale() {
-  const s = Math.min(window.innerWidth / 1440, window.innerHeight / 900, 1.0);
-  document.documentElement.style.setProperty('--deck-scale', Math.max(s, 0.55).toFixed(4));
+  const s = Math.min(window.innerWidth / 1200, window.innerHeight / 750, 1.1);
+  document.documentElement.style.setProperty('--deck-scale', Math.max(s, 0.6).toFixed(4));
 }
 updateDeckScale();
 
