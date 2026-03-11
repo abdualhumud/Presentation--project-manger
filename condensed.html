@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abdulrahman Alhumud · PMO Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS — Tech-Noir Executive
+═══════════════════════════════════════════════════ */
+:root {
+  --bg:         #030810;
+  --bg-mid:     #060e1c;
+  --card:       rgba(7,16,32,0.88);
+  --border:     rgba(255,255,255,0.07);
+  --cyan:       #00e5ff;
+  --cyan-d:     rgba(0,229,255,0.1);
+  --gold:       #f0c040;
+  --gold-d:     rgba(240,192,64,0.1);
+  --green:      #00c853;
+  --green-d:    rgba(0,200,83,0.1);
+  --purple:     #a855f7;
+  --purple-d:   rgba(168,85,247,0.1);
+  --text:       #dde6f0;
+  --muted:      #8898b0;
+  --faint:      #364558;
+  --deck-scale: 1;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+html[dir="rtl"] body,
+html[dir="rtl"] { font-family: 'Cairo', sans-serif; }
+html[dir="rtl"] h1, html[dir="rtl"] h2 { font-family: 'Cairo', sans-serif; }
+
+/* ── Scroll deck ── */
+#deck {
+  width: 100%; height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+#deck::-webkit-scrollbar { display: none; }
+
+.slide {
+  width: 100%; height: 100vh;
+  scroll-snap-align: start; scroll-snap-stop: always;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ── Backgrounds ── */
+.slide-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(155deg, #030810 0%, #060e1c 55%, #040c14 100%);
+}
+.grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(90px); opacity: 0.3;
+  animation: orb-pulse 8s ease-in-out infinite alternate;
+}
+@keyframes orb-pulse {
+  from { opacity: 0.18; transform: scale(1); }
+  to   { opacity: 0.38; transform: scale(1.1); }
+}
+
+/* ── Content container ── */
+.inner {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1260px;
+  padding: 52px 60px;
+  zoom: var(--deck-scale, 1);
+}
+
+/* ── Common components ── */
+.eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--cyan);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
+}
+.eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--cyan); flex-shrink: 0; }
+html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
+html[dir="rtl"] .eyebrow::before { display: none; }
+html[dir="rtl"] .eyebrow::after  { content: ''; width: 28px; height: 1px; background: var(--cyan); flex-shrink: 0; }
+
+.glass {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+}
+
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 100px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.bc { background: var(--cyan-d);   border: 1px solid rgba(0,229,255,0.25);   color: var(--cyan);   }
+.bg { background: var(--gold-d);   border: 1px solid rgba(240,192,64,0.25);  color: var(--gold);   }
+.bgr{ background: var(--green-d);  border: 1px solid rgba(0,200,83,0.25);    color: var(--green);  }
+.bp { background: var(--purple-d); border: 1px solid rgba(168,85,247,0.25);  color: var(--purple); }
+
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 30px; border-radius: 10px; cursor: pointer;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  border: none; font-family: inherit; transition: all 0.3s; text-decoration: none;
+}
+.cta-primary {
+  background: linear-gradient(135deg, var(--cyan), rgba(0,170,200,0.9));
+  color: #020810; box-shadow: 0 8px 28px rgba(0,229,255,0.28);
+}
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,229,255,0.42); }
+.cta-ghost {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--border);
+}
+.cta-ghost:hover { border-color: rgba(0,229,255,0.3); color: var(--text); }
+
+/* ── GSAP initial states ── */
+.g-fade  { opacity: 0; }
+.g-up    { opacity: 0; transform: translateY(36px); }
+.g-left  { opacity: 0; transform: translateX(-36px); }
+.g-right { opacity: 0; transform: translateX(36px); }
+.g-scale { opacity: 0; transform: scale(0.85); }
+html[dir="rtl"] .g-left  { transform: translateX(36px); }
+html[dir="rtl"] .g-right { transform: translateX(-36px); }
+
+/* ═══════════════════════════════════════════════════
+   SLIDE 1 — THE VISIONARY LEADER
+═══════════════════════════════════════════════════ */
+#s1 .orb-a { width: 640px; height: 640px; right: -160px; top: -160px; background: radial-gradient(var(--cyan), transparent 70%); }
+#s1 .orb-b { width: 480px; height: 480px; left: -120px; bottom: -120px; background: radial-gradient(var(--gold), transparent 70%); }
+
+#s1 .inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+
+.hero-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(46px, 5.8vw, 80px); font-weight: 800; line-height: 1.05;
+  background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 42%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 8px;
+}
+html[dir="rtl"] .hero-name { font-family: 'Cairo', sans-serif; }
+
+.hero-role {
+  font-size: clamp(11px, 1.4vw, 14px); font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 24px; opacity: 0.9;
+}
+.hero-mission {
+  font-size: clamp(13px, 1.5vw, 16px); color: var(--muted); line-height: 1.8;
+  max-width: 480px; margin-bottom: 32px;
+}
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+
+/* Hero visual — animated orbit system */
+.hero-visual {
+  position: relative; width: 100%; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  max-height: 380px;
+}
+.ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(0,229,255,0.1);
+  animation: spin var(--spd, 28s) linear infinite;
+}
+.ring.rev { animation-direction: reverse; }
+.ring::after {
+  content: '';
+  position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--dot, var(--cyan));
+  box-shadow: 0 0 14px var(--dot, var(--cyan));
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.orbit-center {
+  width: 148px; height: 148px; border-radius: 50%; z-index: 2;
+  background: radial-gradient(circle at 35% 35%, rgba(0,229,255,0.14), rgba(0,229,255,0.03));
+  border: 1.5px solid rgba(0,229,255,0.28);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 0 60px rgba(0,229,255,0.1), inset 0 0 40px rgba(0,229,255,0.03);
+}
+.orbit-center .oc-cert { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--cyan); }
+.orbit-center .oc-num  { font-family: 'Space Grotesk', sans-serif; font-size: 38px; font-weight: 800; color: #fff; line-height: 1; margin: 6px 0 0; }
+.orbit-center .oc-lbl  { font-size: 9px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+.float-icon {
+  position: absolute; width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  background: rgba(7,16,32,0.92); border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--faint); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  animation: hint-bounce 2s ease-in-out infinite;
+}
+@keyframes hint-bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ═══════════════════════════════════════════════════
+   SLIDE 2 — THE HIGH-IMPACT DASHBOARD
+═══════════════════════════════════════════════════ */
+#s2 .orb-a { width: 700px; height: 700px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); opacity: 0.2; }
+
+.dash-head { margin-bottom: 22px; }
+.dash-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 3.2vw, 44px); font-weight: 700; margin-bottom: 4px;
+}
+html[dir="rtl"] .dash-title { font-family: 'Cairo', sans-serif; }
+.dash-sub { font-size: clamp(11px, 1.2vw, 13px); color: var(--muted); }
+
+/* Metric grid layouts */
+.tier1 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 12px; }
+.tier2 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 12px; }
+
+.mcard {
+  padding: 18px 16px; border-radius: 14px; position: relative;
+  background: var(--card); border: 1px solid var(--border);
+  backdrop-filter: blur(16px); overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s; cursor: default;
+}
+.mcard:hover { transform: translateY(-3px); }
+.mcard::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--ac, var(--cyan));
+}
+.mcard .mi   { font-size: 20px; margin-bottom: 8px; display: block; }
+.mcard .mv   {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(30px, 3.5vw, 46px); font-weight: 800; line-height: 1;
+  color: var(--ac, var(--cyan)); display: block; margin-bottom: 4px;
+}
+html[dir="rtl"] .mcard .mv { font-family: 'Cairo', sans-serif; }
+.mcard .ml   { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.mcard .ms   { font-size: 10px; color: var(--faint); margin-top: 3px; }
+
+/* Compliance banner */
+.comp-banner {
+  border-radius: 14px; padding: 18px 24px;
+  background: linear-gradient(135deg, rgba(240,192,64,0.06) 0%, rgba(0,200,83,0.04) 100%);
+  border: 1px solid rgba(240,192,64,0.22);
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.comp-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 22px, rgba(240,192,64,0.015) 22px, rgba(240,192,64,0.015) 23px);
+}
+.comp-pct {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(40px, 4.5vw, 60px); font-weight: 800; flex-shrink: 0; line-height: 1;
+  background: linear-gradient(135deg, var(--gold), var(--green));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+html[dir="rtl"] .comp-pct { font-family: 'Cairo', sans-serif; }
+.comp-info { flex: 1; min-width: 200px; position: relative; }
+.comp-title { font-size: clamp(13px, 1.5vw, 16px); font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+.comp-desc  { font-size: clamp(10px, 1vw, 12px); color: var(--muted); line-height: 1.6; }
+.comp-tags  { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+
+/* ═══════════════════════════════════════════════════
+   SLIDE 3 — STAKEHOLDER UNIVERSE
+═══════════════════════════════════════════════════ */
+#s3 .orb-a { width: 560px; height: 560px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); opacity: 0.18; }
+
+#universe-canvas { position: absolute; inset: 0; z-index: 1; }
+
+#u-panel {
+  position: absolute; top: 44px; left: 60px; z-index: 3; pointer-events: none;
+}
+html[dir="rtl"] #u-panel { left: auto; right: 60px; }
+
+.u-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(22px, 2.8vw, 34px); font-weight: 700; color: var(--text); margin-bottom: 4px;
+}
+html[dir="rtl"] .u-title { font-family: 'Cairo', sans-serif; }
+.u-sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+
+.legend { display: flex; gap: 14px; flex-wrap: wrap; }
+.leg-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+.leg-dot  { width: 8px; height: 8px; border-radius: 50%; }
+
+.n-tip {
+  position: fixed; z-index: 9999; pointer-events: none;
+  background: rgba(5,12,24,0.96); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 12px; color: var(--text);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5); backdrop-filter: blur(12px);
+  max-width: 220px; opacity: 0; transition: opacity 0.2s;
+}
+
+/* ═══════════════════════════════════════════════════
+   SLIDE 4 — STRATEGIC CONCLUSION
+═══════════════════════════════════════════════════ */
+#s4 .orb-a { width: 840px; height: 840px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); opacity: 0.2; }
+
+#s4 .inner {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; height: 100%;
+  max-width: 720px; margin: 0 auto;
+}
+
+.ty-word {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(56px, 7.5vw, 104px); font-weight: 800; line-height: 1.0;
+  background: linear-gradient(135deg, #ffffff 0%, var(--gold) 50%, var(--cyan) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 20px;
+}
+html[dir="rtl"] .ty-word { font-family: 'Cairo', sans-serif; }
+
+.ty-divider {
+  width: 80px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  margin: 0 auto 24px;
+}
+.ty-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(18px, 2.2vw, 26px); font-weight: 700; color: var(--gold); margin-bottom: 5px;
+}
+html[dir="rtl"] .ty-name { font-family: 'Cairo', sans-serif; }
+.ty-role {
+  font-size: clamp(10px, 1.2vw, 13px); color: var(--muted);
+  letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 36px;
+}
+
+.contact-row {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 14px;
+  width: 100%; max-width: 580px; margin-bottom: 32px;
+}
+.cc {
+  padding: 18px 14px; border-radius: 14px; display: flex;
+  flex-direction: column; align-items: center; gap: 7px;
+  background: var(--card); border: 1px solid var(--border);
+  text-decoration: none; transition: all 0.3s; cursor: pointer;
+}
+.cc:hover { transform: translateY(-4px); }
+.cc .cc-icon  { font-size: 22px; }
+.cc .cc-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--faint); }
+.cc .cc-val   { font-size: clamp(10px, 1vw, 11px); font-weight: 600; word-break: break-all; }
+.cc-phone { border-color: rgba(0,229,255,0.18);  }
+.cc-phone:hover { border-color: rgba(0,229,255,0.45); }
+.cc-email { border-color: rgba(240,192,64,0.18);  }
+.cc-email:hover { border-color: rgba(240,192,64,0.45); }
+.cc-li    { border-color: rgba(0,200,83,0.18);   }
+.cc-li:hover    { border-color: rgba(0,200,83,0.45); }
+
+/* ═══════════════════════════════════════════════════
+   FIXED UI CHROME
+═══════════════════════════════════════════════════ */
+#pbar {
+  position: fixed; top: 0; left: 0; height: 2px; z-index: 9100;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  box-shadow: 0 0 10px var(--cyan); transition: width 0.5s ease;
+}
+#lang-toggle {
+  position: fixed; top: 20px; right: 24px; z-index: 9100;
+  background: rgba(5,12,24,0.92); border: 1px solid var(--border);
+  border-radius: 100px; padding: 5px 6px;
+  display: flex; gap: 2px; align-items: center; backdrop-filter: blur(16px);
+}
+html[dir="rtl"] #lang-toggle { right: auto; left: 24px; }
+.lb {
+  padding: 5px 14px; border-radius: 100px; border: none; cursor: pointer;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  background: transparent; color: var(--faint); transition: all 0.3s; font-family: inherit;
+}
+.lb.on { background: linear-gradient(135deg, var(--cyan), rgba(0,160,190,0.85)); color: #020810; }
+
+#nav-dots {
+  position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+  z-index: 9100; display: flex; flex-direction: column; gap: 10px;
+}
+html[dir="rtl"] #nav-dots { right: auto; left: 28px; }
+.nd {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--faint); cursor: pointer; transition: all 0.3s; position: relative;
+}
+.nd.on { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); transform: scale(1.5); }
+.nd:hover { background: var(--gold); }
+.nd-label {
+  position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text); font-size: 10px; white-space: nowrap;
+  padding: 4px 10px; border-radius: 4px; opacity: 0; pointer-events: none;
+  transition: opacity 0.2s; backdrop-filter: blur(8px);
+}
+html[dir="rtl"] .nd-label { right: auto; left: 18px; }
+.nd:hover .nd-label { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  #s1 .inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .tier1 { grid-template-columns: repeat(2,1fr); }
+  .tier2 { grid-template-columns: repeat(2,1fr); }
+  .contact-row { grid-template-columns: 1fr; }
+  #u-panel, #nav-dots { display: none; }
+}
+@media (max-width: 600px) {
+  .inner { padding: 32px 20px; }
+  .tier1, .tier2 { grid-template-columns: 1fr; }
+}
+@media (max-height: 780px) { .inner { padding-top: 36px; padding-bottom: 36px; } }
+@media (max-height: 640px) { .inner { padding-top: 22px; padding-bottom: 22px; } }
+</style>
+
+<!-- Deck scale: reference 1200×750 → ~20% bigger on 1280×800 laptops -->
+<script>
+(function(){
+  var s = Math.min(window.innerWidth/1200, window.innerHeight/750, 1.1);
+  document.documentElement.style.setProperty('--deck-scale', Math.max(s, 0.6).toFixed(4));
+})();
+</script>
+</head>
+<body>
+
+<!-- ── Fixed Chrome ── -->
+<div id="pbar" style="width:25%"></div>
+
+<div id="lang-toggle">
+  <button class="lb on" data-lang="en" onclick="setLang('en')">EN</button>
+  <button class="lb"    data-lang="ar" onclick="setLang('ar')">AR</button>
+</div>
+
+<nav id="nav-dots">
+  <div class="nd on" data-s="0"><span class="nd-label" data-i18n="nav.1">The Leader</span></div>
+  <div class="nd"    data-s="1"><span class="nd-label" data-i18n="nav.2">Impact</span></div>
+  <div class="nd"    data-s="2"><span class="nd-label" data-i18n="nav.3">Stakeholders</span></div>
+  <div class="nd"    data-s="3"><span class="nd-label" data-i18n="nav.4">Close</span></div>
+</nav>
+
+<div class="n-tip" id="n-tip"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     DECK
+═══════════════════════════════════════════════════════════════ -->
+<div id="deck">
+
+<!-- ══════════════ SLIDE 1 — VISIONARY LEADER ══════════════ -->
+<section class="slide" id="s1">
+  <div class="slide-bg">
+    <div class="grid-lines"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+  </div>
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;">
+
+      <!-- LEFT -->
+      <div>
+        <div class="eyebrow g-fade" data-i18n="s1.ey">Senior PMO Leader · National-Scale Impact</div>
+
+        <h1 class="hero-name g-up">Abdulrahman<br/>Alhumud</h1>
+        <div class="hero-role g-up" data-i18n="s1.role">Project Management Professional · PMP®</div>
+
+        <p class="hero-mission g-up" data-i18n="s1.miss">Transforming national-scale industries through disciplined governance, cloud-native product leadership, and strategic stakeholder ecosystems spanning B2B and B2G sectors.</p>
+
+        <div class="badge-row g-up">
+          <span class="badge bc" data-i18n="b.pmp">PMP® Certified</span>
+          <span class="badge bg" data-i18n="b.gcp">GCP Architecture</span>
+          <span class="badge bgr" data-i18n="b.b2g">B2B / B2G</span>
+          <span class="badge bp" data-i18n="b.pmo">PMO Leadership</span>
+        </div>
+
+        <button class="cta-btn cta-primary g-up" onclick="scrollTo(1)" data-i18n="s1.cta">View Impact Dashboard →</button>
+      </div>
+
+      <!-- RIGHT — Animated orbit system -->
+      <div class="hero-visual g-scale">
+        <!-- Rings -->
+        <div class="ring" style="width:300px;height:300px;--spd:26s;--dot:var(--cyan);"></div>
+        <div class="ring rev" style="width:220px;height:220px;--spd:19s;--dot:var(--gold);border-color:rgba(240,192,64,0.12);"></div>
+        <div class="ring" style="width:150px;height:150px;--spd:13s;--dot:var(--green);border-color:rgba(0,200,83,0.1);"></div>
+
+        <!-- Center badge -->
+        <div class="orbit-center">
+          <div class="oc-cert">PMP®</div>
+          <div class="oc-num">6+</div>
+          <div class="oc-lbl" data-i18n="oc.y">Years PM</div>
+        </div>
+
+        <!-- Floating icons -->
+        <div class="float-icon" style="top:6%;left:50%;transform:translateX(-50%);">☁️</div>
+        <div class="float-icon" style="bottom:6%;left:50%;transform:translateX(-50%);">🏛️</div>
+        <div class="float-icon" style="left:0%;top:50%;transform:translateY(-50%);">📊</div>
+        <div class="float-icon" style="right:0%;top:50%;transform:translateY(-50%);">🔒</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span data-i18n="hint">Scroll</span>
+    <span style="font-size:18px;">↓</span>
+  </div>
+</section>
+
+<!-- ══════════════ SLIDE 2 — HIGH-IMPACT DASHBOARD ══════════════ -->
+<section class="slide" id="s2">
+  <div class="slide-bg"><div class="grid-lines"></div><div class="orb orb-a"></div></div>
+  <div class="inner">
+
+    <div class="dash-head">
+      <div class="eyebrow g-fade" data-i18n="s2.ey">Complete Portfolio Impact · 6 Years of Results</div>
+      <div class="dash-title g-up">
+        <span data-i18n="s2.t1">The </span><span style="color:var(--cyan)" data-i18n="s2.t2">Full-Scale</span><span data-i18n="s2.t3"> Impact Dashboard</span>
+      </div>
+      <div class="dash-sub g-up" data-i18n="s2.sub">Six years of compounded results across product, operations, governance, and strategic delivery.</div>
+    </div>
+
+    <!-- Tier 1 — 4 core metrics -->
+    <div class="tier1">
+      <div class="mcard g-scale" style="--ac:var(--cyan);border-color:rgba(0,229,255,0.18);">
+        <span class="mi">🚀</span>
+        <span class="mv"><span class="cnt" data-target="5">0</span></span>
+        <div class="ml" data-i18n="m.prod">Products Launched</div>
+        <div class="ms" data-i18n="m.prod.s">Mojaz → Rased portfolio</div>
+      </div>
+      <div class="mcard g-scale" style="--ac:var(--cyan);border-color:rgba(0,229,255,0.18);">
+        <span class="mi">⚙️</span>
+        <span class="mv"><span class="cnt" data-target="12">0</span></span>
+        <div class="ml" data-i18n="m.serv">Core Services</div>
+        <div class="ms" data-i18n="m.serv.s">Deployed &amp; operational</div>
+      </div>
+      <div class="mcard g-scale" style="--ac:var(--gold);border-color:rgba(240,192,64,0.18);">
+        <span class="mi">📈</span>
+        <span class="mv"><span class="cnt" data-target="4">0</span>×</span>
+        <div class="ml" data-i18n="m.rev">Revenue Growth</div>
+        <div class="ms" data-i18n="m.rev.s">Total organizational impact</div>
+      </div>
+      <div class="mcard g-scale" style="--ac:var(--gold);border-color:rgba(240,192,64,0.18);">
+        <span class="mi">🚗</span>
+        <span class="mv"><span class="cnt" data-target="500">0</span>%</span>
+        <div class="ml" data-i18n="m.fleet">Fleet Growth</div>
+        <div class="ms" data-i18n="m.fleet.s">Vehicle base expansion</div>
+      </div>
+    </div>
+
+    <!-- Tier 2 — 3 governance metrics -->
+    <div class="tier2">
+      <div class="mcard g-scale" style="--ac:var(--purple);border-color:rgba(168,85,247,0.2);">
+        <span class="mi">📋</span>
+        <span class="mv" style="color:var(--purple);"><span class="cnt" data-target="40">0</span>+</span>
+        <div class="ml" data-i18n="m.po">Purchase Orders</div>
+        <div class="ms" data-i18n="m.po.s">Managed end-to-end</div>
+      </div>
+      <div class="mcard g-scale" style="--ac:var(--purple);border-color:rgba(168,85,247,0.2);">
+        <span class="mi">⚖️</span>
+        <span class="mv" style="color:var(--purple);"><span class="cnt" data-target="55">0</span>+</span>
+        <div class="ml" data-i18n="m.cont">Legal Contracts</div>
+        <div class="ms" data-i18n="m.cont.s">Negotiated &amp; executed</div>
+      </div>
+      <div class="mcard g-scale" style="--ac:var(--green);border-color:rgba(0,200,83,0.2);">
+        <span class="mi">✅</span>
+        <span class="mv" style="color:var(--green);"><span class="cnt" data-target="90">0</span>%</span>
+        <div class="ml" data-i18n="m.otd">On-Time Delivery</div>
+        <div class="ms" data-i18n="m.otd.s">PMP® standards enforced</div>
+      </div>
+    </div>
+
+    <!-- Compliance Foundation Banner -->
+    <div class="comp-banner g-up">
+      <div class="comp-pct"><span class="cnt" data-target="100">0</span>%</div>
+      <div class="comp-info">
+        <div class="comp-title" data-i18n="comp.t">🛡️ Compliance &amp; Security — The Foundation</div>
+        <div class="comp-desc" data-i18n="comp.d">Every product, service, and vendor relationship operates within a zero-compromise security framework — embedded from day one across all 11+ stakeholder groups.</div>
+        <div class="comp-tags">
+          <span class="badge bg"  data-i18n="cp.1">ZATCA Compliant</span>
+          <span class="badge bgr" data-i18n="cp.2">ISO Aligned</span>
+          <span class="badge bc"  data-i18n="cp.3">GCP Security</span>
+          <span class="badge bp"  data-i18n="cp.4">Vendor Governance</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ SLIDE 3 — STAKEHOLDER UNIVERSE ══════════════ -->
+<section class="slide" id="s3">
+  <div class="slide-bg"><div class="grid-lines"></div><div class="orb orb-a"></div></div>
+  <canvas id="universe-canvas"></canvas>
+
+  <div id="u-panel" class="g-fade">
+    <div class="u-title" data-i18n="s3.t">Stakeholder Universe</div>
+    <div class="u-sub" data-i18n="s3.s">11+ Groups · Hover nodes to explore</div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--cyan)"></div><span data-i18n="l.int">Internal Teams</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div><span data-i18n="l.ext">Tech Partners</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div><span data-i18n="l.bus">Business Units</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--purple)"></div><span data-i18n="l.gov">Gov Entities</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SLIDE 4 — STRATEGIC CONCLUSION ══════════════ -->
+<section class="slide" id="s4">
+  <div class="slide-bg"><div class="grid-lines"></div><div class="orb orb-a"></div></div>
+  <div class="inner">
+    <div class="ty-word g-up" data-i18n="s4.ty">Thank You</div>
+    <div class="ty-divider g-fade"></div>
+    <div class="ty-name g-up" data-i18n="s4.nm">Abdulrahman Alhumud</div>
+    <div class="ty-role g-up" data-i18n="s4.rl">Senior Project Manager · PMO Leader · PMP®</div>
+
+    <div class="contact-row g-scale">
+      <a class="cc cc-phone" href="tel:+966593935677">
+        <span class="cc-icon">📞</span>
+        <span class="cc-label" data-i18n="c.ph">Phone</span>
+        <span class="cc-val" style="color:var(--cyan)">+966 59 393 5677</span>
+      </a>
+      <a class="cc cc-email" href="mailto:A.alhumud0@gmail.com">
+        <span class="cc-icon">✉️</span>
+        <span class="cc-label" data-i18n="c.em">Email</span>
+        <span class="cc-val" style="color:var(--gold)">A.alhumud0@gmail.com</span>
+      </a>
+      <a class="cc cc-li" href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener">
+        <span class="cc-icon">💼</span>
+        <span class="cc-label" data-i18n="c.li">LinkedIn</span>
+        <span class="cc-val" style="color:var(--green)">linkedin.com/in/aalhumud</span>
+      </a>
+    </div>
+
+    <button class="cta-btn cta-ghost g-fade" onclick="scrollTo(0)" data-i18n="s4.back">↑ Return to Top</button>
+  </div>
+</section>
+
+</div><!-- /deck -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     i18n
+═══════════════════════════════════════════════════════════════ -->
+<script>
+const I18N = {
+  en: {
+    'nav.1':'The Leader','nav.2':'Impact','nav.3':'Stakeholders','nav.4':'Close',
+    's1.ey':'Senior PMO Leader · National-Scale Impact',
+    's1.role':'Project Management Professional · PMP®',
+    's1.miss':'Transforming national-scale industries through disciplined governance, cloud-native product leadership, and strategic stakeholder ecosystems spanning B2B and B2G sectors.',
+    's1.cta':'View Impact Dashboard →',
+    'b.pmp':'PMP® Certified','b.gcp':'GCP Architecture','b.b2g':'B2B / B2G','b.pmo':'PMO Leadership',
+    'oc.y':'Years PM', 'hint':'Scroll',
+    's2.ey':'Complete Portfolio Impact · 6 Years of Results',
+    's2.t1':'The ','s2.t2':'Full-Scale','s2.t3':' Impact Dashboard',
+    's2.sub':'Six years of compounded results across product, operations, governance, and strategic delivery.',
+    'm.prod':'Products Launched','m.prod.s':'Mojaz → Rased portfolio',
+    'm.serv':'Core Services','m.serv.s':'Deployed & operational',
+    'm.rev':'Revenue Growth','m.rev.s':'Total organizational impact',
+    'm.fleet':'Fleet Growth','m.fleet.s':'Vehicle base expansion',
+    'm.po':'Purchase Orders','m.po.s':'Managed end-to-end',
+    'm.cont':'Legal Contracts','m.cont.s':'Negotiated & executed',
+    'm.otd':'On-Time Delivery','m.otd.s':'PMP® standards enforced',
+    'comp.t':'🛡️ Compliance & Security — The Foundation',
+    'comp.d':'Every product, service, and vendor relationship operates within a zero-compromise security framework — embedded from day one across all 11+ stakeholder groups.',
+    'cp.1':'ZATCA Compliant','cp.2':'ISO Aligned','cp.3':'GCP Security','cp.4':'Vendor Governance',
+    's3.t':'Stakeholder Universe','s3.s':'11+ Groups · Hover nodes to explore',
+    'l.int':'Internal Teams','l.ext':'Tech Partners','l.bus':'Business Units','l.gov':'Gov Entities',
+    's4.ty':'Thank You','s4.nm':'Abdulrahman Alhumud',
+    's4.rl':'Senior Project Manager · PMO Leader · PMP®',
+    'c.ph':'Phone','c.em':'Email','c.li':'LinkedIn',
+    's4.back':'↑ Return to Top',
+    /* canvas node labels */
+    'n.self':'Abdulrahman\nAlhumud','n.infra':'Infrastructure\nTeam','n.cyber':'Cybersecurity\nTeam',
+    'n.app':'Application\nTeam','n.db':'Database\nTeam','n.tech':'Technical\nTeam',
+    'n.google':'Google\nCloud','n.host':'External\nHosting',
+    'n.legal':'Legal Team','n.proc':'Procurement','n.fin':'Finance Team','n.mkt':'Marketing\nTeam',
+    'n.swa':'Saudi Water\nAuthority','n.mewa':'MEWA','n.moe':'Ministry of\nEnergy',
+    'n.zatca':'ZATCA','n.tra':'Transport\nAuthority','n.moi':'Ministry of\nInvestment',
+    'n.petro':'Petromin\n& SASCO','n.edu':'IMAM / PNU',
+  },
+  ar: {
+    'nav.1':'القائد','nav.2':'الإنجازات','nav.3':'أصحاب المصلحة','nav.4':'الختام',
+    's1.ey':'قائد مكتب PMO · أثر وطني الحجم',
+    's1.role':'محترف إدارة المشاريع · PMP®',
+    's1.miss':'تحويل الصناعات الوطنية من خلال الحوكمة المنضبطة، وقيادة المنتجات السحابية، وأنظمة أصحاب المصلحة الاستراتيجية في قطاعَي B2B وB2G.',
+    's1.cta':'← عرض لوحة الإنجازات',
+    'b.pmp':'معتمد PMP®','b.gcp':'بنية GCP','b.b2g':'B2B / B2G','b.pmo':'قيادة PMO',
+    'oc.y':'سنوات PM', 'hint':'تمرير',
+    's2.ey':'الأثر الكامل للمحفظة · 6 سنوات من النتائج',
+    's2.t1':'لوحة ','s2.t2':'الأثر الشامل','s2.t3':'',
+    's2.sub':'ست سنوات من النتائج المتراكمة عبر المنتج والعمليات والحوكمة والتسليم الاستراتيجي.',
+    'm.prod':'المنتجات المُطلقة','m.prod.s':'محفظة موجز → راصد',
+    'm.serv':'الخدمات الأساسية','m.serv.s':'تم نشرها وتشغيلها',
+    'm.rev':'نمو الإيرادات','m.rev.s':'الأثر التنظيمي الكلي',
+    'm.fleet':'نمو الأسطول','m.fleet.s':'توسع قاعدة المركبات',
+    'm.po':'أوامر الشراء','m.po.s':'تمت إدارتها بالكامل',
+    'm.cont':'العقود القانونية','m.cont.s':'تم التفاوض عليها وتنفيذها',
+    'm.otd':'التسليم في الموعد','m.otd.s':'معايير PMP® مطبّقة',
+    'comp.t':'🛡️ الامتثال والأمن — الأساس',
+    'comp.d':'كل منتج وخدمة وعلاقة موردين تعمل ضمن إطار أمن لا تهاون فيه — مضمّن منذ اليوم الأول عبر جميع مجموعات أصحاب المصلحة (11+ مجموعة).',
+    'cp.1':'متوافق مع ZATCA','cp.2':'متوافق مع ISO','cp.3':'أمن GCP','cp.4':'حوكمة الموردين',
+    's3.t':'عالم أصحاب المصلحة','s3.s':'11+ مجموعة · حرّك المؤشر للاستكشاف',
+    'l.int':'الفرق الداخلية','l.ext':'شركاء التقنية','l.bus':'وحدات الأعمال','l.gov':'الجهات الحكومية',
+    's4.ty':'شكراً','s4.nm':'عبدالرحمن الحمود',
+    's4.rl':'مدير مشاريع أول · قائد PMO · PMP®',
+    'c.ph':'الهاتف','c.em':'البريد الإلكتروني','c.li':'لينكدإن',
+    's4.back':'↑ العودة للأعلى',
+    'n.self':'عبدالرحمن\nالحمود','n.infra':'فريق البنية\nالتحتية','n.cyber':'فريق الأمن\nالسيبراني',
+    'n.app':'فريق\nالتطبيقات','n.db':'فريق قواعد\nالبيانات','n.tech':'الفريق\nالتقني',
+    'n.google':'Google\nCloud','n.host':'الاستضافة\nالخارجية',
+    'n.legal':'الفريق القانوني','n.proc':'المشتريات','n.fin':'الفريق المالي','n.mkt':'فريق\nالتسويق',
+    'n.swa':'هيئة المياه\nالسعودية','n.mewa':'وزارة البيئة','n.moe':'وزارة\nالطاقة',
+    'n.zatca':'هيئة الزكاة\nوالضريبة','n.tra':'هيئة\nالنقل','n.moi':'وزارة\nالاستثمار',
+    'n.petro':'بترومين\nوساسكو','n.edu':'الإمام / نورة',
+  }
+};
+
+let lang = 'en';
+
+function t(key) { return (I18N[lang] || I18N.en)[key] || key; }
+
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = t(el.dataset.i18n);
+    if (v !== el.dataset.i18n) el.textContent = v;
+  });
+  document.querySelectorAll('.lb').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+  if (window._uInited) initUniverse();
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CORE LOGIC — GSAP Animations, Scroll, Counters
+═══════════════════════════════════════════════════════════════ -->
+<script>
+/* Deck scale on resize */
+function updateScale() {
+  const s = Math.min(window.innerWidth/1200, window.innerHeight/750, 1.1);
+  document.documentElement.style.setProperty('--deck-scale', Math.max(s, 0.6).toFixed(4));
+}
+updateScale();
+
+/* Scroll to slide index */
+function scrollTo(i) {
+  document.querySelectorAll('.slide')[i]?.scrollIntoView({ behavior: 'smooth' });
+}
+
+/* Nav dots */
+document.querySelectorAll('.nd').forEach(d =>
+  d.addEventListener('click', () => scrollTo(+d.dataset.s))
+);
+
+/* IntersectionObserver — trigger GSAP per slide */
+const slides     = document.querySelectorAll('.slide');
+const dots       = document.querySelectorAll('.nd');
+const pbar       = document.getElementById('pbar');
+const animated   = new Set();
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const idx = [...slides].indexOf(e.target);
+
+    /* progress bar + nav dot */
+    pbar.style.width = ((idx + 1) / slides.length * 100) + '%';
+    dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+
+    /* animate once */
+    if (!animated.has(idx)) {
+      animated.add(idx);
+      animSlide(idx, e.target);
+    }
+
+    /* init canvas on slide 3 */
+    if (idx === 2 && !window._uInited) {
+      window._uInited = true;
+      setTimeout(initUniverse, 320);
+    }
+  });
+}, { threshold: 0.55 });
+
+slides.forEach(s => io.observe(s));
+
+/* GSAP entrance animations */
+function animSlide(idx, el) {
+  const ease = 'power3.out';
+  const tl = gsap.timeline({ defaults: { ease } });
+
+  const sel = cls => el.querySelectorAll(cls);
+
+  tl.to(sel('.g-fade'),  { opacity: 1,           duration: 0.9, stagger: 0.08 }, 0);
+  tl.to(sel('.g-up'),    { opacity: 1, y: 0,      duration: 0.75, stagger: 0.1  }, 0.08);
+  tl.to(sel('.g-left'),  { opacity: 1, x: 0,      duration: 0.7, stagger: 0.08 }, 0.1);
+  tl.to(sel('.g-right'), { opacity: 1, x: 0,      duration: 0.7, stagger: 0.08 }, 0.1);
+  tl.to(sel('.g-scale'), { opacity: 1, scale: 1,  duration: 0.65, stagger: 0.07 }, 0.12);
+
+  /* counters on slide 2 */
+  if (idx === 1) setTimeout(runCounters, 380);
+}
+
+/* GSAP counter animation */
+function runCounters() {
+  document.querySelectorAll('#s2 .cnt').forEach(el => {
+    const target = +el.dataset.target;
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target, duration: 1.9, ease: 'power2.out',
+      onUpdate: () => { el.textContent = Math.round(obj.val); }
+    });
+  });
+}
+
+/* Resize handler */
+let rsTimer;
+window.addEventListener('resize', () => {
+  updateScale();
+  clearTimeout(rsTimer);
+  rsTimer = setTimeout(() => { if (window._uInited) initUniverse(); }, 200);
+});
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STAKEHOLDER UNIVERSE CANVAS
+═══════════════════════════════════════════════════════════════ -->
+<script>
+let uRAF = null;
+
+function initUniverse() {
+  if (uRAF) { cancelAnimationFrame(uRAF); uRAF = null; }
+
+  const canvas = document.getElementById('universe-canvas');
+  const tip    = document.getElementById('n-tip');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  /* HiDPI / Retina */
+  const dpr  = window.devicePixelRatio || 1;
+  const cssW = window.innerWidth, cssH = window.innerHeight;
+  canvas.width  = cssW * dpr;
+  canvas.height = cssH * dpr;
+  canvas.style.width  = cssW + 'px';
+  canvas.style.height = cssH + 'px';
+  ctx.scale(dpr, dpr);
+
+  /* Scale relative to 1440×900 reference, floor 0.5 */
+  const vs = Math.max(Math.min(cssW / 1440, cssH / 900, 1.0), 0.5);
+
+  const C = {
+    internal: '#00e5ff',
+    external: '#f0c040',
+    business: '#00c853',
+    gov:      '#a855f7',
+    center:   '#ffffff'
+  };
+
+  /* Node definitions */
+  const nodes = [
+    { id: 0,  key:'n.self',   type:'center',   r: Math.round(52*vs), desc:'Senior PM · PMP®' },
+    { id: 1,  key:'n.infra',  type:'internal', r: Math.round(32*vs), desc:'Cloud & Server Infrastructure' },
+    { id: 2,  key:'n.cyber',  type:'internal', r: Math.round(32*vs), desc:'Security & Compliance' },
+    { id: 3,  key:'n.app',    type:'internal', r: Math.round(32*vs), desc:'App Development & QA' },
+    { id: 4,  key:'n.db',     type:'internal', r: Math.round(32*vs), desc:'Data Architecture' },
+    { id: 5,  key:'n.tech',   type:'internal', r: Math.round(32*vs), desc:'Core Technical Operations' },
+    { id: 6,  key:'n.google', type:'external', r: Math.round(36*vs), desc:'GCP Migration Partner' },
+    { id: 7,  key:'n.host',   type:'external', r: Math.round(28*vs), desc:'Hosting & CDN Partners' },
+    { id: 8,  key:'n.legal',  type:'business', r: Math.round(28*vs), desc:'Legal & Compliance Advisory' },
+    { id: 9,  key:'n.proc',   type:'business', r: Math.round(28*vs), desc:'Vendor & Contract Management' },
+    { id: 10, key:'n.fin',    type:'business', r: Math.round(28*vs), desc:'Budget & Financial Governance' },
+    { id: 11, key:'n.mkt',    type:'business', r: Math.round(28*vs), desc:'Go-to-Market & Brand' },
+    { id: 12, key:'n.swa',    type:'gov',      r: Math.round(25*vs), desc:'Custom Solutions Client' },
+    { id: 13, key:'n.mewa',   type:'gov',      r: Math.round(25*vs), desc:'Ministry of Environment' },
+    { id: 14, key:'n.moe',    type:'gov',      r: Math.round(25*vs), desc:'3 Strategic Sectors' },
+    { id: 15, key:'n.zatca',  type:'gov',      r: Math.round(25*vs), desc:'Zakat, Tax & Customs' },
+    { id: 16, key:'n.tra',    type:'gov',      r: Math.round(25*vs), desc:'Legislative Compliance' },
+    { id: 17, key:'n.moi',    type:'gov',      r: Math.round(22*vs), desc:'Investment Facilitation' },
+    { id: 18, key:'n.petro',  type:'gov',      r: Math.round(22*vs), desc:'Strategic Fuel Partnership' },
+    { id: 19, key:'n.edu',    type:'gov',      r: Math.round(22*vs), desc:'Higher Education Digital' },
+  ];
+
+  /* Links: all to center, plus intra-group */
+  const links = nodes.filter(n => n.id !== 0).map(n => ({ s: 0, t: n.id }));
+  [[1,2],[1,3],[1,4],[1,5],[2,3],[3,4],[6,7],[6,1],[6,3],
+   [8,9],[8,10],[9,10],[12,13],[14,15],[15,16],[17,18]
+  ].forEach(([a,b]) => links.push({ s: a, t: b }));
+
+  /* Position nodes in orbital groups */
+  const cx = cssW / 2, cy = cssH / 2;
+  const grp = {
+    internal: { angle: -Math.PI / 2,          count: 5, r: Math.round(258*vs) },
+    external: { angle:  Math.PI / 5,           count: 2, r: Math.round(296*vs) },
+    business: { angle:  Math.PI / 2,           count: 4, r: Math.round(296*vs) },
+    gov:      { angle:  Math.PI + Math.PI / 5, count: 7, r: Math.round(354*vs) },
+  };
+  const gc = {};
+  nodes.forEach(n => {
+    if (n.type === 'center') { n.x = cx; n.y = cy; n.vx = 0; n.vy = 0; return; }
+    const g = grp[n.type];
+    gc[n.type] = gc[n.type] || 0;
+    const spread = (2 * Math.PI) / (g.count + 1);
+    const angle  = g.angle + spread * gc[n.type];
+    gc[n.type]++;
+    n.x  = cx + g.r * Math.cos(angle) + (Math.random() - 0.5) * 28;
+    n.y  = cy + g.r * Math.sin(angle) + (Math.random() - 0.5) * 28;
+    n.bx = n.x; n.by = n.y;
+    n.ph = Math.random() * Math.PI * 2;
+  });
+
+  /* Helpers */
+  function h2r(hex, a) {
+    const r = parseInt(hex.slice(1,3),16),
+          g = parseInt(hex.slice(3,5),16),
+          b = parseInt(hex.slice(5,7),16);
+    return `rgba(${r},${g},${b},${a})`;
+  }
+
+  let hov = null, tick = 0;
+
+  function draw() {
+    tick += 0.007;
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    /* Gentle float animation */
+    nodes.forEach(n => {
+      if (n.type === 'center') return;
+      n.x = n.bx + Math.sin(tick + n.ph)       * 7;
+      n.y = n.by + Math.cos(tick * 0.75 + n.ph) * 5;
+    });
+
+    /* Draw links */
+    links.forEach(lnk => {
+      const sn = nodes[lnk.s], tn = nodes[lnk.t];
+      const col  = C[tn.type] || '#fff';
+      const isH  = hov && (hov.id === sn.id || hov.id === tn.id);
+      ctx.beginPath();
+      ctx.moveTo(sn.x, sn.y);
+      ctx.lineTo(tn.x, tn.y);
+      ctx.strokeStyle = h2r(col, isH ? 0.72 : 0.24);
+      ctx.lineWidth   = isH ? 3.5 : 1.8;
+      ctx.stroke();
+    });
+
+    /* Draw nodes */
+    nodes.forEach(n => {
+      const col = C[n.type] || '#fff';
+      const isH = hov && hov.id === n.id;
+      const r   = n.r * (isH ? 1.22 : 1);
+
+      /* Outer glow */
+      const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 2.8);
+      grd.addColorStop(0, h2r(col, isH ? 0.38 : 0.16));
+      grd.addColorStop(1, h2r(col, 0));
+      ctx.beginPath(); ctx.arc(n.x, n.y, r * 2.8, 0, Math.PI * 2);
+      ctx.fillStyle = grd; ctx.fill();
+
+      /* Node circle */
+      ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      ctx.fillStyle   = h2r(col, n.type === 'center' ? 0.14 : 0.09);
+      ctx.fill();
+      ctx.strokeStyle = h2r(col, isH ? 1.0 : 0.72);
+      ctx.lineWidth   = isH ? 3 : 2;
+      ctx.stroke();
+
+      /* Pulse ring on center */
+      if (n.type === 'center') {
+        const pr = r + 8 + Math.sin(tick * 2) * 4;
+        ctx.beginPath(); ctx.arc(n.x, n.y, pr, 0, Math.PI * 2);
+        ctx.strokeStyle = h2r('#ffffff', 0.1 + Math.sin(tick * 2) * 0.04);
+        ctx.lineWidth = 1; ctx.stroke();
+      }
+
+      /* Label — drawn BELOW circle (never overlapping node) */
+      const rawLabel = t(n.key);
+      const lines    = rawLabel.split('\n');
+      const fz       = Math.round((n.type === 'center' ? 12 : 10) * vs);
+      const lh       = Math.round(14 * vs);
+      ctx.font        = `${isH ? 700 : 600} ${fz}px Inter, sans-serif`;
+      ctx.textAlign   = 'center';
+      ctx.textBaseline= 'middle';
+
+      const labelY = n.type === 'center'
+        ? n.y
+        : n.y + r + Math.round(7 * vs) + (lines.length * lh) / 2;
+
+      const maxW  = Math.max(...lines.map(l => ctx.measureText(l).width));
+      const px = 7, py = 4;
+      const bw = maxW + px * 2, bh = lines.length * lh + py * 2;
+
+      /* Backdrop */
+      ctx.fillStyle = 'rgba(2,6,14,0.86)';
+      ctx.beginPath();
+      ctx.roundRect(n.x - bw / 2, labelY - bh / 2, bw, bh, 4);
+      ctx.fill();
+      /* Subtle colored border */
+      ctx.strokeStyle = h2r(col, 0.3);
+      ctx.lineWidth   = 0.6;
+      ctx.stroke();
+
+      /* Text */
+      ctx.fillStyle = isH ? col : h2r(col, 1.0);
+      lines.forEach((line, li) => {
+        const offset = (li - (lines.length - 1) / 2) * lh;
+        ctx.fillText(line, n.x, labelY + offset);
+      });
+    });
+
+    uRAF = requestAnimationFrame(draw);
+  }
+  draw();
+
+  /* Mouse interaction */
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    hov = null;
+    for (const n of nodes) {
+      const dx = mx - n.x, dy = my - n.y;
+      if (Math.sqrt(dx*dx + dy*dy) < n.r * 1.55) { hov = n; break; }
+    }
+    if (hov) {
+      canvas.style.cursor = 'pointer';
+      const label = t(hov.key).replace('\n', ' ');
+      tip.innerHTML = `<strong style="color:${C[hov.type]||'#fff'}">${label}</strong><br/><span style="font-size:11px;color:#8898b0">${hov.desc}</span>`;
+      tip.style.left    = (e.clientX + 18) + 'px';
+      tip.style.top     = (e.clientY - 22) + 'px';
+      tip.style.opacity = '1';
+    } else {
+      canvas.style.cursor = 'default';
+      tip.style.opacity   = '0';
+    }
+  });
+  canvas.addEventListener('mouseleave', () => { tip.style.opacity = '0'; hov = null; });
+}
+</script>
+
+</body>
+</html>
