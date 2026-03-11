@@ -1,2019 +1,1058 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Evolution of Impact — Abdulrahman Alhumud</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abdulrahman Alhumud · PMO Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
-  :root {
-    --bg-deep: #050a0f;
-    --bg-card: rgba(10, 20, 35, 0.85);
-    --bg-glass: rgba(255, 255, 255, 0.04);
-    --border-glass: rgba(255, 255, 255, 0.08);
-    --gold: #c9a227;
-    --gold-light: #f0c040;
-    --green: #00c853;
-    --green-dark: #00843d;
-    --cyan: #00e5ff;
-    --cyan-dim: rgba(0, 229, 255, 0.15);
-    --text-primary: #e8edf2;
-    --text-secondary: #8b9ab0;
-    --text-muted: #4a5568;
-    --accent-1: #00e5ff;
-    --accent-2: #c9a227;
-    --gradient-hero: linear-gradient(135deg, #050a0f 0%, #0a1628 50%, #050f1a 100%);
-  }
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS — Tech-Noir Executive
+═══════════════════════════════════════════════════ */
+:root {
+  --bg:         #030810;
+  --bg-mid:     #060e1c;
+  --card:       rgba(7,16,32,0.88);
+  --border:     rgba(255,255,255,0.07);
+  --cyan:       #00e5ff;
+  --cyan-d:     rgba(0,229,255,0.1);
+  --gold:       #f0c040;
+  --gold-d:     rgba(240,192,64,0.1);
+  --green:      #00c853;
+  --green-d:    rgba(0,200,83,0.1);
+  --purple:     #a855f7;
+  --purple-d:   rgba(168,85,247,0.1);
+  --text:       #dde6f0;
+  --muted:      #8898b0;
+  --faint:      #364558;
+  --deck-scale: 1;
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html, body {
-    width: 100%; height: 100%;
-    font-family: 'Inter', sans-serif;
-    background: var(--bg-deep);
-    color: var(--text-primary);
-    overflow: hidden;
-  }
+html, body {
+  width: 100%; height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+html[dir="rtl"] body,
+html[dir="rtl"] { font-family: 'Cairo', sans-serif; }
+html[dir="rtl"] h1, html[dir="rtl"] h2 { font-family: 'Cairo', sans-serif; }
 
-  html[dir="rtl"], html[dir="rtl"] body { font-family: 'Cairo', sans-serif; }
-  html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3 { font-family: 'Cairo', sans-serif; }
+/* ── Scroll deck ── */
+#deck {
+  width: 100%; height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+#deck::-webkit-scrollbar { display: none; }
 
-  /* ── Language Toggle ── */
-  #lang-toggle {
-    position: fixed; top: 20px; right: 24px; z-index: 10000;
-    display: flex; align-items: center; gap: 2px;
-    background: rgba(10,20,35,0.9); border: 1px solid var(--border-glass);
-    border-radius: 100px; padding: 5px 6px;
-    backdrop-filter: blur(16px); box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  }
-  .lang-btn {
-    padding: 5px 14px; border-radius: 100px; border: none; cursor: pointer;
-    font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-    background: transparent; color: var(--text-muted);
-    transition: all 0.3s ease;
-  }
-  .lang-btn.active {
-    background: linear-gradient(135deg, var(--cyan), rgba(0,180,200,0.8));
-    color: #050a0f; box-shadow: 0 2px 10px rgba(0,229,255,0.4);
-  }
-  .lang-divider { color: var(--text-muted); font-size: 12px; padding: 0 2px; }
+.slide {
+  width: 100%; height: 100vh;
+  scroll-snap-align: start; scroll-snap-stop: always;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
 
-  /* ── Progress Bar ── */
-  #progress-bar {
-    position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
-    background: linear-gradient(90deg, var(--cyan), var(--gold));
-    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-    box-shadow: 0 0 12px var(--cyan);
-  }
+/* ── Backgrounds ── */
+.slide-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(155deg, #030810 0%, #060e1c 55%, #040c14 100%);
+}
+.grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.022) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(90px); opacity: 0.3;
+  animation: orb-pulse 8s ease-in-out infinite alternate;
+}
+@keyframes orb-pulse {
+  from { opacity: 0.18; transform: scale(1); }
+  to   { opacity: 0.38; transform: scale(1.1); }
+}
 
-  /* ── Nav Dots ── */
-  #nav-dots {
-    position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
-    z-index: 999; display: flex; flex-direction: column; gap: 10px;
-    transition: left 0.3s ease, right 0.3s ease;
-  }
-  html[dir="rtl"] #nav-dots { right: auto; left: 28px; }
-  .nav-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--text-muted); border: 1px solid var(--border-glass);
-    cursor: pointer; transition: all 0.3s ease; position: relative;
-  }
-  .nav-dot.active { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); transform: scale(1.4); }
-  .nav-dot:hover { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
-  .nav-dot-label {
-    position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
-    background: var(--bg-card); border: 1px solid var(--border-glass);
-    color: var(--text-primary); font-size: 11px; white-space: nowrap;
-    padding: 4px 10px; border-radius: 4px; opacity: 0; pointer-events: none;
-    transition: opacity 0.2s ease; backdrop-filter: blur(8px);
-  }
-  html[dir="rtl"] .nav-dot-label { right: auto; left: 18px; }
-  .nav-dot:hover .nav-dot-label { opacity: 1; }
+/* ── Content container ── */
+.inner {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1260px;
+  padding: 52px 60px;
+  zoom: var(--deck-scale, 1);
+}
 
-  /* ── Slide Container ── */
-  #slides-container {
-    width: 100%; height: 100vh;
-    overflow-y: scroll; scroll-snap-type: y mandatory; scroll-behavior: smooth;
-  }
-  #slides-container::-webkit-scrollbar { display: none; }
-  .slide {
-    width: 100%; height: 100vh;
-    scroll-snap-align: start; scroll-snap-stop: always;
-    position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .slide-bg {
-    position: absolute; inset: 0; z-index: 0;
-    background: var(--gradient-hero);
-  }
-  .grid-overlay {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .glow-orb {
-    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
-    animation: pulse-orb 6s ease-in-out infinite alternate;
-  }
-  @keyframes pulse-orb { from { opacity: 0.25; transform: scale(1); } to { opacity: 0.5; transform: scale(1.1); } }
+/* ── Common components ── */
+.eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--cyan);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px;
+}
+.eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--cyan); flex-shrink: 0; }
+html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
+html[dir="rtl"] .eyebrow::before { display: none; }
+html[dir="rtl"] .eyebrow::after  { content: ''; width: 28px; height: 1px; background: var(--cyan); flex-shrink: 0; }
 
-  .slide-content {
-    position: relative; z-index: 1;
-    width: 100%; max-width: 1200px; padding: 60px 48px;
-    zoom: var(--deck-scale, 1);
-  }
+.glass {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+}
 
-  /* ── Typography ── */
-  .eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--cyan); margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--cyan); flex-shrink: 0; }
-  html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
-  html[dir="rtl"] .eyebrow::before { display: none; }
-  html[dir="rtl"] .eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--cyan); flex-shrink: 0; }
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 12px; border-radius: 100px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.bc { background: var(--cyan-d);   border: 1px solid rgba(0,229,255,0.25);   color: var(--cyan);   }
+.bg { background: var(--gold-d);   border: 1px solid rgba(240,192,64,0.25);  color: var(--gold);   }
+.bgr{ background: var(--green-d);  border: 1px solid rgba(0,200,83,0.25);    color: var(--green);  }
+.bp { background: var(--purple-d); border: 1px solid rgba(168,85,247,0.25);  color: var(--purple); }
 
-  h1.hero-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(42px, 6vw, 80px); font-weight: 700; line-height: 1.1;
-    background: linear-gradient(135deg, #e8edf2 0%, var(--cyan) 50%, var(--gold-light) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    margin-bottom: 8px;
-  }
-  html[dir="rtl"] h1.hero-title { font-family: 'Cairo', sans-serif; }
-  h2.slide-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(28px, 4vw, 52px); font-weight: 700; line-height: 1.15;
-    color: var(--text-primary); margin-bottom: 8px;
-  }
-  html[dir="rtl"] h2.slide-title { font-family: 'Cairo', sans-serif; }
-  .title-accent { color: var(--cyan); }
-  .title-gold { color: var(--gold-light); }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 30px; border-radius: 10px; cursor: pointer;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  border: none; font-family: inherit; transition: all 0.3s; text-decoration: none;
+}
+.cta-primary {
+  background: linear-gradient(135deg, var(--cyan), rgba(0,170,200,0.9));
+  color: #020810; box-shadow: 0 8px 28px rgba(0,229,255,0.28);
+}
+.cta-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,229,255,0.42); }
+.cta-ghost {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--border);
+}
+.cta-ghost:hover { border-color: rgba(0,229,255,0.3); color: var(--text); }
 
-  .hero-sub {
-    font-size: clamp(13px, 1.8vw, 18px); color: var(--text-secondary);
-    max-width: 540px; line-height: 1.7; margin-top: 20px; margin-bottom: 40px;
-  }
-  .slide-lead {
-    font-size: clamp(12px, 1.5vw, 16px); color: var(--text-secondary);
-    line-height: 1.7; max-width: 540px; margin-bottom: 36px;
-  }
+/* ── GSAP initial states ── */
+.g-fade  { opacity: 0; }
+.g-up    { opacity: 0; transform: translateY(36px); }
+.g-left  { opacity: 0; transform: translateX(-36px); }
+.g-right { opacity: 0; transform: translateX(36px); }
+.g-scale { opacity: 0; transform: scale(0.85); }
+html[dir="rtl"] .g-left  { transform: translateX(36px); }
+html[dir="rtl"] .g-right { transform: translateX(-36px); }
 
-  /* ── Glassmorphism Card ── */
-  .glass-card {
-    background: var(--bg-glass); border: 1px solid var(--border-glass);
-    border-radius: 16px; backdrop-filter: blur(16px); padding: 28px 32px;
-    transition: all 0.35s ease;
-  }
-  .glass-card:hover {
-    background: rgba(0,229,255,0.06); border-color: rgba(0,229,255,0.2);
-    transform: translateY(-3px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(0,229,255,0.08);
-  }
+/* ═══════════════════════════════════════════════════
+   SLIDE 1 — THE VISIONARY LEADER
+═══════════════════════════════════════════════════ */
+#s1 .orb-a { width: 640px; height: 640px; right: -160px; top: -160px; background: radial-gradient(var(--cyan), transparent 70%); }
+#s1 .orb-b { width: 480px; height: 480px; left: -120px; bottom: -120px; background: radial-gradient(var(--gold), transparent 70%); }
 
-  /* ── Metric Cards ── */
-  .metric-card {
-    background: var(--bg-glass); border: 1px solid var(--border-glass);
-    border-radius: 16px; padding: 28px 24px; text-align: center;
-    backdrop-filter: blur(16px); transition: all 0.35s ease; cursor: default;
-  }
-  .metric-card:hover {
-    border-color: rgba(0,229,255,0.3);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
-    transform: translateY(-4px) scale(1.02);
-  }
-  .metric-value {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(32px, 4.5vw, 56px); font-weight: 700;
-    background: linear-gradient(135deg, var(--cyan), var(--gold-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    line-height: 1; margin-bottom: 8px;
-  }
-  html[dir="rtl"] .metric-value { font-family: 'Cairo', sans-serif; }
-  .metric-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary); }
-  .metric-sub { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+#s1 .inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
 
-  /* ── Badge ── */
-  .badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 14px; border-radius: 100px; font-size: 11px; font-weight: 600;
-    letter-spacing: 1px; text-transform: uppercase;
-  }
-  .badge-cyan { background: rgba(0,229,255,0.12); border: 1px solid rgba(0,229,255,0.25); color: var(--cyan); }
-  .badge-gold { background: rgba(201,162,39,0.12); border: 1px solid rgba(201,162,39,0.25); color: var(--gold-light); }
-  .badge-green { background: rgba(0,200,83,0.12); border: 1px solid rgba(0,200,83,0.25); color: var(--green); }
+.hero-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(46px, 5.8vw, 80px); font-weight: 800; line-height: 1.05;
+  background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 42%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 8px;
+}
+html[dir="rtl"] .hero-name { font-family: 'Cairo', sans-serif; }
 
-  /* ── Timeline ── */
-  .timeline-line {
-    position: absolute; left: 20px; top: 0; bottom: 0;
-    width: 2px; background: linear-gradient(180deg, var(--cyan), var(--gold), transparent);
-  }
-  html[dir="rtl"] .timeline-line { left: auto; right: 20px; }
-  .timeline-item { position: relative; padding-left: 52px; margin-bottom: 28px; }
-  html[dir="rtl"] .timeline-item { padding-left: 0; padding-right: 52px; }
-  .timeline-dot {
-    position: absolute; left: 12px; top: 6px;
-    width: 16px; height: 16px; border-radius: 50%;
-    background: var(--bg-deep); border: 2px solid var(--cyan);
-    box-shadow: 0 0 12px var(--cyan);
-  }
-  html[dir="rtl"] .timeline-dot { left: auto; right: 12px; }
+.hero-role {
+  font-size: clamp(11px, 1.4vw, 14px); font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 24px; opacity: 0.9;
+}
+.hero-mission {
+  font-size: clamp(13px, 1.5vw, 16px); color: var(--muted); line-height: 1.8;
+  max-width: 480px; margin-bottom: 32px;
+}
+.badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
 
-  /* ── Skill Bars ── */
-  .skill-bar-track {
-    height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-top: 8px;
-  }
-  .skill-bar-fill {
-    height: 100%; border-radius: 3px;
-    background: linear-gradient(90deg, var(--cyan), var(--gold-light));
-    width: 0; transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
-    box-shadow: 0 0 8px rgba(0,229,255,0.5);
-  }
+/* Hero visual — animated orbit system */
+.hero-visual {
+  position: relative; width: 100%; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  max-height: 380px;
+}
+.ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(0,229,255,0.1);
+  animation: spin var(--spd, 28s) linear infinite;
+}
+.ring.rev { animation-direction: reverse; }
+.ring::after {
+  content: '';
+  position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--dot, var(--cyan));
+  box-shadow: 0 0 14px var(--dot, var(--cyan));
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── CTA Buttons ── */
-  .cta-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 14px 32px; border-radius: 10px; font-size: 14px; font-weight: 600;
-    letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
-    border: none; transition: all 0.3s ease; text-decoration: none;
-  }
-  .cta-primary {
-    background: linear-gradient(135deg, var(--cyan), rgba(0,180,200,0.8));
-    color: #050a0f; box-shadow: 0 8px 24px rgba(0,229,255,0.3);
-  }
-  .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(0,229,255,0.4); }
-  .cta-ghost {
-    background: transparent; color: var(--text-secondary);
-    border: 1px solid var(--border-glass); margin-left: 12px;
-  }
-  html[dir="rtl"] .cta-ghost { margin-left: 0; margin-right: 12px; }
-  .cta-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+.orbit-center {
+  width: 148px; height: 148px; border-radius: 50%; z-index: 2;
+  background: radial-gradient(circle at 35% 35%, rgba(0,229,255,0.14), rgba(0,229,255,0.03));
+  border: 1.5px solid rgba(0,229,255,0.28);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 0 60px rgba(0,229,255,0.1), inset 0 0 40px rgba(0,229,255,0.03);
+}
+.orbit-center .oc-cert { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--cyan); }
+.orbit-center .oc-num  { font-family: 'Space Grotesk', sans-serif; font-size: 38px; font-weight: 800; color: #fff; line-height: 1; margin: 6px 0 0; }
+.orbit-center .oc-lbl  { font-size: 9px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
 
-  /* ── Phase Tag ── */
-  .phase-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 5px 14px; border-radius: 6px; font-size: 10px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;
-  }
-  .phase-1 { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); color: var(--cyan); }
-  .phase-2 { background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.2); color: var(--gold-light); }
-  .phase-3 { background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.2); color: var(--green); }
-  .phase-4 { background: rgba(180,100,255,0.1); border: 1px solid rgba(180,100,255,0.2); color: #c084fc; }
+.float-icon {
+  position: absolute; width: 46px; height: 46px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  background: rgba(7,16,32,0.92); border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+}
 
-  /* ── Icon Box ── */
-  .icon-box {
-    width: 44px; height: 44px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .icon-cyan { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); }
-  .icon-gold { background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.2); }
-  .icon-green { background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.2); }
+/* Scroll hint */
+.scroll-hint {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--faint); font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  animation: hint-bounce 2s ease-in-out infinite;
+}
+@keyframes hint-bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
 
-  /* ── Grid Layouts ── */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .grid-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+/* ═══════════════════════════════════════════════════
+   SLIDE 2 — THE HIGH-IMPACT DASHBOARD
+═══════════════════════════════════════════════════ */
+#s2 .orb-a { width: 700px; height: 700px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); opacity: 0.2; }
 
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
-    margin: 28px 0;
-  }
+.dash-head { margin-bottom: 22px; }
+.dash-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(26px, 3.2vw, 44px); font-weight: 700; margin-bottom: 4px;
+}
+html[dir="rtl"] .dash-title { font-family: 'Cairo', sans-serif; }
+.dash-sub { font-size: clamp(11px, 1.2vw, 13px); color: var(--muted); }
 
-  /* ── Entrance Animations ── */
-  .anim-fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .anim-fade-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .anim-fade-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .anim-scale { opacity: 0; transform: scale(0.9); transition: opacity 0.6s ease, transform 0.6s ease; }
-  html[dir="rtl"] .anim-fade-left { transform: translateX(30px); }
-  html[dir="rtl"] .anim-fade-right { transform: translateX(-30px); }
-  .slide.active .anim-fade-up,
-  .slide.active .anim-fade-left,
-  .slide.active .anim-fade-right,
-  .slide.active .anim-scale { opacity: 1; transform: none; }
-  .delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; }
-  .delay-3 { transition-delay: 0.3s; } .delay-4 { transition-delay: 0.4s; }
-  .delay-5 { transition-delay: 0.5s; } .delay-6 { transition-delay: 0.6s; }
-  .delay-7 { transition-delay: 0.7s; }
+/* Metric grid layouts */
+.tier1 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 12px; }
+.tier2 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 12px; }
 
-  /* ── Pillar Card ── */
-  .pillar-card {
-    background: var(--bg-glass); border: 1px solid var(--border-glass);
-    border-radius: 14px; padding: 24px 20px; backdrop-filter: blur(12px);
-    transition: all 0.3s ease; display: flex; flex-direction: column; gap: 12px;
-  }
-  .pillar-card:hover {
-    border-color: rgba(201,162,39,0.3);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 20px rgba(201,162,39,0.08);
-    transform: translateY(-3px);
-  }
+.mcard {
+  padding: 18px 16px; border-radius: 14px; position: relative;
+  background: var(--card); border: 1px solid var(--border);
+  backdrop-filter: blur(16px); overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s; cursor: default;
+}
+.mcard:hover { transform: translateY(-3px); }
+.mcard::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--ac, var(--cyan));
+}
+.mcard .mi   { font-size: 20px; margin-bottom: 8px; display: block; }
+.mcard .mv   {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(30px, 3.5vw, 46px); font-weight: 800; line-height: 1;
+  color: var(--ac, var(--cyan)); display: block; margin-bottom: 4px;
+}
+html[dir="rtl"] .mcard .mv { font-family: 'Cairo', sans-serif; }
+.mcard .ml   { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.mcard .ms   { font-size: 10px; color: var(--faint); margin-top: 3px; }
 
-  /* ── Scroll Hint ── */
-  .scroll-hint {
-    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--text-muted); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    animation: bounce-hint 2s ease-in-out infinite;
-  }
-  @keyframes bounce-hint {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(6px); }
-  }
+/* Compliance banner */
+.comp-banner {
+  border-radius: 14px; padding: 18px 24px;
+  background: linear-gradient(135deg, rgba(240,192,64,0.06) 0%, rgba(0,200,83,0.04) 100%);
+  border: 1px solid rgba(240,192,64,0.22);
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  position: relative; overflow: hidden;
+}
+.comp-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 22px, rgba(240,192,64,0.015) 22px, rgba(240,192,64,0.015) 23px);
+}
+.comp-pct {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(40px, 4.5vw, 60px); font-weight: 800; flex-shrink: 0; line-height: 1;
+  background: linear-gradient(135deg, var(--gold), var(--green));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+html[dir="rtl"] .comp-pct { font-family: 'Cairo', sans-serif; }
+.comp-info { flex: 1; min-width: 200px; position: relative; }
+.comp-title { font-size: clamp(13px, 1.5vw, 16px); font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+.comp-desc  { font-size: clamp(10px, 1vw, 12px); color: var(--muted); line-height: 1.6; }
+.comp-tags  { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
 
-  /* ── Tag List ── */
-  .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tag {
-    padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 500;
-    background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass);
-    color: var(--text-secondary); transition: all 0.2s ease;
-  }
-  .tag:hover { border-color: var(--cyan); color: var(--cyan); }
+/* ═══════════════════════════════════════════════════
+   SLIDE 3 — STAKEHOLDER UNIVERSE
+═══════════════════════════════════════════════════ */
+#s3 .orb-a { width: 560px; height: 560px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); opacity: 0.18; }
 
-  /* ── SVG Icon Styles ── */
-  .svg-icon { display: block; }
-  .stat-card-icon { width: 40px; height: 40px; flex-shrink: 0; }
+#universe-canvas { position: absolute; inset: 0; z-index: 1; }
 
-  /* ── Stakeholder Tags ── */
-  .stk-tag {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: 600;
-    margin: 4px; transition: all 0.2s ease; cursor: default;
-  }
-  .stk-internal { background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2); color: var(--cyan); }
-  .stk-internal:hover { background: rgba(0,229,255,0.15); transform: translateY(-1px); }
-  .stk-external { background: rgba(201,162,39,0.1); border: 1px solid rgba(201,162,39,0.3); color: var(--gold-light); }
-  .stk-external:hover { background: rgba(201,162,39,0.18); transform: translateY(-1px); }
-  .stk-new { background: rgba(0,200,83,0.1); border: 1px solid rgba(0,200,83,0.3); color: var(--green); }
-  .stk-new:hover { background: rgba(0,200,83,0.18); transform: translateY(-1px); }
-  .stk-gov { background: rgba(180,100,255,0.1); border: 1px solid rgba(180,100,255,0.3); color: #c084fc; }
-  .stk-gov:hover { background: rgba(180,100,255,0.18); transform: translateY(-1px); }
+#u-panel {
+  position: absolute; top: 44px; left: 60px; z-index: 3; pointer-events: none;
+}
+html[dir="rtl"] #u-panel { left: auto; right: 60px; }
 
-  /* ── Custom Solutions ── */
-  .solution-card {
-    background: var(--bg-glass); border: 1px solid var(--border-glass);
-    border-radius: 14px; padding: 20px 22px; backdrop-filter: blur(12px);
-    transition: all 0.4s ease; cursor: default; position: relative; overflow: hidden;
-  }
-  .solution-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--card-accent, var(--cyan)); opacity: 0.7;
-  }
-  .solution-card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    border-color: var(--card-accent, rgba(0,229,255,0.3));
-  }
+.u-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(22px, 2.8vw, 34px); font-weight: 700; color: var(--text); margin-bottom: 4px;
+}
+html[dir="rtl"] .u-title { font-family: 'Cairo', sans-serif; }
+.u-sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
 
-  /* ── Achievement Dashboard ── */
-  .ach-metric {
-    background: var(--bg-glass); border: 1px solid var(--border-glass);
-    border-radius: 14px; padding: 18px 16px; text-align: center;
-    backdrop-filter: blur(12px); transition: all 0.35s ease; cursor: default;
-    position: relative; overflow: hidden;
-  }
-  .ach-metric:hover { transform: translateY(-3px); border-color: rgba(0,229,255,0.25); }
-  .ach-val {
-    font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 3vw, 38px); font-weight: 700;
-    background: linear-gradient(135deg, var(--cyan), var(--gold-light));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    line-height: 1.1; margin-bottom: 6px;
-  }
-  html[dir="rtl"] .ach-val { font-family: 'Cairo', sans-serif; }
-  .ach-label { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; }
+.leg-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+.leg-dot  { width: 8px; height: 8px; border-radius: 50%; }
 
-  /* ── Stakeholder Universe ── */
-  #universe-canvas { position: absolute; inset: 0; z-index: 1; }
-  .universe-overlay { position: relative; z-index: 2; pointer-events: none; }
-  .node-tooltip {
-    position: fixed; background: rgba(10,20,35,0.95); border: 1px solid var(--border-glass);
-    border-radius: 10px; padding: 12px 16px; pointer-events: none; z-index: 999;
-    backdrop-filter: blur(12px); font-size: 12px; color: var(--text-primary);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5); max-width: 200px;
-    opacity: 0; transition: opacity 0.2s ease;
-  }
+.n-tip {
+  position: fixed; z-index: 9999; pointer-events: none;
+  background: rgba(5,12,24,0.96); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px; font-size: 12px; color: var(--text);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5); backdrop-filter: blur(12px);
+  max-width: 220px; opacity: 0; transition: opacity 0.2s;
+}
 
-  /* ── Slide-specific glows ── */
-  #slide-1 .glow-orb-1 { width: 600px; height: 600px; right: -150px; top: -150px; background: radial-gradient(var(--cyan), transparent 70%); }
-  #slide-1 .glow-orb-2 { width: 400px; height: 400px; left: -100px; bottom: -100px; background: radial-gradient(var(--gold), transparent 70%); }
-  #slide-2 .glow-orb-1 { width: 500px; height: 500px; right: 0; top: -100px; background: radial-gradient(var(--cyan), transparent 70%); }
-  #slide-3 .glow-orb-1 { width: 500px; height: 500px; left: -100px; top: 50%; transform: translateY(-50%); background: radial-gradient(var(--gold), transparent 70%); }
-  #slide-4 .glow-orb-1 { width: 600px; height: 600px; right: -100px; bottom: -100px; background: radial-gradient(var(--green), transparent 70%); }
-  #slide-5 .glow-orb-1 { width: 700px; height: 700px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--cyan), transparent 70%); }
-  #slide-6 .glow-orb-1 { width: 500px; height: 500px; right: 0; top: 0; background: radial-gradient(#c084fc, transparent 70%); }
-  #slide-7 .glow-orb-1 { width: 600px; height: 600px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); }
-  #slide-8 .glow-orb-1 { width: 700px; height: 700px; right: -100px; top: 50%; transform: translateY(-50%); background: radial-gradient(var(--cyan), transparent 70%); opacity: 0.2; }
-  #slide-9 .glow-orb-1 { width: 600px; height: 600px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(#c084fc, transparent 70%); }
-  #slide-10 .glow-orb-1 { width: 700px; height: 700px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); opacity: 0.25; }
-  #slide-10 .slide-content {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; height: 100%; padding: 48px 32px; max-width: 720px; margin: 0 auto;
-    box-sizing: border-box;
-  }
+/* ═══════════════════════════════════════════════════
+   SLIDE 4 — STRATEGIC CONCLUSION
+═══════════════════════════════════════════════════ */
+#s4 .orb-a { width: 840px; height: 840px; left: 50%; top: 50%; transform: translate(-50%,-50%); background: radial-gradient(var(--gold), transparent 70%); opacity: 0.2; }
 
-  /* ── Responsive ── */
-  @media (max-width: 1400px) {
-    .slide-content { padding: 48px 40px; }
-  }
-  @media (max-width: 900px) {
-    .grid-hero, .grid-2 { grid-template-columns: 1fr; gap: 20px; }
-    .grid-3 { grid-template-columns: repeat(2, 1fr); }
-    .grid-4 { grid-template-columns: repeat(2, 1fr); }
-    .slide-content { padding: 32px 20px; }
-    #nav-dots { display: none; }
-    #universe-side-panel { display: none !important; }
-  }
-  @media (max-width: 600px) {
-    .grid-3, .grid-4 { grid-template-columns: 1fr; }
-    .slide-content { padding: 20px 14px; }
-  }
-  @media (max-height: 820px) {
-    .slide-content { padding-top: 36px; padding-bottom: 36px; }
-  }
-  @media (max-height: 680px) {
-    .slide-content { padding-top: 20px; padding-bottom: 20px; }
-  }
+#s4 .inner {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; height: 100%;
+  max-width: 720px; margin: 0 auto;
+}
+
+.ty-word {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(56px, 7.5vw, 104px); font-weight: 800; line-height: 1.0;
+  background: linear-gradient(135deg, #ffffff 0%, var(--gold) 50%, var(--cyan) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 20px;
+}
+html[dir="rtl"] .ty-word { font-family: 'Cairo', sans-serif; }
+
+.ty-divider {
+  width: 80px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  margin: 0 auto 24px;
+}
+.ty-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(18px, 2.2vw, 26px); font-weight: 700; color: var(--gold); margin-bottom: 5px;
+}
+html[dir="rtl"] .ty-name { font-family: 'Cairo', sans-serif; }
+.ty-role {
+  font-size: clamp(10px, 1.2vw, 13px); color: var(--muted);
+  letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 36px;
+}
+
+.contact-row {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 14px;
+  width: 100%; max-width: 580px; margin-bottom: 32px;
+}
+.cc {
+  padding: 18px 14px; border-radius: 14px; display: flex;
+  flex-direction: column; align-items: center; gap: 7px;
+  background: var(--card); border: 1px solid var(--border);
+  text-decoration: none; transition: all 0.3s; cursor: pointer;
+}
+.cc:hover { transform: translateY(-4px); }
+.cc .cc-icon  { font-size: 22px; }
+.cc .cc-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--faint); }
+.cc .cc-val   { font-size: clamp(10px, 1vw, 11px); font-weight: 600; word-break: break-all; }
+.cc-phone { border-color: rgba(0,229,255,0.18);  }
+.cc-phone:hover { border-color: rgba(0,229,255,0.45); }
+.cc-email { border-color: rgba(240,192,64,0.18);  }
+.cc-email:hover { border-color: rgba(240,192,64,0.45); }
+.cc-li    { border-color: rgba(0,200,83,0.18);   }
+.cc-li:hover    { border-color: rgba(0,200,83,0.45); }
+
+/* ═══════════════════════════════════════════════════
+   FIXED UI CHROME
+═══════════════════════════════════════════════════ */
+#pbar {
+  position: fixed; top: 0; left: 0; height: 2px; z-index: 9100;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  box-shadow: 0 0 10px var(--cyan); transition: width 0.5s ease;
+}
+#lang-toggle {
+  position: fixed; top: 20px; right: 24px; z-index: 9100;
+  background: rgba(5,12,24,0.92); border: 1px solid var(--border);
+  border-radius: 100px; padding: 5px 6px;
+  display: flex; gap: 2px; align-items: center; backdrop-filter: blur(16px);
+}
+html[dir="rtl"] #lang-toggle { right: auto; left: 24px; }
+.lb {
+  padding: 5px 14px; border-radius: 100px; border: none; cursor: pointer;
+  font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  background: transparent; color: var(--faint); transition: all 0.3s; font-family: inherit;
+}
+.lb.on { background: linear-gradient(135deg, var(--cyan), rgba(0,160,190,0.85)); color: #020810; }
+
+#nav-dots {
+  position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+  z-index: 9100; display: flex; flex-direction: column; gap: 10px;
+}
+html[dir="rtl"] #nav-dots { right: auto; left: 28px; }
+.nd {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--faint); cursor: pointer; transition: all 0.3s; position: relative;
+}
+.nd.on { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); transform: scale(1.5); }
+.nd:hover { background: var(--gold); }
+.nd-label {
+  position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text); font-size: 10px; white-space: nowrap;
+  padding: 4px 10px; border-radius: 4px; opacity: 0; pointer-events: none;
+  transition: opacity 0.2s; backdrop-filter: blur(8px);
+}
+html[dir="rtl"] .nd-label { right: auto; left: 18px; }
+.nd:hover .nd-label { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  #s1 .inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .tier1 { grid-template-columns: repeat(2,1fr); }
+  .tier2 { grid-template-columns: repeat(2,1fr); }
+  .contact-row { grid-template-columns: 1fr; }
+  #u-panel, #nav-dots { display: none; }
+}
+@media (max-width: 600px) {
+  .inner { padding: 32px 20px; }
+  .tier1, .tier2 { grid-template-columns: 1fr; }
+}
+@media (max-height: 780px) { .inner { padding-top: 36px; padding-bottom: 36px; } }
+@media (max-height: 640px) { .inner { padding-top: 22px; padding-bottom: 22px; } }
 </style>
+
+<!-- Deck scale: reference 1200×750 → ~20% bigger on 1280×800 laptops -->
 <script>
-// Apply deck scale before first paint to avoid layout jump
-// Reference at 1200x750 (smaller than design) gives ~20% boost on 1280x800 laptops, capped at 1.1
 (function(){
   var s = Math.min(window.innerWidth/1200, window.innerHeight/750, 1.1);
-  document.documentElement.style.setProperty('--deck-scale', Math.max(s,0.6).toFixed(4));
+  document.documentElement.style.setProperty('--deck-scale', Math.max(s, 0.6).toFixed(4));
 })();
 </script>
 </head>
 <body>
 
-<!-- Progress Bar -->
-<div id="progress-bar" style="width:0%"></div>
+<!-- ── Fixed Chrome ── -->
+<div id="pbar" style="width:25%"></div>
 
-<!-- Language Toggle -->
 <div id="lang-toggle">
-  <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
-  <span class="lang-divider">|</span>
-  <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button>
+  <button class="lb on" data-lang="en" onclick="setLang('en')">EN</button>
+  <button class="lb"    data-lang="ar" onclick="setLang('ar')">AR</button>
 </div>
 
-<!-- Nav Dots -->
 <nav id="nav-dots">
-  <div class="nav-dot active" data-slide="0"><span class="nav-dot-label" data-i18n="nav.s1">Hero</span></div>
-  <div class="nav-dot" data-slide="1"><span class="nav-dot-label" data-i18n="nav.s2">Mojaz — Agility</span></div>
-  <div class="nav-dot" data-slide="2"><span class="nav-dot-label" data-i18n="nav.s3">Rased — Governance</span></div>
-  <div class="nav-dot" data-slide="3"><span class="nav-dot-label" data-i18n="nav.s4">GCP Leap</span></div>
-  <div class="nav-dot" data-slide="4"><span class="nav-dot-label" data-i18n="nav.s5">Impact Numbers</span></div>
-  <div class="nav-dot" data-slide="5"><span class="nav-dot-label" data-i18n="nav.s7">Custom Solutions</span></div>
-  <div class="nav-dot" data-slide="6"><span class="nav-dot-label" data-i18n="nav.s8">Stakeholder Universe</span></div>
-  <div class="nav-dot" data-slide="7"><span class="nav-dot-label" data-i18n="nav.s9">Achievements</span></div>
-  <div class="nav-dot" data-slide="8"><span class="nav-dot-label" data-i18n="nav.s6">Strategic Governance</span></div>
-  <div class="nav-dot" data-slide="9"><span class="nav-dot-label" data-i18n="nav.s10">Close</span></div>
+  <div class="nd on" data-s="0"><span class="nd-label" data-i18n="nav.1">The Leader</span></div>
+  <div class="nd"    data-s="1"><span class="nd-label" data-i18n="nav.2">Impact</span></div>
+  <div class="nd"    data-s="2"><span class="nd-label" data-i18n="nav.3">Stakeholders</span></div>
+  <div class="nd"    data-s="3"><span class="nd-label" data-i18n="nav.4">Close</span></div>
 </nav>
 
-<!-- Node Tooltip for Stakeholder Universe -->
-<div class="node-tooltip" id="node-tooltip"></div>
+<div class="n-tip" id="n-tip"></div>
 
-<div id="slides-container">
+<!-- ═══════════════════════════════════════════════════════════════
+     DECK
+═══════════════════════════════════════════════════════════════ -->
+<div id="deck">
 
-<!-- ═══════════════════════ SLIDE 1 — HERO ═══════════════════════ -->
-<section class="slide" id="slide-1">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div><div class="glow-orb glow-orb-2"></div></div>
-  <div class="slide-content grid-hero">
-    <!-- Left -->
-    <div>
-      <div class="eyebrow anim-fade-up delay-1" data-i18n="s1.eyebrow">Experienced Senior Project Manager</div>
-      <h1 class="hero-title anim-fade-up delay-2" data-i18n="s1.title">The Evolution<br/>of Impact</h1>
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:clamp(18px,2.5vw,30px);font-weight:300;color:var(--gold-light);margin-bottom:4px;" class="anim-fade-up delay-3" data-i18n="s1.name">Abdulrahman Alhumud</div>
-      <div style="font-size:13px;color:var(--text-muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;" class="anim-fade-up delay-3" data-i18n="s1.role">Project Management Professional · PMP®</div>
-      <p class="hero-sub anim-fade-up delay-4" data-i18n="s1.sub">Transforming complex sectors — B2C, B2B &amp; B2G — through strategic innovation, disciplined governance, and scalable technology leadership.</p>
-      <div class="anim-fade-up delay-5" style="display:flex;gap:12px;flex-wrap:wrap;">
-        <span class="badge badge-cyan" data-i18n="s1.b1">PMP® Certified</span>
-        <span class="badge badge-gold" data-i18n="s1.b2">GCP Infrastructure</span>
-        <span class="badge badge-green" data-i18n="s1.b3">Stakeholder Management</span>
-      </div>
-      <div class="divider"></div>
-      <button class="cta-btn cta-primary anim-fade-up delay-6" onclick="scrollToSlide(1)" data-i18n="s1.cta1">Begin the Journey →</button>
-      <button class="cta-ghost cta-btn anim-fade-up delay-6" onclick="scrollToSlide(4)" data-i18n="s1.cta2">See Impact</button>
-    </div>
-    <!-- Right — HD SVG Stat Cards -->
-    <div class="anim-fade-right delay-4" style="display:flex;flex-direction:column;gap:16px;">
-      <div class="glass-card" style="display:flex;align-items:center;gap:20px;">
-        <div class="icon-box icon-cyan" style="width:52px;height:52px;border-radius:14px;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 3C14 3 8 9 8 16C8 19.314 10.686 22 14 22C17.314 22 20 19.314 20 16C20 9 14 3 14 3Z" stroke="#00e5ff" stroke-width="1.8" stroke-linejoin="round" fill="rgba(0,229,255,0.12)"/>
-            <path d="M14 22V25" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M10 25H18" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M11 15L14 12L17 15" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="14" cy="17" r="1.5" fill="#00e5ff"/>
-          </svg>
-        </div>
-        <div>
-          <div style="font-size:28px;font-weight:700;color:var(--cyan);font-family:'Space Grotesk',sans-serif;">4×</div>
-          <div style="font-size:12px;color:var(--text-secondary);" data-i18n="s1.stat1">Revenue Growth Achieved</div>
-        </div>
-      </div>
-      <div class="glass-card" style="display:flex;align-items:center;gap:20px;">
-        <div class="icon-box icon-gold" style="width:52px;height:52px;border-radius:14px;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="7" y="4" width="14" height="20" rx="3" stroke="#f0c040" stroke-width="1.8" fill="rgba(240,192,64,0.1)"/>
-            <rect x="10" y="8" width="8" height="5" rx="1.5" fill="rgba(240,192,64,0.2)" stroke="#f0c040" stroke-width="1.2"/>
-            <circle cx="14" cy="18" r="2" stroke="#f0c040" stroke-width="1.5"/>
-            <path d="M11 18H10M18 18H17" stroke="#f0c040" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M12.5 7H15.5" stroke="#f0c040" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div style="font-size:28px;font-weight:700;color:var(--gold-light);font-family:'Space Grotesk',sans-serif;">#1</div>
-          <div style="font-size:12px;color:var(--text-secondary);" data-i18n="s1.stat2">App Store Ranking · Mojaz</div>
-        </div>
-      </div>
-      <div class="glass-card" style="display:flex;align-items:center;gap:20px;">
-        <div class="icon-box icon-green" style="width:52px;height:52px;border-radius:14px;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="4" y="10" width="20" height="14" rx="2.5" stroke="#00c853" stroke-width="1.8" fill="rgba(0,200,83,0.1)"/>
-            <path d="M8 10V8C8 5.791 9.791 4 12 4H16C18.209 4 20 5.791 20 8V10" stroke="#00c853" stroke-width="1.8"/>
-            <path d="M14 16V20M10 18H18" stroke="#00c853" stroke-width="1.8" stroke-linecap="round"/>
-            <circle cx="14" cy="17" r="2.5" fill="rgba(0,200,83,0.2)" stroke="#00c853" stroke-width="1.4"/>
-          </svg>
-        </div>
-        <div>
-          <div style="font-size:28px;font-weight:700;color:var(--green);font-family:'Space Grotesk',sans-serif;">380+</div>
-          <div style="font-size:12px;color:var(--text-secondary);" data-i18n="s1.stat3">Enterprise Clients · 2025</div>
-        </div>
-      </div>
-      <div class="glass-card" style="display:flex;align-items:center;gap:20px;">
-        <div class="icon-box icon-cyan" style="width:52px;height:52px;border-radius:14px;">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="10" cy="10" r="3.5" stroke="#00e5ff" stroke-width="1.8" fill="rgba(0,229,255,0.1)"/>
-            <circle cx="18" cy="10" r="3.5" stroke="#00e5ff" stroke-width="1.8" fill="rgba(0,229,255,0.1)"/>
-            <path d="M4 22C4 18.134 6.686 15 10 15" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M24 22C24 18.134 21.314 15 18 15" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M10 15C10 15 11.5 14 14 14C16.5 14 18 15 18 15C20 16.5 20.5 18.5 20.5 22" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M7.5 22C7.5 19 8.5 17 10 15" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <div style="font-size:28px;font-weight:700;color:var(--cyan);font-family:'Space Grotesk',sans-serif;">45</div>
-          <div style="font-size:12px;color:var(--text-secondary);" data-i18n="s1.stat4">Team Members Managed</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-hint"><span>↓</span><span data-i18n="s1.scroll">Scroll to explore</span></div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 2 — MOJAZ ═══════════════════════ -->
-<section class="slide" id="slide-2">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div></div>
-  <div class="slide-content">
-    <div class="phase-tag phase-1 anim-fade-up delay-1" data-i18n="s2.phase">⚡ Phase 01 · Mojaz Era</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;">
-      <!-- Left -->
-      <div>
-        <h2 class="slide-title anim-fade-up delay-2"><span data-i18n="s2.title1">The </span><span class="title-accent" data-i18n="s2.title2">Sprint</span><br/><span data-i18n="s2.title3">Agility at Scale</span></h2>
-        <p class="slide-lead anim-fade-up delay-3" data-i18n="s2.lead">Entering the B2C arena, Abdulrahman orchestrated a high-velocity product launch that captured Saudi consumers, dominating the App Store charts and setting new benchmarks for digital engagement.</p>
-        <div style="display:flex;flex-direction:column;gap:14px;position:relative;" class="anim-fade-up delay-4">
-          <div class="timeline-line"></div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="glass-card" style="padding:14px 18px;">
-              <div style="font-size:11px;color:var(--cyan);font-weight:700;margin-bottom:4px;" data-i18n="s2.t1l">MARKET ENTRY</div>
-              <div style="font-size:13px;color:var(--text-primary);" data-i18n="s2.t1d">Identified &amp; executed B2C strategy for Saudi automotive inspection market</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="glass-card" style="padding:14px 18px;">
-              <div style="font-size:11px;color:var(--gold-light);font-weight:700;margin-bottom:4px;" data-i18n="s2.t2l">GROWTH SPRINT</div>
-              <div style="font-size:13px;color:var(--text-primary);" data-i18n="s2.t2d">Drove +250% download surge through data-driven campaign orchestration</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="glass-card" style="padding:14px 18px;">
-              <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:4px;" data-i18n="s2.t3l">PEAK IMPACT</div>
-              <div style="font-size:13px;color:var(--text-primary);" data-i18n="s2.t3d">Achieved #1 App Store ranking — cementing brand authority in 4 months</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Right -->
-      <div style="display:flex;flex-direction:column;gap:16px;" class="anim-fade-right delay-3">
-        <div class="grid-2" style="gap:14px;">
-          <div class="metric-card">
-            <div class="metric-value">#1</div>
-            <div class="metric-label" data-i18n="s2.m1l">App Store Rank</div>
-            <div class="metric-sub" data-i18n="s2.m1s">Saudi Market</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value">250%</div>
-            <div class="metric-label" data-i18n="s2.m2l">Download Growth</div>
-            <div class="metric-sub" data-i18n="s2.m2s">Sustained momentum</div>
-          </div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value" style="font-size:clamp(26px,3.5vw,44px);">25M+</div>
-          <div class="metric-label" data-i18n="s2.m3l">Impressions Generated</div>
-          <div class="metric-sub" data-i18n="s2.m3s">4-month campaign window · B2C</div>
-        </div>
-        <!-- HD Icons Row -->
-        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;">
-          <div class="glass-card" style="padding:14px 10px;text-align:center;border-radius:12px;">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin:0 auto 6px;" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="10" cy="10" r="3.5" stroke="#00e5ff" stroke-width="1.8" fill="rgba(0,229,255,0.1)"/>
-              <circle cx="18" cy="10" r="3.5" stroke="#00e5ff" stroke-width="1.8" fill="rgba(0,229,255,0.1)"/>
-              <path d="M4 22C4 18.5 6.8 16 10 16H18C21.2 16 24 18.5 24 22" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;" data-i18n="s2.i1">Users</div>
-          </div>
-          <div class="glass-card" style="padding:14px 10px;text-align:center;border-radius:12px;">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin:0 auto 6px;" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="13" cy="13" r="7" stroke="#f0c040" stroke-width="1.8" fill="rgba(240,192,64,0.1)"/>
-              <path d="M18.5 18.5L23 23" stroke="#f0c040" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;" data-i18n="s2.i2">Search</div>
-          </div>
-          <div class="glass-card" style="padding:14px 10px;text-align:center;border-radius:12px;">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin:0 auto 6px;" xmlns="http://www.w3.org/2000/svg">
-              <rect x="5" y="5" width="8" height="8" rx="2" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="1.5"/>
-              <rect x="15" y="5" width="8" height="8" rx="2" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="1.5"/>
-              <rect x="5" y="15" width="8" height="8" rx="2" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="1.5"/>
-              <rect x="15" y="15" width="8" height="8" rx="2" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="1.5"/>
-            </svg>
-            <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;" data-i18n="s2.i3">App Store</div>
-          </div>
-          <div class="glass-card" style="padding:14px 10px;text-align:center;border-radius:12px;">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin:0 auto 6px;" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14 5V19M14 19L9 14M14 19L19 14" stroke="#00c853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M5 23H23" stroke="#00c853" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;" data-i18n="s2.i4">Downloads</div>
-          </div>
-          <div class="glass-card" style="padding:14px 10px;text-align:center;border-radius:12px;">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin:0 auto 6px;" xmlns="http://www.w3.org/2000/svg">
-              <rect x="5" y="18" width="4" height="6" rx="1" fill="rgba(0,229,255,0.2)" stroke="#00e5ff" stroke-width="1.5"/>
-              <rect x="12" y="12" width="4" height="12" rx="1" fill="rgba(240,192,64,0.2)" stroke="#f0c040" stroke-width="1.5"/>
-              <rect x="19" y="6" width="4" height="18" rx="1" fill="rgba(0,200,83,0.2)" stroke="#00c853" stroke-width="1.5"/>
-            </svg>
-            <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;" data-i18n="s2.i5">Stats</div>
-          </div>
-        </div>
-        <!-- Core Competencies Applied -->
-        <div class="glass-card" style="padding:18px 20px;background:rgba(0,229,255,0.03);border-color:rgba(0,229,255,0.15);">
-          <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;font-weight:600;" data-i18n="s2.comp.title">Core Competencies Applied</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span class="stk-tag stk-internal" data-i18n="s2.tag1">Product Launch</span>
-            <span class="stk-tag stk-internal" data-i18n="s2.tag2">Agile Methodology</span>
-            <span class="stk-tag stk-internal" data-i18n="s2.tag3">Growth Strategy</span>
-            <span class="stk-tag stk-external" data-i18n="s2.tag4">KPI Management</span>
-            <span class="stk-tag stk-external" data-i18n="s2.tag5">Stakeholder Alignment</span>
-            <span class="stk-tag stk-new" data-i18n="s2.tag6">B2C Marketing</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 3 — RASED TURNAROUND ═══════════════════════ -->
-<section class="slide" id="slide-3">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div></div>
-  <div class="slide-content">
-    <div class="phase-tag phase-2 anim-fade-up delay-1" data-i18n="s3.phase">🛡️ Phase 02 · Rased — Crisis &amp; Governance 2023</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;">
-      <!-- Left -->
-      <div>
-        <h2 class="slide-title anim-fade-up delay-2"><span data-i18n="s3.title1">The </span><span class="title-gold" data-i18n="s3.title2">Turnaround</span><br/><span data-i18n="s3.title3">Governance &amp; Leadership</span></h2>
-        <p class="slide-lead anim-fade-up delay-3" data-i18n="s3.lead">Inherited a critical situation — legacy technical debt, team misalignment, and eroding stakeholder trust. Applied PMO governance frameworks to orchestrate a full organizational recovery.</p>
-        <div class="glass-card anim-fade-up delay-4" style="background:rgba(201,162,39,0.06);border-color:rgba(201,162,39,0.2);margin-bottom:16px;padding:18px 22px;">
-          <div style="font-size:11px;color:var(--gold-light);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;font-weight:600;" data-i18n="s3.crisis.t">🔥 Crisis Context</div>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65;" data-i18n="s3.crisis.d">Inherited technical reliability failures and organizational fragmentation across a 20-member team, threatening service continuity and stakeholder confidence.</p>
-        </div>
-        <div class="glass-card anim-fade-up delay-5" style="background:rgba(0,200,83,0.06);border-color:rgba(0,200,83,0.2);padding:18px 22px;">
-          <div style="font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;font-weight:600;" data-i18n="s3.res.t">✅ Resolution Approach</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div style="display:flex;gap:8px;align-items:start;font-size:12px;color:var(--text-secondary);"><span style="color:var(--green);flex-shrink:0;">▹</span><span data-i18n="s3.r1">Instituted PMO governance — clear ownership, escalation paths, decision logs</span></div>
-            <div style="display:flex;gap:8px;align-items:start;font-size:12px;color:var(--text-secondary);"><span style="color:var(--green);flex-shrink:0;">▹</span><span data-i18n="s3.r2">Rebuilt sprint cadences, retrospectives &amp; dependency mapping</span></div>
-            <div style="display:flex;gap:8px;align-items:start;font-size:12px;color:var(--text-secondary);"><span style="color:var(--green);flex-shrink:0;">▹</span><span data-i18n="s3.r3">Restored technical reliability through systematic root-cause analysis</span></div>
-            <div style="display:flex;gap:8px;align-items:start;font-size:12px;color:var(--text-secondary);"><span style="color:var(--green);flex-shrink:0;">▹</span><span data-i18n="s3.r4">Re-aligned 20-member team around shared OKRs and delivery milestones</span></div>
-          </div>
-        </div>
-      </div>
-      <!-- Right -->
-      <div class="anim-fade-right delay-3" style="display:flex;flex-direction:column;gap:16px;">
-        <div class="glass-card" style="text-align:center;padding:28px 20px;">
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;color:var(--gold-light);margin-bottom:6px;">20</div>
-          <div style="font-size:13px;color:var(--text-secondary);" data-i18n="s3.team">Members led through crisis &amp; recovery</div>
-        </div>
-        <div class="grid-2" style="gap:12px;">
-          <div class="glass-card" style="text-align:center;padding:18px 12px;">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin:0 auto 8px;" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="6" width="20" height="20" rx="4" stroke="#f0c040" stroke-width="1.8" fill="rgba(240,192,64,0.08)"/>
-              <path d="M11 16H21M16 11V21" stroke="#f0c040" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            <div style="font-size:12px;font-weight:600;color:var(--text-primary);" data-i18n="s3.c1t">PMO Governance</div>
-            <div style="font-size:10px;color:var(--text-muted);" data-i18n="s3.c1s">Framework enforced</div>
-          </div>
-          <div class="glass-card" style="text-align:center;padding:18px 12px;">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin:0 auto 8px;" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="16" cy="16" r="10" stroke="#00c853" stroke-width="1.8" fill="rgba(0,200,83,0.08)"/>
-              <path d="M12 16L15 19L20 13" stroke="#00c853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div style="font-size:12px;font-weight:600;color:var(--text-primary);" data-i18n="s3.c2t">Tech Reliability</div>
-            <div style="font-size:10px;color:var(--text-muted);" data-i18n="s3.c2s">Legacy resolved</div>
-          </div>
-          <div class="glass-card" style="text-align:center;padding:18px 12px;">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin:0 auto 8px;" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 6C10.477 6 6 10.477 6 16C6 21.523 10.477 26 16 26C21.523 26 26 21.523 26 16" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M22 8L26 8L26 12" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M19 11L26 8" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-            <div style="font-size:12px;font-weight:600;color:var(--text-primary);" data-i18n="s3.c3t">Stakeholder Trust</div>
-            <div style="font-size:10px;color:var(--text-muted);" data-i18n="s3.c3s">Fully restored</div>
-          </div>
-          <div class="glass-card" style="text-align:center;padding:18px 12px;">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin:0 auto 8px;" xmlns="http://www.w3.org/2000/svg">
-              <rect x="6" y="20" width="4" height="8" rx="1" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="1.5"/>
-              <rect x="14" y="14" width="4" height="14" rx="1" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="1.5"/>
-              <rect x="22" y="8" width="4" height="20" rx="1" fill="rgba(0,200,83,0.15)" stroke="#00c853" stroke-width="1.5"/>
-              <path d="M8 16L16 10L24 6" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 2"/>
-            </svg>
-            <div style="font-size:12px;font-weight:600;color:var(--text-primary);" data-i18n="s3.c4t">Delivery Cadence</div>
-            <div style="font-size:10px;color:var(--text-muted);" data-i18n="s3.c4s">Normalized &amp; tracked</div>
-          </div>
-        </div>
-        <!-- Stakeholder Management Box — Phase 02 Internal Teams -->
-        <div class="glass-card" style="padding:18px 20px;background:rgba(201,162,39,0.03);border-color:rgba(201,162,39,0.2);">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-            <div style="font-size:11px;color:var(--gold-light);text-transform:uppercase;letter-spacing:2px;font-weight:700;" data-i18n="s3.stk.title">Stakeholders Management</div>
-            <span class="badge badge-gold" style="font-size:9px;padding:3px 10px;">Phase 02</span>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            <span class="stk-tag stk-internal">🖥️ <span data-i18n="stk.infra">Infrastructure Team</span></span>
-            <span class="stk-tag stk-internal">🔒 <span data-i18n="stk.cyber">Cybersecurity Team</span></span>
-            <span class="stk-tag stk-internal">📱 <span data-i18n="stk.app">Application Team</span></span>
-            <span class="stk-tag stk-internal">🗄️ <span data-i18n="stk.db">Database Team</span></span>
-            <span class="stk-tag stk-internal">⚙️ <span data-i18n="stk.tech">Technical Team</span></span>
-            <span class="stk-tag stk-internal">💼 <span data-i18n="stk.sales">Sales Team</span></span>
-            <span class="stk-tag stk-internal">🎧 <span data-i18n="stk.cs">Customer Service Team</span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 4 — GCP LEAP ═══════════════════════ -->
-<section class="slide" id="slide-4">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div></div>
-  <div class="slide-content">
-    <div class="phase-tag phase-3 anim-fade-up delay-1" data-i18n="s4.phase">☁️ Phase 03 · Rased — Tech Innovation 2024</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;">
-      <!-- Left -->
-      <div>
-        <h2 class="slide-title anim-fade-up delay-2"><span data-i18n="s4.title1">The </span><span class="title-accent" style="color:var(--green);" data-i18n="s4.title2">Leap</span><br/><span data-i18n="s4.title3">Cloud &amp; Innovation</span></h2>
-        <p class="slide-lead anim-fade-up delay-3" data-i18n="s4.lead">With stability restored, pivoted to offense — pioneering full GCP cloud migration and launching a suite of digital products that redefined Rased's technical capabilities.</p>
-        <div class="anim-fade-up delay-4" style="display:flex;flex-direction:column;gap:14px;margin-bottom:16px;">
-          <div class="glass-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;">
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 24C5.239 24 3 21.761 3 19C3 16.239 5.239 14 8 14C8.088 14 8.176 14.002 8.264 14.007C8.845 11.16 11.375 9 14.5 9C17.985 9 20.82 11.59 21.147 14.987C21.431 14.996 21.714 15 22 15C25.314 15 28 17.686 28 21C28 24.314 25.314 27 22 27H8C8 27 8 24 8 24Z" stroke="#00c853" stroke-width="1.8" fill="rgba(0,200,83,0.1)" stroke-linejoin="round"/>
-            </svg>
-            <div>
-              <div style="font-size:13px;font-weight:600;color:var(--green);margin-bottom:3px;" data-i18n="s4.c1t">GCP Migration Pioneer</div>
-              <div style="font-size:12px;color:var(--text-secondary);" data-i18n="s4.c1d">Led end-to-end migration — zero downtime, full continuity</div>
-            </div>
-          </div>
-          <div class="glass-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;">
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 5L21.5 12.5L30 13.5L24 19.5L25.5 28L18 24L10.5 28L12 19.5L6 13.5L14.5 12.5L18 5Z" stroke="#00e5ff" stroke-width="1.8" fill="rgba(0,229,255,0.1)" stroke-linejoin="round"/>
-            </svg>
-            <div>
-              <div style="font-size:13px;font-weight:600;color:var(--cyan);margin-bottom:3px;" data-i18n="s4.c2t">Core Product Launch</div>
-              <div style="font-size:12px;color:var(--text-secondary);" data-i18n="s4.c2d">Delivered flagship product — on schedule, within budget</div>
-            </div>
-          </div>
-          <div class="glass-card" style="display:flex;align-items:center;gap:14px;padding:16px 18px;">
-            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="18" cy="18" r="6" stroke="#f0c040" stroke-width="1.8" fill="rgba(240,192,64,0.1)"/>
-              <path d="M18 4V8M18 28V32M4 18H8M28 18H32" stroke="#f0c040" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M8.687 8.687L11.515 11.515M24.485 24.485L27.313 27.313M8.687 27.313L11.515 24.485M24.485 11.515L27.313 8.687" stroke="#f0c040" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <div>
-              <div style="font-size:13px;font-weight:600;color:var(--gold-light);margin-bottom:3px;" data-i18n="s4.c3t">Service Ecosystem Built</div>
-              <div style="font-size:12px;color:var(--text-secondary);" data-i18n="s4.c3d">Launched 4 supporting services powering the product portfolio</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Innovation Framework — positioned under Service Ecosystem (bottom-left) -->
-        <div class="glass-card anim-fade-up delay-5" style="padding:16px 20px;background:rgba(0,229,255,0.02);border-color:rgba(0,229,255,0.12);">
-          <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;" data-i18n="s4.innov">Innovation Framework</div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b1">Cloud Readiness</span><span style="color:var(--green);font-weight:600;">100%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="100"></div></div>
-            </div>
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b2">Product Delivery</span><span style="color:var(--cyan);font-weight:600;">95%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
-            </div>
-            <div>
-              <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--text-secondary);" data-i18n="s4.b3">Service Adoption</span><span style="color:var(--gold-light);font-weight:600;">88%</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88" style="background:linear-gradient(90deg,var(--gold-light),var(--green));"></div></div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <!-- Right: Google Cloud Box (top primary) + Stakeholder Ecosystem -->
-      <div class="anim-fade-right delay-3" style="display:flex;flex-direction:column;gap:14px;">
-
-        <!-- Google Cloud Box — TOP RIGHT PRIMARY -->
-        <div class="glass-card" style="padding:20px 22px;background:rgba(0,200,83,0.05);border-color:rgba(0,200,83,0.3);">
-          <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
-            <div style="font-size:38px;line-height:1;flex-shrink:0;">☁️</div>
-            <div>
-              <div style="font-size:15px;font-weight:700;color:var(--green);margin-bottom:3px;" data-i18n="s4.gcp.title">Google Cloud</div>
-              <div style="font-size:11px;color:var(--text-secondary);" data-i18n="s4.gcp.sub">GCP Migration Partner · Strategic Cloud Alliance</div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-            <div style="text-align:center;background:rgba(0,200,83,0.08);border:1px solid rgba(0,200,83,0.2);border-radius:8px;padding:10px 6px;">
-              <div style="font-size:18px;font-weight:700;color:var(--green);font-family:'Space Grotesk',sans-serif;line-height:1;">1</div>
-              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:3px;" data-i18n="s4.cloud.p">Core Product</div>
-            </div>
-            <div style="text-align:center;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);border-radius:8px;padding:10px 6px;">
-              <div style="font-size:18px;font-weight:700;color:var(--cyan);font-family:'Space Grotesk',sans-serif;line-height:1;">4</div>
-              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:3px;" data-i18n="s4.cloud.s">Services</div>
-            </div>
-            <div style="text-align:center;background:rgba(240,192,64,0.08);border:1px solid rgba(240,192,64,0.2);border-radius:8px;padding:10px 6px;">
-              <div style="font-size:18px;font-weight:700;color:var(--gold-light);font-family:'Space Grotesk',sans-serif;line-height:1;">100%</div>
-              <div style="font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-top:3px;" data-i18n="s4.cloud.u">Uptime</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Stakeholder Ecosystem — BELOW GOOGLE BOX -->
-        <div class="glass-card" style="padding:22px 24px;background:rgba(0,200,83,0.03);border-color:rgba(0,200,83,0.25);flex:1;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-            <div style="font-size:13px;color:var(--green);text-transform:uppercase;letter-spacing:2px;font-weight:700;" data-i18n="s4.eco.title">Stakeholder Ecosystem</div>
-            <span class="badge badge-green" style="font-size:9px;padding:3px 10px;" data-i18n="s4.eco.badge">Phase 03 — Expanded</span>
-          </div>
-          <!-- Core Teams -->
-          <div style="margin-bottom:14px;">
-            <div style="font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:9px;" data-i18n="s4.eco.core">Core Teams (Phase 02)</div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-              <span class="stk-tag stk-internal">🖥️ <span data-i18n="stk.infra">Infrastructure</span></span>
-              <span class="stk-tag stk-internal">🔒 <span data-i18n="stk.cyber">Cybersecurity</span></span>
-              <span class="stk-tag stk-internal">📱 <span data-i18n="stk.app">Application</span></span>
-              <span class="stk-tag stk-internal">🗄️ <span data-i18n="stk.db">Database</span></span>
-              <span class="stk-tag stk-internal">⚙️ <span data-i18n="stk.tech">Technical</span></span>
-              <span class="stk-tag stk-internal">💼 <span data-i18n="stk.sales">Sales</span></span>
-              <span class="stk-tag stk-internal">🎧 <span data-i18n="stk.cs">Customer Service</span></span>
-            </div>
-          </div>
-          <!-- New Phase 03 -->
-          <div>
-            <div style="font-size:10px;color:var(--gold-light);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:9px;display:flex;align-items:center;gap:6px;">
-              <span style="display:inline-block;width:16px;height:1px;background:var(--gold-light);"></span>
-              <span data-i18n="s4.eco.new">Phase 03 — New Stakeholders</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
-              <span class="stk-tag stk-external">☁️ <span data-i18n="stk.google">Google Team</span></span>
-              <span class="stk-tag stk-external">🌐 <span data-i18n="stk.host">External Hosting</span></span>
-              <span class="stk-tag stk-new">⚖️ <span data-i18n="stk.legal">Legal Team</span></span>
-              <span class="stk-tag stk-new">🛒 <span data-i18n="stk.proc">Procurement</span></span>
-              <span class="stk-tag stk-new">💰 <span data-i18n="stk.fin">Finance Team</span></span>
-              <span class="stk-tag stk-gov">📣 <span data-i18n="stk.mkt">Marketing Team</span></span>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 5 — PORTFOLIO SCALE ═══════════════════════ -->
-<section class="slide" id="slide-5">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div></div>
-  <div class="slide-content" style="max-width:1100px;">
-    <div class="phase-tag phase-4 anim-fade-up delay-1" data-i18n="s5.phase">📊 Phase 04 · Strategic Portfolio Scaling 2025</div>
-    <h2 class="slide-title anim-fade-up delay-2" style="margin-bottom:6px;"><span data-i18n="s5.title1">The Portfolio </span><span style="color:#c084fc;" data-i18n="s5.title2">Scale</span></h2>
-    <p style="font-size:14px;color:var(--text-secondary);margin-bottom:28px;" class="anim-fade-up delay-3" data-i18n="s5.lead">From turnaround to transformation — Rased 2025 represents the full realization of strategic PMO leadership at enterprise scale.</p>
-    <div class="grid-4 anim-scale delay-3" style="margin-bottom:22px;">
-      <div class="metric-card">
-        <div class="metric-value"><span class="counter" data-target="4">4</span>×</div>
-        <div class="metric-label" data-i18n="s5.m1l">Revenue Growth</div>
-        <div class="metric-sub" data-i18n="s5.m1s">Total organizational impact</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value"><span class="counter" data-target="270" data-suffix="%">270%</span></div>
-        <div class="metric-label" data-i18n="s5.m2l">Vehicle Base Growth</div>
-        <div class="metric-sub" data-i18n="s5.m2s">Fleet expansion under management</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value"><span class="counter" data-target="380">380</span>+</div>
-        <div class="metric-label" data-i18n="s5.m3l">Enterprise Clients</div>
-        <div class="metric-sub" data-i18n="s5.m3s">B2B &amp; B2G portfolio</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value"><span class="counter" data-target="90" data-suffix="%">90%</span></div>
-        <div class="metric-label" data-i18n="s5.m4l">On-Time Delivery</div>
-        <div class="metric-sub" data-i18n="s5.m4s">PMP® standards enforced</div>
-      </div>
-    </div>
-    <div class="grid-3 anim-fade-up delay-4" style="margin-bottom:22px;">
-      <div class="glass-card" style="display:flex;align-items:center;gap:14px;">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="5" width="13" height="13" rx="3" fill="rgba(0,229,255,0.15)" stroke="#00e5ff" stroke-width="1.8"/>
-          <rect x="22" y="5" width="13" height="13" rx="3" fill="rgba(240,192,64,0.15)" stroke="#f0c040" stroke-width="1.8"/>
-          <rect x="5" y="22" width="13" height="13" rx="3" fill="rgba(0,200,83,0.15)" stroke="#00c853" stroke-width="1.8"/>
-          <rect x="22" y="22" width="13" height="13" rx="3" fill="rgba(180,100,255,0.15)" stroke="#c084fc" stroke-width="1.8"/>
-        </svg>
-        <div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--cyan);"><span class="counter" data-target="4">4</span></div>
-          <div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;" data-i18n="s5.s1">Products Launched</div>
-        </div>
-      </div>
-      <div class="glass-card" style="display:flex;align-items:center;gap:14px;">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 5L24.5 14.5L35 15.8L27.5 23.1L29.5 33.5L20 28.5L10.5 33.5L12.5 23.1L5 15.8L15.5 14.5L20 5Z" stroke="#f0c040" stroke-width="1.8" fill="rgba(240,192,64,0.1)" stroke-linejoin="round"/>
-        </svg>
-        <div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--gold-light);"><span class="counter" data-target="8">8</span></div>
-          <div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;" data-i18n="s5.s2">Services Deployed</div>
-        </div>
-      </div>
-      <div class="glass-card" style="display:flex;align-items:center;gap:14px;">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="14" cy="14" r="5" stroke="#00c853" stroke-width="1.8" fill="rgba(0,200,83,0.1)"/>
-          <circle cx="26" cy="14" r="5" stroke="#00c853" stroke-width="1.8" fill="rgba(0,200,83,0.1)"/>
-          <path d="M5 32C5 26.5 9 22 14 22C17 22 19.7 23.5 21.3 26" stroke="#00c853" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M35 32C35 26.5 31 22 26 22H22" stroke="#00c853" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--green);"><span class="counter" data-target="45">45</span></div>
-          <div style="font-size:10px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;" data-i18n="s5.s3">Team Members Led</div>
-        </div>
-      </div>
-    </div>
-    <div class="glass-card anim-fade-up delay-5" style="background:linear-gradient(135deg,rgba(0,229,255,0.05),rgba(201,162,39,0.05));border-color:rgba(201,162,39,0.2);padding:18px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-      <div style="font-size:32px;">🏆</div>
-      <div style="flex:1;">
-        <div style="font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:4px;" data-i18n="s5.ban.t">Full Portfolio Command · B2C → B2B → B2G</div>
-        <div style="font-size:12px;color:var(--text-secondary);" data-i18n="s5.ban.d">Managing cross-sector enterprise relationships while simultaneously scaling products, services, and teams — a complete PMO portfolio leadership achievement.</div>
-      </div>
-      <div style="display:flex;gap:8px;"><span class="badge badge-cyan">B2C</span><span class="badge badge-gold">B2B</span><span class="badge badge-green">B2G</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 7 — CUSTOM SOLUTIONS ═══════════════════════ -->
-<section class="slide" id="slide-7">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div></div>
-  <div class="slide-content" style="max-width:1150px;">
-    <div class="eyebrow anim-fade-up delay-1" data-i18n="s7.eyebrow">Trusted by The Kingdom</div>
-    <h2 class="slide-title anim-fade-up delay-2" style="margin-bottom:8px;"><span data-i18n="s7.title1">Custom </span><span class="title-gold" data-i18n="s7.title2">Solutions</span></h2>
-    <p style="font-size:13px;color:var(--text-secondary);margin-bottom:28px;max-width:600px;" class="anim-fade-up delay-3" data-i18n="s7.lead">Architected bespoke digital systems for Saudi Arabia's most critical national entities, delivering mission-critical operational platforms at government scale.</p>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="anim-scale delay-3">
-      <!-- Saudi Water Authority -->
-      <div class="solution-card" style="--card-accent:#00e5ff;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:rgba(0,229,255,0.12);border:1px solid rgba(0,229,255,0.25);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2C10 2 4 8 4 13C4 16.314 6.686 19 10 19C13.314 19 16 16.314 16 13C16 8 10 2 10 2Z" stroke="#00e5ff" stroke-width="1.6" fill="rgba(0,229,255,0.15)"/>
-              <path d="M7 13C7 14.657 8.343 16 10 16" stroke="#00e5ff" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;" data-i18n="sol1.org">Saudi Water Authority</div>
-          </div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:6px;" data-i18n="sol1.title">Water Infrastructure</div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;" data-i18n="sol1.desc">Logistics optimization for water tanker tracking and fleet monitoring across the Kingdom's water distribution network.</div>
-        <div style="margin-top:10px;"><span class="badge badge-cyan" style="font-size:9px;padding:3px 10px;" data-i18n="sol1.badge">Digital Services</span></div>
-      </div>
-      <!-- MEWA -->
-      <div class="solution-card" style="--card-accent:#00c853;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:rgba(0,200,83,0.12);border:1px solid rgba(0,200,83,0.25);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2L13 8H18L14 12L16 18L10 15L4 18L6 12L2 8H7L10 2Z" stroke="#00c853" stroke-width="1.5" fill="rgba(0,200,83,0.12)" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;">MEWA</div>
-          </div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:6px;" data-i18n="sol2.title">Environmental Compliance</div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;" data-i18n="sol2.desc">Digital transformation of inspection, regulatory compliance, and field operations for environmental enforcement teams.</div>
-        <div style="margin-top:10px;"><span class="badge badge-green" style="font-size:9px;padding:3px 10px;" data-i18n="sol2.badge">Digital Operations</span></div>
-      </div>
-      <!-- Ministry of Energy -->
-      <div class="solution-card" style="--card-accent:#f0c040;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:rgba(240,192,64,0.12);border:1px solid rgba(240,192,64,0.25);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11 2L4 11H10L9 18L16 9H10L11 2Z" stroke="#f0c040" stroke-width="1.6" fill="rgba(240,192,64,0.12)" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:1px;" data-i18n="sol3.org">Ministry of Energy</div>
-          </div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:6px;" data-i18n="sol3.title">3 Strategic Sectors</div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;" data-i18n="sol3.desc">National Energy digital platform spanning three critical energy sectors with integrated regulatory and operational modules.</div>
-        <div style="margin-top:10px;"><span class="badge badge-gold" style="font-size:9px;padding:3px 10px;" data-i18n="sol3.badge">National Energy</span></div>
-      </div>
-      <!-- Ministry of Investment -->
-      <div class="solution-card" style="--card-accent:#c084fc;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:rgba(192,132,252,0.12);border:1px solid rgba(192,132,252,0.25);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 2C5.582 2 2 5.582 2 10C2 14.418 5.582 18 10 18C14.418 18 18 14.418 18 10C18 5.582 14.418 2 10 2Z" stroke="#c084fc" stroke-width="1.5" fill="rgba(192,132,252,0.1)"/>
-              <path d="M7 10L9.5 12.5L13 8" stroke="#c084fc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;color:#c084fc;text-transform:uppercase;letter-spacing:1px;" data-i18n="sol4.org">Ministry of Investment</div>
-          </div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:6px;" data-i18n="sol4.title">Investment Facilitation</div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;" data-i18n="sol4.desc">End-to-end investment facilitation digital services streamlining foreign and domestic investment processes.</div>
-        <div style="margin-top:10px;"><span style="background:rgba(192,132,252,0.12);border:1px solid rgba(192,132,252,0.25);color:#c084fc;" class="badge" style="font-size:9px;padding:3px 10px;" data-i18n="sol4.badge">Digital Services</span></div>
-      </div>
-      <!-- ZATCA -->
-      <div class="solution-card" style="--card-accent:#00e5ff;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:rgba(0,229,255,0.12);border:1px solid rgba(0,229,255,0.25);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="5" width="14" height="11" rx="2" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,0.1)"/>
-              <path d="M3 9H17M7 5V9" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round"/>
-              <circle cx="13" cy="13" r="2" fill="rgba(0,229,255,0.3)" stroke="#00e5ff" stroke-width="1.2"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;">ZATCA</div>
-          </div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:6px;" data-i18n="sol5.title">Zakat, Tax &amp; Customs</div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;" data-i18n="sol5.desc">Integrated compliance and reporting digital system for tax authority operational excellence and regulatory enforcement.</div>
-        <div style="margin-top:10px;"><span class="badge badge-cyan" style="font-size:9px;padding:3px 10px;" data-i18n="sol5.badge">Tax Authority</span></div>
-      </div>
-      <!-- Imam University -->
-      <div class="solution-card" style="--card-accent:#00c853;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:rgba(0,200,83,0.12);border:1px solid rgba(0,200,83,0.25);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 3L2 7L10 11L18 7L10 3Z" stroke="#00c853" stroke-width="1.5" fill="rgba(0,200,83,0.1)" stroke-linejoin="round"/>
-              <path d="M6 9V15C6 15 7.5 17 10 17C12.5 17 14 15 14 15V9" stroke="#00c853" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;" data-i18n="sol6.org">IMAM / PNU</div>
-          </div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:6px;" data-i18n="sol6.title">Higher Education</div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;" data-i18n="sol6.desc">University digital services platform modernizing student, faculty, and administrative operations at national scale.</div>
-        <div style="margin-top:10px;"><span class="badge badge-green" style="font-size:9px;padding:3px 10px;" data-i18n="sol6.badge">Digital Services</span></div>
-      </div>
-      <!-- Transport Authority -->
-      <div class="solution-card" style="--card-accent:#f0c040;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:rgba(240,192,64,0.12);border:1px solid rgba(240,192,64,0.25);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="7" width="14" height="9" rx="2" stroke="#f0c040" stroke-width="1.5" fill="rgba(240,192,64,0.1)"/>
-              <path d="M6 7V5C6 4.448 6.448 4 7 4H13C13.552 4 14 4.448 14 5V7" stroke="#f0c040" stroke-width="1.5"/>
-              <circle cx="7" cy="16" r="1.5" fill="#f0c040"/>
-              <circle cx="13" cy="16" r="1.5" fill="#f0c040"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:1px;" data-i18n="sol7.org">Transport Authority</div>
-          </div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:6px;" data-i18n="sol7.title">Legislative Compliance</div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;" data-i18n="sol7.desc">Transport regulatory operations platform ensuring legislative compliance and digital service delivery for the authority.</div>
-        <div style="margin-top:10px;"><span class="badge badge-gold" style="font-size:9px;padding:3px 10px;" data-i18n="sol7.badge">Operations</span></div>
-      </div>
-      <!-- Petromin & SASCO -->
-      <div class="solution-card" style="--card-accent:#c084fc;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
-          <div style="width:38px;height:38px;border-radius:10px;background:rgba(192,132,252,0.12);border:1px solid rgba(192,132,252,0.25);display:flex;align-items:center;justify-content:center;">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 3C10 3 5 6 5 12H15C15 6 10 3 10 3Z" stroke="#c084fc" stroke-width="1.5" fill="rgba(192,132,252,0.12)"/>
-              <rect x="6" y="12" width="8" height="5" rx="1" stroke="#c084fc" stroke-width="1.5" fill="rgba(192,132,252,0.1)"/>
-              <path d="M8 12V15M12 12V15" stroke="#c084fc" stroke-width="1.2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;color:#c084fc;text-transform:uppercase;letter-spacing:1px;" data-i18n="sol8.org">Petromin &amp; SASCO</div>
-          </div>
-        </div>
-        <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:6px;" data-i18n="sol8.title">Strategic Partnership</div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;" data-i18n="sol8.desc">Integrated fuel &amp; services digital ecosystem connecting Petromin and SASCO operations for unified service delivery.</div>
-        <div style="margin-top:10px;"><span style="background:rgba(192,132,252,0.12);border:1px solid rgba(192,132,252,0.25);color:#c084fc;" class="badge" style="font-size:9px;padding:3px 10px;" data-i18n="sol8.badge">Fuel &amp; Services</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 8 — STAKEHOLDER UNIVERSE ═══════════════════════ -->
-<section class="slide" id="slide-8" style="overflow:hidden;">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div></div>
-  <canvas id="universe-canvas"></canvas>
-  <!-- Overlay Title -->
-  <div class="universe-overlay" style="position:absolute;top:40px;left:50%;transform:translateX(-50%);text-align:center;z-index:3;">
-    <div class="eyebrow" style="justify-content:center;" data-i18n="s8.eyebrow">Cross-Functional Leadership</div>
-    <h2 class="slide-title" style="text-align:center;font-size:clamp(24px,3.5vw,46px);" data-i18n="s8.title">Stakeholder <span class="title-accent">Universe</span></h2>
-    <p style="font-size:12px;color:var(--text-muted);letter-spacing:1px;" data-i18n="s8.sub">Click any node to explore the relationship</p>
-  </div>
-  <!-- Legend -->
-  <div style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:20px;z-index:3;background:rgba(5,10,15,0.7);padding:10px 20px;border-radius:100px;border:1px solid var(--border-glass);backdrop-filter:blur(12px);">
-    <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text-secondary);">
-      <div style="width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);"></div>
-      <span data-i18n="s8.l1">Internal Technical</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text-secondary);">
-      <div style="width:10px;height:10px;border-radius:50%;background:var(--gold-light);box-shadow:0 0 8px var(--gold);"></div>
-      <span data-i18n="s8.l2">External Partners</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text-secondary);">
-      <div style="width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);"></div>
-      <span data-i18n="s8.l3">Business Units</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--text-secondary);">
-      <div style="width:10px;height:10px;border-radius:50%;background:#c084fc;box-shadow:0 0 8px #c084fc;"></div>
-      <span data-i18n="s8.l4">Government Entities</span>
-    </div>
-  </div>
-  <!-- Side Panel — Readable List -->
-  <div id="universe-side-panel" style="position:absolute;right:36px;top:50%;transform:translateY(-50%);z-index:3;width:200px;display:flex;flex-direction:column;gap:6px;">
-    <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border-glass);" data-i18n="s8.panel.title">All Stakeholders</div>
-    <div style="font-size:10px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;" data-i18n="s8.l1">Internal</div>
-    <div style="font-size:11px;color:rgba(0,229,255,0.7);line-height:1.8;">🖥️ Infrastructure Team<br/>🔒 Cybersecurity Team<br/>📱 Application Team<br/>🗄️ Database Team<br/>⚙️ Technical Team<br/>💼 Sales Team<br/>🎧 Customer Service</div>
-    <div style="font-size:10px;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:1px;margin:6px 0 2px;" data-i18n="s8.l2">External</div>
-    <div style="font-size:11px;color:rgba(240,192,64,0.7);line-height:1.8;">☁️ Google Team<br/>🌐 External Hosting</div>
-    <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;margin:6px 0 2px;" data-i18n="s8.l3">Business</div>
-    <div style="font-size:11px;color:rgba(0,200,83,0.7);line-height:1.8;">⚖️ Legal Team<br/>🛒 Procurement<br/>💰 Finance Team<br/>📣 Marketing Team</div>
-    <div style="font-size:10px;font-weight:700;color:#c084fc;text-transform:uppercase;letter-spacing:1px;margin:6px 0 2px;" data-i18n="s8.l4">Government</div>
-    <div style="font-size:11px;color:rgba(192,132,252,0.7);line-height:1.8;">💧 Saudi Water Auth.<br/>🌿 MEWA<br/>⚡ Ministry of Energy<br/>📈 Ministry of Invest.<br/>🏛️ ZATCA<br/>🎓 IMAM / PNU<br/>🚌 Transport Auth.<br/>⛽ Petromin &amp; SASCO</div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 9 — FULL ACHIEVEMENTS ═══════════════════════ -->
-<section class="slide" id="slide-9">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div></div>
-  <div class="slide-content" style="max-width:1180px;padding-top:40px;padding-bottom:40px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;" class="anim-fade-up delay-1">
-      <div>
-        <div class="eyebrow" data-i18n="s9.eyebrow">Full Achievement Dashboard</div>
-        <h2 class="slide-title" style="margin-bottom:0;" data-i18n="s9.title">The Complete <span style="color:#c084fc;">Impact</span></h2>
-      </div>
-      <div style="display:flex;gap:8px;">
-        <span class="badge badge-cyan" data-i18n="s9.b1">2022–2025</span>
-        <span class="badge badge-green" data-i18n="s9.b2">Live &amp; Growing</span>
-      </div>
-    </div>
-    <!-- Main Metrics Grid -->
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px;" class="anim-scale delay-2">
-      <div class="ach-metric" style="border-color:rgba(0,229,255,0.2);">
-        <div style="font-size:22px;margin-bottom:6px;">🚀</div>
-        <div class="ach-val"><span class="counter" data-target="5">5</span></div>
-        <div class="ach-label" data-i18n="ach.prod">Products Launched</div>
-      </div>
-      <div class="ach-metric" style="border-color:rgba(201,162,39,0.2);">
-        <div style="font-size:22px;margin-bottom:6px;">🏛️</div>
-        <div class="ach-val"><span class="counter" data-target="5">5</span></div>
-        <div class="ach-label" data-i18n="ach.sol">Custom Solutions</div>
-      </div>
-      <div class="ach-metric" style="border-color:rgba(0,200,83,0.2);">
-        <div style="font-size:22px;margin-bottom:6px;">⚡</div>
-        <div class="ach-val"><span class="counter" data-target="12">12</span></div>
-        <div class="ach-label" data-i18n="ach.svc">New Services</div>
-      </div>
-      <div class="ach-metric" style="border-color:rgba(192,132,252,0.2);">
-        <div style="font-size:22px;margin-bottom:6px;">👥</div>
-        <div class="ach-val"><span class="counter" data-target="45">45</span></div>
-        <div class="ach-label" data-i18n="ach.team">Team Members</div>
-      </div>
-      <div class="ach-metric" style="border-color:rgba(0,229,255,0.2);">
-        <div style="font-size:22px;margin-bottom:6px;">🤝</div>
-        <div class="ach-val"><span class="counter" data-target="380">380</span>+</div>
-        <div class="ach-label" data-i18n="ach.clients">Clients Served</div>
-      </div>
-    </div>
-    <!-- Growth Metrics Row -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;" class="anim-fade-up delay-3">
-      <div class="ach-metric" style="border-color:rgba(240,192,64,0.25);background:rgba(240,192,64,0.04);">
-        <div class="ach-val" style="background:linear-gradient(135deg,#f0c040,#ff9f1c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:clamp(28px,3.5vw,44px);font-weight:800;"><span class="counter" data-target="400">400</span>%</div>
-        <div class="ach-label" data-i18n="ach.rev">Revenue Growth</div>
-        <div style="font-size:10px;color:var(--text-muted);margin-top:4px;" data-i18n="ach.rev.sub">4× organizational impact</div>
-      </div>
-      <div class="ach-metric" style="border-color:rgba(0,229,255,0.25);background:rgba(0,229,255,0.04);">
-        <div class="ach-val" style="background:linear-gradient(135deg,#00e5ff,#0088ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:clamp(28px,3.5vw,44px);font-weight:800;"><span class="counter" data-target="500">500</span>%</div>
-        <div class="ach-label" data-i18n="ach.fleet">Vehicle Fleet Growth</div>
-        <div style="font-size:10px;color:var(--text-muted);margin-top:4px;" data-i18n="ach.fleet.sub">Fleet expansion managed</div>
-      </div>
-      <div class="ach-metric" style="border-color:rgba(0,200,83,0.25);background:rgba(0,200,83,0.04);">
-        <div class="ach-val" style="background:linear-gradient(135deg,#00e066,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:clamp(28px,3.5vw,44px);font-weight:800;"><span class="counter" data-target="90">90</span>%</div>
-        <div class="ach-label" data-i18n="ach.otd">On-Time Delivery</div>
-        <div style="font-size:10px;color:var(--text-muted);margin-top:4px;" data-i18n="ach.otd.sub">PMP® standards applied</div>
-      </div>
-      <div class="ach-metric" style="border-color:rgba(240,192,64,0.25);background:rgba(240,192,64,0.04);">
-        <div class="ach-val" style="background:linear-gradient(135deg,#f0c040,#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:clamp(28px,3.5vw,44px);font-weight:800;"><span class="counter" data-target="100">100</span>%</div>
-        <div class="ach-label" data-i18n="ach.comp">Compliance & Security</div>
-        <div style="font-size:10px;color:var(--text-muted);margin-top:4px;" data-i18n="ach.comp.sub">Zero incidents · Full regulatory compliance</div>
-      </div>
-    </div>
-    <!-- Story Continues - Achievements Description -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;" class="anim-fade-up delay-4">
-      <div class="glass-card" style="padding:16px 18px;background:rgba(0,229,255,0.03);border-color:rgba(0,229,255,0.15);">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 10C3 6.5 6.5 3 10 3C13.5 3 17 6.5 17 10C17 13.5 13.5 17 10 17C6.5 17 3 13.5 3 10Z" stroke="#00e5ff" stroke-width="1.5" fill="rgba(0,229,255,0.08)"/>
-            <path d="M7 10L9 12.5L13 8" stroke="#00e5ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span style="font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;" data-i18n="ach.d1t">GCP Deployment</span>
-        </div>
-        <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;" data-i18n="ach.d1d">Full GCP deployment orchestrated simultaneously across all product lines — coordinated centrally with zero service disruption.</p>
-      </div>
-      <div class="glass-card" style="padding:16px 18px;background:rgba(0,200,83,0.03);border-color:rgba(0,200,83,0.15);">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 2L13 8H18L14 12L16 18L10 15L4 18L6 12L2 8H7L10 2Z" stroke="#00c853" stroke-width="1.5" fill="rgba(0,200,83,0.08)" stroke-linejoin="round"/>
-          </svg>
-          <span style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:1px;" data-i18n="ach.d2t">Adoption Leap</span>
-        </div>
-        <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;" data-i18n="ach.d2d">Tripled product adoption through data-driven onboarding redesign within 12 months. 38% sustained adoption rate achieved.</p>
-      </div>
-      <div class="glass-card" style="padding:16px 18px;background:rgba(192,132,252,0.03);border-color:rgba(192,132,252,0.15);">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 2L13 8H18L14 12L16 18L10 15L4 18L6 12L2 8H7L10 2Z" stroke="#c084fc" stroke-width="1.5" fill="rgba(192,132,252,0.08)" stroke-linejoin="round"/>
-          </svg>
-          <span style="font-size:11px;font-weight:700;color:#c084fc;text-transform:uppercase;letter-spacing:1px;" data-i18n="ach.d3t">Product Adoption</span>
-        </div>
-        <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;" data-i18n="ach.d3d">Tripled product adoption through data-driven onboarding redesign within 12 months. 38% sustained adoption rate achieved across the portfolio.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 6 — PMO ARSENAL ═══════════════════════ -->
-<section class="slide" id="slide-6">
-  <div class="slide-bg"><div class="grid-overlay"></div><div class="glow-orb glow-orb-1"></div></div>
-  <div class="slide-content">
-    <div class="eyebrow anim-fade-up delay-1" data-i18n="s6.eyebrow">PMO Leadership</div>
-    <h2 class="slide-title anim-fade-up delay-2"><span data-i18n="s6.title1">Strategic Governance &amp; </span><span style="color:#c084fc;" data-i18n="s6.title2">PMO Methodology</span></h2>
-    <p class="slide-lead anim-fade-up delay-3" style="max-width:600px;" data-i18n="s6.lead">A certified, battle-tested PMO framework: from risk mitigation and portfolio governance to cloud-enabled delivery and stakeholder alignment across 11+ groups.</p>
-    <div class="grid-3 anim-fade-up delay-3" style="margin-bottom:20px;">
-      <!-- PMP -->
-      <div class="pillar-card" style="border-color:rgba(0,229,255,0.2);">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-          <div class="icon-box icon-cyan" style="font-size:22px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="18" height="18" rx="3" stroke="#00e5ff" stroke-width="1.8" fill="rgba(0,229,255,0.1)"/>
-              <path d="M8 12L11 15L16 9" stroke="#00e5ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--text-primary);" data-i18n="s6.p1t">PMP® Execution</div>
-        </div>
-        <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;flex:1;" data-i18n="s6.p1d">Applied PMBOK frameworks across full project lifecycles — from initiation to closure — with rigorous risk management and quality assurance protocols.</p>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;"><span style="color:var(--text-muted);" data-i18n="s6.prof">Proficiency</span><span style="color:var(--cyan);" data-i18n="s6.p1p">Expert</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div>
-        </div>
-        <div class="tag-list" style="margin-top:8px;"><span class="tag">PMBOK</span><span class="tag" data-i18n="s6.p1t1">Risk Mgmt</span><span class="tag" data-i18n="s6.p1t2">Portfolio</span></div>
-      </div>
-      <!-- Strategic Portfolio Management -->
-      <div class="pillar-card" style="border-color:rgba(0,200,83,0.2);">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-          <div class="icon-box icon-green" style="font-size:22px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="8" height="8" rx="2" stroke="#00c853" stroke-width="1.6" fill="rgba(0,200,83,0.1)"/>
-              <rect x="13" y="3" width="8" height="8" rx="2" stroke="#00c853" stroke-width="1.6" fill="rgba(0,200,83,0.1)"/>
-              <rect x="3" y="13" width="8" height="8" rx="2" stroke="#00c853" stroke-width="1.6" fill="rgba(0,200,83,0.1)"/>
-              <path d="M13 17H21M17 13V21" stroke="#00c853" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--text-primary);" data-i18n="s6.p2t">Portfolio Management &amp; Risk</div>
-        </div>
-        <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;flex:1;" data-i18n="s6.p2d">Strategic portfolio governance across B2C, B2B &amp; B2G sectors. Systematic risk identification, mitigation frameworks, and dependency mapping across concurrent product lines.</p>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;"><span style="color:var(--text-muted);" data-i18n="s6.prof">Proficiency</span><span style="color:var(--green);" data-i18n="s6.p2p">Advanced</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="93" style="background:linear-gradient(90deg,var(--green),var(--cyan));"></div></div>
-        </div>
-        <div class="tag-list" style="margin-top:8px;"><span class="tag" data-i18n="s6.p2t0">Risk Mitigation</span><span class="tag" data-i18n="s6.p2t1">Portfolio Governance</span><span class="tag" data-i18n="s6.p2t2">OKR Alignment</span></div>
-      </div>
-      <!-- Stakeholder Management -->
-      <div class="pillar-card" style="border-color:rgba(180,100,255,0.2);">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-          <div style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(180,100,255,0.1);border:1px solid rgba(180,100,255,0.2);">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="9" cy="7" r="3" stroke="#c084fc" stroke-width="1.8" fill="rgba(192,132,252,0.1)"/>
-              <circle cx="15" cy="7" r="3" stroke="#c084fc" stroke-width="1.8" fill="rgba(192,132,252,0.1)"/>
-              <path d="M3 20C3 16.686 5.686 14 9 14" stroke="#c084fc" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M21 20C21 16.686 18.314 14 15 14H9" stroke="#c084fc" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--text-primary);" data-i18n="s6.p3t">Stakeholder Management</div>
-        </div>
-        <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;flex:1;" data-i18n="s6.p3d">Managed 11+ stakeholder groups spanning technical, legal, financial, and government entities. Expert in alignment, escalation, and cross-functional coordination.</p>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;"><span style="color:var(--text-muted);" data-i18n="s6.prof">Proficiency</span><span style="color:#c084fc;" data-i18n="s6.p3p">Advanced</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="92" style="background:linear-gradient(90deg,#c084fc,var(--gold-light));"></div></div>
-        </div>
-        <div class="tag-list" style="margin-top:8px;"><span class="tag" data-i18n="s6.p3t1">Alignment</span><span class="tag" data-i18n="s6.p3t2">Negotiation</span><span class="tag" data-i18n="s6.p3t3">Governance</span></div>
-      </div>
-    </div>
-    <div class="glass-card anim-fade-up delay-5" style="padding:18px 24px;">
-      <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;" data-i18n="s6.stack">Full Competency Stack</div>
-      <div class="tag-list">
-        <span class="tag" data-i18n="sk1">Agile / Scrum</span><span class="tag" data-i18n="sk2">OKR Frameworks</span>
-        <span class="tag" data-i18n="sk3">Stakeholder Management</span><span class="tag" data-i18n="sk4">Cross-functional Leadership</span>
-        <span class="tag" data-i18n="sk5">Budget Governance</span><span class="tag" data-i18n="sk6">Enterprise Accounts</span>
-        <span class="tag" data-i18n="sk7">Crisis Management</span><span class="tag" data-i18n="sk8">Digital Transformation</span>
-        <span class="tag" data-i18n="sk9">Team Building (45+)</span><span class="tag" data-i18n="sk10">B2C / B2B / B2G</span>
-        <span class="tag" data-i18n="sk11">Product Roadmapping</span><span class="tag" data-i18n="sk12">Data-driven Decisions</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════ SLIDE 10 — MINIMALIST EXIT ═══════════════════════ -->
-<section class="slide" id="slide-10">
+<!-- ══════════════ SLIDE 1 — VISIONARY LEADER ══════════════ -->
+<section class="slide" id="s1">
   <div class="slide-bg">
-    <div class="grid-overlay"></div>
-    <div class="glow-orb glow-orb-1"></div>
+    <div class="grid-lines"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+  </div>
+  <div class="inner">
+    <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;">
+
+      <!-- LEFT -->
+      <div>
+        <div class="eyebrow g-fade" data-i18n="s1.ey">Senior PMO Leader · National-Scale Impact</div>
+
+        <h1 class="hero-name g-up">Abdulrahman<br/>Alhumud</h1>
+        <div class="hero-role g-up" data-i18n="s1.role">Project Management Professional · PMP®</div>
+
+        <p class="hero-mission g-up" data-i18n="s1.miss">Transforming national-scale industries through disciplined governance, cloud-native product leadership, and strategic stakeholder ecosystems spanning B2B and B2G sectors.</p>
+
+        <div class="badge-row g-up">
+          <span class="badge bc" data-i18n="b.pmp">PMP® Certified</span>
+          <span class="badge bg" data-i18n="b.gcp">GCP Architecture</span>
+          <span class="badge bgr" data-i18n="b.b2g">B2B / B2G</span>
+          <span class="badge bp" data-i18n="b.pmo">PMO Leadership</span>
+        </div>
+
+        <button class="cta-btn cta-primary g-up" onclick="scrollTo(1)" data-i18n="s1.cta">View Impact Dashboard →</button>
+      </div>
+
+      <!-- RIGHT — Animated orbit system -->
+      <div class="hero-visual g-scale">
+        <!-- Rings -->
+        <div class="ring" style="width:300px;height:300px;--spd:26s;--dot:var(--cyan);"></div>
+        <div class="ring rev" style="width:220px;height:220px;--spd:19s;--dot:var(--gold);border-color:rgba(240,192,64,0.12);"></div>
+        <div class="ring" style="width:150px;height:150px;--spd:13s;--dot:var(--green);border-color:rgba(0,200,83,0.1);"></div>
+
+        <!-- Center badge -->
+        <div class="orbit-center">
+          <div class="oc-cert">PMP®</div>
+          <div class="oc-num">6+</div>
+          <div class="oc-lbl" data-i18n="oc.y">Years PM</div>
+        </div>
+
+        <!-- Floating icons -->
+        <div class="float-icon" style="top:6%;left:50%;transform:translateX(-50%);">☁️</div>
+        <div class="float-icon" style="bottom:6%;left:50%;transform:translateX(-50%);">🏛️</div>
+        <div class="float-icon" style="left:0%;top:50%;transform:translateY(-50%);">📊</div>
+        <div class="float-icon" style="right:0%;top:50%;transform:translateY(-50%);">🔒</div>
+      </div>
+    </div>
   </div>
 
-  <div class="slide-content">
+  <div class="scroll-hint">
+    <span data-i18n="hint">Scroll</span>
+    <span style="font-size:18px;">↓</span>
+  </div>
+</section>
 
-    <!-- Thank You headline -->
-    <div class="anim-fade-up delay-1" style="margin-bottom:12px;">
-      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:clamp(60px,9vw,110px);font-weight:800;line-height:1;margin:0;background:linear-gradient(135deg,#ffffff 0%,#f0c040 55%,#00e5ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="s10.thanks">Thank You</h1>
+<!-- ══════════════ SLIDE 2 — HIGH-IMPACT DASHBOARD ══════════════ -->
+<section class="slide" id="s2">
+  <div class="slide-bg"><div class="grid-lines"></div><div class="orb orb-a"></div></div>
+  <div class="inner">
+
+    <div class="dash-head">
+      <div class="eyebrow g-fade" data-i18n="s2.ey">Complete Portfolio Impact · 6 Years of Results</div>
+      <div class="dash-title g-up">
+        <span data-i18n="s2.t1">The </span><span style="color:var(--cyan)" data-i18n="s2.t2">Full-Scale</span><span data-i18n="s2.t3"> Impact Dashboard</span>
+      </div>
+      <div class="dash-sub g-up" data-i18n="s2.sub">Six years of compounded results across product, operations, governance, and strategic delivery.</div>
     </div>
 
-    <!-- Divider bar -->
-    <div class="anim-scale delay-2" style="width:72px;height:2px;background:linear-gradient(90deg,#00e5ff,#f0c040);border-radius:2px;margin-bottom:36px;"></div>
-
-    <!-- Name + Role -->
-    <div class="anim-fade-up delay-2" style="margin-bottom:40px;">
-      <div style="font-family:'Space Grotesk',sans-serif;font-size:clamp(20px,2.4vw,28px);font-weight:700;color:#f0c040;letter-spacing:2px;margin-bottom:8px;" data-i18n="s10.name">Abdulrahman Alhumud</div>
-      <div style="font-size:12px;color:rgba(200,210,230,0.7);letter-spacing:3.5px;text-transform:uppercase;font-weight:400;" data-i18n="s10.role">Project Management Professional · PMP®</div>
+    <!-- Tier 1 — 4 core metrics -->
+    <div class="tier1">
+      <div class="mcard g-scale" style="--ac:var(--cyan);border-color:rgba(0,229,255,0.18);">
+        <span class="mi">🚀</span>
+        <span class="mv"><span class="cnt" data-target="5">0</span></span>
+        <div class="ml" data-i18n="m.prod">Products Launched</div>
+        <div class="ms" data-i18n="m.prod.s">Mojaz → Rased portfolio</div>
+      </div>
+      <div class="mcard g-scale" style="--ac:var(--cyan);border-color:rgba(0,229,255,0.18);">
+        <span class="mi">⚙️</span>
+        <span class="mv"><span class="cnt" data-target="12">0</span></span>
+        <div class="ml" data-i18n="m.serv">Core Services</div>
+        <div class="ms" data-i18n="m.serv.s">Deployed &amp; operational</div>
+      </div>
+      <div class="mcard g-scale" style="--ac:var(--gold);border-color:rgba(240,192,64,0.18);">
+        <span class="mi">📈</span>
+        <span class="mv"><span class="cnt" data-target="4">0</span>×</span>
+        <div class="ml" data-i18n="m.rev">Revenue Growth</div>
+        <div class="ms" data-i18n="m.rev.s">Total organizational impact</div>
+      </div>
+      <div class="mcard g-scale" style="--ac:var(--gold);border-color:rgba(240,192,64,0.18);">
+        <span class="mi">🚗</span>
+        <span class="mv"><span class="cnt" data-target="500">0</span>%</span>
+        <div class="ml" data-i18n="m.fleet">Fleet Growth</div>
+        <div class="ms" data-i18n="m.fleet.s">Vehicle base expansion</div>
+      </div>
     </div>
 
-    <!-- Contact Cards -->
-    <div class="anim-scale delay-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;width:100%;max-width:600px;margin:0 auto 40px;">
-
-      <!-- Phone -->
-      <div class="glass-card" style="padding:24px 14px;text-align:center;border-color:rgba(0,229,255,0.3);background:rgba(0,229,255,0.04);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 12px;" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 013.51 5.13 2 2 0 015.5 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 10.09a16 16 0 006 6l.88-.88a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#00e5ff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div style="font-size:9px;color:rgba(180,200,220,0.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:7px;" data-i18n="s10.phone.label">Phone</div>
-        <div style="font-size:13px;font-weight:700;color:#00e5ff;letter-spacing:0.5px;" data-i18n="s10.phone">+966 59 393 5677</div>
+    <!-- Tier 2 — 3 governance metrics -->
+    <div class="tier2">
+      <div class="mcard g-scale" style="--ac:var(--purple);border-color:rgba(168,85,247,0.2);">
+        <span class="mi">📋</span>
+        <span class="mv" style="color:var(--purple);"><span class="cnt" data-target="40">0</span>+</span>
+        <div class="ml" data-i18n="m.po">Purchase Orders</div>
+        <div class="ms" data-i18n="m.po.s">Managed end-to-end</div>
       </div>
-
-      <!-- Email -->
-      <div class="glass-card" style="padding:24px 14px;text-align:center;border-color:rgba(240,192,64,0.3);background:rgba(240,192,64,0.04);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 12px;" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="4" width="20" height="16" rx="3" stroke="#f0c040" stroke-width="1.8" fill="none"/>
-          <path d="M2 7L12 13L22 7" stroke="#f0c040" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <div style="font-size:9px;color:rgba(180,200,220,0.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:7px;" data-i18n="s10.email.label">Email</div>
-        <div style="font-size:12px;font-weight:700;color:#f0c040;letter-spacing:0.3px;word-break:break-all;" data-i18n="s10.email">A.alhumud0@gmail.com</div>
+      <div class="mcard g-scale" style="--ac:var(--purple);border-color:rgba(168,85,247,0.2);">
+        <span class="mi">⚖️</span>
+        <span class="mv" style="color:var(--purple);"><span class="cnt" data-target="55">0</span>+</span>
+        <div class="ml" data-i18n="m.cont">Legal Contracts</div>
+        <div class="ms" data-i18n="m.cont.s">Negotiated &amp; executed</div>
       </div>
-
-      <!-- LinkedIn -->
-      <div class="glass-card" style="padding:24px 14px;text-align:center;border-color:rgba(0,200,83,0.3);background:rgba(0,200,83,0.04);">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="display:block;margin:0 auto 12px;" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="20" height="20" rx="4" stroke="#00c853" stroke-width="1.8" fill="none"/>
-          <path d="M7 8.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM6.5 10.5v7M11.5 10.5v7M11.5 13.5a3 3 0 016 0v4" stroke="#00c853" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div style="font-size:9px;color:rgba(180,200,220,0.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:7px;" data-i18n="s10.li.label">LinkedIn</div>
-        <div style="font-size:10px;font-weight:700;color:#00c853;letter-spacing:0.3px;word-break:break-all;" data-i18n="s10.li">www.linkedin.com/in/aalhumud</div>
+      <div class="mcard g-scale" style="--ac:var(--green);border-color:rgba(0,200,83,0.2);">
+        <span class="mi">✅</span>
+        <span class="mv" style="color:var(--green);"><span class="cnt" data-target="90">0</span>%</span>
+        <div class="ml" data-i18n="m.otd">On-Time Delivery</div>
+        <div class="ms" data-i18n="m.otd.s">PMP® standards enforced</div>
       </div>
-
     </div>
 
-    <!-- Return CTA -->
-    <div class="anim-fade-up delay-4">
-      <button class="cta-btn cta-ghost" onclick="scrollToSlide(0)" style="margin:0 auto;" data-i18n="s10.back">↑ Return to Beginning</button>
+    <!-- Compliance Foundation Banner -->
+    <div class="comp-banner g-up">
+      <div class="comp-pct"><span class="cnt" data-target="100">0</span>%</div>
+      <div class="comp-info">
+        <div class="comp-title" data-i18n="comp.t">🛡️ Compliance &amp; Security — The Foundation</div>
+        <div class="comp-desc" data-i18n="comp.d">Every product, service, and vendor relationship operates within a zero-compromise security framework — embedded from day one across all 11+ stakeholder groups.</div>
+        <div class="comp-tags">
+          <span class="badge bg"  data-i18n="cp.1">ZATCA Compliant</span>
+          <span class="badge bgr" data-i18n="cp.2">ISO Aligned</span>
+          <span class="badge bc"  data-i18n="cp.3">GCP Security</span>
+          <span class="badge bp"  data-i18n="cp.4">Vendor Governance</span>
+        </div>
+      </div>
     </div>
 
   </div>
 </section>
-</div><!-- /slides-container -->
+
+<!-- ══════════════ SLIDE 3 — STAKEHOLDER UNIVERSE ══════════════ -->
+<section class="slide" id="s3">
+  <div class="slide-bg"><div class="grid-lines"></div><div class="orb orb-a"></div></div>
+  <canvas id="universe-canvas"></canvas>
+
+  <div id="u-panel" class="g-fade">
+    <div class="u-title" data-i18n="s3.t">Stakeholder Universe</div>
+    <div class="u-sub" data-i18n="s3.s">11+ Groups · Hover nodes to explore</div>
+    <div class="legend">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--cyan)"></div><span data-i18n="l.int">Internal Teams</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--gold)"></div><span data-i18n="l.ext">Tech Partners</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div><span data-i18n="l.bus">Business Units</span></div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--purple)"></div><span data-i18n="l.gov">Gov Entities</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SLIDE 4 — STRATEGIC CONCLUSION ══════════════ -->
+<section class="slide" id="s4">
+  <div class="slide-bg"><div class="grid-lines"></div><div class="orb orb-a"></div></div>
+  <div class="inner">
+    <div class="ty-word g-up" data-i18n="s4.ty">Thank You</div>
+    <div class="ty-divider g-fade"></div>
+    <div class="ty-name g-up" data-i18n="s4.nm">Abdulrahman Alhumud</div>
+    <div class="ty-role g-up" data-i18n="s4.rl">Senior Project Manager · PMO Leader · PMP®</div>
+
+    <div class="contact-row g-scale">
+      <a class="cc cc-phone" href="tel:+966593935677">
+        <span class="cc-icon">📞</span>
+        <span class="cc-label" data-i18n="c.ph">Phone</span>
+        <span class="cc-val" style="color:var(--cyan)">+966 59 393 5677</span>
+      </a>
+      <a class="cc cc-email" href="mailto:A.alhumud0@gmail.com">
+        <span class="cc-icon">✉️</span>
+        <span class="cc-label" data-i18n="c.em">Email</span>
+        <span class="cc-val" style="color:var(--gold)">A.alhumud0@gmail.com</span>
+      </a>
+      <a class="cc cc-li" href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener">
+        <span class="cc-icon">💼</span>
+        <span class="cc-label" data-i18n="c.li">LinkedIn</span>
+        <span class="cc-val" style="color:var(--green)">linkedin.com/in/aalhumud</span>
+      </a>
+    </div>
+
+    <button class="cta-btn cta-ghost g-fade" onclick="scrollTo(0)" data-i18n="s4.back">↑ Return to Top</button>
+  </div>
+</section>
+
+</div><!-- /deck -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     i18n
+═══════════════════════════════════════════════════════════════ -->
 <script>
-// ══════════════════════════════════════════
-//  TRANSLATION ENGINE
-// ══════════════════════════════════════════
-const i18n = {
+const I18N = {
   en: {
-    'nav.s1':'Hero','nav.s2':'Mojaz — Agility','nav.s3':'Rased — Governance',
-    'nav.s4':'GCP Leap','nav.s5':'Impact Numbers','nav.s6':'PMO Mastery',
-    'nav.s7':'Custom Solutions','nav.s8':'Stakeholder Universe',
-    'nav.s9':'Achievements','nav.s10':'Future Vision',
-    's1.eyebrow':'Experienced Senior Project Manager',
-    's1.title':'The Evolution<br/>of Impact',
-    's1.name':'Abdulrahman Alhumud',
+    'nav.1':'The Leader','nav.2':'Impact','nav.3':'Stakeholders','nav.4':'Close',
+    's1.ey':'Senior PMO Leader · National-Scale Impact',
     's1.role':'Project Management Professional · PMP®',
-    's1.sub':'Transforming complex sectors — B2C, B2B &amp; B2G — through strategic innovation, disciplined governance, and scalable technology leadership.',
-    's1.b1':'PMP® Certified','s1.b2':'GCP Infrastructure','s1.b3':'Stakeholder Management',
-    's1.cta1':'Begin the Journey →','s1.cta2':'See Impact',
-    's1.stat1':'Revenue Growth Achieved','s1.stat2':'App Store Ranking · Mojaz',
-    's1.stat3':'Enterprise Clients · 2025','s1.stat4':'Team Members Managed',
-    's1.scroll':'Scroll to explore',
-    's2.phase':'⚡ Phase 01 · Mojaz Era',
-    's2.title1':'The ','s2.title2':'Sprint','s2.title3':'Agility at Scale',
-    's2.lead':'Entering the B2C arena, Abdulrahman orchestrated a high-velocity product launch that captured Saudi consumers, dominating the App Store charts and setting new benchmarks for digital engagement.',
-    's2.t1l':'MARKET ENTRY','s2.t1d':'Identified &amp; executed B2C strategy for Saudi automotive inspection market',
-    's2.t2l':'GROWTH SPRINT','s2.t2d':'Drove +250% download surge through data-driven campaign orchestration',
-    's2.t3l':'PEAK IMPACT','s2.t3d':'Achieved #1 App Store ranking — cementing brand authority in 4 months',
-    's2.m1l':'App Store Rank','s2.m1s':'Saudi Market',
-    's2.m2l':'Download Growth','s2.m2s':'Sustained momentum',
-    's2.m3l':'Impressions Generated','s2.m3s':'4-month campaign window · B2C',
-    's2.i1':'Users','s2.i2':'Search','s2.i3':'App Store','s2.i4':'Downloads','s2.i5':'Stats',
-    's2.stk.title':'Stakeholders Management',
-    's2.comp.title':'Core Competencies Applied',
-    's2.tag1':'Product Launch','s2.tag2':'Agile Methodology','s2.tag3':'Growth Strategy',
-    's2.tag4':'KPI Management','s2.tag5':'Stakeholder Alignment','s2.tag6':'B2C Marketing',
-    's2.tag7':'Data Analytics','s2.tag8':'Sprint Planning',
-    'stk.infra':'Infrastructure Team','stk.cyber':'Cybersecurity Team',
-    'stk.sales':'Sales Team','stk.cs':'Customer Service Team',
-    'stk.app':'Application Team','stk.db':'Database Team','stk.tech':'Technical Team',
-    'stk.internal.label':'Internal Technical','stk.external.label':'Extended Network',
-    'stk.google':'Google Team','stk.host':'External Hosting','stk.legal':'Legal Team',
-    'stk.proc':'Procurement','stk.fin':'Finance Team','stk.mkt':'Marketing Team',
-    's3.phase':'🛡️ Phase 02 · Rased — Crisis &amp; Governance 2023',
-    's3.title1':'The ','s3.title2':'Turnaround','s3.title3':'Governance &amp; Leadership',
-    's3.lead':'Inherited a critical situation — legacy technical debt, team misalignment, and eroding stakeholder trust. Applied PMO governance frameworks to orchestrate a full organizational recovery.',
-    's3.crisis.t':'🔥 Crisis Context',
-    's3.crisis.d':'Inherited technical reliability failures and organizational fragmentation across a 20-member team, threatening service continuity and stakeholder confidence.',
-    's3.res.t':'✅ Resolution Approach',
-    's3.r1':'Instituted PMO governance — clear ownership, escalation paths, decision logs',
-    's3.r2':'Rebuilt sprint cadences, retrospectives &amp; dependency mapping',
-    's3.r3':'Restored technical reliability through systematic root-cause analysis',
-    's3.r4':'Re-aligned 20-member team around shared OKRs and delivery milestones',
-    's3.team':'Members led through crisis &amp; recovery',
-    's3.c1t':'PMO Governance','s3.c1s':'Framework enforced',
-    's3.c2t':'Tech Reliability','s3.c2s':'Legacy resolved',
-    's3.c3t':'Stakeholder Trust','s3.c3s':'Fully restored',
-    's3.c4t':'Delivery Cadence','s3.c4s':'Normalized &amp; tracked',
-    's3.stk.title':'Stakeholders Management',
-    's4.phase':'☁️ Phase 03 · Rased — Tech Innovation 2024',
-    's4.title1':'The ','s4.title2':'Leap','s4.title3':'Cloud &amp; Innovation',
-    's4.lead':'With stability restored, pivoted to offense — pioneering full GCP cloud migration and launching a suite of digital products that redefined Rased\'s technical capabilities.',
-    's4.c1t':'GCP Migration Pioneer','s4.c1d':'Led end-to-end migration — zero downtime, full continuity',
-    's4.c2t':'Core Product Launch','s4.c2d':'Delivered flagship product — on schedule, within budget',
-    's4.c3t':'Service Ecosystem Built','s4.c3d':'Launched 4 supporting services powering the product portfolio',
-    's4.tg1':'GCP Infrastructure','s4.tg2':'Cloud Architecture','s4.tg3':'DevOps Integration',
-    's4.tg4':'Product Management','s4.tg5':'Service Design','s4.tg6':'Technical Leadership',
-    's4.cloud.t':'GCP Migration Complete','s4.cloud.p':'Core Product','s4.cloud.s':'Services','s4.cloud.u':'Uptime',
-    's4.gcp.title':'Google Cloud','s4.gcp.sub':'GCP Migration Partner · Strategic Cloud Alliance',
-    's4.innov':'Innovation Framework','s4.b1':'Cloud Readiness','s4.b2':'Product Delivery','s4.b3':'Service Adoption',
-    's4.i1':'Cloud','s4.i2':'Apps','s4.i3':'Scale','s4.i4':'Infra',
-    's4.eco.title':'Stakeholder Ecosystem','s4.eco.badge':'Phase 03 — Expanded',
-    's4.eco.core':'Core Teams (Phase 02)','s4.eco.new':'Phase 03 — New Stakeholders',
-    's5.phase':'📊 Phase 04 · Strategic Portfolio Scaling 2025',
-    's5.title1':'The Portfolio ','s5.title2':'Scale',
-    's5.lead':'From turnaround to transformation — Rased 2025 represents the full realization of strategic PMO leadership at enterprise scale.',
-    's5.m1l':'Revenue Growth','s5.m1s':'Total organizational impact',
-    's5.m2l':'Vehicle Base Growth','s5.m2s':'Fleet expansion under management',
-    's5.m3l':'Enterprise Clients','s5.m3s':'B2B &amp; B2G portfolio',
-    's5.m4l':'On-Time Delivery','s5.m4s':'PMP® standards enforced',
-    's5.s1':'Products Launched','s5.s2':'Services Deployed','s5.s3':'Team Members Led',
-    's5.ban.t':'Full Portfolio Command · B2C → B2B → B2G',
-    's5.ban.d':'Managing cross-sector enterprise relationships while simultaneously scaling products, services, and teams.',
-    's6.eyebrow':'PMO Leadership','s6.title1':'Strategic Governance & ','s6.title2':'PMO Methodology',
-    's6.lead':'A certified, battle-tested PMO framework: from risk mitigation and portfolio governance to cloud-enabled delivery and stakeholder alignment across 11+ groups.',
-    's6.p1t':'PMP® Execution','s6.p1d':'Applied PMBOK frameworks across full project lifecycles — from initiation to closure — with rigorous risk management and quality assurance protocols.',
-    's6.prof':'Proficiency','s6.p1p':'Expert','s6.p1t1':'Risk Mgmt','s6.p1t2':'Portfolio',
-    's6.p2t':'Portfolio Management & Risk','s6.p2d':'Strategic portfolio governance across B2C, B2B & B2G sectors. Systematic risk identification, mitigation frameworks, and dependency mapping across concurrent product lines.',
-    's6.p2p':'Advanced','s6.p2t0':'Risk Mitigation','s6.p2t1':'Portfolio Governance','s6.p2t2':'OKR Alignment',
-    's6.p3t':'Stakeholder Management','s6.p3d':'Managed 11+ stakeholder groups spanning technical, legal, financial, and government entities. Expert in alignment, escalation, and cross-functional coordination.',
-    's6.p3p':'Advanced','s6.p3t1':'Alignment','s6.p3t2':'Negotiation','s6.p3t3':'Governance',
-    's6.stack':'Full Competency Stack',
-    'sk1':'Agile / Scrum','sk2':'OKR Frameworks','sk3':'Stakeholder Management',
-    'sk4':'Cross-functional Leadership','sk5':'Budget Governance','sk6':'Enterprise Accounts',
-    'sk7':'Crisis Management','sk8':'Digital Transformation','sk9':'Team Building (45+)',
-    'sk10':'B2C / B2B / B2G','sk11':'Product Roadmapping','sk12':'Data-driven Decisions',
-    's7.eyebrow':'Trusted by The Kingdom','s7.title1':'Custom ','s7.title2':'Solutions',
-    's7.lead':'Architected bespoke digital systems for Saudi Arabia\'s most critical national entities, delivering mission-critical operational platforms at government scale.',
-    'sol1.org':'Saudi Water Authority','sol1.title':'Water Infrastructure','sol1.badge':'Digital Services',
-    'sol1.desc':'Digital services platform for water infrastructure management and regulatory compliance operations.',
-    'sol2.title':'Environmental Compliance','sol2.badge':'Digital Operations',
-    'sol2.desc':'Ministry of Environment digital operations platform covering compliance monitoring and environmental data management.',
-    'sol3.org':'Ministry of Energy','sol3.title':'3 Strategic Sectors','sol3.badge':'National Energy',
-    'sol3.desc':'National Energy digital platform spanning three critical energy sectors with integrated regulatory and operational modules.',
-    'sol4.org':'Ministry of Investment','sol4.title':'Investment Facilitation','sol4.badge':'Digital Services',
-    'sol4.desc':'End-to-end investment facilitation digital services streamlining foreign and domestic investment processes.',
-    'sol5.title':'Zakat, Tax &amp; Customs','sol5.badge':'Tax Authority',
-    'sol5.desc':'Integrated compliance and reporting digital system for tax authority operational excellence and regulatory enforcement.',
-    'sol6.org':'IMAM / PNU','sol6.title':'Higher Education','sol6.badge':'Digital Services',
-    'sol6.desc':'University digital services platform modernizing student, faculty, and administrative operations at national scale.',
-    'sol7.org':'Transport Authority','sol7.title':'Legislative Compliance','sol7.badge':'Operations',
-    'sol7.desc':'Transport regulatory operations platform ensuring legislative compliance and digital service delivery for the authority.',
-    'sol8.org':'Petromin &amp; SASCO','sol8.title':'Strategic Partnership','sol8.badge':'Fuel &amp; Services',
-    'sol8.desc':'Integrated fuel &amp; services digital ecosystem connecting Petromin and SASCO operations for unified service delivery.',
-    's8.eyebrow':'Cross-Functional Leadership','s8.title':'Stakeholder Universe','s8.panel.title':'All Stakeholders',
-    's8.sub':'Click any node to explore the relationship',
-    's8.l1':'Internal Technical','s8.l2':'External Partners','s8.l3':'Business Units','s8.l4':'Government Entities',
-    's9.eyebrow':'Full Achievement Dashboard','s9.title':'The Complete Impact',
-    's9.b1':'2022–2025','s9.b2':'Live &amp; Growing',
-    'ach.prod':'Products Launched','ach.sol':'Custom Solutions','ach.svc':'New Services',
-    'ach.team':'Team Members','ach.clients':'Clients Served',
-    'ach.rev':'Revenue Growth','ach.rev.sub':'4× organizational impact',
-    'ach.fleet':'Vehicle Fleet Growth','ach.fleet.sub':'Fleet expansion managed',
-    'ach.otd':'On-Time Delivery','ach.otd.sub':'PMP® standards applied',
-    'ach.comp':'Compliance &amp; Security','ach.comp.sub':'Zero incidents · Full regulatory compliance',
-    'ach.adopt':'Product Adoption','ach.adopt.sub':'Tripled via data-driven redesign',
-    'ach.d1t':'GCP Deployment','ach.d1d':'Full GCP deployment orchestrated simultaneously across all product lines — coordinated centrally with zero service disruption.',
-    'ach.d2t':'Adoption Leap','ach.d2d':'Tripled product adoption through data-driven onboarding redesign within 12 months. 38% sustained adoption rate achieved.',
-    'ach.d3t':'Product Adoption','ach.d3d':'Tripled product adoption through data-driven onboarding redesign within 12 months. 38% sustained adoption rate achieved across the portfolio.',
-    's10.thanks':'Thank You',
-    's10.phone.label':'Phone','s10.phone':'+966 59 393 5677',
-    's10.email.label':'Email','s10.email':'A.alhumud0@gmail.com',
-    's10.li.label':'LinkedIn','s10.li':'www.linkedin.com/in/aalhumud',
-    's10.name':'Abdulrahman Alhumud','s10.role':'Project Management Professional · PMP®',
-    's10.back':'↑ Return to Beginning',
-    's10.eyebrow':'Future Vision · Saudi Vision 2030',
-    's10.title1':'Bridging ','s10.title2':'National','s10.title3':'Aspirations',
-    's10.lead':'The journey from Mojaz to enterprise scale is not an end — it is a foundation. Aligning the next chapter of PMO leadership with Saudi Vision 2030: digital transformation, economic diversification, and world-class service delivery.',
-    's10.p1t':'Digital Transformation','s10.p1d':'Leading enterprise-grade digital initiatives accelerating Saudi Arabia\'s transition to a technology-first economy.',
-    's10.p2t':'Economic Diversification','s10.p2d':'Scaling B2B &amp; B2G product portfolios creating diversified revenue streams aligned with Vision 2030 national programs.',
-    's10.p3t':'World-Class Delivery','s10.p3d':'Applying PMP® rigor and cloud-native architecture to build delivery excellence that meets international standards.',
-    's10.quote':'The best PMO leaders don\'t just manage projects — they architect futures. Every sprint, every governance framework, every cloud migration has been a step toward building organizations that endure and inspire.',
-    's10.quoteby':'Abdulrahman Alhumud · PMP®',
-    's10.back':'↑ Return to Beginning',
+    's1.miss':'Transforming national-scale industries through disciplined governance, cloud-native product leadership, and strategic stakeholder ecosystems spanning B2B and B2G sectors.',
+    's1.cta':'View Impact Dashboard →',
+    'b.pmp':'PMP® Certified','b.gcp':'GCP Architecture','b.b2g':'B2B / B2G','b.pmo':'PMO Leadership',
+    'oc.y':'Years PM', 'hint':'Scroll',
+    's2.ey':'Complete Portfolio Impact · 6 Years of Results',
+    's2.t1':'The ','s2.t2':'Full-Scale','s2.t3':' Impact Dashboard',
+    's2.sub':'Six years of compounded results across product, operations, governance, and strategic delivery.',
+    'm.prod':'Products Launched','m.prod.s':'Mojaz → Rased portfolio',
+    'm.serv':'Core Services','m.serv.s':'Deployed & operational',
+    'm.rev':'Revenue Growth','m.rev.s':'Total organizational impact',
+    'm.fleet':'Fleet Growth','m.fleet.s':'Vehicle base expansion',
+    'm.po':'Purchase Orders','m.po.s':'Managed end-to-end',
+    'm.cont':'Legal Contracts','m.cont.s':'Negotiated & executed',
+    'm.otd':'On-Time Delivery','m.otd.s':'PMP® standards enforced',
+    'comp.t':'🛡️ Compliance & Security — The Foundation',
+    'comp.d':'Every product, service, and vendor relationship operates within a zero-compromise security framework — embedded from day one across all 11+ stakeholder groups.',
+    'cp.1':'ZATCA Compliant','cp.2':'ISO Aligned','cp.3':'GCP Security','cp.4':'Vendor Governance',
+    's3.t':'Stakeholder Universe','s3.s':'11+ Groups · Hover nodes to explore',
+    'l.int':'Internal Teams','l.ext':'Tech Partners','l.bus':'Business Units','l.gov':'Gov Entities',
+    's4.ty':'Thank You','s4.nm':'Abdulrahman Alhumud',
+    's4.rl':'Senior Project Manager · PMO Leader · PMP®',
+    'c.ph':'Phone','c.em':'Email','c.li':'LinkedIn',
+    's4.back':'↑ Return to Top',
+    /* canvas node labels */
+    'n.self':'Abdulrahman\nAlhumud','n.infra':'Infrastructure\nTeam','n.cyber':'Cybersecurity\nTeam',
+    'n.app':'Application\nTeam','n.db':'Database\nTeam','n.tech':'Technical\nTeam',
+    'n.google':'Google\nCloud','n.host':'External\nHosting',
+    'n.legal':'Legal Team','n.proc':'Procurement','n.fin':'Finance Team','n.mkt':'Marketing\nTeam',
+    'n.swa':'Saudi Water\nAuthority','n.mewa':'MEWA','n.moe':'Ministry of\nEnergy',
+    'n.zatca':'ZATCA','n.tra':'Transport\nAuthority','n.moi':'Ministry of\nInvestment',
+    'n.petro':'Petromin\n& SASCO','n.edu':'IMAM / PNU',
   },
   ar: {
-    'nav.s1':'البداية','nav.s2':'موجاز — الرشاقة','nav.s3':'راصد — الحوكمة',
-    'nav.s4':'قفزة GCP','nav.s5':'أرقام الأثر','nav.s6':'ترسانة PMO',
-    'nav.s7':'حلول مخصصة','nav.s8':'كون أصحاب المصلحة',
-    'nav.s9':'الإنجازات الكاملة','nav.s10':'الرؤية المستقبلية',
-    's1.eyebrow':'مدير مشاريع أول ذو خبرة',
-    's1.title':'تطور<br/>الأثر',
-    's1.name':'عبدالرحمن الحمود',
+    'nav.1':'القائد','nav.2':'الإنجازات','nav.3':'أصحاب المصلحة','nav.4':'الختام',
+    's1.ey':'قائد مكتب PMO · أثر وطني الحجم',
     's1.role':'محترف إدارة المشاريع · PMP®',
-    's1.sub':'تحويل القطاعات المعقدة — B2C وB2B وB2G — من خلال الابتكار الاستراتيجي والحوكمة المنضبطة وقيادة التكنولوجيا القابلة للتوسع.',
-    's1.b1':'معتمد PMP®','s1.b2':'بنية GCP التحتية','s1.b3':'إدارة أصحاب المصلحة',
-    's1.cta1':'ابدأ الرحلة ←','s1.cta2':'شاهد الأثر',
-    's1.stat1':'نمو الإيرادات المحقق','s1.stat2':'ترتيب متجر التطبيقات · موجاز',
-    's1.stat3':'عميل مؤسسي · 2025','s1.stat4':'عضو في الفريق تحت الإدارة',
-    's1.scroll':'مرر للاستكشاف',
-    's2.phase':'⚡ المرحلة 01 · حقبة موجاز',
-    's2.title1':'','s2.title2':'السباق','s2.title3':'الرشاقة على النطاق الواسع',
-    's2.lead':'في دخوله ساحة B2C، نسّق عبدالرحمن إطلاق منتج عالي السرعة استقطب المستهلكين السعوديين، وتصدّر قوائم متجر التطبيقات، ووضع معايير جديدة للتفاعل الرقمي.',
-    's2.t1l':'دخول السوق','s2.t1d':'تحديد وتنفيذ استراتيجية B2C لسوق فحص السيارات في المملكة',
-    's2.t2l':'سباق النمو','s2.t2d':'حقق نمواً بنسبة +250٪ في التنزيلات عبر حملات مبنية على البيانات',
-    's2.t3l':'ذروة الأثر','s2.t3d':'حقق المرتبة الأولى في متجر التطبيقات في 4 أشهر',
-    's2.m1l':'ترتيب متجر التطبيقات','s2.m1s':'السوق السعودية',
-    's2.m2l':'نمو التنزيلات','s2.m2s':'زخم مستدام',
-    's2.m3l':'انطباع محقق','s2.m3s':'نافذة حملة 4 أشهر · B2C',
-    's2.i1':'مستخدمون','s2.i2':'بحث','s2.i3':'متجر التطبيقات','s2.i4':'تنزيلات','s2.i5':'إحصاءات',
-    's2.stk.title':'إدارة أصحاب المصلحة',
-    's2.comp.title':'الكفاءات الأساسية المطبقة',
-    's2.tag1':'إطلاق المنتج','s2.tag2':'المنهجية الرشيقة','s2.tag3':'استراتيجية النمو',
-    's2.tag4':'إدارة المؤشرات','s2.tag5':'توافق أصحاب المصلحة','s2.tag6':'تسويق B2C',
-    's2.tag7':'تحليل البيانات','s2.tag8':'تخطيط السباقات',
-    'stk.infra':'فريق البنية التحتية','stk.cyber':'فريق الأمن السيبراني',
-    'stk.sales':'فريق المبيعات','stk.cs':'فريق خدمة العملاء',
-    'stk.app':'فريق التطبيقات','stk.db':'فريق قواعد البيانات','stk.tech':'الفريق التقني',
-    'stk.internal.label':'الفرق التقنية الداخلية','stk.external.label':'الشبكة الموسعة',
-    'stk.google':'فريق Google','stk.host':'الاستضافة الخارجية','stk.legal':'الفريق القانوني',
-    'stk.proc':'المشتريات','stk.fin':'الفريق المالي','stk.mkt':'فريق التسويق',
-    's3.phase':'🛡️ المرحلة 02 · راصد — الأزمة والحوكمة 2023',
-    's3.title1':'','s3.title2':'التحول','s3.title3':'الحوكمة والقيادة',
-    's3.lead':'ورث وضعاً حرجاً — ديون تقنية متراكمة وعدم توافق في الفريق وتآكل في ثقة أصحاب المصلحة. طبّق أطر حوكمة PMO لتنسيق تعافٍ تنظيمي كامل.',
-    's3.crisis.t':'🔥 سياق الأزمة',
-    's3.crisis.d':'إخفاقات موروثة في الموثوقية التقنية وتشتت تنظيمي عبر فريق من 20 عضواً، هددت استمرارية الخدمة وثقة أصحاب المصلحة.',
-    's3.res.t':'✅ نهج الحل',
-    's3.r1':'أسّس هيكل حوكمة PMO — ملكية واضحة ومسارات تصعيد وسجلات قرارات',
-    's3.r2':'أعاد بناء إيقاعات السباقات وأدخل جلسات المراجعة ورسم خرائط التبعية',
-    's3.r3':'استعاد الموثوقية التقنية عبر تحليل منهجي للأسباب الجذرية',
-    's3.r4':'أعاد توحيد فريق من 20 حول OKRs مشتركة ومعالم التسليم',
-    's3.team':'عضواً قادهم خلال الأزمة والتعافي',
-    's3.c1t':'حوكمة PMO','s3.c1s':'الإطار مطبق',
-    's3.c2t':'موثوقية تقنية','s3.c2s':'الإرث القديم حُل',
-    's3.c3t':'ثقة أصحاب المصلحة','s3.c3s':'مستعادة بالكامل',
-    's3.c4t':'إيقاع التسليم','s3.c4s':'موحد ومتتبع',
-    's3.stk.title':'إدارة أصحاب المصلحة',
-    's4.phase':'☁️ المرحلة 03 · راصد — الابتكار التقني 2024',
-    's4.title1':'','s4.title2':'القفزة','s4.title3':'السحابة والابتكار',
-    's4.lead':'مع استعادة الاستقرار، تحوّل نحو الهجوم — ريادةً لهجرة سحابية كاملة على GCP وإطلاق منتجات رقمية أعادت تعريف قدرات راصد التقنية.',
-    's4.c1t':'رائد هجرة GCP','s4.c1d':'قاد الهجرة الشاملة — صفر توقف، استمرارية كاملة',
-    's4.c2t':'إطلاق المنتج الأساسي','s4.c2d':'سلّم منتجاً رئيسياً في الموعد المحدد وضمن الميزانية',
-    's4.c3t':'بناء النظام البيئي للخدمات','s4.c3d':'أطلق 4 خدمات داعمة تغذي محفظة المنتجات',
-    's4.tg1':'بنية GCP التحتية','s4.tg2':'هندسة السحابة','s4.tg3':'تكامل DevOps',
-    's4.tg4':'إدارة المنتجات','s4.tg5':'تصميم الخدمات','s4.tg6':'القيادة التقنية',
-    's4.cloud.t':'اكتملت هجرة GCP','s4.cloud.p':'المنتج الأساسي','s4.cloud.s':'الخدمات','s4.cloud.u':'التشغيل',
-    's4.gcp.title':'Google Cloud','s4.gcp.sub':'شريك هجرة GCP · تحالف سحابي استراتيجي',
-    's4.innov':'إطار الابتكار','s4.b1':'جاهزية السحابة','s4.b2':'تسليم المنتج','s4.b3':'اعتماد الخدمة',
-    's4.i1':'سحابة','s4.i2':'تطبيقات','s4.i3':'نمو','s4.i4':'بنية',
-    's4.eco.title':'النظام البيئي لأصحاب المصلحة','s4.eco.badge':'المرحلة 03 — موسّع',
-    's4.eco.core':'الفرق الأساسية (المرحلة 02)','s4.eco.new':'المرحلة 03 — أصحاب مصلحة جدد',
-    's5.phase':'📊 المرحلة 04 · توسيع المحفظة الاستراتيجية 2025',
-    's5.title1':'توسيع ','s5.title2':'المحفظة',
-    's5.lead':'من التحول إلى التحوّل — يمثّل راصد 2025 التحقق الكامل من قيادة PMO الاستراتيجية على النطاق المؤسسي.',
-    's5.m1l':'نمو الإيرادات','s5.m1s':'الأثر التنظيمي الكلي',
-    's5.m2l':'نمو قاعدة المركبات','s5.m2s':'توسع الأسطول تحت الإدارة',
-    's5.m3l':'عملاء مؤسسيون','s5.m3s':'محفظة B2B وB2G',
-    's5.m4l':'التسليم في الوقت المحدد','s5.m4s':'معايير PMP® مطبقة',
-    's5.s1':'منتجات مطلقة','s5.s2':'خدمات منشورة','s5.s3':'أعضاء فريق قادهم',
-    's5.ban.t':'قيادة المحفظة الكاملة · B2C ← B2B ← B2G',
-    's5.ban.d':'إدارة علاقات مؤسسية متعددة القطاعات مع التوسع المتزامن في المنتجات والخدمات والفرق.',
-    's6.eyebrow':'قيادة PMO','s6.title1':'الحوكمة الاستراتيجية و','s6.title2':'منهجية PMO',
-    's6.lead':'إطار PMO معتمد ومُختبر ميدانياً: من تخفيف المخاطر وحوكمة المحفظة إلى التسليم السحابي ومواءمة أصحاب المصلحة عبر 11+ مجموعة.',
-    's6.p1t':'تنفيذ PMP®','s6.p1d':'طبّق أطر PMBOK عبر دورات حياة المشاريع الكاملة مع بروتوكولات صارمة لإدارة المخاطر وضمان الجودة.',
-    's6.prof':'مستوى الكفاءة','s6.p1p':'خبير','s6.p1t1':'إدارة المخاطر','s6.p1t2':'المحافظ',
-    's6.p2t':'إدارة المحفظة والمخاطر','s6.p2d':'حوكمة المحفظة الاستراتيجية عبر قطاعات B2C وB2B وB2G. تحديد منهجي للمخاطر وأطر تخفيفها ورسم خرائط التبعيات عبر خطوط المنتجات المتزامنة.',
-    's6.p2p':'متقدم','s6.p2t0':'تخفيف المخاطر','s6.p2t1':'حوكمة المحفظة','s6.p2t2':'مواءمة OKR',
-    's6.p3t':'إدارة أصحاب المصلحة','s6.p3d':'أدار أكثر من 11 مجموعة من أصحاب المصلحة تشمل الكيانات التقنية والقانونية والمالية والحكومية.',
-    's6.p3p':'متقدم','s6.p3t1':'التوافق','s6.p3t2':'التفاوض','s6.p3t3':'الحوكمة',
-    's6.stack':'مجموعة الكفاءات الكاملة',
-    'sk1':'أجايل / سكرم','sk2':'أطر OKR','sk3':'إدارة أصحاب المصلحة',
-    'sk4':'القيادة متعددة الوظائف','sk5':'حوكمة الميزانية','sk6':'الحسابات المؤسسية',
-    'sk7':'إدارة الأزمات','sk8':'التحول الرقمي','sk9':'بناء الفرق (+45)',
-    'sk10':'B2C / B2B / B2G','sk11':'خارطة طريق المنتج','sk12':'القرارات المبنية على البيانات',
-    's7.eyebrow':'موثوق من قِبل المملكة','s7.title1':'حلول ','s7.title2':'مخصصة',
-    's7.lead':'صمّم أنظمة رقمية مخصصة للكيانات الوطنية الأكثر أهمية في المملكة، مع تسليم منصات تشغيلية بالغة الأهمية على النطاق الحكومي.',
-    'sol1.org':'هيئة المياه','sol1.title':'البنية التحتية للمياه','sol1.badge':'الخدمات الرقمية',
-    'sol1.desc':'منصة الخدمات الرقمية لإدارة البنية التحتية للمياه والامتثال التنظيمي.',
-    'sol2.title':'الامتثال البيئي','sol2.badge':'العمليات الرقمية',
-    'sol2.desc':'منصة العمليات الرقمية لوزارة البيئة تغطي رصد الامتثال وإدارة البيانات البيئية.',
-    'sol3.org':'وزارة الطاقة','sol3.title':'3 قطاعات استراتيجية','sol3.badge':'الطاقة الوطنية',
-    'sol3.desc':'منصة الطاقة الوطنية الرقمية تغطي ثلاثة قطاعات طاقة حيوية مع وحدات تنظيمية وتشغيلية متكاملة.',
-    'sol4.org':'وزارة الاستثمار','sol4.title':'تيسير الاستثمار','sol4.badge':'الخدمات الرقمية',
-    'sol4.desc':'خدمات رقمية شاملة لتيسير الاستثمار تبسّط إجراءات الاستثمار الأجنبي والمحلي.',
-    'sol5.title':'الزكاة والضريبة والجمارك','sol5.badge':'الهيئة الضريبية',
-    'sol5.desc':'نظام امتثال وإبلاغ رقمي متكامل لتحقيق التميز التشغيلي والتطبيق التنظيمي.',
-    'sol6.org':'جامعة الإمام / جامعة الأميرة نورة','sol6.title':'التعليم العالي','sol6.badge':'الخدمات الرقمية',
-    'sol6.desc':'منصة الخدمات الرقمية الجامعية لتحديث العمليات الطلابية والأكاديمية والإدارية.',
-    'sol7.org':'هيئة النقل','sol7.title':'الامتثال التشريعي','sol7.badge':'العمليات',
-    'sol7.desc':'منصة العمليات التنظيمية للنقل لضمان الامتثال التشريعي وتقديم الخدمات الرقمية.',
-    'sol8.org':'بترومين وساسكو','sol8.title':'شراكة استراتيجية','sol8.badge':'الوقود والخدمات',
-    'sol8.desc':'نظام بيئي رقمي متكامل للوقود والخدمات يربط عمليات بترومين وساسكو.',
-    's8.eyebrow':'القيادة متعددة الوظائف','s8.title':'كون أصحاب المصلحة','s8.panel.title':'جميع أصحاب المصلحة',
-    's8.sub':'انقر على أي عقدة لاستكشاف العلاقة',
-    's8.l1':'الفرق التقنية الداخلية','s8.l2':'الشركاء الخارجيون','s8.l3':'وحدات الأعمال','s8.l4':'الجهات الحكومية',
-    's9.eyebrow':'لوحة الإنجازات الكاملة','s9.title':'الأثر الكامل',
-    's9.b1':'2022–2025','s9.b2':'نشط ومتنامٍ',
-    'ach.prod':'منتجات مطلقة','ach.sol':'حلول مخصصة','ach.svc':'خدمات جديدة',
-    'ach.team':'أعضاء الفريق','ach.clients':'عميل تمت خدمته',
-    'ach.rev':'نمو الإيرادات','ach.rev.sub':'×4 الأثر التنظيمي',
-    'ach.fleet':'نمو أسطول المركبات','ach.fleet.sub':'توسع الأسطول تحت الإدارة',
-    'ach.otd':'التسليم في الوقت المحدد','ach.otd.sub':'معايير PMP® مطبقة',
-    'ach.comp':'الامتثال والأمن','ach.comp.sub':'صفر حوادث · امتثال تنظيمي كامل',
-    'ach.adopt':'اعتماد المنتج','ach.adopt.sub':'تضاعف ثلاثاً عبر إعادة التصميم',
-    'ach.d1t':'نشر GCP','ach.d1d':'نشر GCP كامل منسّق في وقت واحد عبر جميع خطوط المنتجات — منسّق مركزياً بدون انقطاع في الخدمة.',
-    'ach.d2t':'قفزة الاعتماد','ach.d2d':'تضاعف اعتماد المنتج ثلاث مرات عبر إعادة تصميم مبنية على البيانات خلال 12 شهراً. تحقق معدل اعتماد 38٪.',
-    'ach.d3t':'اعتماد المنتج','ach.d3d':'تضاعف اعتماد المنتج ثلاث مرات عبر إعادة تصميم مبنية على البيانات خلال 12 شهراً. تحقق معدل اعتماد مستدام 38٪ عبر المحفظة.',
-    's10.thanks':'شكراً لكم',
-    's10.phone.label':'الهاتف','s10.phone':'+966 59 393 5677',
-    's10.email.label':'البريد الإلكتروني','s10.email':'A.alhumud0@gmail.com',
-    's10.li.label':'لينكدإن','s10.li':'www.linkedin.com/in/aalhumud',
-    's10.name':'عبدالرحمن الحمود','s10.role':'محترف إدارة المشاريع · PMP®',
-    's10.back':'↑ العودة إلى البداية',
-    's10.eyebrow':'رؤية المستقبل · رؤية السعودية 2030',
-    's10.title1':'تجسير ','s10.title2':'التطلعات','s10.title3':'الوطنية',
-    's10.lead':'الرحلة من موجاز إلى النطاق المؤسسي ليست نهاية — إنها أساس. تتوافق الرؤية المستقبلية مع طموحات رؤية 2030: التحول الرقمي والتنويع الاقتصادي وتسليم الخدمات بمستوى عالمي.',
-    's10.p1t':'التحول الرقمي','s10.p1d':'قيادة مبادرات رقمية بمستوى مؤسسي تسرّع انتقال المملكة إلى اقتصاد متمحور حول التقنية.',
-    's10.p2t':'التنويع الاقتصادي','s10.p2d':'توسيع محافظ منتجات B2B وB2G لخلق مصادر إيرادات متنوعة متوافقة مع رؤية 2030.',
-    's10.p3t':'تسليم بمستوى عالمي','s10.p3d':'تطبيق صرامة PMP® والهندسة السحابية لبناء تميّز في التسليم يلبي المعايير الدولية.',
-    's10.quote':'أفضل قادة مكتب إدارة المشاريع لا يديرون المشاريع فحسب — بل يهندسون المستقبل. كل سباق وكل إطار حوكمة وكل هجرة سحابية كانت خطوة نحو بناء منظمات تدوم وتلهم.',
-    's10.quoteby':'عبدالرحمن الحمود · PMP®',
-    's10.back':'↑ العودة إلى البداية',
+    's1.miss':'تحويل الصناعات الوطنية من خلال الحوكمة المنضبطة، وقيادة المنتجات السحابية، وأنظمة أصحاب المصلحة الاستراتيجية في قطاعَي B2B وB2G.',
+    's1.cta':'← عرض لوحة الإنجازات',
+    'b.pmp':'معتمد PMP®','b.gcp':'بنية GCP','b.b2g':'B2B / B2G','b.pmo':'قيادة PMO',
+    'oc.y':'سنوات PM', 'hint':'تمرير',
+    's2.ey':'الأثر الكامل للمحفظة · 6 سنوات من النتائج',
+    's2.t1':'لوحة ','s2.t2':'الأثر الشامل','s2.t3':'',
+    's2.sub':'ست سنوات من النتائج المتراكمة عبر المنتج والعمليات والحوكمة والتسليم الاستراتيجي.',
+    'm.prod':'المنتجات المُطلقة','m.prod.s':'محفظة موجز → راصد',
+    'm.serv':'الخدمات الأساسية','m.serv.s':'تم نشرها وتشغيلها',
+    'm.rev':'نمو الإيرادات','m.rev.s':'الأثر التنظيمي الكلي',
+    'm.fleet':'نمو الأسطول','m.fleet.s':'توسع قاعدة المركبات',
+    'm.po':'أوامر الشراء','m.po.s':'تمت إدارتها بالكامل',
+    'm.cont':'العقود القانونية','m.cont.s':'تم التفاوض عليها وتنفيذها',
+    'm.otd':'التسليم في الموعد','m.otd.s':'معايير PMP® مطبّقة',
+    'comp.t':'🛡️ الامتثال والأمن — الأساس',
+    'comp.d':'كل منتج وخدمة وعلاقة موردين تعمل ضمن إطار أمن لا تهاون فيه — مضمّن منذ اليوم الأول عبر جميع مجموعات أصحاب المصلحة (11+ مجموعة).',
+    'cp.1':'متوافق مع ZATCA','cp.2':'متوافق مع ISO','cp.3':'أمن GCP','cp.4':'حوكمة الموردين',
+    's3.t':'عالم أصحاب المصلحة','s3.s':'11+ مجموعة · حرّك المؤشر للاستكشاف',
+    'l.int':'الفرق الداخلية','l.ext':'شركاء التقنية','l.bus':'وحدات الأعمال','l.gov':'الجهات الحكومية',
+    's4.ty':'شكراً','s4.nm':'عبدالرحمن الحمود',
+    's4.rl':'مدير مشاريع أول · قائد PMO · PMP®',
+    'c.ph':'الهاتف','c.em':'البريد الإلكتروني','c.li':'لينكدإن',
+    's4.back':'↑ العودة للأعلى',
+    'n.self':'عبدالرحمن\nالحمود','n.infra':'فريق البنية\nالتحتية','n.cyber':'فريق الأمن\nالسيبراني',
+    'n.app':'فريق\nالتطبيقات','n.db':'فريق قواعد\nالبيانات','n.tech':'الفريق\nالتقني',
+    'n.google':'Google\nCloud','n.host':'الاستضافة\nالخارجية',
+    'n.legal':'الفريق القانوني','n.proc':'المشتريات','n.fin':'الفريق المالي','n.mkt':'فريق\nالتسويق',
+    'n.swa':'هيئة المياه\nالسعودية','n.mewa':'وزارة البيئة','n.moe':'وزارة\nالطاقة',
+    'n.zatca':'هيئة الزكاة\nوالضريبة','n.tra':'هيئة\nالنقل','n.moi':'وزارة\nالاستثمار',
+    'n.petro':'بترومين\nوساسكو','n.edu':'الإمام / نورة',
   }
 };
 
-let currentLang = localStorage.getItem('pmo-lang') || 'en';
+let lang = 'en';
 
-function setLanguage(lang) {
-  currentLang = lang;
-  const isAR = lang === 'ar';
-  const html = document.documentElement;
-  html.lang = lang;
-  html.dir = isAR ? 'rtl' : 'ltr';
+function t(key) { return (I18N[lang] || I18N.en)[key] || key; }
+
+function setLang(l) {
+  lang = l;
+  document.documentElement.lang = l;
+  document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (i18n[lang][key] !== undefined) el.innerHTML = i18n[lang][key];
+    const v = t(el.dataset.i18n);
+    if (v !== el.dataset.i18n) el.textContent = v;
   });
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
-  localStorage.setItem('pmo-lang', lang);
+  document.querySelectorAll('.lb').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+  if (window._uInited) initUniverse();
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CORE LOGIC — GSAP Animations, Scroll, Counters
+═══════════════════════════════════════════════════════════════ -->
+<script>
+/* Deck scale on resize */
+function updateScale() {
+  const s = Math.min(window.innerWidth/1200, window.innerHeight/750, 1.1);
+  document.documentElement.style.setProperty('--deck-scale', Math.max(s, 0.6).toFixed(4));
+}
+updateScale();
+
+/* Scroll to slide index */
+function scrollTo(i) {
+  document.querySelectorAll('.slide')[i]?.scrollIntoView({ behavior: 'smooth' });
 }
 
-// ══════════════════════════════════════════
-//  SLIDE ENGINE
-// ══════════════════════════════════════════
-(function() {
-  const container = document.getElementById('slides-container');
-  const slides = document.querySelectorAll('.slide');
-  const dots = document.querySelectorAll('.nav-dot');
-  const progressBar = document.getElementById('progress-bar');
-  const totalSlides = slides.length;
-  let currentSlide = 0;
-  const countersRun = new Set();
+/* Nav dots */
+document.querySelectorAll('.nd').forEach(d =>
+  d.addEventListener('click', () => scrollTo(+d.dataset.s))
+);
 
-  function activateSlide(index) {
-    slides.forEach((s, i) => s.classList.toggle('active', i === index));
-    dots.forEach((d, i) => d.classList.toggle('active', i === index));
-    const pct = (index / (totalSlides - 1)) * 100;
-    progressBar.style.width = pct + '%';
-    currentSlide = index;
-    if (!countersRun.has(index)) {
-      countersRun.add(index);
-      setTimeout(() => runCounters(slides[index]), 400);
-      triggerSkillBars(slides[index]);
+/* IntersectionObserver — trigger GSAP per slide */
+const slides     = document.querySelectorAll('.slide');
+const dots       = document.querySelectorAll('.nd');
+const pbar       = document.getElementById('pbar');
+const animated   = new Set();
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const idx = [...slides].indexOf(e.target);
+
+    /* progress bar + nav dot */
+    pbar.style.width = ((idx + 1) / slides.length * 100) + '%';
+    dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+
+    /* animate once */
+    if (!animated.has(idx)) {
+      animated.add(idx);
+      animSlide(idx, e.target);
     }
-    if (index === 7 && !window.universeInitialized) {
-      setTimeout(initUniverse, 300);
-      window.universeInitialized = true;
+
+    /* init canvas on slide 3 */
+    if (idx === 2 && !window._uInited) {
+      window._uInited = true;
+      setTimeout(initUniverse, 320);
     }
-  }
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-        const idx = Array.from(slides).indexOf(entry.target);
-        activateSlide(idx);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  slides.forEach(s => observer.observe(s));
-  dots.forEach(dot => dot.addEventListener('click', () => scrollToSlide(+dot.dataset.slide)));
-
-  window.scrollToSlide = function(i) { slides[i].scrollIntoView({ behavior: 'smooth' }); };
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); if (currentSlide < totalSlides-1) scrollToSlide(currentSlide+1); }
-    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); if (currentSlide > 0) scrollToSlide(currentSlide-1); }
-    if (e.key === 'Home') { e.preventDefault(); scrollToSlide(0); }
-    if (e.key === 'End') { e.preventDefault(); scrollToSlide(totalSlides-1); }
   });
+}, { threshold: 0.55 });
 
-  function runCounters(slide) {
-    slide.querySelectorAll('.counter[data-target]').forEach(el => {
-      const target = +el.dataset.target;
-      const suffix = el.dataset.suffix || '';
-      const duration = 1400, steps = 60;
-      const inc = target / steps;
-      let step = 0;
-      const timer = setInterval(() => {
-        step++;
-        el.textContent = Math.min(Math.round(inc * step), target).toLocaleString() + suffix;
-        if (step >= steps) clearInterval(timer);
-      }, duration / steps);
+slides.forEach(s => io.observe(s));
+
+/* GSAP entrance animations */
+function animSlide(idx, el) {
+  const ease = 'power3.out';
+  const tl = gsap.timeline({ defaults: { ease } });
+
+  const sel = cls => el.querySelectorAll(cls);
+
+  tl.to(sel('.g-fade'),  { opacity: 1,           duration: 0.9, stagger: 0.08 }, 0);
+  tl.to(sel('.g-up'),    { opacity: 1, y: 0,      duration: 0.75, stagger: 0.1  }, 0.08);
+  tl.to(sel('.g-left'),  { opacity: 1, x: 0,      duration: 0.7, stagger: 0.08 }, 0.1);
+  tl.to(sel('.g-right'), { opacity: 1, x: 0,      duration: 0.7, stagger: 0.08 }, 0.1);
+  tl.to(sel('.g-scale'), { opacity: 1, scale: 1,  duration: 0.65, stagger: 0.07 }, 0.12);
+
+  /* counters on slide 2 */
+  if (idx === 1) setTimeout(runCounters, 380);
+}
+
+/* GSAP counter animation */
+function runCounters() {
+  document.querySelectorAll('#s2 .cnt').forEach(el => {
+    const target = +el.dataset.target;
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target, duration: 1.9, ease: 'power2.out',
+      onUpdate: () => { el.textContent = Math.round(obj.val); }
     });
-  }
+  });
+}
 
-  function triggerSkillBars(slide) {
-    setTimeout(() => {
-      slide.querySelectorAll('.skill-bar-fill[data-width]').forEach(bar => {
-        bar.style.width = bar.dataset.width + '%';
-      });
-    }, 300);
-  }
+/* Resize handler */
+let rsTimer;
+window.addEventListener('resize', () => {
+  updateScale();
+  clearTimeout(rsTimer);
+  rsTimer = setTimeout(() => { if (window._uInited) initUniverse(); }, 200);
+});
+</script>
 
-  activateSlide(0);
-  setLanguage(currentLang);
-})();
+<!-- ═══════════════════════════════════════════════════════════════
+     STAKEHOLDER UNIVERSE CANVAS
+═══════════════════════════════════════════════════════════════ -->
+<script>
+let uRAF = null;
 
-// ══════════════════════════════════════════
-//  STAKEHOLDER UNIVERSE — ANIMATED NODE GRAPH
-// ══════════════════════════════════════════
-let universeRAF = null;
 function initUniverse() {
-  if (universeRAF) { cancelAnimationFrame(universeRAF); universeRAF = null; }
+  if (uRAF) { cancelAnimationFrame(uRAF); uRAF = null; }
+
   const canvas = document.getElementById('universe-canvas');
-  const tooltip = document.getElementById('node-tooltip');
+  const tip    = document.getElementById('n-tip');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const dpr = window.devicePixelRatio || 1;
+
+  /* HiDPI / Retina */
+  const dpr  = window.devicePixelRatio || 1;
   const cssW = window.innerWidth, cssH = window.innerHeight;
-  canvas.width = cssW * dpr;
+  canvas.width  = cssW * dpr;
   canvas.height = cssH * dpr;
-  canvas.style.width = cssW + 'px';
+  canvas.style.width  = cssW + 'px';
   canvas.style.height = cssH + 'px';
   ctx.scale(dpr, dpr);
 
-  // Scale factor: reference design at 1440×900 (CSS pixels)
-  const vScale = Math.min(cssW / 1440, cssH / 900, 1.0);
-  const vs = Math.max(vScale, 0.5); // floor at 50%
+  /* Scale relative to 1440×900 reference, floor 0.5 */
+  const vs = Math.max(Math.min(cssW / 1440, cssH / 900, 1.0), 0.5);
 
-  const COLORS = {
+  const C = {
     internal: '#00e5ff',
     external: '#f0c040',
     business: '#00c853',
-    gov: '#c084fc',
-    center: '#ffffff'
+    gov:      '#a855f7',
+    center:   '#ffffff'
   };
 
+  /* Node definitions */
   const nodes = [
-    { id: 0, label: 'Abdulrahman\nAlhumud', type: 'center', r: Math.round(50*vs), desc: 'Senior Project Manager · PMP®', ar: 'عبدالرحمن الحمود · PMP®' },
-    { id: 1, label: 'Infrastructure\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'Cloud & Server Infrastructure', ar: 'فريق البنية التحتية' },
-    { id: 2, label: 'Cybersecurity\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'Security & Compliance', ar: 'فريق الأمن السيبراني' },
-    { id: 3, label: 'Application\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'App Development & QA', ar: 'فريق التطبيقات' },
-    { id: 4, label: 'Database\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'Data Architecture & Management', ar: 'فريق قواعد البيانات' },
-    { id: 5, label: 'Technical\nTeam', type: 'internal', r: Math.round(32*vs), desc: 'Core Technical Operations', ar: 'الفريق التقني' },
-    { id: 6, label: 'Google Team', type: 'external', r: Math.round(34*vs), desc: 'GCP Migration Partner', ar: 'فريق Google' },
-    { id: 7, label: 'External\nHosting', type: 'external', r: Math.round(30*vs), desc: 'Hosting & CDN Partners', ar: 'الاستضافة الخارجية' },
-    { id: 8, label: 'Legal Team', type: 'business', r: Math.round(30*vs), desc: 'Legal & Compliance Advisory', ar: 'الفريق القانوني' },
-    { id: 9, label: 'Procurement', type: 'business', r: Math.round(30*vs), desc: 'Vendor & Contract Management', ar: 'فريق المشتريات' },
-    { id: 10, label: 'Finance Team', type: 'business', r: Math.round(30*vs), desc: 'Budget & Financial Governance', ar: 'الفريق المالي' },
-    { id: 11, label: 'Marketing\nTeam', type: 'business', r: Math.round(30*vs), desc: 'Go-to-Market & Brand', ar: 'فريق التسويق' },
-    { id: 12, label: 'Saudi Water\nAuthority', type: 'gov', r: Math.round(26*vs), desc: 'Custom Solutions Client', ar: 'هيئة المياه' },
-    { id: 13, label: 'MEWA', type: 'gov', r: Math.round(26*vs), desc: 'Ministry of Environment', ar: 'وزارة البيئة' },
-    { id: 14, label: 'Ministry of\nEnergy', type: 'gov', r: Math.round(26*vs), desc: '3 Strategic Sectors', ar: 'وزارة الطاقة' },
-    { id: 15, label: 'ZATCA', type: 'gov', r: Math.round(26*vs), desc: 'Zakat, Tax & Customs Authority', ar: 'هيئة الزكاة والضريبة والجمارك' },
-    { id: 16, label: 'Transport\nAuthority', type: 'gov', r: Math.round(26*vs), desc: 'Legislative Compliance', ar: 'هيئة النقل' },
-    { id: 17, label: 'Ministry of\nInvestment', type: 'gov', r: Math.round(24*vs), desc: 'Investment Facilitation', ar: 'وزارة الاستثمار' },
-    { id: 18, label: 'Petromin\n& SASCO', type: 'gov', r: Math.round(24*vs), desc: 'Strategic Fuel Partnership', ar: 'بترومين وساسكو' },
-    { id: 19, label: 'IMAM / PNU', type: 'gov', r: Math.round(24*vs), desc: 'Higher Education Digital Services', ar: 'جامعة الإمام / جامعة الأميرة نورة' },
+    { id: 0,  key:'n.self',   type:'center',   r: Math.round(52*vs), desc:'Senior PM · PMP®' },
+    { id: 1,  key:'n.infra',  type:'internal', r: Math.round(32*vs), desc:'Cloud & Server Infrastructure' },
+    { id: 2,  key:'n.cyber',  type:'internal', r: Math.round(32*vs), desc:'Security & Compliance' },
+    { id: 3,  key:'n.app',    type:'internal', r: Math.round(32*vs), desc:'App Development & QA' },
+    { id: 4,  key:'n.db',     type:'internal', r: Math.round(32*vs), desc:'Data Architecture' },
+    { id: 5,  key:'n.tech',   type:'internal', r: Math.round(32*vs), desc:'Core Technical Operations' },
+    { id: 6,  key:'n.google', type:'external', r: Math.round(36*vs), desc:'GCP Migration Partner' },
+    { id: 7,  key:'n.host',   type:'external', r: Math.round(28*vs), desc:'Hosting & CDN Partners' },
+    { id: 8,  key:'n.legal',  type:'business', r: Math.round(28*vs), desc:'Legal & Compliance Advisory' },
+    { id: 9,  key:'n.proc',   type:'business', r: Math.round(28*vs), desc:'Vendor & Contract Management' },
+    { id: 10, key:'n.fin',    type:'business', r: Math.round(28*vs), desc:'Budget & Financial Governance' },
+    { id: 11, key:'n.mkt',    type:'business', r: Math.round(28*vs), desc:'Go-to-Market & Brand' },
+    { id: 12, key:'n.swa',    type:'gov',      r: Math.round(25*vs), desc:'Custom Solutions Client' },
+    { id: 13, key:'n.mewa',   type:'gov',      r: Math.round(25*vs), desc:'Ministry of Environment' },
+    { id: 14, key:'n.moe',    type:'gov',      r: Math.round(25*vs), desc:'3 Strategic Sectors' },
+    { id: 15, key:'n.zatca',  type:'gov',      r: Math.round(25*vs), desc:'Zakat, Tax & Customs' },
+    { id: 16, key:'n.tra',    type:'gov',      r: Math.round(25*vs), desc:'Legislative Compliance' },
+    { id: 17, key:'n.moi',    type:'gov',      r: Math.round(22*vs), desc:'Investment Facilitation' },
+    { id: 18, key:'n.petro',  type:'gov',      r: Math.round(22*vs), desc:'Strategic Fuel Partnership' },
+    { id: 19, key:'n.edu',    type:'gov',      r: Math.round(22*vs), desc:'Higher Education Digital' },
   ];
 
-  const links = nodes.filter(n => n.id !== 0).map(n => ({ source: 0, target: n.id }));
-  [
-    [1,2],[1,3],[1,4],[1,5],[2,3],[3,4],[3,5],
-    [6,7],[6,1],[6,3],
-    [8,9],[8,10],[9,10],
-    [12,13],[14,15],[15,16],[17,18],[18,19]
-  ].forEach(([s,t]) => links.push({source: s, target: t}));
+  /* Links: all to center, plus intra-group */
+  const links = nodes.filter(n => n.id !== 0).map(n => ({ s: 0, t: n.id }));
+  [[1,2],[1,3],[1,4],[1,5],[2,3],[3,4],[6,7],[6,1],[6,3],
+   [8,9],[8,10],[9,10],[12,13],[14,15],[15,16],[17,18]
+  ].forEach(([a,b]) => links.push({ s: a, t: b }));
 
+  /* Position nodes in orbital groups */
   const cx = cssW / 2, cy = cssH / 2;
-  const groups = {
-    internal: { angle: -Math.PI/2, count: 5, r: Math.round(260*vs) },
-    external:  { angle: Math.PI/6,  count: 2, r: Math.round(295*vs) },
-    business:  { angle: Math.PI/2,  count: 4, r: Math.round(295*vs) },
-    gov:       { angle: Math.PI + Math.PI/6, count: 7, r: Math.round(355*vs) }
+  const grp = {
+    internal: { angle: -Math.PI / 2,          count: 5, r: Math.round(258*vs) },
+    external: { angle:  Math.PI / 5,           count: 2, r: Math.round(296*vs) },
+    business: { angle:  Math.PI / 2,           count: 4, r: Math.round(296*vs) },
+    gov:      { angle:  Math.PI + Math.PI / 5, count: 7, r: Math.round(354*vs) },
   };
-  const groupCounts = {};
+  const gc = {};
   nodes.forEach(n => {
     if (n.type === 'center') { n.x = cx; n.y = cy; n.vx = 0; n.vy = 0; return; }
-    const g = groups[n.type];
-    groupCounts[n.type] = (groupCounts[n.type] || 0);
-    const spread = (2 * Math.PI / (g.count + 1));
-    const baseAngle = g.angle + spread * groupCounts[n.type];
-    groupCounts[n.type]++;
-    n.x = cx + g.r * Math.cos(baseAngle) + (Math.random()-0.5)*40;
-    n.y = cy + g.r * Math.sin(baseAngle) + (Math.random()-0.5)*40;
-    n.vx = (Math.random()-0.5)*0.3;
-    n.vy = (Math.random()-0.5)*0.3;
-    n.baseX = n.x; n.baseY = n.y;
-    n.phase = Math.random() * Math.PI * 2;
+    const g = grp[n.type];
+    gc[n.type] = gc[n.type] || 0;
+    const spread = (2 * Math.PI) / (g.count + 1);
+    const angle  = g.angle + spread * gc[n.type];
+    gc[n.type]++;
+    n.x  = cx + g.r * Math.cos(angle) + (Math.random() - 0.5) * 28;
+    n.y  = cy + g.r * Math.sin(angle) + (Math.random() - 0.5) * 28;
+    n.bx = n.x; n.by = n.y;
+    n.ph = Math.random() * Math.PI * 2;
   });
 
-  let hoveredNode = null, t = 0;
-
-  function hexToRgba(hex, alpha) {
-    const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
-    return `rgba(${r},${g},${b},${alpha})`;
+  /* Helpers */
+  function h2r(hex, a) {
+    const r = parseInt(hex.slice(1,3),16),
+          g = parseInt(hex.slice(3,5),16),
+          b = parseInt(hex.slice(5,7),16);
+    return `rgba(${r},${g},${b},${a})`;
   }
 
+  let hov = null, tick = 0;
+
   function draw() {
-    t += 0.008;
+    tick += 0.007;
     ctx.clearRect(0, 0, cssW, cssH);
 
-    // Animate non-center nodes gently
+    /* Gentle float animation */
     nodes.forEach(n => {
       if (n.type === 'center') return;
-      n.x = n.baseX + Math.sin(t + n.phase) * 8;
-      n.y = n.baseY + Math.cos(t * 0.7 + n.phase) * 6;
+      n.x = n.bx + Math.sin(tick + n.ph)       * 7;
+      n.y = n.by + Math.cos(tick * 0.75 + n.ph) * 5;
     });
 
-    // Draw links
+    /* Draw links */
     links.forEach(lnk => {
-      const s = nodes[lnk.source], tgt = nodes[lnk.target];
-      const color = COLORS[tgt.type] || '#ffffff';
+      const sn = nodes[lnk.s], tn = nodes[lnk.t];
+      const col  = C[tn.type] || '#fff';
+      const isH  = hov && (hov.id === sn.id || hov.id === tn.id);
       ctx.beginPath();
-      ctx.moveTo(s.x, s.y);
-      ctx.lineTo(tgt.x, tgt.y);
-      const isHovered = hoveredNode && (hoveredNode.id === s.id || hoveredNode.id === tgt.id);
-      ctx.strokeStyle = isHovered ? hexToRgba(color, 0.75) : hexToRgba(color, 0.28);
-      ctx.lineWidth = isHovered ? 3.5 : 2.0;
+      ctx.moveTo(sn.x, sn.y);
+      ctx.lineTo(tn.x, tn.y);
+      ctx.strokeStyle = h2r(col, isH ? 0.72 : 0.24);
+      ctx.lineWidth   = isH ? 3.5 : 1.8;
       ctx.stroke();
     });
 
-    // Draw nodes
+    /* Draw nodes */
     nodes.forEach(n => {
-      const color = n.type === 'center' ? '#ffffff' : COLORS[n.type];
-      const isHov = hoveredNode && hoveredNode.id === n.id;
-      const scale = isHov ? 1.2 : 1;
-      const r = n.r * scale;
+      const col = C[n.type] || '#fff';
+      const isH = hov && hov.id === n.id;
+      const r   = n.r * (isH ? 1.22 : 1);
 
-      // Glow
-      const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 2.5);
-      grd.addColorStop(0, hexToRgba(color, isHov ? 0.35 : 0.15));
-      grd.addColorStop(1, hexToRgba(color, 0));
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, r * 2.5, 0, Math.PI*2);
-      ctx.fillStyle = grd;
-      ctx.fill();
+      /* Outer glow */
+      const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 2.8);
+      grd.addColorStop(0, h2r(col, isH ? 0.38 : 0.16));
+      grd.addColorStop(1, h2r(col, 0));
+      ctx.beginPath(); ctx.arc(n.x, n.y, r * 2.8, 0, Math.PI * 2);
+      ctx.fillStyle = grd; ctx.fill();
 
-      // Circle fill
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, r, 0, Math.PI*2);
-      ctx.fillStyle = hexToRgba(color, n.type==='center' ? 0.15 : 0.1);
+      /* Node circle */
+      ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      ctx.fillStyle   = h2r(col, n.type === 'center' ? 0.14 : 0.09);
       ctx.fill();
-      ctx.strokeStyle = hexToRgba(color, isHov ? 1.0 : 0.7);
-      ctx.lineWidth = isHov ? 3 : 2;
+      ctx.strokeStyle = h2r(col, isH ? 1.0 : 0.72);
+      ctx.lineWidth   = isH ? 3 : 2;
       ctx.stroke();
 
-      // Pulse ring for center
+      /* Pulse ring on center */
       if (n.type === 'center') {
-        const pr = r + 10 + Math.sin(t*2)*5;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, pr, 0, Math.PI*2);
-        ctx.strokeStyle = hexToRgba('#ffffff', 0.1 + Math.sin(t*2)*0.05);
-        ctx.lineWidth = 1;
-        ctx.stroke();
+        const pr = r + 8 + Math.sin(tick * 2) * 4;
+        ctx.beginPath(); ctx.arc(n.x, n.y, pr, 0, Math.PI * 2);
+        ctx.strokeStyle = h2r('#ffffff', 0.1 + Math.sin(tick * 2) * 0.04);
+        ctx.lineWidth = 1; ctx.stroke();
       }
 
-      // Label — drawn BELOW the node circle for clarity (not overlapping)
-      const lines = n.label.split('\n');
-      const fz = Math.round((n.type==='center' ? 12 : 10) * vs);
-      const lineH = Math.round(14 * vs);
-      ctx.font = `${isHov ? 700 : 600} ${fz}px Inter, sans-serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      // For center node, draw inside; for all others draw below circle
-      const labelY = n.type === 'center' ? n.y : n.y + r + Math.round(6 * vs) + (lines.length * lineH) / 2;
-      // Measure max line width for backdrop
-      const maxW = Math.max(...lines.map(l => ctx.measureText(l).width));
-      const padX = 6, padY = 4;
-      const bh = lines.length * lineH + padY * 2;
-      const bw = maxW + padX * 2;
-      const by = labelY - bh / 2;
-      // Dark translucent backdrop
-      ctx.fillStyle = 'rgba(4,10,18,0.82)';
+      /* Label — drawn BELOW circle (never overlapping node) */
+      const rawLabel = t(n.key);
+      const lines    = rawLabel.split('\n');
+      const fz       = Math.round((n.type === 'center' ? 12 : 10) * vs);
+      const lh       = Math.round(14 * vs);
+      ctx.font        = `${isH ? 700 : 600} ${fz}px Inter, sans-serif`;
+      ctx.textAlign   = 'center';
+      ctx.textBaseline= 'middle';
+
+      const labelY = n.type === 'center'
+        ? n.y
+        : n.y + r + Math.round(7 * vs) + (lines.length * lh) / 2;
+
+      const maxW  = Math.max(...lines.map(l => ctx.measureText(l).width));
+      const px = 7, py = 4;
+      const bw = maxW + px * 2, bh = lines.length * lh + py * 2;
+
+      /* Backdrop */
+      ctx.fillStyle = 'rgba(2,6,14,0.86)';
       ctx.beginPath();
-      ctx.roundRect(n.x - bw/2, by, bw, bh, 4);
+      ctx.roundRect(n.x - bw / 2, labelY - bh / 2, bw, bh, 4);
       ctx.fill();
-      // Colored border line on backdrop
-      ctx.strokeStyle = hexToRgba(color, 0.3);
-      ctx.lineWidth = 0.5;
+      /* Subtle colored border */
+      ctx.strokeStyle = h2r(col, 0.3);
+      ctx.lineWidth   = 0.6;
       ctx.stroke();
-      // Text
-      ctx.fillStyle = isHov ? color : hexToRgba(color, 1.0);
+
+      /* Text */
+      ctx.fillStyle = isH ? col : h2r(col, 1.0);
       lines.forEach((line, li) => {
-        const offset = (li - (lines.length - 1) / 2) * lineH;
+        const offset = (li - (lines.length - 1) / 2) * lh;
         ctx.fillText(line, n.x, labelY + offset);
       });
     });
 
-    universeRAF = requestAnimationFrame(draw);
+    uRAF = requestAnimationFrame(draw);
   }
+  draw();
 
+  /* Mouse interaction */
   canvas.addEventListener('mousemove', e => {
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left, my = e.clientY - rect.top;
-    hoveredNode = null;
+    hov = null;
     for (const n of nodes) {
       const dx = mx - n.x, dy = my - n.y;
-      if (Math.sqrt(dx*dx + dy*dy) < n.r * 1.4) { hoveredNode = n; break; }
+      if (Math.sqrt(dx*dx + dy*dy) < n.r * 1.55) { hov = n; break; }
     }
-    if (hoveredNode) {
+    if (hov) {
       canvas.style.cursor = 'pointer';
-      const label = currentLang === 'ar' && hoveredNode.ar ? hoveredNode.ar : hoveredNode.label.replace('\n', ' ');
-      tooltip.innerHTML = `<strong style="color:${COLORS[hoveredNode.type]||'#fff'}">${label}</strong><br/><span style="color:#8b9ab0;font-size:11px;">${hoveredNode.desc}</span>`;
-      tooltip.style.left = (e.clientX + 16) + 'px';
-      tooltip.style.top = (e.clientY - 20) + 'px';
-      tooltip.style.opacity = '1';
+      const label = t(hov.key).replace('\n', ' ');
+      tip.innerHTML = `<strong style="color:${C[hov.type]||'#fff'}">${label}</strong><br/><span style="font-size:11px;color:#8898b0">${hov.desc}</span>`;
+      tip.style.left    = (e.clientX + 18) + 'px';
+      tip.style.top     = (e.clientY - 22) + 'px';
+      tip.style.opacity = '1';
     } else {
       canvas.style.cursor = 'default';
-      tooltip.style.opacity = '0';
+      tip.style.opacity   = '0';
     }
   });
-  canvas.addEventListener('mouseleave', () => { tooltip.style.opacity = '0'; hoveredNode = null; });
-
-  draw();
+  canvas.addEventListener('mouseleave', () => { tip.style.opacity = '0'; hov = null; });
 }
-
-function updateDeckScale() {
-  const s = Math.min(window.innerWidth / 1200, window.innerHeight / 750, 1.1);
-  document.documentElement.style.setProperty('--deck-scale', Math.max(s, 0.6).toFixed(4));
-}
-updateDeckScale();
-
-let _deckResizeTimer;
-window.addEventListener('resize', () => {
-  updateDeckScale();
-  clearTimeout(_deckResizeTimer);
-  _deckResizeTimer = setTimeout(() => {
-    if (window.universeInitialized) initUniverse(); // reinit with updated DPR + vScale
-  }, 200);
-});
 </script>
+
 </body>
 </html>
