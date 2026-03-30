@@ -506,8 +506,8 @@ html[dir="rtl"] .nd-label { right: auto; left: 18px; }
         <!-- Center badge -->
         <div class="orbit-center">
           <div class="oc-cert">PMP®</div>
-          <div class="oc-num">6+</div>
-          <div class="oc-lbl" data-i18n="oc.y">Years PM</div>
+          <div class="oc-num">PMO</div>
+          <div class="oc-lbl" data-i18n="oc.y">Leader</div>
         </div>
 
         <!-- Floating icons -->
@@ -531,11 +531,11 @@ html[dir="rtl"] .nd-label { right: auto; left: 18px; }
   <div class="inner">
 
     <div class="dash-head">
-      <div class="eyebrow g-fade" data-i18n="s2.ey">Complete Portfolio Impact · 6 Years of Results</div>
+      <div class="eyebrow g-fade" data-i18n="s2.ey">Complete Portfolio Impact · 2022–2025 Results</div>
       <div class="dash-title g-up">
         <span data-i18n="s2.t1">The </span><span style="color:var(--cyan)" data-i18n="s2.t2">Full-Scale</span><span data-i18n="s2.t3"> Impact Dashboard</span>
       </div>
-      <div class="dash-sub g-up" data-i18n="s2.sub">Six years of compounded results across product, operations, governance, and strategic delivery.</div>
+      <div class="dash-sub g-up" data-i18n="s2.sub">Compounded results across product, operations, governance, and strategic delivery — 2022 to 2025.</div>
     </div>
 
     <!-- Tier 1 — 4 core metrics -->
@@ -650,7 +650,10 @@ html[dir="rtl"] .nd-label { right: auto; left: 18px; }
       </a>
     </div>
 
-    <button class="cta-btn cta-ghost g-fade" onclick="scrollTo(0)" data-i18n="s4.back">↑ Return to Top</button>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+      <a class="cta-btn cta-primary g-up" href="full.html" target="_blank" rel="noopener" data-i18n="s4.full">View Full Impact Leadership →</a>
+      <button class="cta-btn cta-ghost g-fade" onclick="scrollTo(0)" data-i18n="s4.back">↑ Return to Top</button>
+    </div>
   </div>
 </section>
 
@@ -668,10 +671,10 @@ const I18N = {
     's1.miss':'Transforming complex sectors — B2C, B2B & B2G — through strategic innovation, disciplined governance, and scalable technology leadership.',
     's1.cta':'Begin the Journey →',
     'b.pmp':'PMP® Certified','b.gcp':'GCP Infrastructure','b.stk':'Stakeholder Management','b.pmo':'PMO Leadership',
-    'oc.y':'Years PM', 'hint':'Scroll to explore',
-    's2.ey':'Complete Portfolio Impact · 6 Years of Results',
+    'oc.y':'Leader', 'hint':'Scroll to explore',
+    's2.ey':'Complete Portfolio Impact · 2022–2025 Results',
     's2.t1':'The ','s2.t2':'Full-Scale','s2.t3':' Impact Dashboard',
-    's2.sub':'Six years of compounded results across product, operations, governance, and strategic delivery.',
+    's2.sub':'Compounded results across product, operations, governance, and strategic delivery — 2022 to 2025.',
     'm.prod':'Products Launched','m.prod.s':'Mojaz → Rased portfolio',
     'm.serv':'Core Services','m.serv.s':'Deployed & operational',
     'm.rev':'Revenue Growth','m.rev.s':'Total organizational impact',
@@ -688,6 +691,7 @@ const I18N = {
     's4.rl':'Senior Project Manager · PMO Leader · PMP®',
     'c.ph':'Phone','c.em':'Email','c.li':'LinkedIn',
     's4.back':'↑ Return to Top',
+    's4.full':'View Full Impact Leadership →',
     /* canvas node labels */
     'n.self':'Abdulrahman\nAlhumud','n.infra':'Infrastructure\nTeam','n.cyber':'Cybersecurity\nTeam',
     'n.app':'Application\nTeam','n.db':'Database\nTeam','n.tech':'Technical\nTeam',
@@ -704,10 +708,10 @@ const I18N = {
     's1.miss':'تحويل القطاعات المعقدة — B2C وB2B وB2G — من خلال الابتكار الاستراتيجي والحوكمة المنضبطة وقيادة التكنولوجيا القابلة للتوسع.',
     's1.cta':'ابدأ الرحلة ←',
     'b.pmp':'معتمد PMP®','b.gcp':'بنية GCP التحتية','b.stk':'إدارة أصحاب المصلحة','b.pmo':'قيادة PMO',
-    'oc.y':'سنوات PM', 'hint':'مرر للاستكشاف',
-    's2.ey':'الأثر الكامل للمحفظة · 6 سنوات من النتائج',
+    'oc.y':'قائد', 'hint':'مرر للاستكشاف',
+    's2.ey':'الأثر الكامل للمحفظة · نتائج 2022–2025',
     's2.t1':'لوحة ','s2.t2':'الأثر الشامل','s2.t3':'',
-    's2.sub':'ست سنوات من النتائج المتراكمة عبر المنتج والعمليات والحوكمة والتسليم الاستراتيجي.',
+    's2.sub':'نتائج متراكمة عبر المنتج والعمليات والحوكمة والتسليم الاستراتيجي — من 2022 إلى 2025.',
     'm.prod':'المنتجات المُطلقة','m.prod.s':'محفظة موجز → راصد',
     'm.serv':'الخدمات الأساسية','m.serv.s':'تم نشرها وتشغيلها',
     'm.rev':'نمو الإيرادات','m.rev.s':'الأثر التنظيمي الكلي',
@@ -724,6 +728,7 @@ const I18N = {
     's4.rl':'مدير مشاريع أول · قائد PMO · PMP®',
     'c.ph':'الهاتف','c.em':'البريد الإلكتروني','c.li':'لينكدإن',
     's4.back':'↑ العودة للأعلى',
+    's4.full':'عرض القيادة الكاملة للأثر ←',
     'n.self':'عبدالرحمن\nالحمود','n.infra':'فريق البنية\nالتحتية','n.cyber':'فريق الأمن\nالسيبراني',
     'n.app':'فريق\nالتطبيقات','n.db':'فريق قواعد\nالبيانات','n.tech':'الفريق\nالتقني',
     'n.google':'Google\nCloud','n.host':'الاستضافة\nالخارجية',
