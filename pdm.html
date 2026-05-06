@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abdulrahman Alhumud · Product Manager · #1 App Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#050d1c; --bg-mid:#081428; --card:rgba(8,18,36,0.85);
+  --border:rgba(255,255,255,0.07);
+  --accent:#0099ff; --accent-d:#0066cc; --accent-l:#33c1ff;
+  --accent-tint:rgba(0,153,255,0.12);
+  --vibrant:#00e5ff; --hot:#ff3d8a;
+  --text:#e3edff; --muted:#8aa0c2; --faint:#48597a;
+  --dscale:1;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+html[dir="rtl"]{font-family:'Cairo',sans-serif}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{font-family:'Cairo',sans-serif}
+
+.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(160deg,#050d1c 0%,#081428 50%,#040a18 100%)}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,153,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,153,255,0.03) 1px,transparent 1px);background-size:60px 60px}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:0.32;z-index:0;pointer-events:none}
+.orb-a{width:580px;height:580px;left:-180px;top:-160px;background:radial-gradient(var(--vibrant),transparent 70%)}
+.orb-b{width:480px;height:480px;right:-180px;bottom:-180px;background:radial-gradient(var(--accent),transparent 70%);opacity:0.22}
+.orb-c{width:380px;height:380px;left:50%;top:30%;transform:translateX(-50%);background:radial-gradient(var(--hot),transparent 70%);opacity:0.08}
+
+#topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 36px;backdrop-filter:blur(14px);background:rgba(5,13,28,0.55);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:1.5px;font-size:11px;color:var(--accent-l);text-transform:uppercase}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--vibrant);box-shadow:0 0 14px var(--vibrant)}
+.lang-pill{display:flex;gap:2px;padding:4px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:100px}
+.lb{padding:5px 14px;border-radius:100px;border:0;background:transparent;color:var(--faint);font-family:inherit;font-weight:800;letter-spacing:2px;font-size:10px;cursor:pointer;transition:all .25s}
+.lb.on{background:linear-gradient(135deg,var(--vibrant),var(--accent));color:#021428}
+
+.wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:120px 56px 72px;zoom:var(--dscale,1)}
+
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--vibrant);display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.eyebrow::before{content:'';width:32px;height:1px;background:var(--vibrant)}
+html[dir="rtl"] .eyebrow{flex-direction:row-reverse}
+html[dir="rtl"] .eyebrow::before{display:none}
+html[dir="rtl"] .eyebrow::after{content:'';width:32px;height:1px;background:var(--vibrant)}
+
+.hook{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,4.5vw,60px);font-weight:800;line-height:1.1;letter-spacing:-0.5px;background:linear-gradient(135deg,#fff 0%,var(--vibrant) 50%,var(--hot) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;max-width:920px}
+html[dir="rtl"] .hook{font-family:'Cairo',sans-serif}
+
+.hero-row{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:start;margin-bottom:80px}
+.hero-name{font-size:24px;font-weight:600;color:var(--vibrant);margin-bottom:6px;font-family:'Space Grotesk',sans-serif}
+html[dir="rtl"] .hero-name{font-family:'Cairo',sans-serif}
+.hero-role{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.hero-pitch{font-size:15px;line-height:1.85;color:var(--muted);max-width:560px;margin-bottom:30px}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--accent-tint);border:1px solid rgba(0,153,255,0.3);color:var(--accent-l)}
+.badge.cyan{background:rgba(0,229,255,0.1);border-color:rgba(0,229,255,0.3);color:var(--vibrant)}
+.badge.hot{background:rgba(255,61,138,0.1);border-color:rgba(255,61,138,0.3);color:var(--hot)}
+.badge.dark{background:rgba(255,255,255,0.04);border-color:var(--border);color:var(--muted)}
+
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:10px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:0;font-family:inherit;cursor:pointer;transition:all .3s}
+.cta-primary{background:linear-gradient(135deg,var(--vibrant),var(--accent));color:#021428;box-shadow:0 8px 24px rgba(0,229,255,0.3)}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,229,255,0.45)}
+.cta-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.cta-ghost:hover{border-color:rgba(0,229,255,0.4);color:var(--text)}
+
+/* Hero side - mock app card */
+.app-mock{padding:24px;background:var(--card);border:1px solid var(--border);border-radius:18px;backdrop-filter:blur(14px);position:relative;overflow:hidden}
+.app-mock::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--vibrant),var(--hot))}
+.am-rank{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.am-rank-num{font-family:'Space Grotesk',sans-serif;font-size:60px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--vibrant),var(--hot));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.am-rank-l{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.am-rank-l span{display:block;color:var(--vibrant);font-size:14px;letter-spacing:1px;margin-top:3px}
+.am-bar{padding:12px 14px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.15);border-radius:10px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.am-bar-l{font-size:12px;color:var(--text);font-weight:600}
+.am-bar-v{font-size:13px;color:var(--vibrant);font-weight:700;font-family:'Space Grotesk',sans-serif}
+html[dir="rtl"] .am-bar-v{font-family:'Cairo',sans-serif}
+.am-tag{display:inline-block;padding:4px 10px;background:rgba(255,61,138,0.12);border:1px solid rgba(255,61,138,0.3);border-radius:100px;font-size:9px;color:var(--hot);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+
+.section{margin-bottom:80px}
+.sec-head{margin-bottom:32px}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
+html[dir="rtl"] .sec-title{font-family:'Cairo',sans-serif}
+.sec-title .accent{color:var(--vibrant)}
+.sec-title .hot{color:var(--hot)}
+.sec-sub{font-size:13px;color:var(--muted);max-width:680px;line-height:1.7}
+
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.m{padding:24px 20px;background:var(--card);border:1px solid var(--border);border-radius:14px;backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:all .3s}
+.m:hover{transform:translateY(-4px);border-color:rgba(0,229,255,0.4)}
+.m::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac,var(--vibrant))}
+.m .mi{font-size:22px;margin-bottom:10px;display:block}
+.m .mv{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,3.4vw,42px);font-weight:800;line-height:1;color:var(--ac,var(--vibrant));margin-bottom:6px}
+html[dir="rtl"] .m .mv{font-family:'Cairo',sans-serif}
+.m .ml{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.m .ms{font-size:10px;color:var(--faint);margin-top:4px}
+
+.story{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sc{padding:28px 24px;background:var(--card);border:1px solid var(--border);border-radius:18px;backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:all .3s}
+.sc:hover{transform:translateY(-4px);border-color:rgba(0,229,255,0.4)}
+.sc-num{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--vibrant),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;display:block}
+.sc-t{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-0.2px}
+.sc-d{font-size:13px;line-height:1.7;color:var(--muted)}
+
+/* Product features grid */
+.feat{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.f{padding:18px 16px;background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:12px;transition:all .3s}
+.f:hover{border-color:rgba(0,229,255,0.4);background:rgba(0,229,255,0.04)}
+.f-i{font-size:22px;margin-bottom:10px;display:block}
+.f-t{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px}
+.f-d{font-size:11px;color:var(--muted);line-height:1.55}
+
+.contact{padding:48px 44px;background:linear-gradient(135deg,rgba(0,229,255,0.07) 0%,rgba(255,61,138,0.04) 100%);border:1px solid rgba(0,229,255,0.22);border-radius:22px;text-align:center;position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 22px,rgba(0,229,255,0.025) 22px,rgba(0,229,255,0.025) 23px);pointer-events:none}
+.ct-eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--vibrant);margin-bottom:14px}
+.ct-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,3.5vw,42px);font-weight:700;margin-bottom:10px}
+html[dir="rtl"] .ct-title{font-family:'Cairo',sans-serif}
+.ct-sub{font-size:13px;color:var(--muted);margin-bottom:30px;max-width:520px;margin-left:auto;margin-right:auto}
+.ct-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:680px;margin:0 auto}
+.ct-card{padding:18px 14px;background:rgba(5,13,28,0.7);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;transition:all .3s}
+.ct-card:hover{transform:translateY(-3px)}
+.ct-card.phone{border-color:rgba(0,229,255,0.22)}
+.ct-card.phone:hover{border-color:rgba(0,229,255,0.5)}
+.ct-card.email{border-color:rgba(255,61,138,0.22)}
+.ct-card.email:hover{border-color:rgba(255,61,138,0.5)}
+.ct-card.li{border-color:rgba(0,153,255,0.22)}
+.ct-card.li:hover{border-color:rgba(0,153,255,0.5)}
+.ct-icon{font-size:22px}
+.ct-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint)}
+.ct-val{font-size:11px;font-weight:600;word-break:break-all;color:var(--text)}
+
+.foot{margin-top:60px;padding:32px 0 12px;border-top:1px solid var(--border);text-align:center;font-size:11px;color:var(--faint)}
+.foot a{color:var(--vibrant);text-decoration:none;margin:0 6px}
+
+.rv{opacity:0;transform:translateY(28px);transition:all .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}
+
+@media (max-width:960px){
+  .wrap{padding:96px 28px 48px}
+  .hero-row{grid-template-columns:1fr}
+  .metrics,.feat{grid-template-columns:repeat(2,1fr)}
+  .story{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+<div class="orb orb-a"></div>
+<div class="orb orb-b"></div>
+<div class="orb orb-c"></div>
+
+<div id="topbar">
+  <div class="brand"><div class="dot"></div><span data-i18n="brand">Product Persona · Growth Edition</span></div>
+  <div class="lang-pill">
+    <button class="lb on" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lb"    data-lang="ar" onclick="setLang('ar')">AR</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- HERO -->
+<section class="section">
+  <div class="eyebrow rv" data-i18n="ey">Product Manager · #1 App Store · Mojaz</div>
+  <h1 class="hook rv rv-d1" data-i18n="hook">I built products that hit #1 — always with the user in mind.</h1>
+
+  <div class="hero-row">
+    <div>
+      <div class="hero-name rv rv-d2">Abdulrahman Alhumud</div>
+      <div class="hero-role rv rv-d2" data-i18n="role">Senior Product Manager · B2C Growth Specialist</div>
+      <p class="hero-pitch rv rv-d3" data-i18n="pitch">From idea to App Store #1 — orchestrated a high-velocity B2C product launch that captured Saudi consumers in 4 months. 25M+ impressions. 250% download surge. Always shipping with a user-first mindset.</p>
+
+      <div class="badge-row rv rv-d3">
+        <span class="badge cyan" data-i18n="b1">App Store #1</span>
+        <span class="badge hot" data-i18n="b2">25M+ Impressions</span>
+        <span class="badge" data-i18n="b3">B2C Growth</span>
+        <span class="badge dark" data-i18n="b4">Data-Driven</span>
+      </div>
+
+      <div class="cta-row rv rv-d4">
+        <a class="cta cta-primary" href="#contact" data-i18n="cta1">Build Together →</a>
+        <a class="cta cta-ghost"   href="full.html" target="_blank" rel="noopener" data-i18n="cta2">View Full Portfolio</a>
+      </div>
+    </div>
+
+    <div class="app-mock rv rv-d2">
+      <div class="am-rank">
+        <div class="am-rank-num">#1</div>
+        <div class="am-rank-l" data-i18n="am.rl">App Store Rank<span data-i18n="am.rs">Saudi Market · Mojaz</span></div>
+      </div>
+      <div class="am-bar"><span class="am-bar-l" data-i18n="am.b1">Download Growth</span><span class="am-bar-v">+250%</span></div>
+      <div class="am-bar"><span class="am-bar-l" data-i18n="am.b2">Impressions</span><span class="am-bar-v">25M+</span></div>
+      <div class="am-bar"><span class="am-bar-l" data-i18n="am.b3">Time to #1</span><span class="am-bar-v">4mo</span></div>
+      <div class="am-tag" data-i18n="am.tag">B2C · Saudi Automotive</div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="section">
+  <div class="sec-head rv">
+    <h2 class="sec-title"><span data-i18n="m.t1">The </span><span class="accent" data-i18n="m.t2">Product Numbers</span></h2>
+    <p class="sec-sub" data-i18n="m.s">Growth metrics from a four-month B2C launch sprint that redefined the Saudi automotive inspection market.</p>
+  </div>
+
+  <div class="metrics">
+    <div class="m rv rv-d1" style="--ac:var(--vibrant)">
+      <span class="mi">🥇</span>
+      <span class="mv">#1</span>
+      <div class="ml" data-i18n="m1l">App Store Rank</div>
+      <div class="ms" data-i18n="m1s">Saudi market</div>
+    </div>
+    <div class="m rv rv-d2" style="--ac:var(--hot)">
+      <span class="mi">📊</span>
+      <span class="mv" style="color:var(--hot)"><span class="cnt" data-target="25">0</span>M+</span>
+      <div class="ml" data-i18n="m2l">Impressions</div>
+      <div class="ms" data-i18n="m2s">Campaign window</div>
+    </div>
+    <div class="m rv rv-d3" style="--ac:var(--vibrant)">
+      <span class="mi">📈</span>
+      <span class="mv"><span class="cnt" data-target="250">0</span>%</span>
+      <div class="ml" data-i18n="m3l">Download Surge</div>
+      <div class="ms" data-i18n="m3s">Sustained momentum</div>
+    </div>
+    <div class="m rv rv-d4" style="--ac:var(--accent-l)">
+      <span class="mi">🚀</span>
+      <span class="mv" style="color:var(--accent-l)"><span class="cnt" data-target="5">0</span></span>
+      <div class="ml" data-i18n="m4l">Products Launched</div>
+      <div class="ms" data-i18n="m4s">Mojaz → Rased portfolio</div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section">
+  <div class="sec-head rv">
+    <h2 class="sec-title"><span data-i18n="s.t1">The </span><span class="accent" data-i18n="s.t2">Mojaz Sprint</span></h2>
+    <p class="sec-sub" data-i18n="s.s">Three product phases that captured a market — strategy, sprint, and scale. Always built around the user.</p>
+  </div>
+
+  <div class="story">
+    <div class="sc rv rv-d1">
+      <span class="sc-num">01</span>
+      <h3 class="sc-t" data-i18n="sc1t">Market Entry</h3>
+      <p class="sc-d" data-i18n="sc1d">Identified and executed B2C strategy for the Saudi automotive inspection market — discovery, validation, and product-market fit.</p>
+    </div>
+    <div class="sc rv rv-d2">
+      <span class="sc-num">02</span>
+      <h3 class="sc-t" data-i18n="sc2t">Growth Sprint</h3>
+      <p class="sc-d" data-i18n="sc2d">Drove a +250% download surge through data-driven campaign orchestration, A/B-tested onboarding, and a relentless KPI loop.</p>
+    </div>
+    <div class="sc rv rv-d3">
+      <span class="sc-num">03</span>
+      <h3 class="sc-t" data-i18n="sc3t">Peak Impact</h3>
+      <p class="sc-d" data-i18n="sc3d">Achieved #1 App Store ranking in the Saudi market — cementing brand authority in 4 months with 25M+ impressions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+  <div class="sec-head rv">
+    <h2 class="sec-title"><span data-i18n="f.t1">User-First </span><span class="hot" data-i18n="f.t2">Product DNA</span></h2>
+    <p class="sec-sub" data-i18n="f.s">How I think about products — every release, every sprint, every decision.</p>
+  </div>
+
+  <div class="feat">
+    <div class="f rv rv-d1"><span class="f-i">🔍</span><div class="f-t" data-i18n="f1t">Discovery First</div><div class="f-d" data-i18n="f1d">User interviews + competitor benchmarks before a line of code.</div></div>
+    <div class="f rv rv-d2"><span class="f-i">📊</span><div class="f-t" data-i18n="f2t">KPI Loop</div><div class="f-d" data-i18n="f2d">Weekly metric reviews — what moved, what didn't, what changes.</div></div>
+    <div class="f rv rv-d3"><span class="f-i">🧪</span><div class="f-t" data-i18n="f3t">Hypothesis Driven</div><div class="f-d" data-i18n="f3d">Test, learn, iterate. No feature ships without a measurable why.</div></div>
+    <div class="f rv rv-d4"><span class="f-i">🎯</span><div class="f-t" data-i18n="f4t">Outcome Over Output</div><div class="f-d" data-i18n="f4d">Releases measured by user impact, not feature counts.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="contact rv">
+    <div class="ct-eyebrow" data-i18n="c.ey">Build the Next #1</div>
+    <h2 class="ct-title" data-i18n="c.t">Let's ship products users love.</h2>
+    <p class="ct-sub" data-i18n="c.s">Available for senior product leadership roles — B2C, B2B, and platform products that need a user-first mind in the seat.</p>
+    <div class="ct-grid">
+      <a class="ct-card phone" href="tel:+966593935677">
+        <span class="ct-icon">📞</span>
+        <span class="ct-lbl" data-i18n="c.ph">Phone</span>
+        <span class="ct-val" style="color:var(--vibrant)">+966 59 393 5677</span>
+      </a>
+      <a class="ct-card email" href="mailto:A.alhumud0@gmail.com">
+        <span class="ct-icon">✉️</span>
+        <span class="ct-lbl" data-i18n="c.em">Email</span>
+        <span class="ct-val" style="color:var(--hot)">A.alhumud0@gmail.com</span>
+      </a>
+      <a class="ct-card li" href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener">
+        <span class="ct-icon">💼</span>
+        <span class="ct-lbl" data-i18n="c.li">LinkedIn</span>
+        <span class="ct-val" style="color:var(--accent-l)">www.linkedin.com/in/aalhumud</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span data-i18n="foot">© Abdulrahman Alhumud · Senior Product Manager</span>
+    · <a href="full.html" target="_blank" rel="noopener" data-i18n="foot.full">Full Portfolio</a>
+    · <a href="index.html" data-i18n="foot.short">Executive Summary</a>
+  </div>
+</section>
+
+</div>
+
+<script>
+const I18N = {
+  en: {
+    'brand':'Product Persona · Growth Edition',
+    'ey':'Product Manager · #1 App Store · Mojaz',
+    'hook':'I built products that hit #1 — always with the user in mind.',
+    'role':'Senior Product Manager · B2C Growth Specialist',
+    'pitch':'From idea to App Store #1 — orchestrated a high-velocity B2C product launch that captured Saudi consumers in 4 months. 25M+ impressions. 250% download surge. Always shipping with a user-first mindset.',
+    'b1':'App Store #1','b2':'25M+ Impressions','b3':'B2C Growth','b4':'Data-Driven',
+    'cta1':'Build Together →','cta2':'View Full Portfolio',
+    'am.rl':'App Store Rank','am.rs':'Saudi Market · Mojaz',
+    'am.b1':'Download Growth','am.b2':'Impressions','am.b3':'Time to #1','am.tag':'B2C · Saudi Automotive',
+    'm.t1':'The ','m.t2':'Product Numbers','m.s':'Growth metrics from a four-month B2C launch sprint that redefined the Saudi automotive inspection market.',
+    'm1l':'App Store Rank','m1s':'Saudi market',
+    'm2l':'Impressions','m2s':'Campaign window',
+    'm3l':'Download Surge','m3s':'Sustained momentum',
+    'm4l':'Products Launched','m4s':'Mojaz → Rased portfolio',
+    's.t1':'The ','s.t2':'Mojaz Sprint','s.s':'Three product phases that captured a market — strategy, sprint, and scale. Always built around the user.',
+    'sc1t':'Market Entry','sc1d':'Identified and executed B2C strategy for the Saudi automotive inspection market — discovery, validation, and product-market fit.',
+    'sc2t':'Growth Sprint','sc2d':'Drove a +250% download surge through data-driven campaign orchestration, A/B-tested onboarding, and a relentless KPI loop.',
+    'sc3t':'Peak Impact','sc3d':'Achieved #1 App Store ranking in the Saudi market — cementing brand authority in 4 months with 25M+ impressions.',
+    'f.t1':'User-First ','f.t2':'Product DNA','f.s':'How I think about products — every release, every sprint, every decision.',
+    'f1t':'Discovery First','f1d':'User interviews + competitor benchmarks before a line of code.',
+    'f2t':'KPI Loop','f2d':'Weekly metric reviews — what moved, what didn\'t, what changes.',
+    'f3t':'Hypothesis Driven','f3d':'Test, learn, iterate. No feature ships without a measurable why.',
+    'f4t':'Outcome Over Output','f4d':'Releases measured by user impact, not feature counts.',
+    'c.ey':'Build the Next #1','c.t':'Let\'s ship products users love.','c.s':'Available for senior product leadership roles — B2C, B2B, and platform products that need a user-first mind in the seat.',
+    'c.ph':'Phone','c.em':'Email','c.li':'LinkedIn',
+    'foot':'© Abdulrahman Alhumud · Senior Product Manager','foot.full':'Full Portfolio','foot.short':'Executive Summary'
+  },
+  ar: {
+    'brand':'شخصية مدير المنتج · إصدار النمو',
+    'ey':'مدير منتج · المركز الأول في المتجر · موجز',
+    'hook':'بنيت منتجات وصلت للمركز الأول.. عيني دايم على العميل.',
+    'role':'مدير منتج أول · متخصص نمو B2C',
+    'pitch':'من فكرة لين المركز الأول في المتجر — أطلقت منتج B2C بسرعة عالية واستقطب المستهلك السعودي في 4 أشهر. 25 مليون+ ظهور. زيادة 250% في التنزيلات. وكل قرار بنّيته حول العميل.',
+    'b1':'المركز الأول','b2':'25 مليون+ ظهور','b3':'نمو B2C','b4':'مبني على البيانات',
+    'cta1':'نبني سوا ←','cta2':'شوف الملف الكامل',
+    'am.rl':'ترتيب المتجر','am.rs':'السوق السعودية · موجز',
+    'am.b1':'نمو التنزيلات','am.b2':'الظهور','am.b3':'الوقت للمركز الأول','am.tag':'B2C · السيارات السعودية',
+    'm.t1':'أرقام ','m.t2':'المنتج','m.s':'مؤشرات نمو من سباق إطلاق B2C استمر 4 أشهر وأعاد تعريف سوق فحص السيارات السعودي.',
+    'm1l':'ترتيب المتجر','m1s':'السوق السعودية',
+    'm2l':'الظهور','m2s':'نافذة الحملة',
+    'm3l':'زيادة التنزيلات','m3s':'زخم مستدام',
+    'm4l':'منتج مطلق','m4s':'محفظة موجز ← راصد',
+    's.t1':'سباق ','s.t2':'موجز','s.s':'ثلاث مراحل منتج استقطبت سوق كامل — استراتيجية، سباق، وتوسيع. كلها حول العميل.',
+    'sc1t':'دخول السوق','sc1d':'حددت ونفذت استراتيجية B2C لسوق فحص السيارات السعودي — اكتشاف، تحقق، وملاءمة منتج-سوق.',
+    'sc2t':'سباق النمو','sc2d':'حققت زيادة +250% في التنزيلات عبر حملات مبنية على البيانات وتجارب A/B وحلقة KPI صارمة.',
+    'sc3t':'ذروة الأثر','sc3d':'وصلت للمركز الأول في المتجر السعودي — رسّخت سلطة العلامة في 4 أشهر مع 25 مليون+ ظهور.',
+    'f.t1':'حمض ','f.t2':'منتج العميل أولاً','f.s':'كيف أفكر في المنتجات — كل إصدار، كل سباق، كل قرار.',
+    'f1t':'الاكتشاف أولاً','f1d':'مقابلات مستخدمين + تحليل منافسين قبل أي سطر كود.',
+    'f2t':'حلقة KPI','f2d':'مراجعات أسبوعية للمؤشرات — وش تحرك، وش ما تحرك، وش بنغير.',
+    'f3t':'مبني على فرضيات','f3d':'اختبار، تعلم، تكرار. ما يطلع فيتشر بدون "ليش" قابلة للقياس.',
+    'f4t':'النتيجة قبل الإخراج','f4d':'الإصدارات تتقاس بالأثر على العميل، مو بعدد الفيتشرز.',
+    'c.ey':'ابني المركز الأول الجاي','c.t':'نطلق منتج العميل يحبه.','c.s':'متاح لأدوار قيادة منتج أولى — B2C وB2B ومنتجات منصات تحتاج عقل عميل-أولاً في الكرسي.',
+    'c.ph':'الهاتف','c.em':'البريد','c.li':'لينكدإن',
+    'foot':'© عبدالرحمن الحمود · مدير منتج أول','foot.full':'الملف الكامل','foot.short':'الملخص التنفيذي'
+  }
+};
+let lang='en';
+function setLang(l){lang=l;document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(el=>{const v=(I18N[l]||I18N.en)[el.dataset.i18n];if(v)el.textContent=v});document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.dataset.lang===l))}
+function updateScale(){const s=Math.min(window.innerWidth/1280,window.innerHeight/780,1.05);document.documentElement.style.setProperty('--dscale',Math.max(s,0.7).toFixed(4))}
+updateScale();window.addEventListener('resize',updateScale);
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.classList.contains('m'))animateCounter(e.target);io.unobserve(e.target)}})},{threshold:0.18});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+function animateCounter(card){const span=card.querySelector('.cnt');if(!span)return;const target=+span.dataset.target;const duration=1400;const start=performance.now();function step(now){const t=Math.min(1,(now-start)/duration);const eased=1-Math.pow(1-t,3);span.textContent=Math.round(eased*target);if(t<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+</script>
+</body>
+</html>
