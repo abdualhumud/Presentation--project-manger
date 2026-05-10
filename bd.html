@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Abdulrahman Alhumud · Business Developer · Commercial Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#06112a; --bg-mid:#091a3a; --card:rgba(9,24,52,0.85);
+  --border:rgba(255,255,255,0.07);
+  --navy:#0f2547; --navy-l:#1d3a6e;
+  --gold:#d4a948; --gold-d:#a88332; --gold-l:#f0c668;
+  --gold-tint:rgba(212,169,72,0.12);
+  --silver:#a4b4cc;
+  --text:#e6ecf5; --muted:#94a3bd; --faint:#4a5a78;
+  --dscale:1;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+html[dir="rtl"]{font-family:'Cairo',sans-serif}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{font-family:'Cairo',sans-serif}
+
+.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(160deg,#06112a 0%,#091a3a 50%,#040c20 100%)}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(212,169,72,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,169,72,0.025) 1px,transparent 1px);background-size:60px 60px}
+.orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:0.3;z-index:0;pointer-events:none}
+.orb-a{width:560px;height:560px;left:-180px;top:-160px;background:radial-gradient(var(--gold),transparent 70%)}
+.orb-b{width:480px;height:480px;right:-180px;bottom:-180px;background:radial-gradient(var(--navy-l),transparent 70%);opacity:0.45}
+
+#topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 36px;backdrop-filter:blur(14px);background:rgba(6,17,42,0.6);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:1.5px;font-size:11px;color:var(--gold-l);text-transform:uppercase}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+.lang-pill{display:flex;gap:2px;padding:4px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:100px}
+.lb{padding:5px 14px;border-radius:100px;border:0;background:transparent;color:var(--faint);font-family:inherit;font-weight:800;letter-spacing:2px;font-size:10px;cursor:pointer;transition:all .25s}
+.lb.on{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#1a1305}
+
+.wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:120px 56px 72px;zoom:var(--dscale,1)}
+
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-l);display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.eyebrow::before{content:'';width:32px;height:1px;background:var(--gold-l)}
+html[dir="rtl"] .eyebrow{flex-direction:row-reverse}
+html[dir="rtl"] .eyebrow::before{display:none}
+html[dir="rtl"] .eyebrow::after{content:'';width:32px;height:1px;background:var(--gold-l)}
+
+.hook{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,4.5vw,60px);font-weight:800;line-height:1.1;letter-spacing:-0.5px;background:linear-gradient(135deg,#fff 0%,var(--gold-l) 60%,var(--gold-d) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;max-width:920px}
+html[dir="rtl"] .hook{font-family:'Cairo',sans-serif}
+
+.hero-row{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:start;margin-bottom:80px}
+.hero-name{font-size:24px;font-weight:600;color:var(--gold-l);margin-bottom:6px;font-family:'Space Grotesk',sans-serif}
+html[dir="rtl"] .hero-name{font-family:'Cairo',sans-serif}
+.hero-role{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+.hero-pitch{font-size:15px;line-height:1.85;color:var(--silver);max-width:560px;margin-bottom:30px}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--gold-tint);border:1px solid rgba(212,169,72,0.3);color:var(--gold-l)}
+.badge.navy{background:rgba(29,58,110,0.2);border-color:rgba(29,58,110,0.4);color:var(--silver)}
+.badge.dark{background:rgba(255,255,255,0.04);border-color:var(--border);color:var(--silver)}
+
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:10px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:0;font-family:inherit;cursor:pointer;transition:all .3s}
+.cta-primary{background:linear-gradient(135deg,var(--gold-l),var(--gold-d));color:#1a1305;box-shadow:0 8px 24px rgba(212,169,72,0.3)}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(212,169,72,0.45)}
+.cta-ghost{background:transparent;color:var(--silver);border:1px solid var(--border)}
+.cta-ghost:hover{border-color:rgba(212,169,72,0.4);color:var(--text)}
+
+/* Hero side - revenue card */
+.rev-card{padding:26px 24px;background:var(--card);border:1px solid var(--border);border-radius:18px;backdrop-filter:blur(14px);position:relative;overflow:hidden}
+.rev-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-l))}
+.rev-hero{display:flex;align-items:flex-end;gap:14px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.rev-num{font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--gold-l),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+html[dir="rtl"] .rev-num{font-family:'Cairo',sans-serif}
+.rev-meta{padding-bottom:8px}
+.rev-l{font-size:10px;color:var(--faint);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.rev-v{font-size:13px;color:var(--gold-l);font-weight:700}
+.rev-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.05)}
+.rev-row:last-child{border-bottom:0}
+.rev-row-l{font-size:12px;color:var(--silver)}
+.rev-row-v{font-size:14px;color:var(--gold-l);font-weight:700;font-family:'Space Grotesk',sans-serif}
+html[dir="rtl"] .rev-row-v{font-family:'Cairo',sans-serif}
+
+.section{margin-bottom:80px}
+.sec-head{margin-bottom:32px}
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
+html[dir="rtl"] .sec-title{font-family:'Cairo',sans-serif}
+.sec-title .accent{color:var(--gold-l)}
+.sec-sub{font-size:13px;color:var(--muted);max-width:680px;line-height:1.7}
+
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.m{padding:24px 20px;background:var(--card);border:1px solid var(--border);border-radius:14px;backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:all .3s}
+.m:hover{transform:translateY(-4px);border-color:rgba(212,169,72,0.4)}
+.m::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac,var(--gold))}
+.m .mi{font-size:22px;margin-bottom:10px;display:block}
+.m .mv{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,3.4vw,42px);font-weight:800;line-height:1;color:var(--ac,var(--gold-l));margin-bottom:6px}
+html[dir="rtl"] .m .mv{font-family:'Cairo',sans-serif}
+.m .ml{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.m .ms{font-size:10px;color:var(--faint);margin-top:4px}
+
+.story{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sc{padding:28px 24px;background:var(--card);border:1px solid var(--border);border-radius:18px;backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:all .3s}
+.sc:hover{transform:translateY(-4px);border-color:rgba(212,169,72,0.4)}
+.sc-num{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--gold-l),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;display:block}
+.sc-t{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-0.2px}
+.sc-d{font-size:13px;line-height:1.7;color:var(--silver)}
+
+/* Sectors */
+.sectors{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sec{padding:22px 20px;background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:14px;transition:all .3s}
+.sec:hover{border-color:rgba(212,169,72,0.4);background:var(--gold-tint)}
+.sec-tag{display:inline-block;padding:3px 10px;background:rgba(212,169,72,0.12);border:1px solid rgba(212,169,72,0.3);border-radius:100px;font-size:9px;color:var(--gold-l);font-weight:700;letter-spacing:1.5px;margin-bottom:12px}
+.sec-t{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-0.2px}
+.sec-d{font-size:12px;line-height:1.6;color:var(--muted)}
+
+.contact{padding:48px 44px;background:linear-gradient(135deg,rgba(212,169,72,0.07) 0%,rgba(29,58,110,0.18) 100%);border:1px solid rgba(212,169,72,0.25);border-radius:22px;text-align:center;position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 22px,rgba(212,169,72,0.025) 22px,rgba(212,169,72,0.025) 23px);pointer-events:none}
+.ct-eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-l);margin-bottom:14px}
+.ct-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,3.5vw,42px);font-weight:700;margin-bottom:10px}
+html[dir="rtl"] .ct-title{font-family:'Cairo',sans-serif}
+.ct-sub{font-size:13px;color:var(--silver);margin-bottom:30px;max-width:520px;margin-left:auto;margin-right:auto}
+.ct-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:680px;margin:0 auto}
+.ct-card{padding:18px 14px;background:rgba(6,17,42,0.7);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;transition:all .3s}
+.ct-card:hover{transform:translateY(-3px)}
+.ct-card.phone{border-color:rgba(212,169,72,0.22)}
+.ct-card.phone:hover{border-color:rgba(212,169,72,0.55)}
+.ct-card.email{border-color:rgba(29,58,110,0.4)}
+.ct-card.email:hover{border-color:rgba(29,58,110,0.7)}
+.ct-card.li{border-color:rgba(164,180,204,0.25)}
+.ct-card.li:hover{border-color:rgba(164,180,204,0.55)}
+.ct-icon{font-size:22px}
+.ct-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint)}
+.ct-val{font-size:11px;font-weight:600;word-break:break-all;color:var(--text)}
+
+.foot{margin-top:60px;padding:32px 0 12px;border-top:1px solid var(--border);text-align:center;font-size:11px;color:var(--faint)}
+.foot a{color:var(--gold-l);text-decoration:none;margin:0 6px}
+
+.rv{opacity:0;transform:translateY(28px);transition:all .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}
+
+@media (max-width:960px){
+  .wrap{padding:96px 28px 48px}
+  .hero-row{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .story,.sectors{grid-template-columns:1fr}
+  .ct-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="bg-grid"></div>
+<div class="orb orb-a"></div>
+<div class="orb orb-b"></div>
+
+<div id="topbar">
+  <div class="brand"><div class="dot"></div><span data-i18n="brand">Business Developer · Commercial Edition</span></div>
+  <div class="lang-pill">
+    <button class="lb on" data-lang="en" onclick="setLang('en')">EN</button>
+    <button class="lb"    data-lang="ar" onclick="setLang('ar')">AR</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- HERO -->
+<section class="section">
+  <div class="eyebrow rv" data-i18n="ey">Business Developer · 4× Revenue Growth</div>
+  <h1 class="hook rv rv-d1" data-i18n="hook">I open doors and turn opportunities into tangible results.</h1>
+
+  <div class="hero-row">
+    <div>
+      <div class="hero-name rv rv-d2">Abdulrahman Alhumud</div>
+      <div class="hero-role rv rv-d2" data-i18n="role">Senior Business Developer · Commercial Strategist</div>
+      <p class="hero-pitch rv rv-d3" data-i18n="pitch">From handshake to signed contract. Delivered 4× revenue growth, negotiated 55+ legal contracts, and managed 40+ purchase orders end-to-end across B2B and B2G sectors. Where strategy meets the bottom line.</p>
+
+      <div class="badge-row rv rv-d3">
+        <span class="badge" data-i18n="b1">4× Revenue Growth</span>
+        <span class="badge navy" data-i18n="b2">B2B / B2G</span>
+        <span class="badge navy" data-i18n="b3">Vendor Governance</span>
+        <span class="badge dark" data-i18n="b4">Contract Negotiation</span>
+      </div>
+
+      <div class="cta-row rv rv-d4">
+        <a class="cta cta-primary" href="#contact" data-i18n="cta1">Open the Door →</a>
+        <a class="cta cta-ghost"   href="full.html" target="_blank" rel="noopener" data-i18n="cta2">View Full Portfolio</a>
+      </div>
+    </div>
+
+    <div class="rev-card rv rv-d2">
+      <div class="rev-hero">
+        <div class="rev-num">4×</div>
+        <div class="rev-meta">
+          <div class="rev-l" data-i18n="rev.l">Revenue Growth</div>
+          <div class="rev-v" data-i18n="rev.v">Total Organizational Impact</div>
+        </div>
+      </div>
+      <div class="rev-row"><span class="rev-row-l" data-i18n="rev.r1">Purchase Orders</span><span class="rev-row-v">40+</span></div>
+      <div class="rev-row"><span class="rev-row-l" data-i18n="rev.r2">Legal Contracts</span><span class="rev-row-v">55+</span></div>
+      <div class="rev-row"><span class="rev-row-l" data-i18n="rev.r3">Fleet Growth</span><span class="rev-row-v">500%</span></div>
+      <div class="rev-row"><span class="rev-row-l" data-i18n="rev.r4">Stakeholder Groups</span><span class="rev-row-v">11+</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="section">
+  <div class="sec-head rv">
+    <h2 class="sec-title"><span data-i18n="m.t1">The </span><span class="accent" data-i18n="m.t2">Commercial Numbers</span></h2>
+    <p class="sec-sub" data-i18n="m.s">Audited results from running enterprise-grade commercial operations across B2B and B2G portfolios.</p>
+  </div>
+
+  <div class="metrics">
+    <div class="m rv rv-d1" style="--ac:var(--gold-l)">
+      <span class="mi">📈</span>
+      <span class="mv"><span class="cnt" data-target="4">0</span>×</span>
+      <div class="ml" data-i18n="m1l">Revenue Growth</div>
+      <div class="ms" data-i18n="m1s">Organizational impact</div>
+    </div>
+    <div class="m rv rv-d2" style="--ac:var(--gold-l)">
+      <span class="mi">📋</span>
+      <span class="mv"><span class="cnt" data-target="40">0</span>+</span>
+      <div class="ml" data-i18n="m2l">Purchase Orders</div>
+      <div class="ms" data-i18n="m2s">End-to-end managed</div>
+    </div>
+    <div class="m rv rv-d3" style="--ac:var(--gold-l)">
+      <span class="mi">⚖️</span>
+      <span class="mv"><span class="cnt" data-target="55">0</span>+</span>
+      <div class="ml" data-i18n="m3l">Legal Contracts</div>
+      <div class="ms" data-i18n="m3s">Negotiated &amp; executed</div>
+    </div>
+    <div class="m rv rv-d4" style="--ac:var(--gold-l)">
+      <span class="mi">🚗</span>
+      <span class="mv"><span class="cnt" data-target="500">0</span>%</span>
+      <div class="ml" data-i18n="m4l">Fleet Growth</div>
+      <div class="ms" data-i18n="m4s">Under management</div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section">
+  <div class="sec-head rv">
+    <h2 class="sec-title"><span data-i18n="s.t1">From </span><span class="accent" data-i18n="s.t2">Pipeline to P&amp;L</span></h2>
+    <p class="sec-sub" data-i18n="s.s">How I turn opportunities into closed contracts and closed contracts into P&amp;L impact.</p>
+  </div>
+
+  <div class="story">
+    <div class="sc rv rv-d1">
+      <span class="sc-num">01</span>
+      <h3 class="sc-t" data-i18n="sc1t">Opportunity Mapping</h3>
+      <p class="sc-d" data-i18n="sc1d">Identify the right doors — strategic accounts, government entities, and tech partners. Map the decision-makers and build the path in.</p>
+    </div>
+    <div class="sc rv rv-d2">
+      <span class="sc-num">02</span>
+      <h3 class="sc-t" data-i18n="sc2t">Negotiation &amp; Close</h3>
+      <p class="sc-d" data-i18n="sc2d">55+ contracts negotiated and executed. Vendor governance, legal alignment, and procurement pipelines that scale.</p>
+    </div>
+    <div class="sc rv rv-d3">
+      <span class="sc-num">03</span>
+      <h3 class="sc-t" data-i18n="sc3t">Compounded Growth</h3>
+      <p class="sc-d" data-i18n="sc3d">4× revenue growth. 500% fleet expansion. 40+ POs flowing end-to-end. Real numbers, real impact, real P&amp;L.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="section">
+  <div class="sec-head rv">
+    <h2 class="sec-title"><span data-i18n="x.t1">Sectors </span><span class="accent" data-i18n="x.t2">I Open</span></h2>
+    <p class="sec-sub" data-i18n="x.s">From government entities to enterprise B2B — relationships compounded over years of disciplined commercial execution.</p>
+  </div>
+
+  <div class="sectors">
+    <div class="sec rv rv-d1">
+      <span class="sec-tag" data-i18n="x1tag">B2G</span>
+      <h3 class="sec-t" data-i18n="x1t">Government &amp; Authorities</h3>
+      <p class="sec-d" data-i18n="x1d">ZATCA, MEWA, Ministry of Energy, Transport Authority, Saudi Water Authority, Ministry of Investment.</p>
+    </div>
+    <div class="sec rv rv-d2">
+      <span class="sec-tag" data-i18n="x2tag">B2B</span>
+      <h3 class="sec-t" data-i18n="x2t">Enterprise &amp; Industry</h3>
+      <p class="sec-d" data-i18n="x2d">Petromin, SASCO, IMAM University, Princess Nourah University — long-term enterprise relationships.</p>
+    </div>
+    <div class="sec rv rv-d3">
+      <span class="sec-tag" data-i18n="x3tag">Tech</span>
+      <h3 class="sec-t" data-i18n="x3t">Strategic Tech Partners</h3>
+      <p class="sec-d" data-i18n="x3d">Google Cloud Partnership, external hosting partners, vendor governance frameworks aligned to compliance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="contact rv">
+    <div class="ct-eyebrow" data-i18n="c.ey">Open the Next Door</div>
+    <h2 class="ct-title" data-i18n="c.t">Ready to turn opportunities into closed deals.</h2>
+    <p class="ct-sub" data-i18n="c.s">Available for senior business development, commercial strategy, and partnership leadership engagements across B2B and B2G.</p>
+    <div class="ct-grid">
+      <a class="ct-card phone" href="tel:+966593935677">
+        <span class="ct-icon">📞</span>
+        <span class="ct-lbl" data-i18n="c.ph">Phone</span>
+        <span class="ct-val" style="color:var(--gold-l)">+966 59 393 5677</span>
+      </a>
+      <a class="ct-card email" href="mailto:A.alhumud0@gmail.com">
+        <span class="ct-icon">✉️</span>
+        <span class="ct-lbl" data-i18n="c.em">Email</span>
+        <span class="ct-val" style="color:var(--silver)">A.alhumud0@gmail.com</span>
+      </a>
+      <a class="ct-card li" href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener">
+        <span class="ct-icon">💼</span>
+        <span class="ct-lbl" data-i18n="c.li">LinkedIn</span>
+        <span class="ct-val" style="color:var(--silver)">www.linkedin.com/in/aalhumud</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span data-i18n="foot">© Abdulrahman Alhumud · Senior Business Developer</span>
+    · <a href="full.html" target="_blank" rel="noopener" data-i18n="foot.full">Full Portfolio</a>
+    · <a href="index.html" data-i18n="foot.short">Executive Summary</a>
+  </div>
+</section>
+
+</div>
+
+<script>
+const I18N = {
+  en: {
+    'brand':'Business Developer · Commercial Edition',
+    'ey':'Business Developer · 4× Revenue Growth',
+    'hook':'I open doors and turn opportunities into tangible results.',
+    'role':'Senior Business Developer · Commercial Strategist',
+    'pitch':'From handshake to signed contract. Delivered 4× revenue growth, negotiated 55+ legal contracts, and managed 40+ purchase orders end-to-end across B2B and B2G sectors. Where strategy meets the bottom line.',
+    'b1':'4× Revenue Growth','b2':'B2B / B2G','b3':'Vendor Governance','b4':'Contract Negotiation',
+    'cta1':'Open the Door →','cta2':'View Full Portfolio',
+    'rev.l':'Revenue Growth','rev.v':'Total Organizational Impact',
+    'rev.r1':'Purchase Orders','rev.r2':'Legal Contracts','rev.r3':'Fleet Growth','rev.r4':'Stakeholder Groups',
+    'm.t1':'The ','m.t2':'Commercial Numbers','m.s':'Audited results from running enterprise-grade commercial operations across B2B and B2G portfolios.',
+    'm1l':'Revenue Growth','m1s':'Organizational impact',
+    'm2l':'Purchase Orders','m2s':'End-to-end managed',
+    'm3l':'Legal Contracts','m3s':'Negotiated & executed',
+    'm4l':'Fleet Growth','m4s':'Under management',
+    's.t1':'From ','s.t2':'Pipeline to P&L','s.s':'How I turn opportunities into closed contracts and closed contracts into P&L impact.',
+    'sc1t':'Opportunity Mapping','sc1d':'Identify the right doors — strategic accounts, government entities, and tech partners. Map the decision-makers and build the path in.',
+    'sc2t':'Negotiation & Close','sc2d':'55+ contracts negotiated and executed. Vendor governance, legal alignment, and procurement pipelines that scale.',
+    'sc3t':'Compounded Growth','sc3d':'4× revenue growth. 500% fleet expansion. 40+ POs flowing end-to-end. Real numbers, real impact, real P&L.',
+    'x.t1':'Sectors ','x.t2':'I Open','x.s':'From government entities to enterprise B2B — relationships compounded over years of disciplined commercial execution.',
+    'x1tag':'B2G','x1t':'Government & Authorities','x1d':'ZATCA, MEWA, Ministry of Energy, Transport Authority, Saudi Water Authority, Ministry of Investment.',
+    'x2tag':'B2B','x2t':'Enterprise & Industry','x2d':'Petromin, SASCO, IMAM University, Princess Nourah University — long-term enterprise relationships.',
+    'x3tag':'Tech','x3t':'Strategic Tech Partners','x3d':'Google Cloud Partnership, external hosting partners, vendor governance frameworks aligned to compliance.',
+    'c.ey':'Open the Next Door','c.t':'Ready to turn opportunities into closed deals.','c.s':'Available for senior business development, commercial strategy, and partnership leadership engagements across B2B and B2G.',
+    'c.ph':'Phone','c.em':'Email','c.li':'LinkedIn',
+    'foot':'© Abdulrahman Alhumud · Senior Business Developer','foot.full':'Full Portfolio','foot.short':'Executive Summary'
+  },
+  ar: {
+    'brand':'تطوير الأعمال · إصدار تجاري',
+    'ey':'مطور أعمال · نمو الإيرادات 4 أضعاف',
+    'hook':'أفتح أبواب الفرص وأحول الصفقات لنتائج ملموسة.',
+    'role':'مطور أعمال أول · استراتيجي تجاري',
+    'pitch':'من المصافحة لين توقيع العقد. حققت نمو 4 أضعاف في الإيرادات، تفاوضت على 55+ عقد قانوني، وأدرت 40+ أمر شراء كاملة عبر قطاعات B2B وB2G. هنا الاستراتيجية تلتقي بالنتائج.',
+    'b1':'نمو 4 أضعاف','b2':'B2B / B2G','b3':'حوكمة موردين','b4':'تفاوض عقود',
+    'cta1':'افتح الباب ←','cta2':'شوف الملف الكامل',
+    'rev.l':'نمو الإيرادات','rev.v':'الأثر التنظيمي الكلي',
+    'rev.r1':'أوامر الشراء','rev.r2':'العقود القانونية','rev.r3':'نمو الأسطول','rev.r4':'مجموعات أصحاب المصلحة',
+    'm.t1':'الأرقام ','m.t2':'التجارية','m.s':'نتائج مدققة من إدارة عمليات تجارية بمستوى مؤسسي عبر محافظ B2B وB2G.',
+    'm1l':'نمو الإيرادات','m1s':'الأثر التنظيمي',
+    'm2l':'أوامر الشراء','m2s':'إدارة كاملة',
+    'm3l':'العقود القانونية','m3s':'تفاوض وتنفيذ',
+    'm4l':'نمو الأسطول','m4s':'تحت الإدارة',
+    's.t1':'من ','s.t2':'الفرص للنتائج','s.s':'كيف أحوّل الفرص لعقود مغلقة، والعقود لأرقام في قائمة الأرباح.',
+    'sc1t':'رسم خريطة الفرص','sc1d':'أحدد الأبواب الصح — حسابات استراتيجية، جهات حكومية، وشركاء تقنيين. أرسم خريطة صانعي القرار وأبني الطريق.',
+    'sc2t':'تفاوض وإغلاق','sc2d':'55+ عقد تم التفاوض عليه وتنفيذه. حوكمة موردين، توافق قانوني، وخطوط مشتريات تتوسع.',
+    'sc3t':'نمو متراكم','sc3d':'4 أضعاف في الإيرادات. 500% توسع أسطول. 40+ أمر شراء يمشي من البداية للنهاية. أرقام حقيقية وأثر حقيقي.',
+    'x.t1':'قطاعات ','x.t2':'أفتحها','x.s':'من جهات حكومية لمؤسسات B2B — علاقات تراكمت عبر سنوات من التنفيذ التجاري المنضبط.',
+    'x1tag':'B2G','x1t':'حكومي وسلطات','x1d':'هيئة الزكاة، وزارة البيئة، وزارة الطاقة، هيئة النقل، هيئة المياه السعودية، وزارة الاستثمار.',
+    'x2tag':'B2B','x2t':'مؤسسي وصناعي','x2d':'بترومين، ساسكو، جامعة الإمام، جامعة الأميرة نورة — علاقات مؤسسية طويلة الأمد.',
+    'x3tag':'تقني','x3t':'شركاء تقنيون استراتيجيون','x3d':'شراكة Google Cloud، شركاء استضافة خارجيون، أطر حوكمة موردين متوافقة مع الامتثال.',
+    'c.ey':'افتح الباب الجاي','c.t':'جاهز نحول الفرص لصفقات مغلقة.','c.s':'متاح لتطوير أعمال أول، استراتيجية تجارية، وقيادة شراكات عبر B2B وB2G.',
+    'c.ph':'الهاتف','c.em':'البريد','c.li':'لينكدإن',
+    'foot':'© عبدالرحمن الحمود · مطور أعمال أول','foot.full':'الملف الكامل','foot.short':'الملخص التنفيذي'
+  }
+};
+let lang='en';
+function setLang(l){lang=l;document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(el=>{const v=(I18N[l]||I18N.en)[el.dataset.i18n];if(v)el.textContent=v});document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.dataset.lang===l))}
+function updateScale(){const s=Math.min(window.innerWidth/1280,window.innerHeight/780,1.05);document.documentElement.style.setProperty('--dscale',Math.max(s,0.7).toFixed(4))}
+updateScale();window.addEventListener('resize',updateScale);
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.classList.contains('m'))animateCounter(e.target);io.unobserve(e.target)}})},{threshold:0.18});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+function animateCounter(card){const span=card.querySelector('.cnt');if(!span)return;const target=+span.dataset.target;const duration=1400;const start=performance.now();function step(now){const t=Math.min(1,(now-start)/duration);const eased=1-Math.pow(1-t,3);span.textContent=Math.round(eased*target);if(t<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+</script>
+</body>
+</html>
