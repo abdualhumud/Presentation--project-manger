@@ -1,433 +1,586 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Abdulrahman Alhumud · Project Manager · PMP®</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Abdulrahman Alhumud — Senior Project Manager · PMO Lead</title>
+<meta name="description" content="PMP-certified Senior Project Manager. Governance-first execution at scale. Turnarounds, multi-million SAR portfolios, 90% on-time delivery." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --bg:#0a141a; --bg-mid:#0d1d24; --card:rgba(10,28,32,0.85);
-  --border:rgba(255,255,255,0.07);
-  --accent:#1aa05a; --accent-d:#0d6e3a; --accent-l:#3ed580;
-  --accent-tint:rgba(26,160,90,0.12);
-  --gold:#d4b14a; --silver:#9eb0bf;
-  --text:#e3ecf2; --muted:#8a9da8; --faint:#465562;
-  --dscale:1;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;min-height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-html[dir="rtl"]{font-family:'Cairo',sans-serif}
-html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{font-family:'Cairo',sans-serif}
+  :root{
+    --bg-0:#04090a; --bg-1:#070f12; --bg-2:#0a181c;
+    --line:rgba(255,255,255,0.06); --line-2:rgba(255,255,255,0.10);
+    --ink:#eaf3ec; --ink-d:#a9b8ad; --ink-m:#6f7d72;
+    --green:#1aa05a; --green-l:#3ed580; --green-d:#0d6e3a;
+    --green-t:rgba(26,160,90,0.14); --gold:#c9a64a;
+    --r-lg:22px; --r-md:14px; --r-sm:10px;
+    --font-en:'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-ar:'Tajawal', system-ui, sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+  html,body{background:var(--bg-0);color:var(--ink);font-family:var(--font-en);overflow-x:hidden}
+  html[dir="rtl"]{font-family:var(--font-ar)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(1100px 600px at 12% -10%, rgba(26,160,90,0.18), transparent 60%),radial-gradient(900px 700px at 100% 20%, rgba(62,213,128,0.07), transparent 65%),radial-gradient(700px 500px at 50% 110%, rgba(13,110,58,0.20), transparent 60%)}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.45;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.022 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");mix-blend-mode:overlay}
+  .wrap{position:relative;z-index:5;max-width:1320px;margin:0 auto;padding:0 clamp(20px,3vw,48px)}
 
-/* Backdrop */
-.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(160deg,#0a141a 0%,#0d1d24 50%,#08121a 100%)}
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(26,160,90,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(26,160,90,0.025) 1px,transparent 1px);background-size:60px 60px}
-.orb{position:fixed;border-radius:50%;filter:blur(110px);opacity:0.32;z-index:0;pointer-events:none}
-.orb-a{width:560px;height:560px;left:-180px;top:-160px;background:radial-gradient(var(--accent),transparent 70%)}
-.orb-b{width:480px;height:480px;right:-180px;bottom:-180px;background:radial-gradient(var(--gold),transparent 70%);opacity:0.18}
+  /* TOP BAR */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:80;backdrop-filter:saturate(160%) blur(14px);background:linear-gradient(180deg, rgba(4,9,10,0.78), rgba(4,9,10,0.30));border-bottom:1px solid var(--line)}
+  .topbar-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+  .brand-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg, var(--green), var(--green-d));display:grid;place-items:center;font-weight:800;color:#fff;font-size:13px;box-shadow:0 8px 20px -8px var(--green)}
+  .brand-name{font-size:13.5px;color:var(--ink)}
+  .brand-name b{color:var(--green-l)}
+  .nav{display:flex;align-items:center;gap:6px}
+  .nav a{padding:8px 14px;border-radius:999px;font-size:13px;color:var(--ink-d);transition:.25s ease}
+  .nav a:hover{color:var(--ink);background:rgba(255,255,255,0.04)}
+  .lang-btn{padding:9px 16px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,0.025);font-size:12.5px;font-weight:600;letter-spacing:.04em;transition:.25s}
+  .lang-btn:hover{background:rgba(26,160,90,0.10);border-color:var(--green-d)}
 
-/* Lang + Nav */
-#topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 36px;backdrop-filter:blur(14px);background:rgba(10,20,26,0.55);border-bottom:1px solid var(--border)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:1.5px;font-size:11px;color:var(--accent-l);text-transform:uppercase}
-.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-.lang-pill{display:flex;gap:2px;padding:4px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:100px}
-.lb{padding:5px 14px;border-radius:100px;border:0;background:transparent;color:var(--faint);font-family:inherit;font-weight:800;letter-spacing:2px;font-size:10px;cursor:pointer;transition:all .25s}
-.lb.on{background:linear-gradient(135deg,var(--accent),var(--accent-d));color:#031d10}
+  /* HERO */
+  .hero{position:relative;padding:140px 0 80px;min-height:100vh;display:flex;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,5vw,80px);align-items:center}
+  @media(max-width:980px){.hero-grid{grid-template-columns:1fr;text-align:center}}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--green-l);font-weight:600;padding:6px 14px;border-radius:999px;background:var(--green-t);border:1px solid rgba(26,160,90,0.25)}
+  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green-l);box-shadow:0 0 12px var(--green-l)}
+  html[dir="rtl"] .eyebrow{letter-spacing:0}
+  .hook{margin-top:22px;font-weight:800;line-height:1.05;letter-spacing:-0.02em;font-size:clamp(40px,5vw,68px);background:linear-gradient(180deg,#fff 0%, #cfe0d5 75%, #7fa190 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hook em{font-style:normal;color:var(--green-l);-webkit-text-fill-color:var(--green-l)}
+  html[dir="rtl"] .hook{font-size:clamp(32px,4vw,56px);line-height:1.18;letter-spacing:0}
+  .lede{margin-top:24px;max-width:560px;font-size:17px;line-height:1.65;color:var(--ink-d)}
+  html[dir="rtl"] .lede{font-size:18px}
+  @media(max-width:980px){.lede{margin-inline:auto}}
+  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:980px){.cta-row{justify-content:center}}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:14px;font-weight:600;font-size:14px;transition:transform .25s, box-shadow .25s, background .25s}
+  .btn-primary{background:linear-gradient(135deg, var(--green), var(--green-d));color:#fff;box-shadow:0 14px 40px -14px var(--green)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 50px -16px var(--green)}
+  .btn-ghost{border:1px solid var(--line-2);background:rgba(255,255,255,0.02);color:var(--ink)}
+  .btn-ghost:hover{background:rgba(255,255,255,0.06);border-color:var(--green-d)}
+  .btn .arr{transition:transform .25s}
+  .btn:hover .arr{transform:translateX(4px)}
+  html[dir="rtl"] .btn:hover .arr{transform:translateX(-4px)}
+  .hero-stats{margin-top:48px;display:flex;gap:32px;flex-wrap:wrap}
+  @media(max-width:980px){.hero-stats{justify-content:center}}
+  .hs{display:flex;flex-direction:column;gap:4px}
+  .hs-num{font-weight:800;font-size:28px;color:var(--green-l);letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
+  .hs-lbl{font-size:11px;color:var(--ink-m);letter-spacing:.18em;text-transform:uppercase}
+  html[dir="rtl"] .hs-lbl{letter-spacing:0}
 
-/* Container */
-.wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:120px 56px 72px;zoom:var(--dscale,1)}
+  /* PROFILE */
+  .profile-stage{position:relative;width:100%;max-width:480px;margin:0 auto;aspect-ratio:1/1}
+  .profile-frame{position:absolute;inset:8%;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#0e1a14,#04090a);border:1px solid rgba(255,255,255,0.08);box-shadow:0 40px 100px -30px rgba(26,160,90,0.45), inset 0 0 60px rgba(0,0,0,0.4)}
+  .profile-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.04) saturate(1.05)}
+  .profile-frame .ph{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%, rgba(62,213,128,0.18), transparent 60%);font-size:120px;font-weight:800;color:rgba(255,255,255,0.12);letter-spacing:-0.04em}
+  .ring{position:absolute;inset:0;border-radius:50%;pointer-events:none}
+  .ring-1{background:conic-gradient(from 0deg, transparent 70%, var(--green-l) 85%, transparent 100%);animation:spin 14s linear infinite;-webkit-mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));opacity:.9}
+  .ring-2{border:1px dashed rgba(255,255,255,0.10);inset:-4%;animation:spin 60s linear infinite reverse}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .badge-fab{position:absolute;inset:auto auto -2% -2%;width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg, var(--gold), #8b6e1f);color:#1a1a1a;font-weight:800;display:grid;place-items:center;box-shadow:0 18px 40px -10px rgba(201,166,74,0.5);border:3px solid var(--bg-0);text-align:center}
+  .badge-fab small{display:block;font-size:9px;letter-spacing:.18em;font-weight:700}
+  .badge-fab b{font-size:14px;display:block;margin-top:2px}
+  html[dir="rtl"] .badge-fab{inset:auto -2% -2% auto}
+  .float-chip{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:rgba(10,24,28,0.85);border:1px solid var(--line-2);backdrop-filter:blur(12px);font-size:12px;box-shadow:0 14px 30px -10px rgba(0,0,0,0.6)}
+  .float-chip .pulse{width:8px;height:8px;border-radius:50%;background:var(--green-l);box-shadow:0 0 12px var(--green-l)}
+  .fc-1{top:8%;left:-8%;animation:floaty 5s ease-in-out infinite}
+  .fc-2{bottom:18%;right:-12%;animation:floaty 6s ease-in-out infinite reverse}
+  @keyframes floaty{50%{transform:translateY(-8px)}}
+  .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-m);display:flex;flex-direction:column;align-items:center;gap:10px}
+  .scroll-hint .line{width:1px;height:36px;background:linear-gradient(180deg,var(--green-l),transparent);animation:slide 2s ease-in-out infinite}
+  @keyframes slide{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
 
-/* Hero */
-.eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent-l);display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.eyebrow::before{content:'';width:32px;height:1px;background:var(--accent-l)}
-html[dir="rtl"] .eyebrow{flex-direction:row-reverse}
-html[dir="rtl"] .eyebrow::before{display:none}
-html[dir="rtl"] .eyebrow::after{content:'';width:32px;height:1px;background:var(--accent-l)}
+  /* SECTIONS */
+  section{position:relative;z-index:5}
+  .sec{padding:clamp(80px,11vh,140px) 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;flex-direction:column;gap:18px;max-width:760px;margin-bottom:56px}
+  .sec-head.center{margin-inline:auto;text-align:center;align-items:center}
+  .sec-h2{font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-0.02em;background:linear-gradient(180deg,#fff,#a8c1b3);-webkit-background-clip:text;background-clip:text;color:transparent}
+  html[dir="rtl"] .sec-h2{line-height:1.2;letter-spacing:0}
+  .sec-sub{color:var(--ink-d);font-size:16px;line-height:1.6;max-width:600px}
 
-.hook{font-family:'Space Grotesk',sans-serif;font-size:clamp(34px,4.5vw,60px);font-weight:800;line-height:1.1;letter-spacing:-0.5px;background:linear-gradient(135deg,#fff 0%,var(--accent-l) 60%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;max-width:920px}
-html[dir="rtl"] .hook{font-family:'Cairo',sans-serif;font-weight:800}
+  /* BENTO */
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(170px,auto);gap:18px}
+  @media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}}
+  .b-card{position:relative;padding:26px;border-radius:var(--r-lg);background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, background .35s}
+  .b-card:hover{transform:translateY(-4px);border-color:rgba(26,160,90,0.35)}
+  .b-card::before{content:"";position:absolute;inset:0;opacity:0;transition:.35s;background:radial-gradient(400px 200px at var(--mx,50%) var(--my,50%), rgba(26,160,90,0.10), transparent 60%);pointer-events:none}
+  .b-card:hover::before{opacity:1}
+  .b-card .b-num{font-weight:800;font-size:clamp(36px,4vw,56px);letter-spacing:-0.03em;color:#fff;font-variant-numeric:tabular-nums;line-height:1}
+  .b-card .b-lbl{margin-top:14px;color:var(--ink-d);font-size:13.5px;line-height:1.5}
+  .b-card .b-tag{position:absolute;top:18px;right:18px;font-size:10px;color:var(--ink-m);letter-spacing:.18em;text-transform:uppercase}
+  html[dir="rtl"] .b-card .b-tag{right:auto;left:18px;letter-spacing:0}
+  .b-card.x2{grid-column:span 2}
+  .b-card.y2{grid-row:span 2}
+  .b-card.feature{background:linear-gradient(135deg, rgba(26,160,90,0.12), rgba(13,110,58,0.04));border-color:rgba(26,160,90,0.30)}
+  .b-card.feature .b-num{background:linear-gradient(135deg,#fff,var(--green-l));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .b-card.dark{background:linear-gradient(180deg, #0a181c, #060e11)}
+  .b-quote{font-family:Georgia, serif;font-style:italic;font-size:20px;line-height:1.4;color:var(--ink)}
+  .b-quote::before{content:"\201C";font-size:60px;color:var(--green-d);line-height:0;display:block;margin-bottom:18px}
 
-.hero-row{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:start;margin-bottom:80px}
-.hero-name{font-size:24px;font-weight:600;color:var(--gold);margin-bottom:6px;font-family:'Space Grotesk',sans-serif}
-html[dir="rtl"] .hero-name{font-family:'Cairo',sans-serif}
-.hero-role{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
-.hero-pitch{font-size:15px;line-height:1.85;color:var(--silver);max-width:560px;margin-bottom:30px}
-.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
-.badge{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--accent-tint);border:1px solid rgba(26,160,90,0.3);color:var(--accent-l)}
-.badge.gold{background:rgba(212,177,74,0.1);border-color:rgba(212,177,74,0.3);color:var(--gold)}
-.badge.dark{background:rgba(255,255,255,0.04);border-color:var(--border);color:var(--silver)}
+  /* VIBE */
+  .vibe-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+  @media(max-width:1000px){.vibe-wrap{grid-template-columns:1fr}}
+  .term{border-radius:18px;overflow:hidden;border:1px solid var(--line-2);background:#070d10;box-shadow:0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(26,160,90,0.06) inset;font-family:var(--font-mono);font-size:13px}
+  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0c1418;border-bottom:1px solid var(--line)}
+  .term-bar .dot{width:11px;height:11px;border-radius:50%}
+  .term-bar .red{background:#ff5f56}.term-bar .ylw{background:#febc2e}.term-bar .grn{background:#27c93f}
+  .term-title{margin-inline-start:14px;color:var(--ink-m);font-size:11px;letter-spacing:.08em}
+  .term-body{padding:22px 22px 26px;line-height:1.85;color:#c7d4cd;min-height:380px}
+  .term-body p{white-space:pre-wrap}
+  .prompt{color:var(--green-l);user-select:none;margin-inline-end:8px;font-weight:700}
+  .ok{color:#4dd58f}.warn{color:#febc2e}.cmt{color:#647568;font-style:italic}.var{color:#7cc7ff}.str{color:#e6c989}
+  .cursor::after{content:"\2588";color:var(--green-l);animation:blink 1s steps(2) infinite;margin-inline-start:2px}
+  @keyframes blink{50%{opacity:0}}
+  .vibe-cards{display:flex;flex-direction:column;gap:14px}
+  .vc{padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;transition:.3s}
+  .vc:hover{border-color:rgba(26,160,90,0.35);transform:translateX(4px)}
+  html[dir="rtl"] .vc:hover{transform:translateX(-4px)}
+  .vc-ic{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg, var(--green-t), rgba(13,110,58,0.10));border:1px solid rgba(26,160,90,0.25);display:grid;place-items:center;font-size:20px}
+  .vc h4{font-size:15px;font-weight:700;margin-bottom:6px;color:#fff}
+  .vc p{font-size:13px;color:var(--ink-d);line-height:1.55}
 
-.cta-row{display:flex;gap:12px;flex-wrap:wrap}
-.cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:10px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:0;font-family:inherit;cursor:pointer;transition:all .3s}
-.cta-primary{background:linear-gradient(135deg,var(--accent),var(--accent-d));color:#031d10;box-shadow:0 8px 24px rgba(26,160,90,0.3)}
-.cta-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(26,160,90,0.45)}
-.cta-ghost{background:transparent;color:var(--silver);border:1px solid var(--border)}
-.cta-ghost:hover{border-color:rgba(26,160,90,0.4);color:var(--text)}
+  /* MARQUEE */
+  .marquee{position:relative;overflow:hidden;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg, transparent, rgba(255,255,255,0.015), transparent);-webkit-mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)}
+  .marquee-track{display:flex;gap:54px;width:max-content;animation:marq 38s linear infinite}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  html[dir="rtl"] .marquee-track{animation-direction:reverse}
+  .logo-chip{display:flex;align-items:center;gap:12px;padding:14px 26px;border-radius:14px;background:rgba(255,255,255,0.025);border:1px solid var(--line);font-weight:600;color:var(--ink);white-space:nowrap;font-size:15px}
+  .logo-chip .lc-mark{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
+  .lc-petromin{background:linear-gradient(135deg,#e63946,#a4151c)}
+  .lc-sasco{background:linear-gradient(135deg,#0a7a3c,#0d6e3a)}
+  .lc-swa{background:linear-gradient(135deg,#0ea5e9,#0369a1)}
+  .lc-mewa{background:linear-gradient(135deg,#16a34a,#166534)}
+  .lc-energy{background:linear-gradient(135deg,#f59e0b,#b45309)}
+  .lc-zatca{background:linear-gradient(135deg,#3b82f6,#1e40af)}
+  .lc-rased{background:linear-gradient(135deg,#10b981,#047857)}
+  .lc-mojaz{background:linear-gradient(135deg,#8b5cf6,#5b21b6)}
 
-/* Hero side panel - governance pillars */
-.pillars{display:flex;flex-direction:column;gap:12px}
-.pillar{padding:18px 18px;background:var(--card);border:1px solid var(--border);border-radius:14px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
-.pillar::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
-html[dir="rtl"] .pillar::before{left:auto;right:0}
-.pillar-i{font-size:18px;margin-bottom:8px;display:block}
-.pillar-t{font-size:12px;font-weight:700;color:var(--text);margin-bottom:4px}
-.pillar-d{font-size:11px;color:var(--muted);line-height:1.55}
+  /* STORY */
+  .story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
+  @media(max-width:900px){.story-grid{grid-template-columns:1fr}}
+  .phase{position:relative;padding:30px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);overflow:hidden}
+  .phase-num{font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--green-l);font-weight:700}
+  .phase h4{font-size:22px;font-weight:700;margin-top:14px;color:#fff;letter-spacing:-0.01em}
+  .phase p{margin-top:14px;color:var(--ink-d);font-size:14px;line-height:1.6}
+  .phase-bar{margin-top:22px;height:4px;border-radius:4px;background:rgba(255,255,255,0.06);overflow:hidden}
+  .phase-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--green-l));transform-origin:left;transform:scaleX(0);transition:transform 1.4s ease}
+  html[dir="rtl"] .phase-bar i{transform-origin:right}
+  .in .phase-bar i{transform:scaleX(var(--p,0.5))}
 
-/* Section heads */
-.section{margin-bottom:80px}
-.sec-head{margin-bottom:32px}
-.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(26px,3vw,38px);font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
-html[dir="rtl"] .sec-title{font-family:'Cairo',sans-serif}
-.sec-title .accent{color:var(--accent-l)}
-.sec-sub{font-size:13px;color:var(--muted);max-width:680px;line-height:1.7}
+  /* BADGES */
+  .badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:900px){.badges-grid{grid-template-columns:repeat(2,1fr)}}
+  .bd{position:relative;padding:24px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);transition:.3s}
+  .bd:hover{transform:translateY(-3px);border-color:rgba(26,160,90,0.35)}
+  .bd-ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:rgba(26,160,90,0.10);border:1px solid rgba(26,160,90,0.25);margin-bottom:14px}
+  .bd h4{font-size:14px;font-weight:700;color:#fff}
+  .bd p{margin-top:6px;font-size:12px;color:var(--ink-m);line-height:1.5}
 
-/* Achievement counters */
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.m{padding:24px 20px;background:var(--card);border:1px solid var(--border);border-radius:14px;backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
-.m:hover{transform:translateY(-4px);border-color:rgba(26,160,90,0.35)}
-.m::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac,var(--accent))}
-.m .mi{font-size:22px;margin-bottom:10px;display:block}
-.m .mv{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,3.4vw,42px);font-weight:800;line-height:1;color:var(--ac,var(--accent-l));margin-bottom:6px}
-html[dir="rtl"] .m .mv{font-family:'Cairo',sans-serif}
-.m .ml{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.m .ms{font-size:10px;color:var(--faint);margin-top:4px}
+  /* CONTACT */
+  .contact-wrap{margin-top:48px;padding:clamp(36px,6vw,72px);border-radius:26px;background:linear-gradient(135deg, rgba(26,160,90,0.10), rgba(255,255,255,0.02));border:1px solid rgba(26,160,90,0.25);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+  @media(max-width:900px){.contact-wrap{grid-template-columns:1fr}}
+  .contact-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 80% 50%, rgba(62,213,128,0.12), transparent 60%);pointer-events:none}
+  .contact-h{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.02em;line-height:1.1}
+  html[dir="rtl"] .contact-h{line-height:1.25;letter-spacing:0}
+  .contact-p{margin-top:14px;color:var(--ink-d);font-size:15px;line-height:1.6;max-width:480px}
+  .contact-list{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2}
+  .contact-list a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;background:rgba(0,0,0,0.25);border:1px solid var(--line-2);transition:.3s}
+  .contact-list a:hover{border-color:var(--green-l);background:rgba(26,160,90,0.10);transform:translateX(4px)}
+  html[dir="rtl"] .contact-list a:hover{transform:translateX(-4px)}
+  .contact-list .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(26,160,90,0.15);border:1px solid rgba(26,160,90,0.25);font-size:16px}
+  .contact-list .meta{display:flex;flex-direction:column}
+  .contact-list .meta small{font-size:11px;color:var(--ink-m);letter-spacing:.16em;text-transform:uppercase}
+  html[dir="rtl"] .contact-list .meta small{letter-spacing:0}
+  .contact-list .meta b{font-size:15px;font-weight:600;color:#fff;margin-top:2px;font-family:var(--font-mono)}
+  html[dir="rtl"] .contact-list .meta b{font-family:var(--font-en)}
 
-/* Story cards */
-.story{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.sc{padding:28px 24px;background:var(--card);border:1px solid var(--border);border-radius:18px;backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:all .3s}
-.sc:hover{transform:translateY(-4px);border-color:rgba(26,160,90,0.4)}
-.sc-num{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--accent-l),var(--accent-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;display:block}
-.sc-t{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-0.2px}
-.sc-d{font-size:13px;line-height:1.7;color:var(--silver)}
+  footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-m);font-size:12px;letter-spacing:.08em}
 
-/* Stakeholders strip */
-.stk{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.sk{padding:14px 14px;background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:10px;transition:all .3s}
-.sk:hover{border-color:rgba(26,160,90,0.35);background:var(--accent-tint)}
-.sk-i{width:32px;height:32px;border-radius:8px;background:var(--accent-tint);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.sk-l{font-size:11px;color:var(--silver);font-weight:600;line-height:1.3}
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.06s}.rv.d2{transition-delay:.14s}.rv.d3{transition-delay:.22s}.rv.d4{transition-delay:.30s}.rv.d5{transition-delay:.38s}.rv.d6{transition-delay:.46s}
 
-/* Contact */
-.contact{padding:48px 44px;background:linear-gradient(135deg,rgba(26,160,90,0.07) 0%,rgba(212,177,74,0.04) 100%);border:1px solid rgba(26,160,90,0.22);border-radius:22px;text-align:center;position:relative;overflow:hidden}
-.contact::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 22px,rgba(26,160,90,0.025) 22px,rgba(26,160,90,0.025) 23px);pointer-events:none}
-.ct-eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent-l);margin-bottom:14px}
-.ct-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,3.5vw,42px);font-weight:700;margin-bottom:10px}
-html[dir="rtl"] .ct-title{font-family:'Cairo',sans-serif}
-.ct-sub{font-size:13px;color:var(--silver);margin-bottom:30px;max-width:520px;margin-left:auto;margin-right:auto}
-.ct-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:680px;margin:0 auto}
-.ct-card{padding:18px 14px;background:rgba(8,18,22,0.7);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;transition:all .3s}
-.ct-card:hover{transform:translateY(-3px)}
-.ct-card.phone{border-color:rgba(26,160,90,0.22)}
-.ct-card.phone:hover{border-color:rgba(26,160,90,0.5)}
-.ct-card.email{border-color:rgba(212,177,74,0.22)}
-.ct-card.email:hover{border-color:rgba(212,177,74,0.5)}
-.ct-card.li{border-color:rgba(158,176,191,0.22)}
-.ct-card.li:hover{border-color:rgba(158,176,191,0.5)}
-.ct-icon{font-size:22px}
-.ct-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint)}
-.ct-val{font-size:11px;font-weight:600;word-break:break-all;color:var(--text)}
-
-/* Footer */
-.foot{margin-top:60px;padding:32px 0 12px;border-top:1px solid var(--border);text-align:center;font-size:11px;color:var(--faint)}
-.foot a{color:var(--accent-l);text-decoration:none;margin:0 6px}
-
-/* Reveal animations */
-.rv{opacity:0;transform:translateY(28px);transition:all .8s cubic-bezier(.2,.7,.2,1)}
-.rv.in{opacity:1;transform:translateY(0)}
-.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}
-
-@media (max-width:960px){
-  .wrap{padding:96px 28px 48px}
-  .hero-row{grid-template-columns:1fr}
-  .metrics{grid-template-columns:repeat(2,1fr)}
-  .story{grid-template-columns:1fr}
-  .stk{grid-template-columns:repeat(2,1fr)}
-  .ct-grid{grid-template-columns:1fr}
-}
+  @media(max-width:720px){.nav{display:none}.hero{padding-top:120px}}
 </style>
 </head>
 <body>
 
-<div class="bg-layer"></div>
-<div class="bg-grid"></div>
-<div class="orb orb-a"></div>
-<div class="orb orb-b"></div>
-
-<div id="topbar">
-  <div class="brand"><div class="dot"></div><span data-i18n="brand">PM Persona · Governance Edition</span></div>
-  <div class="lang-pill">
-    <button class="lb on" data-lang="en" onclick="setLang('en')">EN</button>
-    <button class="lb"    data-lang="ar" onclick="setLang('ar')">AR</button>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a href="#" class="brand"><span class="brand-mark">AA</span><span class="brand-name">Abdulrahman <b>Alhumud</b></span></a>
+    <nav class="nav">
+      <a href="#impact" data-i18n="n1">Impact</a>
+      <a href="#vibe" data-i18n="n2">Vibe Coding</a>
+      <a href="#network" data-i18n="n3">Network</a>
+      <a href="#story" data-i18n="n4">Case Study</a>
+      <a href="#mastery" data-i18n="n5">Mastery</a>
+    </nav>
+    <button class="lang-btn" id="langBtn">العربية</button>
   </div>
-</div>
+</header>
 
-<div class="wrap">
-
-<!-- ─────────── HERO ─────────── -->
-<section class="section">
-  <div class="eyebrow rv" data-i18n="ey">Senior Project Manager · PMP® Certified</div>
-  <h1 class="hook rv rv-d1" data-i18n="hook">I run projects with precision — from governance to execution.</h1>
-
-  <div class="hero-row">
+<section class="hero">
+  <div class="wrap hero-grid">
     <div>
-      <div class="hero-name rv rv-d2">Abdulrahman Alhumud</div>
-      <div class="hero-role rv rv-d2" data-i18n="role">Senior Project Manager · PMO Leader</div>
-      <p class="hero-pitch rv rv-d3" data-i18n="pitch">Turning chaos into clear plans, and numbers into decisions. Six-figure portfolios, 20+ team members, and 11+ stakeholder groups — all aligned through disciplined PMO governance.</p>
-
-      <div class="badge-row rv rv-d3">
-        <span class="badge" data-i18n="b1">PMP® Certified</span>
-        <span class="badge gold" data-i18n="b2">PMO Governance</span>
-        <span class="badge dark" data-i18n="b3">Risk &amp; Quality</span>
-        <span class="badge dark" data-i18n="b4">Stakeholder Alignment</span>
+      <span class="eyebrow rv" data-i18n="eyebrow">Senior Project Manager · PMO Lead</span>
+      <h1 class="hook rv d1" data-i18n="hook">I run projects with <em>millimeter precision</em> — from governance to execution.</h1>
+      <p class="lede rv d2" data-i18n="lede">PMP-certified executor. Built and led a 40+ member technical PMO, turned around stalled portfolios, and delivered 90% on-time across multi-million SAR engagements with sovereign-grade governance.</p>
+      <div class="cta-row rv d3">
+        <a class="btn btn-primary" href="full.html" target="_blank" rel="noopener" data-i18n="cta1">View Full Deck <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#contact" data-i18n="cta2">Get in Touch <span class="arr">→</span></a>
       </div>
-
-      <div class="cta-row rv rv-d4">
-        <a class="cta cta-primary" href="#contact" data-i18n="cta1">Let's Talk →</a>
-        <a class="cta cta-ghost"   href="full.html" target="_blank" rel="noopener" data-i18n="cta2">View Full Portfolio</a>
+      <div class="hero-stats rv d4">
+        <div class="hs"><div class="hs-num"><span class="cnt" data-target="90">0</span>%</div><div class="hs-lbl" data-i18n="hs1">On-Time Delivery</div></div>
+        <div class="hs"><div class="hs-num"><span class="cnt" data-target="40">0</span>+</div><div class="hs-lbl" data-i18n="hs2">Purchase Orders</div></div>
+        <div class="hs"><div class="hs-num"><span class="cnt" data-target="55">0</span>+</div><div class="hs-lbl" data-i18n="hs3">Legal Contracts</div></div>
       </div>
     </div>
+    <div class="rv d2">
+      <div class="profile-stage">
+        <div class="ring ring-2"></div>
+        <div class="profile-frame">
+          <img src="profile.jpg" alt="Abdulrahman Alhumud" onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='grid'">
+          <div class="ph" style="display:none">AA</div>
+        </div>
+        <div class="ring ring-1"></div>
+        <div class="badge-fab"><div><small>PMP®</small><b>Certified</b></div></div>
+        <div class="float-chip fc-1"><span class="pulse"></span><span data-i18n="chip1">Live Portfolio · 2025</span></div>
+        <div class="float-chip fc-2"><span class="pulse"></span><span data-i18n="chip2">Governance · Zero Fail</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span data-i18n="scroll">Scroll</span><span class="line"></span></div>
+</section>
 
-    <div class="pillars">
-      <div class="pillar rv rv-d2">
-        <span class="pillar-i">📋</span>
-        <div class="pillar-t" data-i18n="p1t">PMBOK Discipline</div>
-        <div class="pillar-d" data-i18n="p1d">Initiation → closure with clear ownership, decision logs, and risk frameworks.</div>
+<section class="sec" id="impact">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="s1.ey">Impact · 2022–2025</span>
+      <h2 class="sec-h2" data-i18n="s1.h">Governance that <em style="color:var(--green-l);font-style:normal">compounds.</em></h2>
+      <p class="sec-sub" data-i18n="s1.s">Every number below is a downstream effect of disciplined PMO architecture — clear ownership, hard reporting cadence, and zero-drama escalation.</p>
+    </div>
+    <div class="bento">
+      <div class="b-card feature x2 y2 rv">
+        <span class="b-tag" data-i18n="b1.t">Flagship Metric</span>
+        <div class="b-num"><span class="cnt" data-target="90">0</span>%</div>
+        <div class="b-lbl" style="font-size:18px;color:#fff;margin-top:18px" data-i18n="b1.h">On-Time Delivery</div>
+        <p style="color:var(--ink-d);font-size:14px;margin-top:10px;line-height:1.6;max-width:380px" data-i18n="b1.p">Across 12 active services and 40+ POs, with structured risk gates and weekly variance reviews.</p>
+        <div style="position:absolute;bottom:24px;right:24px;font-size:52px;opacity:.08">⏱</div>
       </div>
-      <div class="pillar rv rv-d3">
-        <span class="pillar-i">🎯</span>
-        <div class="pillar-t" data-i18n="p2t">OKR Alignment</div>
-        <div class="pillar-d" data-i18n="p2d">20+ team members rallied around shared OKRs and delivery milestones.</div>
+      <div class="b-card rv d1">
+        <span class="b-tag" data-i18n="b2.t">Volume</span>
+        <div class="b-num"><span class="cnt" data-target="40">0</span>+</div>
+        <div class="b-lbl" data-i18n="b2.p">Purchase Orders executed under governance, multi-sector.</div>
       </div>
-      <div class="pillar rv rv-d4">
-        <span class="pillar-i">🛡️</span>
-        <div class="pillar-t" data-i18n="p3t">Compliance First</div>
-        <div class="pillar-d" data-i18n="p3d">ZATCA + ISO + GCP security baked in from day one.</div>
+      <div class="b-card rv d2">
+        <span class="b-tag" data-i18n="b3.t">Legal</span>
+        <div class="b-num"><span class="cnt" data-target="55">0</span>+</div>
+        <div class="b-lbl" data-i18n="b3.p">Contracts negotiated and finalized with enterprise & sovereign clients.</div>
+      </div>
+      <div class="b-card rv d3">
+        <span class="b-tag" data-i18n="b4.t">Team</span>
+        <div class="b-num"><span class="cnt" data-target="40">0</span>+</div>
+        <div class="b-lbl" data-i18n="b4.p">Technical members led across cross-functional squads.</div>
+      </div>
+      <div class="b-card rv d4">
+        <span class="b-tag" data-i18n="b5.t">Stakeholders</span>
+        <div class="b-num"><span class="cnt" data-target="11">0</span>+</div>
+        <div class="b-lbl" data-i18n="b5.p">Government & enterprise bodies engaged simultaneously.</div>
+      </div>
+      <div class="b-card dark x2 rv d5">
+        <span class="b-tag" data-i18n="b6.t">Portfolio</span>
+        <div style="display:flex;gap:24px;align-items:baseline;margin-top:6px">
+          <div class="b-num"><span class="cnt" data-target="12">0</span></div>
+          <div class="b-num"><span class="cnt" data-target="5">0</span></div>
+        </div>
+        <div class="b-lbl" style="margin-top:14px;display:flex;gap:24px">
+          <span data-i18n="b6.a">Active services</span>
+          <span data-i18n="b6.b">Live products</span>
+        </div>
+      </div>
+      <div class="b-card x2 rv d6">
+        <div class="b-quote" data-i18n="b7.q">A PMO that runs like an engine, not a meeting. That's the standard I deliver.</div>
+        <div style="margin-top:18px;display:flex;align-items:center;gap:12px">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-d));display:grid;place-items:center;font-weight:800;color:#fff;font-size:13px">AA</div>
+          <div><div style="font-size:13px;font-weight:600">Abdulrahman Alhumud</div><div style="font-size:11px;color:var(--ink-m);letter-spacing:.1em" data-i18n="b7.r">PMP® · PMO Lead</div></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─────────── METRICS ─────────── -->
-<section class="section">
-  <div class="sec-head rv">
-    <h2 class="sec-title"><span data-i18n="m.t1">The </span><span class="accent" data-i18n="m.t2">Governance Numbers</span></h2>
-    <p class="sec-sub" data-i18n="m.s">Real, audited results from delivering complex multi-stakeholder portfolios under PMP® governance.</p>
-  </div>
-
-  <div class="metrics">
-    <div class="m rv rv-d1" style="--ac:var(--accent-l)">
-      <span class="mi">👥</span>
-      <span class="mv"><span class="cnt" data-target="20">0</span>+</span>
-      <div class="ml" data-i18n="m1l">Team Members Led</div>
-      <div class="ms" data-i18n="m1s">Through Rased turnaround</div>
+<section class="sec" id="vibe">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="v.ey">AI × Execution · Vibe Coding</span>
+      <h2 class="sec-h2" data-i18n="v.h">I don't just manage. <em style="color:var(--green-l);font-style:normal">I automate the manager.</em></h2>
+      <p class="sec-sub" data-i18n="v.s">Claude Code, Gemini API, and agentic workflows are core tooling — I ship internal SaaS, run code audits, and compress 6-week roadmaps into 6-day sprints without losing PMP discipline.</p>
     </div>
-    <div class="m rv rv-d2" style="--ac:var(--accent-l)">
-      <span class="mi">⚙️</span>
-      <span class="mv"><span class="cnt" data-target="12">0</span></span>
-      <div class="ml" data-i18n="m2l">Services Deployed</div>
-      <div class="ms" data-i18n="m2s">End-to-end delivery</div>
-    </div>
-    <div class="m rv rv-d3" style="--ac:var(--gold)">
-      <span class="mi">✅</span>
-      <span class="mv" style="color:var(--gold)"><span class="cnt" data-target="90">0</span>%</span>
-      <div class="ml" data-i18n="m3l">On-Time Delivery</div>
-      <div class="ms" data-i18n="m3s">PMP® standards enforced</div>
-    </div>
-    <div class="m rv rv-d4" style="--ac:var(--accent-l)">
-      <span class="mi">🌐</span>
-      <span class="mv"><span class="cnt" data-target="11">0</span>+</span>
-      <div class="ml" data-i18n="m4l">Stakeholder Groups</div>
-      <div class="ms" data-i18n="m4s">Internal · Tech · B2B · Gov</div>
-    </div>
-  </div>
-</section>
-
-<!-- ─────────── STORY ─────────── -->
-<section class="section">
-  <div class="sec-head rv">
-    <h2 class="sec-title"><span data-i18n="s.t1">The </span><span class="accent" data-i18n="s.t2">Rased Turnaround</span></h2>
-    <p class="sec-sub" data-i18n="s.s">Inherited a critical situation. Applied PMO frameworks. Delivered a full organizational recovery in three structured phases.</p>
-  </div>
-
-  <div class="story">
-    <div class="sc rv rv-d1">
-      <span class="sc-num">01</span>
-      <h3 class="sc-t" data-i18n="sc1t">Crisis Diagnosis</h3>
-      <p class="sc-d" data-i18n="sc1d">Inherited technical reliability failures, organizational fragmentation, and eroded stakeholder trust across a 20-member team.</p>
-    </div>
-    <div class="sc rv rv-d2">
-      <span class="sc-num">02</span>
-      <h3 class="sc-t" data-i18n="sc2t">Governance Reset</h3>
-      <p class="sc-d" data-i18n="sc2d">Instituted PMO governance — clear ownership, escalation paths, decision logs, sprint cadence, and dependency maps.</p>
-    </div>
-    <div class="sc rv rv-d3">
-      <span class="sc-num">03</span>
-      <h3 class="sc-t" data-i18n="sc3t">Full Recovery</h3>
-      <p class="sc-d" data-i18n="sc3d">Restored technical reliability, re-aligned the team around shared OKRs, and rebuilt stakeholder trust — fully delivered.</p>
+    <div class="vibe-wrap">
+      <div class="term rv">
+        <div class="term-bar">
+          <span class="dot red"></span><span class="dot ylw"></span><span class="dot grn"></span>
+          <span class="term-title">~/abdulrahman/pmo-automation · zsh</span>
+        </div>
+        <div class="term-body">
+<p><span class="prompt">$</span> <span class="var">claude</span> init zimam-saas --agent <span class="str">"project-manager"</span></p>
+<p class="cmt"># Multi-tenant PMO SaaS scaffolded · 4h end-to-end</p>
+<p><span class="ok">✓</span> Auth · Roles · RBAC</p>
+<p><span class="ok">✓</span> Project schema · Risk register · KPI engine</p>
+<p><span class="ok">✓</span> Stakeholder portal · Reporting cadence</p>
+<p>&nbsp;</p>
+<p><span class="prompt">$</span> <span class="var">claude</span> audit ./rems --mode <span class="str">"security+governance"</span></p>
+<p class="cmt"># REMS code audit · OWASP + ISO 27001 gates</p>
+<p><span class="warn">!</span> 7 high-severity findings → triaged</p>
+<p><span class="ok">✓</span> Remediation PRs generated &amp; reviewed</p>
+<p>&nbsp;</p>
+<p><span class="prompt">$</span> <span class="var">gemini</span> orchestrate hubeat-cloud --gcp</p>
+<p class="cmt"># Cloud migration · GCP IaC · zero-downtime</p>
+<p><span class="ok">✓</span> Cutover plan · Rollback &lt;5 min</p>
+<p><span class="cursor"></span></p>
+        </div>
+      </div>
+      <div class="vibe-cards">
+        <div class="vc rv d1"><div class="vc-ic">⚡</div><div><h4 data-i18n="vc1.h">Zimam · PMO SaaS</h4><p data-i18n="vc1.p">Multi-tenant governance platform — vibe-coded with Claude Code in days, not quarters. Roles, risk, KPI, stakeholders.</p></div></div>
+        <div class="vc rv d2"><div class="vc-ic">🛡</div><div><h4 data-i18n="vc2.h">REMS · Code Audit</h4><p data-i18n="vc2.p">End-to-end security &amp; governance audit driven by Claude agents — OWASP gates, ISO 27001 mapping, remediation PRs.</p></div></div>
+        <div class="vc rv d3"><div class="vc-ic">☁</div><div><h4 data-i18n="vc3.h">HubEat · GCP Migration</h4><p data-i18n="vc3.p">Full GCP cloud migration orchestrated with Gemini + IaC — zero-downtime cutover, &lt;5-min rollback path.</p></div></div>
+        <div class="vc rv d4"><div class="vc-ic">🤖</div><div><h4 data-i18n="vc4.h">Agentic Workflows</h4><p data-i18n="vc4.p">PM reporting, risk triage, and stakeholder briefs auto-generated by custom Claude agents — manager becomes editor.</p></div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ─────────── STAKEHOLDERS ─────────── -->
-<section class="section">
-  <div class="sec-head rv">
-    <h2 class="sec-title"><span data-i18n="k.t1">Cross-Functional </span><span class="accent" data-i18n="k.t2">Coordination</span></h2>
-    <p class="sec-sub" data-i18n="k.s">Daily orchestration across 11+ stakeholder groups — internal teams, tech partners, business units, and government entities.</p>
-  </div>
-
-  <div class="stk">
-    <div class="sk rv rv-d1"><div class="sk-i">🛠️</div><div class="sk-l" data-i18n="k1">Infrastructure &amp; DevOps</div></div>
-    <div class="sk rv rv-d1"><div class="sk-i">🔒</div><div class="sk-l" data-i18n="k2">Cybersecurity Team</div></div>
-    <div class="sk rv rv-d2"><div class="sk-i">📱</div><div class="sk-l" data-i18n="k3">Application Team</div></div>
-    <div class="sk rv rv-d2"><div class="sk-i">💾</div><div class="sk-l" data-i18n="k4">Database Team</div></div>
-    <div class="sk rv rv-d3"><div class="sk-i">⚖️</div><div class="sk-l" data-i18n="k5">Legal &amp; Compliance</div></div>
-    <div class="sk rv rv-d3"><div class="sk-i">📋</div><div class="sk-l" data-i18n="k6">Procurement &amp; Finance</div></div>
-    <div class="sk rv rv-d4"><div class="sk-i">☁️</div><div class="sk-l" data-i18n="k7">Google Cloud Partner</div></div>
-    <div class="sk rv rv-d4"><div class="sk-i">🏛️</div><div class="sk-l" data-i18n="k8">Government Entities</div></div>
-  </div>
-</section>
-
-<!-- ─────────── CONTACT ─────────── -->
-<section class="section" id="contact">
-  <div class="contact rv">
-    <div class="ct-eyebrow" data-i18n="c.ey">Ready to Deliver</div>
-    <h2 class="ct-title" data-i18n="c.t">Let's plan, govern, and ship.</h2>
-    <p class="ct-sub" data-i18n="c.s">Available for senior PMO and project leadership engagements across enterprise and government sectors.</p>
-    <div class="ct-grid">
-      <a class="ct-card phone" href="tel:+966593935677">
-        <span class="ct-icon">📞</span>
-        <span class="ct-lbl" data-i18n="c.ph">Phone</span>
-        <span class="ct-val" style="color:var(--accent-l)">+966 59 393 5677</span>
-      </a>
-      <a class="ct-card email" href="mailto:A.alhumud0@gmail.com">
-        <span class="ct-icon">✉️</span>
-        <span class="ct-lbl" data-i18n="c.em">Email</span>
-        <span class="ct-val" style="color:var(--gold)">A.alhumud0@gmail.com</span>
-      </a>
-      <a class="ct-card li" href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener">
-        <span class="ct-icon">💼</span>
-        <span class="ct-lbl" data-i18n="c.li">LinkedIn</span>
-        <span class="ct-val" style="color:var(--silver)">www.linkedin.com/in/aalhumud</span>
-      </a>
+<section class="sec" id="network">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow" data-i18n="n.ey">Executive Network</span>
+      <h2 class="sec-h2" data-i18n="n.h">Trusted by Saudi's <em style="color:var(--green-l);font-style:normal">biggest players.</em></h2>
+      <p class="sec-sub" data-i18n="n.s">Deal flow, integrations, and governance engagements delivered alongside ministries, regulators, and enterprise leaders.</p>
     </div>
   </div>
-
-  <div class="foot">
-    <span data-i18n="foot">© Abdulrahman Alhumud · Senior PMO Leader · PMP®</span>
-    · <a href="full.html" target="_blank" rel="noopener" data-i18n="foot.full">Full Portfolio</a>
-    · <a href="index.html" data-i18n="foot.short">Executive Summary</a>
+  <div class="marquee rv">
+    <div class="marquee-track">
+      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
+      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
+      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
+      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
+      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
+      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
+      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
+      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
+      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
+      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
+      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
+      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
+      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
+      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
+      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
+      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
+    </div>
   </div>
 </section>
 
-</div>
+<section class="sec" id="story">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="st.ey">Case Study · 2023</span>
+      <h2 class="sec-h2" data-i18n="st.h">The Rased <em style="color:var(--green-l);font-style:normal">turnaround.</em></h2>
+      <p class="sec-sub" data-i18n="st.s">Inherited a stalled, mistrust-heavy program. Reset governance, rebuilt cadence, and shipped to a 90% on-time outcome in months — not quarters.</p>
+    </div>
+    <div class="story-grid">
+      <div class="phase rv">
+        <span class="phase-num">01 · DIAGNOSE</span>
+        <h4 data-i18n="ph1.h">Audit & Reset</h4>
+        <p data-i18n="ph1.p">14-day deep audit. Risk register rebuilt from zero. Stakeholder map redrawn. Killed two zombie workstreams.</p>
+        <div class="phase-bar" style="--p:0.92"><i></i></div>
+      </div>
+      <div class="phase rv d1">
+        <span class="phase-num">02 · GOVERN</span>
+        <h4 data-i18n="ph2.h">Cadence & Ownership</h4>
+        <p data-i18n="ph2.p">Weekly variance reviews, sponsor briefings, and clear single-threaded ownership per workstream. Escalation paths printed and signed.</p>
+        <div class="phase-bar" style="--p:0.86"><i></i></div>
+      </div>
+      <div class="phase rv d2">
+        <span class="phase-num">03 · DELIVER</span>
+        <h4 data-i18n="ph3.h">Shipped, Audited, Repeated</h4>
+        <p data-i18n="ph3.p">90% on-time delivery sustained. Post-mortem playbook templated and re-used across the broader portfolio.</p>
+        <div class="phase-bar" style="--p:0.90"><i></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="mastery">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="m.ey">Mastery & Credentials</span>
+      <h2 class="sec-h2" data-i18n="m.h">Earned, <em style="color:var(--green-l);font-style:normal">not gifted.</em></h2>
+    </div>
+    <div class="badges-grid">
+      <div class="bd rv"><div class="bd-ic">🏅</div><h4>PMP®</h4><p data-i18n="bd1.p">Project Management Professional · PMI</p></div>
+      <div class="bd rv d1"><div class="bd-ic">☁</div><h4>GCP Cloud</h4><p data-i18n="bd2.p">Cloud infrastructure architecture &amp; deployment</p></div>
+      <div class="bd rv d2"><div class="bd-ic">🎨</div><h4>Design Thinking</h4><p data-i18n="bd3.p">User-centered problem framing &amp; rapid prototyping</p></div>
+      <div class="bd rv d3"><div class="bd-ic">⚖</div><h4>Risk &amp; Governance</h4><p data-i18n="bd4.p">PMBOK risk frameworks · ISO 27001 alignment</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="contact-wrap rv">
+      <div>
+        <h2 class="contact-h" data-i18n="c.h">Have a portfolio that needs a steady hand?</h2>
+        <p class="contact-p" data-i18n="c.p">I take on senior PMO mandates, turnaround engagements, and governance retainers. Riyadh-based, sovereign-grade discretion, fast onboarding.</p>
+      </div>
+      <div class="contact-list">
+        <a href="tel:+966593935677"><div class="ic">📞</div><div class="meta"><small data-i18n="c.l1">Direct</small><b>+966 59 393 5677</b></div></a>
+        <a href="mailto:A.alhumud0@gmail.com"><div class="ic">✉</div><div class="meta"><small data-i18n="c.l2">Email</small><b>A.alhumud0@gmail.com</b></div></a>
+        <a href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener"><div class="ic">in</div><div class="meta"><small data-i18n="c.l3">LinkedIn</small><b>linkedin.com/in/aalhumud</b></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2025 Abdulrahman Alhumud · <span data-i18n="f">Senior Project Manager · PMP®</span></div></footer>
 
 <script>
-/* ── i18n ── */
 const I18N = {
   en: {
-    'brand':'PM Persona · Governance Edition',
-    'ey':'Senior Project Manager · PMP® Certified',
-    'hook':'I run projects with precision — from governance to execution.',
-    'role':'Senior Project Manager · PMO Leader',
-    'pitch':'Turning chaos into clear plans, and numbers into decisions. Six-figure portfolios, 20+ team members, and 11+ stakeholder groups — all aligned through disciplined PMO governance.',
-    'b1':'PMP® Certified','b2':'PMO Governance','b3':'Risk & Quality','b4':'Stakeholder Alignment',
-    'cta1':'Let\'s Talk →','cta2':'View Full Portfolio',
-    'p1t':'PMBOK Discipline','p1d':'Initiation → closure with clear ownership, decision logs, and risk frameworks.',
-    'p2t':'OKR Alignment','p2d':'20+ team members rallied around shared OKRs and delivery milestones.',
-    'p3t':'Compliance First','p3d':'ZATCA + ISO + GCP security baked in from day one.',
-    'm.t1':'The ','m.t2':'Governance Numbers','m.s':'Real, audited results from delivering complex multi-stakeholder portfolios under PMP® governance.',
-    'm1l':'Team Members Led','m1s':'Through Rased turnaround',
-    'm2l':'Services Deployed','m2s':'End-to-end delivery',
-    'm3l':'On-Time Delivery','m3s':'PMP® standards enforced',
-    'm4l':'Stakeholder Groups','m4s':'Internal · Tech · B2B · Gov',
-    's.t1':'The ','s.t2':'Rased Turnaround','s.s':'Inherited a critical situation. Applied PMO frameworks. Delivered a full organizational recovery in three structured phases.',
-    'sc1t':'Crisis Diagnosis','sc1d':'Inherited technical reliability failures, organizational fragmentation, and eroded stakeholder trust across a 20-member team.',
-    'sc2t':'Governance Reset','sc2d':'Instituted PMO governance — clear ownership, escalation paths, decision logs, sprint cadence, and dependency maps.',
-    'sc3t':'Full Recovery','sc3d':'Restored technical reliability, re-aligned the team around shared OKRs, and rebuilt stakeholder trust — fully delivered.',
-    'k.t1':'Cross-Functional ','k.t2':'Coordination','k.s':'Daily orchestration across 11+ stakeholder groups — internal teams, tech partners, business units, and government entities.',
-    'k1':'Infrastructure & DevOps','k2':'Cybersecurity Team','k3':'Application Team','k4':'Database Team',
-    'k5':'Legal & Compliance','k6':'Procurement & Finance','k7':'Google Cloud Partner','k8':'Government Entities',
-    'c.ey':'Ready to Deliver','c.t':'Let\'s plan, govern, and ship.','c.s':'Available for senior PMO and project leadership engagements across enterprise and government sectors.',
-    'c.ph':'Phone','c.em':'Email','c.li':'LinkedIn',
-    'foot':'© Abdulrahman Alhumud · Senior PMO Leader · PMP®','foot.full':'Full Portfolio','foot.short':'Executive Summary'
+    'n1':'Impact','n2':'Vibe Coding','n3':'Network','n4':'Case Study','n5':'Mastery',
+    'eyebrow':'Senior Project Manager · PMO Lead',
+    'hook':'I run projects with <em>millimeter precision</em> — from governance to execution.',
+    'lede':'PMP-certified executor. Built and led a 40+ member technical PMO, turned around stalled portfolios, and delivered 90% on-time across multi-million SAR engagements with sovereign-grade governance.',
+    'cta1':'View Full Deck <span class="arr">→</span>','cta2':'Get in Touch <span class="arr">→</span>',
+    'hs1':'On-Time Delivery','hs2':'Purchase Orders','hs3':'Legal Contracts',
+    'chip1':'Live Portfolio · 2025','chip2':'Governance · Zero Fail','scroll':'Scroll',
+    's1.ey':'Impact · 2022–2025','s1.h':'Governance that <em style="color:var(--green-l);font-style:normal">compounds.</em>',
+    's1.s':'Every number below is a downstream effect of disciplined PMO architecture — clear ownership, hard reporting cadence, and zero-drama escalation.',
+    'b1.t':'Flagship Metric','b1.h':'On-Time Delivery','b1.p':'Across 12 active services and 40+ POs, with structured risk gates and weekly variance reviews.',
+    'b2.t':'Volume','b2.p':'Purchase Orders executed under governance, multi-sector.',
+    'b3.t':'Legal','b3.p':'Contracts negotiated and finalized with enterprise & sovereign clients.',
+    'b4.t':'Team','b4.p':'Technical members led across cross-functional squads.',
+    'b5.t':'Stakeholders','b5.p':'Government & enterprise bodies engaged simultaneously.',
+    'b6.t':'Portfolio','b6.a':'Active services','b6.b':'Live products',
+    'b7.q':'A PMO that runs like an engine, not a meeting. That\'s the standard I deliver.','b7.r':'PMP® · PMO Lead',
+    'v.ey':'AI × Execution · Vibe Coding','v.h':'I don\'t just manage. <em style="color:var(--green-l);font-style:normal">I automate the manager.</em>',
+    'v.s':'Claude Code, Gemini API, and agentic workflows are core tooling — I ship internal SaaS, run code audits, and compress 6-week roadmaps into 6-day sprints without losing PMP discipline.',
+    'vc1.h':'Zimam · PMO SaaS','vc1.p':'Multi-tenant governance platform — vibe-coded with Claude Code in days, not quarters. Roles, risk, KPI, stakeholders.',
+    'vc2.h':'REMS · Code Audit','vc2.p':'End-to-end security & governance audit driven by Claude agents — OWASP gates, ISO 27001 mapping, remediation PRs.',
+    'vc3.h':'HubEat · GCP Migration','vc3.p':'Full GCP cloud migration orchestrated with Gemini + IaC — zero-downtime cutover, <5-min rollback path.',
+    'vc4.h':'Agentic Workflows','vc4.p':'PM reporting, risk triage, and stakeholder briefs auto-generated by custom Claude agents — manager becomes editor.',
+    'n.ey':'Executive Network','n.h':'Trusted by Saudi\'s <em style="color:var(--green-l);font-style:normal">biggest players.</em>',
+    'n.s':'Deal flow, integrations, and governance engagements delivered alongside ministries, regulators, and enterprise leaders.',
+    'st.ey':'Case Study · 2023','st.h':'The Rased <em style="color:var(--green-l);font-style:normal">turnaround.</em>',
+    'st.s':'Inherited a stalled, mistrust-heavy program. Reset governance, rebuilt cadence, and shipped to a 90% on-time outcome in months — not quarters.',
+    'ph1.h':'Audit & Reset','ph1.p':'14-day deep audit. Risk register rebuilt from zero. Stakeholder map redrawn. Killed two zombie workstreams.',
+    'ph2.h':'Cadence & Ownership','ph2.p':'Weekly variance reviews, sponsor briefings, and clear single-threaded ownership per workstream. Escalation paths printed and signed.',
+    'ph3.h':'Shipped, Audited, Repeated','ph3.p':'90% on-time delivery sustained. Post-mortem playbook templated and re-used across the broader portfolio.',
+    'm.ey':'Mastery & Credentials','m.h':'Earned, <em style="color:var(--green-l);font-style:normal">not gifted.</em>',
+    'bd1.p':'Project Management Professional · PMI','bd2.p':'Cloud infrastructure architecture & deployment',
+    'bd3.p':'User-centered problem framing & rapid prototyping','bd4.p':'PMBOK risk frameworks · ISO 27001 alignment',
+    'c.h':'Have a portfolio that needs a steady hand?','c.p':'I take on senior PMO mandates, turnaround engagements, and governance retainers. Riyadh-based, sovereign-grade discretion, fast onboarding.',
+    'c.l1':'Direct','c.l2':'Email','c.l3':'LinkedIn',
+    'f':'Senior Project Manager · PMP®',
   },
   ar: {
-    'brand':'شخصية مدير المشاريع · إصدار الحوكمة',
-    'ey':'مدير مشاريع أول · معتمد PMP®',
-    'hook':'أدير المشاريع بالملي.. من الحوكمة لين التنفيذ.',
-    'role':'مدير مشاريع أول · قائد PMO',
-    'pitch':'أحوّل الفوضى لخطة واضحة، والأرقام لقرارات. محافظ ضخمة، 20+ عضو فريق، و11+ جهة معنية — كلها متوائمة بحوكمة PMO منضبطة.',
-    'b1':'معتمد PMP®','b2':'حوكمة PMO','b3':'مخاطر وجودة','b4':'توافق أصحاب المصلحة',
-    'cta1':'تواصل معي ←','cta2':'شوف الملف الكامل',
-    'p1t':'انضباط PMBOK','p1d':'من البداية للإقفال — ملكية واضحة، سجلات قرارات، وأطر مخاطر.',
-    'p2t':'مواءمة OKR','p2d':'جمعت 20+ عضو فريق حول OKRs مشتركة ومعالم تسليم.',
-    'p3t':'الامتثال أولاً','p3d':'ZATCA + ISO + أمن GCP مدمج من اليوم الأول.',
-    'm.t1':'أرقام ','m.t2':'الحوكمة','m.s':'نتائج حقيقية ومدققة من تسليم محافظ معقدة متعددة الأطراف تحت حوكمة PMP®.',
-    'm1l':'عضو قدتهم','m1s':'في مرحلة تحول راصد',
-    'm2l':'خدمة منشورة','m2s':'تسليم من البداية للنهاية',
-    'm3l':'تسليم في الموعد','m3s':'بمعايير PMP®',
-    'm4l':'مجموعة أصحاب مصلحة','m4s':'داخلية · تقنية · B2B · حكومية',
-    's.t1':'تحول ','s.t2':'راصد','s.s':'ورثت وضع حرج. طبّقت أطر PMO. سلّمت تعافي تنظيمي كامل عبر ثلاث مراحل مدروسة.',
-    'sc1t':'تشخيص الأزمة','sc1d':'إخفاقات في الموثوقية التقنية، تشتت تنظيمي، وثقة متآكلة عبر فريق من 20 عضواً.',
-    'sc2t':'إعادة تأسيس الحوكمة','sc2d':'أسّست حوكمة PMO — ملكية واضحة، مسارات تصعيد، سجلات قرارات، إيقاع سباقات، وخرائط تبعية.',
-    'sc3t':'تعافي كامل','sc3d':'استعدت الموثوقية التقنية، أعدت توحيد الفريق حول OKRs مشتركة، وأعدت بناء ثقة أصحاب المصلحة بالكامل.',
-    'k.t1':'تنسيق ','k.t2':'متعدد الوظائف','k.s':'تنسيق يومي عبر 11+ مجموعة أصحاب مصلحة — فرق داخلية، شركاء تقنيين، وحدات أعمال، وجهات حكومية.',
-    'k1':'البنية التحتية وDevOps','k2':'فريق الأمن السيبراني','k3':'فريق التطبيقات','k4':'فريق قواعد البيانات',
-    'k5':'القانوني والامتثال','k6':'المشتريات والمالية','k7':'شريك Google Cloud','k8':'جهات حكومية',
-    'c.ey':'جاهز للتسليم','c.t':'نخطط، نحوكم، ونسلّم.','c.s':'متاح لتكليفات قيادة PMO والمشاريع الأولى عبر القطاعات المؤسسية والحكومية.',
-    'c.ph':'الهاتف','c.em':'البريد','c.li':'لينكدإن',
-    'foot':'© عبدالرحمن الحمود · قائد PMO أول · PMP®','foot.full':'الملف الكامل','foot.short':'الملخص التنفيذي'
+    'n1':'الأثر','n2':'فايب كودنق','n3':'شبكتنا','n4':'دراسة حالة','n5':'المهارات',
+    'eyebrow':'مدير مشاريع أول · قائد مكتب إدارة المشاريع',
+    'hook':'أدير المشاريع <em>بالملي</em>.. من الحوكمة لين التنفيذ.',
+    'lede':'حاصل على شهادة PMP® وبنيت قيادتي على الانضباط. قدت مكتب مشاريع تقني بأكثر من ٤٠ شخص، وقلبت ملفات متعثرة، وحققت تسليم ٩٠٪ في الموعد بمشاريع بملايين الريالات وبحوكمة بمستوى الجهات السيادية.',
+    'cta1':'شوف العرض الكامل <span class="arr">←</span>','cta2':'تواصل معي <span class="arr">←</span>',
+    'hs1':'التسليم في الموعد','hs2':'أوامر شراء','hs3':'عقود قانونية',
+    'chip1':'محفظة حيّة · 2025','chip2':'حوكمة بدون أخطاء','scroll':'انزل',
+    's1.ey':'الأثر · 2022–2025','s1.h':'حوكمة <em style="color:var(--green-l);font-style:normal">تتراكم نتائجها.</em>',
+    's1.s':'كل رقم تحت هو نتيجة طبيعية لمكتب مشاريع منضبط — ملكية واضحة، إيقاع تقارير صارم، وتصعيد بدون دراما.',
+    'b1.t':'المؤشر الرئيسي','b1.h':'تسليم في الموعد','b1.p':'عبر ١٢ خدمة فعّالة و٤٠+ أمر شراء، مع بوابات مخاطر منظّمة ومراجعات أسبوعية للانحراف.',
+    'b2.t':'الحجم','b2.p':'أوامر شراء منفّذة تحت الحوكمة، عبر قطاعات متعددة.',
+    'b3.t':'القانوني','b3.p':'عقود تمّت مفاوضتها وإغلاقها مع جهات سيادية وكبرى الشركات.',
+    'b4.t':'الفريق','b4.p':'أعضاء فنيون قُدتُهم في فرق متعددة التخصصات.',
+    'b5.t':'الجهات','b5.p':'جهات حكومية ومؤسسات استراتيجية اشتغلنا معها بالتوازي.',
+    'b6.t':'المحفظة','b6.a':'خدمات فعّالة','b6.b':'منتجات حيّة',
+    'b7.q':'مكتب مشاريع يشتغل كأنه محرّك، مو اجتماع. هذا هو المعيار اللي أقدّمه.','b7.r':'PMP® · قائد PMO',
+    'v.ey':'الذكاء الاصطناعي × التنفيذ · فايب كودنق','v.h':'ما أكتفي بالإدارة.. <em style="color:var(--green-l);font-style:normal">أنا أتمتت المدير نفسه.</em>',
+    'v.s':'Claude Code وGemini وأدوات الوكلاء صارت من أدواتي الأساسية — أبني منصات داخلية، أراجع كود أمنيًا، وأضغط خارطة طريق ٦ أسابيع في ٦ أيام بدون ما أكسر انضباط PMP.',
+    'vc1.h':'زمام · منصة PMO','vc1.p':'منصة حوكمة متعددة المستأجرين، بُنيت بـ Claude Code في أيام مو أرباع سنة. أدوار، مخاطر، مؤشرات، وأصحاب مصلحة.',
+    'vc2.h':'REMS · تدقيق كود','vc2.p':'تدقيق أمني وحوكمي شامل بقيادة وكلاء Claude — بوابات OWASP، ربط بـ ISO 27001، وطلبات دمج للمعالجة.',
+    'vc3.h':'HubEat · هجرة GCP','vc3.p':'هجرة كاملة لسحابة جوجل بترتيب من Gemini وبنية تحتية ككود — تحويل بدون انقطاع وخطة رجوع أقل من ٥ دقائق.',
+    'vc4.h':'مسارات وكلاء','vc4.p':'تقارير الإدارة وفرز المخاطر وملخصات أصحاب المصلحة تتولّد تلقائيًا — المدير صار محرّر، مو كاتب.',
+    'n.ey':'الشبكة التنفيذية','n.h':'محل ثقة <em style="color:var(--green-l);font-style:normal">أكبر اللاعبين في السعودية.</em>',
+    'n.s':'صفقات وتكاملات وأعمال حوكمة سُلّمت مع وزارات وهيئات تنظيمية وشركات قياديّة.',
+    'st.ey':'دراسة حالة · 2023','st.h':'تحوّل <em style="color:var(--green-l);font-style:normal">راصد.</em>',
+    'st.s':'ورثت برنامج متعثّر مليان عدم ثقة. صفّرت الحوكمة، أعدت بناء الإيقاع، وسلّمنا بنسبة ٩٠٪ في الموعد خلال أشهر — مو أرباع.',
+    'ph1.h':'تدقيق وإعادة ضبط','ph1.p':'تدقيق عميق بـ١٤ يوم. أعدنا بناء سجل المخاطر من الصفر. أعدنا رسم خريطة أصحاب المصلحة. أوقفنا مسارَين ميتَين.',
+    'ph2.h':'الإيقاع والملكية','ph2.p':'مراجعات أسبوعية للانحراف، إحاطات للراعي، وملكية واضحة لكل مسار. مسارات التصعيد مطبوعة وموقّعة.',
+    'ph3.h':'تسليم.. تدقيق.. تكرار','ph3.p':'تسليم بنسبة ٩٠٪ في الموعد بشكل مستدام. صار الـ Playbook قالب نستخدمه عبر بقيّة المحفظة.',
+    'm.ey':'المهارات والشهادات','m.h':'مكتسبة، <em style="color:var(--green-l);font-style:normal">مو ممنوحة.</em>',
+    'bd1.p':'محترف إدارة مشاريع · PMI','bd2.p':'بنية تحتية سحابية ونشر · جوجل كلاود',
+    'bd3.p':'تأطير المشكلة من زاوية المستخدم ونماذج سريعة','bd4.p':'أطر مخاطر PMBOK · مواءمة ISO 27001',
+    'c.h':'عندك محفظة تحتاج يد ثابتة؟','c.p':'أستلم مهمات PMO تنفيذية، تحوّلات برامج، وعقود حوكمة سنويّة. مقرّي الرياض، تعامل بسرّيّة عالية، وبداية سريعة.',
+    'c.l1':'مباشر','c.l2':'إيميل','c.l3':'لينكدإن',
+    'f':'مدير مشاريع أول · PMP®',
   }
 };
-let lang = 'en';
-function setLang(l){
-  lang = l;
-  document.documentElement.lang = l;
-  document.documentElement.dir = l==='ar' ? 'rtl' : 'ltr';
+const langBtn = document.getElementById('langBtn');
+let curLang = 'en';
+function setLang(lang){
+  curLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const v = (I18N[l]||I18N.en)[el.dataset.i18n];
-    if(v) el.textContent = v;
+    const k = el.getAttribute('data-i18n');
+    if(dict[k]) el.innerHTML = dict[k];
   });
-  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on', b.dataset.lang===l));
+  langBtn.textContent = lang === 'ar' ? 'English' : 'العربية';
 }
+langBtn.addEventListener('click',()=>setLang(curLang==='en'?'ar':'en'));
 
-/* Scale */
-function updateScale(){
-  const s = Math.min(window.innerWidth/1280, window.innerHeight/780, 1.05);
-  document.documentElement.style.setProperty('--dscale', Math.max(s, 0.7).toFixed(4));
-}
-updateScale(); window.addEventListener('resize', updateScale);
-
-/* Reveal on scroll */
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('in');
-      if(e.target.classList.contains('m')) animateCounter(e.target);
-      io.unobserve(e.target);
-    }
-  });
-},{threshold:0.18});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-
-/* Counter animation */
-function animateCounter(card){
-  const span = card.querySelector('.cnt');
-  if(!span) return;
-  const target = +span.dataset.target;
-  const duration = 1400;
-  const start = performance.now();
+function animateCounter(el){
+  const target = parseFloat(el.dataset.target);
+  const dur = 1600, start = performance.now();
   function step(now){
-    const t = Math.min(1, (now-start)/duration);
+    const t = Math.min((now-start)/dur, 1);
     const eased = 1 - Math.pow(1-t, 3);
-    span.textContent = Math.round(eased*target);
+    const val = target * eased;
+    el.textContent = target >= 100 ? Math.round(val) : (target%1?val.toFixed(1):Math.round(val));
     if(t<1) requestAnimationFrame(step);
+    else el.textContent = target;
   }
   requestAnimationFrame(step);
 }
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('in');
+      en.target.querySelectorAll('.cnt').forEach(c=>{ if(!c.dataset.done){c.dataset.done='1';animateCounter(c)} });
+      if(en.target.classList.contains('cnt') && !en.target.dataset.done){en.target.dataset.done='1';animateCounter(en.target)}
+      obs.unobserve(en.target);
+    }
+  });
+},{threshold:0.18});
+document.querySelectorAll('.rv, .cnt').forEach(el=>obs.observe(el));
+document.querySelectorAll('.b-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id = a.getAttribute('href').slice(1);
+    const t = document.getElementById(id);
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
 </script>
 </body>
 </html>
