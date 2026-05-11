@@ -1,518 +1,736 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Abdulrahman Alhumud · The Hybrid Powerhouse · PMO + Product + BD</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Abdulrahman Alhumud — The Hybrid Powerhouse · PM · Product · Growth</title>
+<meta name="description" content="The rare cross-functional executive. Project Management × Product × Business Development. PMP-certified. 4× revenue. #1 App Store. 90% On-Time Delivery." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-:root{
-  --bg:#040810; --bg-mid:#0a1020; --card:rgba(8,14,28,0.88);
-  --border:rgba(255,255,255,0.08);
-  --gold:#f0c040; --gold-d:#c9a227; --gold-l:#fdd87a;
-  --gold-tint:rgba(240,192,64,0.12);
-  --cyan:#00e5ff; --cyan-d:rgba(0,229,255,0.12);
-  --green:#00c853; --purple:#a855f7;
-  --text:#ecf1f8; --muted:#8898b0; --faint:#3c4a64;
-  --dscale:1;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;min-height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-html[dir="rtl"]{font-family:'Cairo',sans-serif}
-html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{font-family:'Cairo',sans-serif}
+  :root{
+    --bg-0:#030712; --bg-1:#060d1e; --bg-2:#0a142e;
+    --line:rgba(255,255,255,0.06); --line-2:rgba(255,255,255,0.10);
+    --ink:#f4f0e5; --ink-d:#b5b2a3; --ink-m:#6f6c5f;
+    --gold:#f0c040; --gold-l:#ffd870; --gold-d:#b88e1a;
+    --cyan:#00e5ff; --cyan-d:#0099cc;
+    --green:#3ed580; --green-d:#1aa05a;
+    --hot:#ff4d8a;
+    --r-lg:24px; --r-md:14px; --r-sm:10px;
+    --font-en:'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-ar:'Tajawal', system-ui, sans-serif;
+    --font-display:'Playfair Display', Georgia, serif;
+    --font-mono:'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+  html,body{background:var(--bg-0);color:var(--ink);font-family:var(--font-en);overflow-x:hidden}
+  html[dir="rtl"]{font-family:var(--font-ar)}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(1200px 700px at 15% -10%, rgba(240,192,64,0.16), transparent 60%),radial-gradient(900px 700px at 95% 25%, rgba(0,229,255,0.10), transparent 60%),radial-gradient(800px 600px at 50% 110%, rgba(62,213,128,0.12), transparent 60%),radial-gradient(600px 400px at 80% 85%, rgba(255,77,138,0.08), transparent 60%)}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.5;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.025 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");mix-blend-mode:overlay}
+  .wrap{position:relative;z-index:5;max-width:1340px;margin:0 auto;padding:0 clamp(20px,3vw,48px)}
 
-.bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(160deg,#040810 0%,#0a1020 50%,#040810 100%)}
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(240,192,64,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(240,192,64,0.022) 1px,transparent 1px);background-size:60px 60px}
-.orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:0.32;z-index:0;pointer-events:none}
-.orb-a{width:600px;height:600px;left:-180px;top:-160px;background:radial-gradient(var(--gold),transparent 70%)}
-.orb-b{width:520px;height:520px;right:-180px;bottom:-180px;background:radial-gradient(var(--cyan),transparent 70%);opacity:0.22}
-.orb-c{width:400px;height:400px;left:50%;top:40%;transform:translateX(-50%);background:radial-gradient(var(--purple),transparent 70%);opacity:0.1}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:80;backdrop-filter:saturate(160%) blur(14px);background:linear-gradient(180deg, rgba(3,7,18,0.85), rgba(3,7,18,0.30));border-bottom:1px solid var(--line)}
+  .topbar-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+  .brand-mark{width:36px;height:36px;border-radius:11px;background:conic-gradient(from 0deg, var(--gold), var(--cyan), var(--green), var(--gold));display:grid;place-items:center;font-weight:800;color:#0a0a0a;font-size:13px;box-shadow:0 8px 24px -8px var(--gold);position:relative}
+  .brand-mark::after{content:"";position:absolute;inset:2px;border-radius:9px;background:#030712;display:grid;place-items:center}
+  .brand-mark span{position:relative;z-index:2;color:var(--gold-l)}
+  .brand-name{font-size:13.5px;color:var(--ink)}.brand-name b{background:linear-gradient(90deg, var(--gold-l), var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .nav{display:flex;align-items:center;gap:6px}
+  .nav a{padding:8px 14px;border-radius:999px;font-size:13px;color:var(--ink-d);transition:.25s}
+  .nav a:hover{color:var(--ink);background:rgba(255,255,255,0.04)}
+  .lang-btn{padding:9px 16px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,0.025);font-size:12.5px;font-weight:600;letter-spacing:.04em;transition:.25s}
+  .lang-btn:hover{background:rgba(240,192,64,0.10);border-color:var(--gold-d)}
 
-#topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 36px;backdrop-filter:blur(14px);background:rgba(4,8,16,0.6);border-bottom:1px solid var(--border)}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:1.5px;font-size:11px;background:linear-gradient(135deg,var(--gold-l),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-transform:uppercase}
-.brand .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--cyan));box-shadow:0 0 14px var(--gold)}
-.lang-pill{display:flex;gap:2px;padding:4px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:100px}
-.lb{padding:5px 14px;border-radius:100px;border:0;background:transparent;color:var(--faint);font-family:inherit;font-weight:800;letter-spacing:2px;font-size:10px;cursor:pointer;transition:all .25s}
-.lb.on{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#1a1305}
+  .hero{position:relative;padding:140px 0 80px;min-height:100vh;display:flex;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,5vw,80px);align-items:center}
+  @media(max-width:980px){.hero-grid{grid-template-columns:1fr;text-align:center}}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-l);font-weight:700;padding:6px 14px;border-radius:999px;background:linear-gradient(90deg, rgba(240,192,64,0.14), rgba(0,229,255,0.10));border:1px solid rgba(240,192,64,0.30)}
+  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 12px var(--gold-l)}
+  html[dir="rtl"] .eyebrow{letter-spacing:0}
 
-.wrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:120px 56px 72px;zoom:var(--dscale,1)}
+  .hook{margin-top:22px;font-family:var(--font-display);font-weight:800;line-height:1.0;letter-spacing:-0.025em;font-size:clamp(44px,5.8vw,84px)}
+  .hook .l1{display:block;background:linear-gradient(180deg,#fff,#d4ccb4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hook .l2{display:block;background:linear-gradient(90deg,var(--gold-l), var(--cyan), var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:flow 8s ease-in-out infinite}
+  .hook .l3{display:block;font-style:italic;color:#fff;-webkit-text-fill-color:#fff}
+  @keyframes flow{0%,100%{background-position:0 0}50%{background-position:100% 0}}
+  html[dir="rtl"] .hook{font-family:var(--font-ar);font-size:clamp(34px,4.5vw,64px);line-height:1.15;letter-spacing:0}
+  html[dir="rtl"] .hook .l3{font-style:normal}
 
-.eyebrow{font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold-l);display:flex;align-items:center;gap:10px;margin-bottom:18px}
-.eyebrow::before{content:'';width:36px;height:1px;background:linear-gradient(90deg,var(--gold-l),transparent)}
-html[dir="rtl"] .eyebrow{flex-direction:row-reverse}
-html[dir="rtl"] .eyebrow::before{display:none}
-html[dir="rtl"] .eyebrow::after{content:'';width:36px;height:1px;background:linear-gradient(90deg,var(--gold-l),transparent)}
+  .lede{margin-top:24px;max-width:560px;font-size:17px;line-height:1.65;color:var(--ink-d)}
+  html[dir="rtl"] .lede{font-size:18px}
+  @media(max-width:980px){.lede{margin-inline:auto}}
 
-.hook{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,5vw,70px);font-weight:800;line-height:1.05;letter-spacing:-0.8px;background:linear-gradient(135deg,#fff 0%,var(--gold-l) 35%,var(--cyan) 70%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px;max-width:1000px}
-html[dir="rtl"] .hook{font-family:'Cairo',sans-serif}
+  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:980px){.cta-row{justify-content:center}}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:14px;font-weight:600;font-size:14px;transition:.25s}
+  .btn-primary{background:linear-gradient(135deg, var(--gold), var(--gold-d));color:#0a0a0a;box-shadow:0 14px 40px -14px var(--gold)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 50px -16px var(--gold)}
+  .btn-ghost{border:1px solid var(--line-2);background:rgba(255,255,255,0.02);color:var(--ink)}
+  .btn-ghost:hover{background:rgba(255,255,255,0.06);border-color:var(--gold-d)}
+  .btn .arr{transition:transform .25s}
+  .btn:hover .arr{transform:translateX(4px)}
+  html[dir="rtl"] .btn:hover .arr{transform:translateX(-4px)}
 
-.hero-row{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:start;margin-bottom:90px}
-.hero-name{font-size:26px;font-weight:600;background:linear-gradient(135deg,var(--gold-l),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px;font-family:'Space Grotesk',sans-serif}
-html[dir="rtl"] .hero-name{font-family:'Cairo',sans-serif}
-.hero-role{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
-.hero-pitch{font-size:15px;line-height:1.85;color:var(--muted);max-width:580px;margin-bottom:30px}
-.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
-.badge{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
-.badge.gold{background:var(--gold-tint);border:1px solid rgba(240,192,64,0.3);color:var(--gold-l)}
-.badge.cyan{background:var(--cyan-d);border:1px solid rgba(0,229,255,0.3);color:var(--cyan)}
-.badge.green{background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.3);color:var(--green)}
-.badge.purple{background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);color:var(--purple)}
+  .trinity-strip{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:980px){.trinity-strip{max-width:520px;margin-inline:auto}}
+  .ts{padding:14px 16px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+  .ts small{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-m)}
+  html[dir="rtl"] .ts small{letter-spacing:0}
+  .ts b{font-family:var(--font-display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-0.02em;line-height:1.05}
+  html[dir="rtl"] .ts b{font-family:var(--font-ar);font-weight:800}
+  .ts span{font-size:11px;color:var(--ink-d);margin-top:2px}
+  .ts.pm b{color:var(--green)}.ts.pd b{color:var(--cyan)}.ts.bd b{color:var(--gold-l)}
 
-.cta-row{display:flex;gap:12px;flex-wrap:wrap}
-.cta{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:10px;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:0;font-family:inherit;cursor:pointer;transition:all .3s}
-.cta-primary{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#1a1305;box-shadow:0 8px 24px rgba(240,192,64,0.3)}
-.cta-primary:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(240,192,64,0.5)}
-.cta-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
-.cta-ghost:hover{border-color:rgba(240,192,64,0.4);color:var(--text)}
+  /* HERO PROFILE — ORBIT TRINITY */
+  .profile-stage{position:relative;width:100%;max-width:540px;margin:0 auto;aspect-ratio:1/1}
+  .profile-frame{position:absolute;inset:18%;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#0a142e,#030712);border:2px solid rgba(240,192,64,0.45);box-shadow:0 40px 100px -30px rgba(240,192,64,0.45), inset 0 0 60px rgba(0,0,0,0.4)}
+  .profile-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.05) saturate(1.06)}
+  .profile-frame .ph{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%, rgba(240,192,64,0.18), transparent 60%);font-size:130px;font-weight:800;color:rgba(255,255,255,0.12);letter-spacing:-0.04em}
+  .t-ring{position:absolute;inset:0;border-radius:50%;pointer-events:none}
+  .t-ring.r-gold{border:1px dashed rgba(240,192,64,0.32);inset:0;animation:spin 80s linear infinite}
+  .t-ring.r-cyan{background:conic-gradient(from 90deg, transparent 78%, var(--cyan) 90%, transparent 100%);inset:6%;animation:spin 22s linear infinite;-webkit-mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));opacity:.85}
+  .t-ring.r-green{background:conic-gradient(from 270deg, transparent 78%, var(--green) 90%, transparent 100%);inset:12%;animation:spin 18s linear infinite reverse;-webkit-mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));opacity:.85}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .orbit-ic{position:absolute;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;letter-spacing:.05em;border:2px solid var(--bg-0);box-shadow:0 14px 30px -10px rgba(0,0,0,0.6)}
+  .orbit-ic.o1{background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;top:0%;left:50%;transform:translate(-50%,-30%)}
+  .orbit-ic.o2{background:linear-gradient(135deg,var(--cyan),var(--cyan-d));color:#0a0a0a;top:50%;right:-2%;transform:translate(0,-50%)}
+  .orbit-ic.o3{background:linear-gradient(135deg,var(--gold-l),var(--gold-d));color:#0a0a0a;bottom:6%;left:6%}
+  .orbit-ic.o4{background:linear-gradient(135deg,var(--hot),#a51252);color:#fff;top:14%;right:8%;width:42px;height:42px;font-size:11px}
+  html[dir="rtl"] .orbit-ic.o2{right:auto;left:-2%}
+  html[dir="rtl"] .orbit-ic.o3{left:auto;right:6%}
+  html[dir="rtl"] .orbit-ic.o4{right:auto;left:8%}
 
-/* Hero Triple-Threat orbital */
-.triple{position:relative;aspect-ratio:1;width:100%;max-width:380px;margin:0 auto;display:flex;align-items:center;justify-content:center}
-.t-ring{position:absolute;border-radius:50%;border:1px solid rgba(240,192,64,0.18);animation:spin var(--spd,30s) linear infinite}
-.t-ring.rev{animation-direction:reverse}
-.t-ring::after{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--dot,var(--gold));box-shadow:0 0 16px var(--dot,var(--gold))}
-@keyframes spin{to{transform:rotate(360deg)}}
-.t-core{position:relative;z-index:2;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(240,192,64,0.16),rgba(240,192,64,0.04));border:1.5px solid rgba(240,192,64,0.32);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 60px rgba(240,192,64,0.18),inset 0 0 40px rgba(240,192,64,0.05)}
-.t-core .tc-eye{font-size:11px;color:var(--gold-l);font-weight:700;letter-spacing:3px;text-transform:uppercase}
-.t-core .tc-num{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:800;color:#fff;line-height:1;margin:6px 0 0}
-html[dir="rtl"] .t-core .tc-num{font-family:'Cairo',sans-serif}
-.t-core .tc-lbl{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
-.t-icon{position:absolute;width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(8,14,28,0.95);border:1px solid var(--border);box-shadow:0 8px 26px rgba(0,0,0,0.6)}
-.t-i1{top:-6%;left:50%;transform:translateX(-50%);border-color:rgba(240,192,64,0.3)}
-.t-i2{bottom:-6%;left:50%;transform:translateX(-50%);border-color:rgba(0,229,255,0.3)}
-.t-i3{left:-4%;top:50%;transform:translateY(-50%);border-color:rgba(0,200,83,0.3)}
-.t-i4{right:-4%;top:50%;transform:translateY(-50%);border-color:rgba(168,85,247,0.3)}
+  .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-m);display:flex;flex-direction:column;align-items:center;gap:10px}
+  .scroll-hint .line{width:1px;height:36px;background:linear-gradient(180deg,var(--gold-l),transparent);animation:slide 2s ease-in-out infinite}
+  @keyframes slide{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
 
-.section{margin-bottom:90px}
-.sec-head{margin-bottom:38px;text-align:center;max-width:780px;margin-left:auto;margin-right:auto}
-.sec-eye{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold-l);margin-bottom:14px}
-.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,3.4vw,44px);font-weight:700;margin-bottom:12px;letter-spacing:-0.4px}
-html[dir="rtl"] .sec-title{font-family:'Cairo',sans-serif}
-.sec-title .gold{background:linear-gradient(135deg,var(--gold-l),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sec-title .cyan{color:var(--cyan)}
-.sec-sub{font-size:13px;color:var(--muted);line-height:1.8}
+  section{position:relative;z-index:5}
+  .sec{padding:clamp(80px,11vh,140px) 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;flex-direction:column;gap:18px;max-width:780px;margin-bottom:56px}
+  .sec-head.center{margin-inline:auto;text-align:center;align-items:center}
+  .sec-h2{font-family:var(--font-display);font-weight:700;font-size:clamp(34px,4.2vw,56px);line-height:1.05;letter-spacing:-0.02em;background:linear-gradient(180deg,#fff,#c8c1a8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  html[dir="rtl"] .sec-h2{font-family:var(--font-ar);line-height:1.2;letter-spacing:0}
+  .sec-h2 em{font-style:italic;background:linear-gradient(90deg,var(--gold-l), var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+  html[dir="rtl"] .sec-h2 em{font-style:normal}
+  .sec-sub{color:var(--ink-d);font-size:16px;line-height:1.6;max-width:600px}
 
-/* Trinity columns */
-.trinity{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.tr{padding:32px 26px;background:var(--card);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(14px);position:relative;overflow:hidden;transition:all .35s}
-.tr:hover{transform:translateY(-6px);border-color:var(--ac-b,rgba(240,192,64,0.4))}
-.tr::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ac,var(--gold))}
-.tr-i{font-size:32px;margin-bottom:14px;display:block}
-.tr-tag{display:inline-block;padding:4px 10px;background:var(--ac-tint,var(--gold-tint));border:1px solid var(--ac-b,rgba(240,192,64,0.3));border-radius:100px;font-size:9px;color:var(--ac,var(--gold-l));font-weight:700;letter-spacing:2px;margin-bottom:14px}
-.tr-t{font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-0.3px}
-.tr-d{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px}
-.tr-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding-top:18px;border-top:1px solid var(--border)}
-.tr-st{text-align:center}
-.tr-st-v{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:800;color:var(--ac,var(--gold-l));line-height:1}
-html[dir="rtl"] .tr-st-v{font-family:'Cairo',sans-serif}
-.tr-st-l{font-size:9px;color:var(--faint);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+  /* TRINITY PILLARS */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:980px){.pillars{grid-template-columns:1fr}}
+  .pillar{position:relative;padding:36px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));overflow:hidden;transition:.4s}
+  .pillar:hover{transform:translateY(-4px);border-color:var(--p-ac, var(--line-2))}
+  .pillar::before{content:"";position:absolute;top:0;inset-inline-start:0;width:100%;height:3px;background:var(--p-ac, var(--gold-l));opacity:.8}
+  .pillar.pm{--p-ac:var(--green)}
+  .pillar.pd{--p-ac:var(--cyan)}
+  .pillar.bd{--p-ac:var(--gold-l)}
+  .pillar-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--p-ac, var(--gold-l));font-weight:700}
+  .pillar h3{font-family:var(--font-display);font-size:30px;margin-top:14px;color:#fff;line-height:1.1}
+  html[dir="rtl"] .pillar h3{font-family:var(--font-ar)}
+  .pillar p{margin-top:14px;color:var(--ink-d);font-size:14.5px;line-height:1.6}
+  .pillar-metrics{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .pm-cell{padding:14px 16px;border-radius:12px;background:rgba(0,0,0,0.25);border:1px solid var(--line)}
+  .pm-cell b{display:block;font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--p-ac, var(--gold-l));letter-spacing:-0.02em;line-height:1}
+  html[dir="rtl"] .pm-cell b{font-family:var(--font-ar);font-weight:800}
+  .pm-cell span{display:block;font-size:11px;color:var(--ink-m);margin-top:6px;letter-spacing:.06em}
 
-/* Mega metrics */
-.mega{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
-.mega2{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.m{padding:24px 20px;background:var(--card);border:1px solid var(--border);border-radius:14px;backdrop-filter:blur(12px);position:relative;overflow:hidden;transition:all .3s}
-.m:hover{transform:translateY(-4px);border-color:var(--ac-b,rgba(240,192,64,0.4))}
-.m::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac,var(--gold))}
-.m .mi{font-size:22px;margin-bottom:10px;display:block}
-.m .mv{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,3.2vw,40px);font-weight:800;line-height:1;color:var(--ac,var(--gold-l));margin-bottom:6px}
-html[dir="rtl"] .m .mv{font-family:'Cairo',sans-serif}
-.m .ml{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.m .ms{font-size:10px;color:var(--faint);margin-top:4px}
+  /* BENTO */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
+  @media(max-width:1080px){.bento{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:680px){.bento{grid-template-columns:repeat(2,1fr)}}
+  .b-card{position:relative;padding:24px;border-radius:var(--r-lg);background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, background .35s}
+  .b-card:hover{transform:translateY(-4px);border-color:rgba(240,192,64,0.30)}
+  .b-card::before{content:"";position:absolute;inset:0;opacity:0;transition:.35s;background:radial-gradient(400px 200px at var(--mx,50%) var(--my,50%), rgba(240,192,64,0.10), transparent 60%);pointer-events:none}
+  .b-card:hover::before{opacity:1}
+  .b-card .b-num{font-family:var(--font-display);font-weight:700;font-size:clamp(32px,3.5vw,46px);letter-spacing:-0.03em;color:#fff;font-variant-numeric:tabular-nums;line-height:1}
+  html[dir="rtl"] .b-card .b-num{font-family:var(--font-ar);font-weight:800}
+  .b-card .b-lbl{margin-top:12px;color:var(--ink-d);font-size:13px;line-height:1.5}
+  .b-card .b-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--ink-m);text-transform:uppercase;display:block;margin-bottom:14px}
+  html[dir="rtl"] .b-card .b-tag{letter-spacing:0}
+  .b-card.x2{grid-column:span 2}.b-card.x3{grid-column:span 3}.b-card.y2{grid-row:span 2}
+  .b-card.gold{background:linear-gradient(135deg, rgba(240,192,64,0.14), rgba(184,142,26,0.04));border-color:rgba(240,192,64,0.40)}
+  .b-card.gold .b-num{background:linear-gradient(135deg,#fff,var(--gold-l));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .b-card.cyan{background:linear-gradient(135deg, rgba(0,229,255,0.10), rgba(0,153,204,0.04));border-color:rgba(0,229,255,0.30)}
+  .b-card.cyan .b-num{color:var(--cyan)}
+  .b-card.green{background:linear-gradient(135deg, rgba(62,213,128,0.10), rgba(26,160,90,0.04));border-color:rgba(62,213,128,0.30)}
+  .b-card.green .b-num{color:var(--green)}
+  .b-card.hot{background:linear-gradient(135deg, rgba(255,77,138,0.08), rgba(165,18,82,0.04));border-color:rgba(255,77,138,0.25)}
+  .b-card.hot .b-num{color:var(--hot)}
+  .b-card.dark{background:linear-gradient(180deg, #0a142e, #060d1e)}
 
-/* Compliance banner */
-.banner{padding:30px 36px;background:linear-gradient(135deg,rgba(240,192,64,0.08) 0%,rgba(0,200,83,0.05) 100%);border:1px solid rgba(240,192,64,0.25);border-radius:18px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden;margin-top:14px}
-.banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 22px,rgba(240,192,64,0.018) 22px,rgba(240,192,64,0.018) 23px);pointer-events:none}
-.bn-pct{font-family:'Space Grotesk',sans-serif;font-size:64px;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--gold),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;position:relative}
-html[dir="rtl"] .bn-pct{font-family:'Cairo',sans-serif}
-.bn-info{flex:1;min-width:200px;position:relative}
-.bn-t{font-size:16px;font-weight:700;color:var(--gold-l);margin-bottom:6px}
-.bn-d{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px}
-.bn-tags{display:flex;gap:6px;flex-wrap:wrap}
+  /* COMPLIANCE BANNER */
+  .compliance{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;border-radius:24px;background:linear-gradient(135deg, rgba(62,213,128,0.10), rgba(0,229,255,0.06));border:1px solid rgba(62,213,128,0.30);position:relative;overflow:hidden;margin-top:36px}
+  @media(max-width:780px){.compliance{flex-direction:column;text-align:center}}
+  .compliance::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 200px at 80% 50%, rgba(62,213,128,0.12), transparent 70%);pointer-events:none}
+  .cmp-l{position:relative;z-index:2}
+  .cmp-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--green);font-weight:700}
+  .cmp-h{font-family:var(--font-display);font-weight:700;font-size:30px;color:#fff;margin-top:8px;letter-spacing:-0.02em}
+  html[dir="rtl"] .cmp-h{font-family:var(--font-ar)}
+  .cmp-p{color:var(--ink-d);font-size:14px;margin-top:6px;max-width:520px;line-height:1.55}
+  .cmp-r{position:relative;z-index:2;display:flex;align-items:center;gap:18px}
+  .cmp-num{font-family:var(--font-display);font-weight:700;font-size:72px;background:linear-gradient(135deg,#fff,var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-0.04em;line-height:1}
+  html[dir="rtl"] .cmp-num{font-family:var(--font-ar);font-weight:900}
 
-/* Capabilities */
-.caps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.cap{padding:22px 20px;background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:14px;transition:all .3s}
-.cap:hover{border-color:rgba(240,192,64,0.4);background:var(--gold-tint)}
-.cap-i{font-size:24px;margin-bottom:12px;display:block}
-.cap-t{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;letter-spacing:-0.2px}
-.cap-d{font-size:12px;color:var(--muted);line-height:1.6}
+  /* VIBE */
+  .vibe-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+  @media(max-width:1000px){.vibe-wrap{grid-template-columns:1fr}}
+  .term{border-radius:18px;overflow:hidden;border:1px solid rgba(240,192,64,0.25);background:#060d1e;box-shadow:0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(240,192,64,0.08) inset;font-family:var(--font-mono);font-size:13px}
+  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0a142e;border-bottom:1px solid var(--line)}
+  .term-bar .dot{width:11px;height:11px;border-radius:50%}
+  .term-bar .red{background:#ff5f56}.term-bar .ylw{background:#febc2e}.term-bar .grn{background:#27c93f}
+  .term-title{margin-inline-start:14px;color:var(--ink-m);font-size:11px;letter-spacing:.08em}
+  .term-body{padding:22px 22px 26px;line-height:1.85;color:#d1cbb0;min-height:380px}
+  .prompt{color:var(--gold-l);user-select:none;margin-inline-end:8px;font-weight:700}
+  .ok{color:var(--green)}.warn{color:#febc2e}.cmt{color:#6e6856;font-style:italic}.var{color:var(--cyan)}.str{color:var(--gold-l)}.wins{color:var(--green);font-weight:700}.pink{color:var(--hot)}
+  .cursor::after{content:"\2588";color:var(--gold-l);animation:blink 1s steps(2) infinite;margin-inline-start:2px}
+  @keyframes blink{50%{opacity:0}}
+  .vibe-cards{display:flex;flex-direction:column;gap:14px}
+  .vc{padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;transition:.3s}
+  .vc:hover{border-color:rgba(240,192,64,0.35);transform:translateX(4px)}
+  html[dir="rtl"] .vc:hover{transform:translateX(-4px)}
+  .vc-ic{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg, rgba(240,192,64,0.14), rgba(0,229,255,0.06));border:1px solid rgba(240,192,64,0.25);display:grid;place-items:center;font-size:20px}
+  .vc h4{font-size:15px;font-weight:700;margin-bottom:6px;color:#fff}
+  .vc p{font-size:13px;color:var(--ink-d);line-height:1.55}
 
-/* Contact */
-.contact{padding:54px 50px;background:linear-gradient(135deg,rgba(240,192,64,0.08) 0%,rgba(0,229,255,0.06) 100%);border:1px solid rgba(240,192,64,0.28);border-radius:24px;text-align:center;position:relative;overflow:hidden}
-.contact::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 22px,rgba(240,192,64,0.02) 22px,rgba(240,192,64,0.02) 23px);pointer-events:none}
-.ct-eyebrow{font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold-l);margin-bottom:14px;position:relative}
-.ct-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,3.8vw,46px);font-weight:700;margin-bottom:12px;position:relative;background:linear-gradient(135deg,#fff,var(--gold-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-html[dir="rtl"] .ct-title{font-family:'Cairo',sans-serif}
-.ct-sub{font-size:13px;color:var(--muted);margin-bottom:32px;max-width:560px;margin-left:auto;margin-right:auto;position:relative}
-.ct-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:700px;margin:0 auto;position:relative}
-.ct-card{padding:20px 16px;background:rgba(4,8,16,0.75);border:1px solid var(--border);border-radius:14px;display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;transition:all .3s}
-.ct-card:hover{transform:translateY(-3px)}
-.ct-card.phone{border-color:rgba(240,192,64,0.22)}
-.ct-card.phone:hover{border-color:rgba(240,192,64,0.55)}
-.ct-card.email{border-color:rgba(0,229,255,0.22)}
-.ct-card.email:hover{border-color:rgba(0,229,255,0.55)}
-.ct-card.li{border-color:rgba(0,200,83,0.22)}
-.ct-card.li:hover{border-color:rgba(0,200,83,0.55)}
-.ct-icon{font-size:24px}
-.ct-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--faint)}
-.ct-val{font-size:11px;font-weight:600;word-break:break-all;color:var(--text)}
+  /* MARQUEE */
+  .marquee{position:relative;overflow:hidden;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg, transparent, rgba(255,255,255,0.015), transparent);-webkit-mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)}
+  .marquee-track{display:flex;gap:54px;width:max-content;animation:marq 38s linear infinite}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  html[dir="rtl"] .marquee-track{animation-direction:reverse}
+  .logo-chip{display:flex;align-items:center;gap:12px;padding:14px 26px;border-radius:14px;background:rgba(255,255,255,0.025);border:1px solid var(--line);font-weight:600;color:var(--ink);white-space:nowrap;font-size:15px}
+  .logo-chip .lc-mark{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
+  .lc-petromin{background:linear-gradient(135deg,#e63946,#a4151c)}
+  .lc-sasco{background:linear-gradient(135deg,#0a7a3c,#0d6e3a)}
+  .lc-swa{background:linear-gradient(135deg,#0ea5e9,#0369a1)}
+  .lc-mewa{background:linear-gradient(135deg,#16a34a,#166534)}
+  .lc-energy{background:linear-gradient(135deg,#f59e0b,#b45309)}
+  .lc-zatca{background:linear-gradient(135deg,#3b82f6,#1e40af)}
+  .lc-rased{background:linear-gradient(135deg,#10b981,#047857)}
+  .lc-mojaz{background:linear-gradient(135deg,#8b5cf6,#5b21b6)}
 
-.foot{margin-top:60px;padding:32px 0 12px;border-top:1px solid var(--border);text-align:center;font-size:11px;color:var(--faint)}
-.foot a{color:var(--gold-l);text-decoration:none;margin:0 6px}
+  /* JOURNEY TIMELINE */
+  .timeline{position:relative;display:flex;flex-direction:column;gap:18px}
+  .tl{display:grid;grid-template-columns:140px 1fr;gap:20px;padding:24px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);transition:.3s}
+  .tl:hover{border-color:rgba(240,192,64,0.30);transform:translateX(4px)}
+  html[dir="rtl"] .tl:hover{transform:translateX(-4px)}
+  @media(max-width:780px){.tl{grid-template-columns:1fr;gap:8px}}
+  .tl-year{font-family:var(--font-display);font-weight:700;font-size:36px;color:var(--gold-l);letter-spacing:-0.02em;line-height:1}
+  html[dir="rtl"] .tl-year{font-family:var(--font-ar);font-weight:800}
+  .tl-tag{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--ink-m);margin-top:8px}
+  html[dir="rtl"] .tl-tag{letter-spacing:0}
+  .tl-body h4{font-size:18px;font-weight:700;color:#fff}
+  .tl-body p{margin-top:8px;color:var(--ink-d);font-size:14px;line-height:1.6}
+  .tl-chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+  .tl-chips span{padding:5px 10px;border-radius:999px;font-size:11px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink-d)}
+  .tl-chips .green{background:rgba(62,213,128,0.10);color:var(--green);border-color:rgba(62,213,128,0.20)}
+  .tl-chips .cyan{background:rgba(0,229,255,0.08);color:var(--cyan);border-color:rgba(0,229,255,0.20)}
+  .tl-chips .gold{background:rgba(240,192,64,0.10);color:var(--gold-l);border-color:rgba(240,192,64,0.20)}
 
-.rv{opacity:0;transform:translateY(28px);transition:all .8s cubic-bezier(.2,.7,.2,1)}
-.rv.in{opacity:1;transform:translateY(0)}
-.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}.rv-d5{transition-delay:.4s}.rv-d6{transition-delay:.48s}
+  /* CAPABILITIES */
+  .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:980px){.caps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.caps{grid-template-columns:1fr}}
+  .cap{padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);transition:.3s}
+  .cap:hover{transform:translateY(-3px);border-color:rgba(240,192,64,0.35)}
+  .cap-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:rgba(240,192,64,0.12);border:1px solid rgba(240,192,64,0.25);margin-bottom:14px}
+  .cap h4{font-size:14px;font-weight:700;color:#fff}
+  .cap p{margin-top:6px;font-size:12.5px;color:var(--ink-m);line-height:1.55}
 
-@media (max-width:960px){
-  .wrap{padding:96px 28px 48px}
-  .hero-row{grid-template-columns:1fr}
-  .triple{max-width:300px}
-  .trinity,.caps{grid-template-columns:1fr}
-  .mega,.mega2{grid-template-columns:repeat(2,1fr)}
-  .ct-grid{grid-template-columns:1fr}
-}
+  /* CONTACT */
+  .contact-wrap{margin-top:48px;padding:clamp(36px,6vw,72px);border-radius:28px;background:linear-gradient(135deg, rgba(240,192,64,0.12), rgba(0,229,255,0.05), rgba(62,213,128,0.05));border:1px solid rgba(240,192,64,0.30);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+  @media(max-width:900px){.contact-wrap{grid-template-columns:1fr}}
+  .contact-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 80% 50%, rgba(240,192,64,0.14), transparent 60%);pointer-events:none}
+  .contact-h{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-0.02em;line-height:1.1}
+  html[dir="rtl"] .contact-h{font-family:var(--font-ar);line-height:1.25;letter-spacing:0}
+  .contact-p{margin-top:14px;color:var(--ink-d);font-size:15px;line-height:1.6;max-width:480px}
+  .contact-list{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2}
+  .contact-list a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;background:rgba(0,0,0,0.30);border:1px solid var(--line-2);transition:.3s}
+  .contact-list a:hover{border-color:var(--gold-l);background:rgba(240,192,64,0.10);transform:translateX(4px)}
+  html[dir="rtl"] .contact-list a:hover{transform:translateX(-4px)}
+  .contact-list .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(240,192,64,0.16);border:1px solid rgba(240,192,64,0.30);font-size:16px}
+  .contact-list .meta{display:flex;flex-direction:column}
+  .contact-list .meta small{font-size:11px;color:var(--ink-m);letter-spacing:.16em;text-transform:uppercase}
+  html[dir="rtl"] .contact-list .meta small{letter-spacing:0}
+  .contact-list .meta b{font-size:15px;font-weight:600;color:#fff;margin-top:2px;font-family:var(--font-mono)}
+  html[dir="rtl"] .contact-list .meta b{font-family:var(--font-en)}
+
+  footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-m);font-size:12px;letter-spacing:.08em}
+
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.06s}.rv.d2{transition-delay:.14s}.rv.d3{transition-delay:.22s}.rv.d4{transition-delay:.30s}.rv.d5{transition-delay:.38s}.rv.d6{transition-delay:.46s}.rv.d7{transition-delay:.54s}.rv.d8{transition-delay:.62s}
+  @media(max-width:720px){.nav{display:none}.hero{padding-top:120px}}
 </style>
 </head>
 <body>
 
-<div class="bg-layer"></div>
-<div class="bg-grid"></div>
-<div class="orb orb-a"></div>
-<div class="orb orb-b"></div>
-<div class="orb orb-c"></div>
-
-<div id="topbar">
-  <div class="brand"><div class="dot"></div><span data-i18n="brand">The Hybrid Powerhouse · Elite Edition</span></div>
-  <div class="lang-pill">
-    <button class="lb on" data-lang="en" onclick="setLang('en')">EN</button>
-    <button class="lb"    data-lang="ar" onclick="setLang('ar')">AR</button>
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a href="#" class="brand"><span class="brand-mark"><span>AA</span></span><span class="brand-name">Abdulrahman <b>Alhumud</b></span></a>
+    <nav class="nav">
+      <a href="#trinity" data-i18n="n1">Trinity</a>
+      <a href="#impact" data-i18n="n2">Impact</a>
+      <a href="#vibe" data-i18n="n3">Vibe Coding</a>
+      <a href="#network" data-i18n="n4">Network</a>
+      <a href="#journey" data-i18n="n5">Journey</a>
+    </nav>
+    <button class="lang-btn" id="langBtn">العربية</button>
   </div>
-</div>
+</header>
 
-<div class="wrap">
-
-<!-- HERO -->
-<section class="section">
-  <div class="eyebrow rv" data-i18n="ey">Senior PMO + Product + Business Developer · PMP®</div>
-  <h1 class="hook rv rv-d1" data-i18n="hook">Three disciplines. One mind. Total impact.</h1>
-
-  <div class="hero-row">
+<section class="hero">
+  <div class="wrap hero-grid">
     <div>
-      <div class="hero-name rv rv-d2">Abdulrahman Alhumud</div>
-      <div class="hero-role rv rv-d2" data-i18n="role">Senior PMO Leader · Product Strategist · Business Developer · PMP®</div>
-      <p class="hero-pitch rv rv-d3" data-i18n="pitch">The single mind that fuses PMO governance, product growth, and commercial strategy. GCP migration leader, #1 App Store builder, and 4× revenue multiplier — all in one playbook.</p>
-
-      <div class="badge-row rv rv-d3">
-        <span class="badge gold" data-i18n="b1">PMP® · PMO Leader</span>
-        <span class="badge cyan" data-i18n="b2">Product Builder</span>
-        <span class="badge green" data-i18n="b3">Revenue Strategist</span>
-        <span class="badge purple" data-i18n="b4">GCP Cloud Migrator</span>
+      <span class="eyebrow rv" data-i18n="eyebrow">The Hybrid Powerhouse · Master Portfolio</span>
+      <h1 class="hook rv d1">
+        <span class="l1" data-i18n="hl1">Three disciplines.</span>
+        <span class="l2" data-i18n="hl2">One operator.</span>
+        <span class="l3" data-i18n="hl3"><em>Total impact.</em></span>
+      </h1>
+      <p class="lede rv d2" data-i18n="lede">The rare cross-functional executive who runs the full arc — Project Management discipline, Product instinct, and Business Development edge — fused into one operating mind. PMP-certified, #1 builder, 4× growth driver.</p>
+      <div class="cta-row rv d3">
+        <a class="btn btn-primary" href="full.html" target="_blank" rel="noopener" data-i18n="cta1">View Full Deck <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#contact" data-i18n="cta2">Get in Touch <span class="arr">→</span></a>
       </div>
-
-      <div class="cta-row rv rv-d4">
-        <a class="cta cta-primary" href="#contact" data-i18n="cta1">Bring Me In →</a>
-        <a class="cta cta-ghost"   href="full.html" target="_blank" rel="noopener" data-i18n="cta2">View Full Portfolio</a>
+      <div class="trinity-strip rv d4">
+        <div class="ts pm"><small data-i18n="ts1.t">PROJECT MGMT</small><b><span class="cnt" data-target="90">0</span>%</b><span data-i18n="ts1.s">On-time delivery</span></div>
+        <div class="ts pd"><small data-i18n="ts2.t">PRODUCT</small><b>#<span class="cnt" data-target="1">0</span></b><span data-i18n="ts2.s">App Store · Saudi</span></div>
+        <div class="ts bd"><small data-i18n="ts3.t">BUSINESS DEV</small><b><span class="cnt" data-target="4">0</span>×</b><span data-i18n="ts3.s">Revenue growth</span></div>
       </div>
     </div>
-
-    <div class="triple rv rv-d2">
-      <div class="t-ring" style="width:320px;height:320px;--spd:32s;--dot:var(--gold)"></div>
-      <div class="t-ring rev" style="width:230px;height:230px;--spd:22s;--dot:var(--cyan);border-color:rgba(0,229,255,0.18)"></div>
-      <div class="t-ring" style="width:155px;height:155px;--spd:14s;--dot:var(--green);border-color:rgba(0,200,83,0.16)"></div>
-      <div class="t-core">
-        <div class="tc-eye" data-i18n="tc.eye">PMP®</div>
-        <div class="tc-num">3-in-1</div>
-        <div class="tc-lbl" data-i18n="tc.lbl">Triple Threat</div>
+    <div class="rv d2">
+      <div class="profile-stage">
+        <div class="t-ring r-gold"></div>
+        <div class="t-ring r-cyan"></div>
+        <div class="t-ring r-green"></div>
+        <div class="profile-frame">
+          <img src="profile.jpg" alt="Abdulrahman Alhumud" onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='grid'">
+          <div class="ph" style="display:none">AA</div>
+        </div>
+        <div class="orbit-ic o1">PM</div>
+        <div class="orbit-ic o2">PdM</div>
+        <div class="orbit-ic o3">BD</div>
+        <div class="orbit-ic o4">AI</div>
       </div>
-      <div class="t-icon t-i1">📋</div>
-      <div class="t-icon t-i2">🚀</div>
-      <div class="t-icon t-i3">💼</div>
-      <div class="t-icon t-i4">☁️</div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span data-i18n="scroll">Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- TRINITY PILLARS -->
+<section class="sec" id="trinity">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="t.ey">The Trinity · Three Worlds, One Operator</span>
+      <h2 class="sec-h2" data-i18n="t.h">Cross-functional <em>by design.</em></h2>
+      <p class="sec-sub" data-i18n="t.s">Each discipline strengthens the others. The PM brings governance to the Product. The Product brings empathy to the BD. The BD brings revenue back to the Program. Every angle, owned.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar pm rv">
+        <span class="pillar-tag">01 · PROJECT MANAGEMENT</span>
+        <h3 data-i18n="p1.h">Governance & Delivery</h3>
+        <p data-i18n="p1.p">PMP-certified discipline. 40+ POs, 55+ contracts, 90% on-time across multi-sector portfolios. Turnaround specialist — Rased 2023.</p>
+        <div class="pillar-metrics">
+          <div class="pm-cell"><b><span class="cnt" data-target="90">0</span>%</b><span data-i18n="p1.m1">On-time</span></div>
+          <div class="pm-cell"><b><span class="cnt" data-target="40">0</span>+</b><span data-i18n="p1.m2">POs</span></div>
+        </div>
+      </div>
+      <div class="pillar pd rv d1">
+        <span class="pillar-tag">02 · PRODUCT MANAGEMENT</span>
+        <h3 data-i18n="p2.h">Discovery & Scale</h3>
+        <p data-i18n="p2.p">User-obsessed PdM. Mojaz hit #1 App Store in 4 months. 25M+ impressions. 5 live products. Full GCP cloud migrations.</p>
+        <div class="pillar-metrics">
+          <div class="pm-cell"><b>#<span class="cnt" data-target="1">0</span></b><span data-i18n="p2.m1">App Store</span></div>
+          <div class="pm-cell"><b><span class="cnt" data-target="25">0</span>M+</b><span data-i18n="p2.m2">Impressions</span></div>
+        </div>
+      </div>
+      <div class="pillar bd rv d2">
+        <span class="pillar-tag">03 · BUSINESS DEVELOPMENT</span>
+        <h3 data-i18n="p3.h">Pipeline & P&L</h3>
+        <p data-i18n="p3.p">Deal closer with sovereign reach. 4× revenue growth. 500% fleet scale. 380+ enterprise clients. Petromin, SASCO, SWA, MEWA, MoEnergy, ZATCA.</p>
+        <div class="pillar-metrics">
+          <div class="pm-cell"><b><span class="cnt" data-target="4">0</span>×</b><span data-i18n="p3.m1">Revenue</span></div>
+          <div class="pm-cell"><b><span class="cnt" data-target="500">0</span>%</b><span data-i18n="p3.m2">Fleet scale</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TRINITY -->
-<section class="section">
-  <div class="sec-head rv">
-    <div class="sec-eye" data-i18n="t.eye">The Three Disciplines · One Operator</div>
-    <h2 class="sec-title"><span data-i18n="t.t1">Why settle for one when you can have </span><span class="gold" data-i18n="t.t2">all three?</span></h2>
-    <p class="sec-sub" data-i18n="t.s">Most leaders specialize. I integrate. PMO discipline meets product velocity meets commercial firepower — orchestrated by one operator with full enterprise context.</p>
-  </div>
-
-  <div class="trinity">
-    <div class="tr rv rv-d1" style="--ac:var(--gold-l);--ac-b:rgba(240,192,64,0.4);--ac-tint:var(--gold-tint)">
-      <span class="tr-i">📋</span>
-      <span class="tr-tag" data-i18n="tr1.tag">Project · Governance</span>
-      <h3 class="tr-t" data-i18n="tr1.t">Disciplined Delivery</h3>
-      <p class="tr-d" data-i18n="tr1.d">PMP® governance across the full lifecycle. Risk, quality, scope, schedule — owned end-to-end with executive-grade reporting.</p>
-      <div class="tr-stats">
-        <div class="tr-st"><div class="tr-st-v">90%</div><div class="tr-st-l" data-i18n="tr1.s1">On-Time</div></div>
-        <div class="tr-st"><div class="tr-st-v">20+</div><div class="tr-st-l" data-i18n="tr1.s2">Team Led</div></div>
+<!-- MASTER IMPACT BENTO -->
+<section class="sec" id="impact">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="im.ey">Master Impact Dashboard · 2022–2025</span>
+      <h2 class="sec-h2" data-i18n="im.h">Every number, <em>owned end-to-end.</em></h2>
+      <p class="sec-sub" data-i18n="im.s">No vanity, no spin. Multi-million SAR portfolios delivered with PMP discipline, product instinct, and BD execution — under one operating system.</p>
+    </div>
+    <div class="bento">
+      <div class="b-card gold x2 y2 rv">
+        <span class="b-tag" data-i18n="bm1.t">Flagship · Revenue</span>
+        <div class="b-num"><span class="cnt" data-target="4">0</span>×</div>
+        <div class="b-lbl" style="font-size:18px;color:#fff;margin-top:18px" data-i18n="bm1.h">Revenue growth · 2022→2025</div>
+        <p style="color:var(--ink-d);font-size:13.5px;margin-top:8px;line-height:1.6" data-i18n="bm1.p">Quadrupled top-line through disciplined renewals, B2G mandates, and full-funnel ownership.</p>
+        <div style="position:absolute;bottom:24px;right:24px;font-size:48px;opacity:.10">💎</div>
+      </div>
+      <div class="b-card cyan rv d1"><span class="b-tag" data-i18n="bm2.t">Product</span><div class="b-num">#<span class="cnt" data-target="1">0</span></div><div class="b-lbl" data-i18n="bm2.p">App Store rank · Saudi</div></div>
+      <div class="b-card cyan rv d2"><span class="b-tag" data-i18n="bm3.t">Reach</span><div class="b-num"><span class="cnt" data-target="25">0</span>M+</div><div class="b-lbl" data-i18n="bm3.p">Impressions</div></div>
+      <div class="b-card green rv d3"><span class="b-tag" data-i18n="bm4.t">Delivery</span><div class="b-num"><span class="cnt" data-target="90">0</span>%</div><div class="b-lbl" data-i18n="bm4.p">On-time delivery</div></div>
+      <div class="b-card green rv d4"><span class="b-tag" data-i18n="bm5.t">Team</span><div class="b-num"><span class="cnt" data-target="40">0</span>+</div><div class="b-lbl" data-i18n="bm5.p">Tech members led</div></div>
+      <div class="b-card gold x2 rv d5">
+        <span class="b-tag" data-i18n="bm6.t">Commercial Volume</span>
+        <div style="display:flex;gap:32px;align-items:baseline;margin-top:6px">
+          <div><div class="b-num"><span class="cnt" data-target="40">0</span>+</div><div class="b-lbl" data-i18n="bm6.a">Purchase Orders</div></div>
+          <div><div class="b-num"><span class="cnt" data-target="55">0</span>+</div><div class="b-lbl" data-i18n="bm6.b">Contracts</div></div>
+        </div>
+      </div>
+      <div class="b-card hot rv d6"><span class="b-tag" data-i18n="bm7.t">Scale</span><div class="b-num"><span class="cnt" data-target="500">0</span>%</div><div class="b-lbl" data-i18n="bm7.p">Fleet growth</div></div>
+      <div class="b-card hot rv d7"><span class="b-tag" data-i18n="bm8.t">Book</span><div class="b-num"><span class="cnt" data-target="380">0</span>+</div><div class="b-lbl" data-i18n="bm8.p">Enterprise clients</div></div>
+      <div class="b-card dark x2 rv d8">
+        <span class="b-tag" data-i18n="bm9.t">Portfolio</span>
+        <div style="display:flex;gap:32px;align-items:baseline;margin-top:6px">
+          <div><div class="b-num"><span class="cnt" data-target="5">0</span></div><div class="b-lbl" data-i18n="bm9.a">Live products</div></div>
+          <div><div class="b-num"><span class="cnt" data-target="12">0</span></div><div class="b-lbl" data-i18n="bm9.b">Active services</div></div>
+          <div><div class="b-num"><span class="cnt" data-target="11">0</span>+</div><div class="b-lbl" data-i18n="bm9.c">Stakeholder bodies</div></div>
+        </div>
       </div>
     </div>
 
-    <div class="tr rv rv-d2" style="--ac:var(--cyan);--ac-b:rgba(0,229,255,0.4);--ac-tint:var(--cyan-d)">
-      <span class="tr-i">🚀</span>
-      <span class="tr-tag" data-i18n="tr2.tag">Product · Growth</span>
-      <h3 class="tr-t" data-i18n="tr2.t">User-First Products</h3>
-      <p class="tr-d" data-i18n="tr2.d">From idea to App Store #1. Discovery, sprint, growth — products built around users with measurable outcome loops.</p>
-      <div class="tr-stats">
-        <div class="tr-st"><div class="tr-st-v">#1</div><div class="tr-st-l" data-i18n="tr2.s1">App Store</div></div>
-        <div class="tr-st"><div class="tr-st-v">25M+</div><div class="tr-st-l" data-i18n="tr2.s2">Impressions</div></div>
+    <!-- COMPLIANCE BANNER -->
+    <div class="compliance rv">
+      <div class="cmp-l">
+        <span class="cmp-tag" data-i18n="cm.t">Governance Compliance</span>
+        <div class="cmp-h" data-i18n="cm.h">PMBOK · ISO · OWASP · Risk Framework</div>
+        <div class="cmp-p" data-i18n="cm.p">Every program, product, and contract held to PMBOK discipline, ISO 27001 alignment, and OWASP-grade security gates. Sovereign-grade, audit-ready.</div>
       </div>
-    </div>
-
-    <div class="tr rv rv-d3" style="--ac:var(--green);--ac-b:rgba(0,200,83,0.4);--ac-tint:rgba(0,200,83,0.1)">
-      <span class="tr-i">💼</span>
-      <span class="tr-tag" data-i18n="tr3.tag">Business · Strategy</span>
-      <h3 class="tr-t" data-i18n="tr3.t">Commercial Firepower</h3>
-      <p class="tr-d" data-i18n="tr3.d">From handshake to P&amp;L impact. Contracts, vendors, government partnerships — opening doors and compounding revenue.</p>
-      <div class="tr-stats">
-        <div class="tr-st"><div class="tr-st-v">4×</div><div class="tr-st-l" data-i18n="tr3.s1">Revenue</div></div>
-        <div class="tr-st"><div class="tr-st-v">55+</div><div class="tr-st-l" data-i18n="tr3.s2">Contracts</div></div>
+      <div class="cmp-r">
+        <div class="cmp-num"><span class="cnt" data-target="100">0</span>%</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-start"><div style="font-size:12px;color:var(--ink-m);letter-spacing:.16em;text-transform:uppercase" data-i18n="cm.l1">Compliance Posture</div><div style="font-size:14px;color:var(--green);font-weight:700" data-i18n="cm.l2">Audit-ready · 2025</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FULL DASHBOARD -->
-<section class="section">
-  <div class="sec-head rv">
-    <div class="sec-eye" data-i18n="d.eye">Complete Portfolio Impact</div>
-    <h2 class="sec-title"><span data-i18n="d.t1">The </span><span class="gold" data-i18n="d.t2">Full-Scale</span><span data-i18n="d.t3"> Numbers</span></h2>
-    <p class="sec-sub" data-i18n="d.s">Every metric. Every discipline. One operator delivering across product, operations, governance, and commercial strategy.</p>
-  </div>
-
-  <div class="mega">
-    <div class="m rv rv-d1" style="--ac:var(--gold-l);--ac-b:rgba(240,192,64,0.4)">
-      <span class="mi">🚀</span>
-      <span class="mv"><span class="cnt" data-target="5">0</span></span>
-      <div class="ml" data-i18n="d1l">Products Launched</div>
-      <div class="ms" data-i18n="d1s">Mojaz → Rased</div>
+<!-- VIBE -->
+<section class="sec" id="vibe">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="v.ey">AI × Trinity · Vibe Coding</span>
+      <h2 class="sec-h2" data-i18n="v.h">Three roles. One operator. <em>Agentic compression.</em></h2>
+      <p class="sec-sub" data-i18n="v.s">Claude Code, Gemini API, and agentic workflows are how one operator scales like a team. PM, product, and BD outputs — drafted, audited, shipped — at machine speed, with human judgment in the loop.</p>
     </div>
-    <div class="m rv rv-d2" style="--ac:var(--gold-l);--ac-b:rgba(240,192,64,0.4)">
-      <span class="mi">⚙️</span>
-      <span class="mv"><span class="cnt" data-target="12">0</span></span>
-      <div class="ml" data-i18n="d2l">Core Services</div>
-      <div class="ms" data-i18n="d2s">Deployed &amp; live</div>
-    </div>
-    <div class="m rv rv-d3" style="--ac:var(--cyan);--ac-b:rgba(0,229,255,0.4)">
-      <span class="mi">📈</span>
-      <span class="mv" style="color:var(--cyan)"><span class="cnt" data-target="4">0</span>×</span>
-      <div class="ml" data-i18n="d3l">Revenue Growth</div>
-      <div class="ms" data-i18n="d3s">Total impact</div>
-    </div>
-    <div class="m rv rv-d4" style="--ac:var(--cyan);--ac-b:rgba(0,229,255,0.4)">
-      <span class="mi">🚗</span>
-      <span class="mv" style="color:var(--cyan)"><span class="cnt" data-target="500">0</span>%</span>
-      <div class="ml" data-i18n="d4l">Fleet Growth</div>
-      <div class="ms" data-i18n="d4s">Vehicle base</div>
-    </div>
-  </div>
-
-  <div class="mega2">
-    <div class="m rv rv-d1" style="--ac:var(--purple);--ac-b:rgba(168,85,247,0.4)">
-      <span class="mi">📋</span>
-      <span class="mv" style="color:var(--purple)"><span class="cnt" data-target="40">0</span>+</span>
-      <div class="ml" data-i18n="d5l">Purchase Orders</div>
-      <div class="ms" data-i18n="d5s">End-to-end</div>
-    </div>
-    <div class="m rv rv-d2" style="--ac:var(--purple);--ac-b:rgba(168,85,247,0.4)">
-      <span class="mi">⚖️</span>
-      <span class="mv" style="color:var(--purple)"><span class="cnt" data-target="55">0</span>+</span>
-      <div class="ml" data-i18n="d6l">Legal Contracts</div>
-      <div class="ms" data-i18n="d6s">Negotiated</div>
-    </div>
-    <div class="m rv rv-d3" style="--ac:var(--green);--ac-b:rgba(0,200,83,0.4)">
-      <span class="mi">✅</span>
-      <span class="mv" style="color:var(--green)"><span class="cnt" data-target="90">0</span>%</span>
-      <div class="ml" data-i18n="d7l">On-Time Delivery</div>
-      <div class="ms" data-i18n="d7s">PMP® standards</div>
-    </div>
-    <div class="m rv rv-d4" style="--ac:var(--gold-l);--ac-b:rgba(240,192,64,0.4)">
-      <span class="mi">📊</span>
-      <span class="mv">25M+</span>
-      <div class="ml" data-i18n="d8l">Impressions</div>
-      <div class="ms" data-i18n="d8s">Mojaz campaign</div>
+    <div class="vibe-wrap">
+      <div class="term rv">
+        <div class="term-bar">
+          <span class="dot red"></span><span class="dot ylw"></span><span class="dot grn"></span>
+          <span class="term-title">~/abdulrahman/master-stack · zsh</span>
+        </div>
+        <div class="term-body">
+<p><span class="prompt">$</span> <span class="var">claude</span> orchestrate --role <span class="str">"hybrid-exec"</span></p>
+<p class="cmt"># Loading: PM agent · PdM agent · BD agent</p>
+<p><span class="ok">✓</span> Risk register · sprint plan · stakeholder map</p>
+<p><span class="ok">✓</span> User-interview synthesis · A/B test framework</p>
+<p><span class="ok">✓</span> Lead scoring · proposal drafting · redline pass</p>
+<p>&nbsp;</p>
+<p><span class="prompt">$</span> <span class="var">claude</span> audit ./rems --mode <span class="str">"security+governance"</span></p>
+<p><span class="warn">!</span> 7 high-severity findings → triaged</p>
+<p><span class="ok">✓</span> Remediation PRs · ISO 27001 mapped</p>
+<p>&nbsp;</p>
+<p><span class="prompt">$</span> <span class="var">gemini</span> migrate hubeat --gcp --zero-downtime</p>
+<p><span class="ok">✓</span> Cutover plan · rollback &lt;5min · IaC managed</p>
+<p>&nbsp;</p>
+<p><span class="prompt">$</span> <span class="var">claude</span> brief --board --duration 5min</p>
+<p class="wins">✓ Brief ready · Petromin · MEWA · SWA</p>
+<p><span class="cursor"></span></p>
+        </div>
+      </div>
+      <div class="vibe-cards">
+        <div class="vc rv d1"><div class="vc-ic">⚡</div><div><h4 data-i18n="vc1.h">Zimam · PMO SaaS</h4><p data-i18n="vc1.p">Multi-tenant governance platform — built end-to-end with Claude Code. Roles, risk, KPI, stakeholders, all integrated.</p></div></div>
+        <div class="vc rv d2"><div class="vc-ic">🛡</div><div><h4 data-i18n="vc2.h">REMS · Security Audit</h4><p data-i18n="vc2.p">Full code audit driven by Claude agents — OWASP gates, ISO 27001 mapping, remediation PRs auto-generated.</p></div></div>
+        <div class="vc rv d3"><div class="vc-ic">☁</div><div><h4 data-i18n="vc3.h">HubEat · GCP Cloud</h4><p data-i18n="vc3.p">Full cloud migration orchestrated with Gemini — IaC managed, zero-downtime, rollback under 5 minutes.</p></div></div>
+        <div class="vc rv d4"><div class="vc-ic">🤖</div><div><h4 data-i18n="vc4.h">Agentic Operations</h4><p data-i18n="vc4.p">PM reports, A/B tests, BD briefs, contract redlines — all drafted by custom Claude agents, finalized by me.</p></div></div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="banner rv">
-    <div class="bn-pct">100%</div>
-    <div class="bn-info">
-      <div class="bn-t" data-i18n="bn.t">🛡️ Compliance &amp; Security — The Foundation</div>
-      <div class="bn-d" data-i18n="bn.d">Every product, service, and vendor relationship operates within a zero-compromise security framework — embedded from day one across all 11+ stakeholder groups.</div>
-      <div class="bn-tags">
-        <span class="badge gold" data-i18n="bn.tag1">ZATCA Compliant</span>
-        <span class="badge green" data-i18n="bn.tag2">ISO Aligned</span>
-        <span class="badge cyan" data-i18n="bn.tag3">GCP Security</span>
-        <span class="badge purple" data-i18n="bn.tag4">Vendor Governance</span>
+<!-- NETWORK -->
+<section class="sec" id="network">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow" data-i18n="n.ey">Executive Network</span>
+      <h2 class="sec-h2" data-i18n="n.h">The book. <em>The trust. The track record.</em></h2>
+      <p class="sec-sub" data-i18n="n.s">Sovereign clients, energy majors, regulators, and platform partners. Years of executive-grade relationships across every layer of Saudi's strategic ecosystem.</p>
+    </div>
+  </div>
+  <div class="marquee rv">
+    <div class="marquee-track">
+      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
+      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
+      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
+      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
+      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
+      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
+      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
+      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
+      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
+      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
+      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
+      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
+      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
+      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
+      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
+      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY TIMELINE -->
+<section class="sec" id="journey">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="j.ey">The Master Timeline · One Operator, Three Worlds</span>
+      <h2 class="sec-h2" data-i18n="j.h">A trajectory <em>that compounds.</em></h2>
+      <p class="sec-sub" data-i18n="j.s">From governance lead, to product launcher, to deal closer — each chapter built the next. Same operator. Three operating models.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl rv">
+        <div><div class="tl-year">2022</div><span class="tl-tag" data-i18n="tly1">FOUNDATION</span></div>
+        <div class="tl-body">
+          <h4 data-i18n="tl1.h">Governance & Foundations</h4>
+          <p data-i18n="tl1.p">Built PMO discipline from the ground up. Established cadence, ownership maps, and risk registers across multi-sector portfolios. Signed early enterprise contracts.</p>
+          <div class="tl-chips"><span class="green">PMP Discipline</span><span class="green">PMO Setup</span><span class="gold">First Contracts</span></div>
+        </div>
+      </div>
+      <div class="tl rv d1">
+        <div><div class="tl-year">2023</div><span class="tl-tag" data-i18n="tly2">TURNAROUND</span></div>
+        <div class="tl-body">
+          <h4 data-i18n="tl2.h">The Rased Turnaround</h4>
+          <p data-i18n="tl2.p">Inherited stalled programs. Rebuilt governance. Achieved 90% on-time delivery. Closed 40+ POs and 55+ contracts. Locked in B2G mandates with sovereign clients.</p>
+          <div class="tl-chips"><span class="green">90% OTD</span><span class="green">40+ POs</span><span class="gold">55+ Contracts</span><span class="gold">Petromin · SASCO</span></div>
+        </div>
+      </div>
+      <div class="tl rv d2">
+        <div><div class="tl-year">2024</div><span class="tl-tag" data-i18n="tly3">PRODUCT</span></div>
+        <div class="tl-body">
+          <h4 data-i18n="tl3.h">The Mojaz Sprint</h4>
+          <p data-i18n="tl3.p">Shipped 1 flagship product. Mojaz hit #1 App Store in 4 months. +250% downloads, 25M+ impressions. Pivoted into full PdM ownership alongside PMO leadership.</p>
+          <div class="tl-chips"><span class="cyan">#1 App Store</span><span class="cyan">25M+ Impressions</span><span class="cyan">+250% Downloads</span></div>
+        </div>
+      </div>
+      <div class="tl rv d3">
+        <div><div class="tl-year">2025</div><span class="tl-tag" data-i18n="tly4">SCALE</span></div>
+        <div class="tl-body">
+          <h4 data-i18n="tl4.h">Hybrid Powerhouse · Multiplied</h4>
+          <p data-i18n="tl4.p">4 more products launched (5 total live). 12 services in active rotation. 4× revenue growth. 500% fleet expansion. 380+ enterprise clients. Full GCP migrations. Vibe-coding stack productized internally.</p>
+          <div class="tl-chips"><span class="gold">4× Revenue</span><span class="gold">500% Fleet</span><span class="gold">380+ Clients</span><span class="cyan">5 Products</span><span class="green">GCP Native</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CAPABILITIES -->
-<section class="section">
-  <div class="sec-head rv">
-    <div class="sec-eye" data-i18n="cp.eye">What You Get When You Hire Once</div>
-    <h2 class="sec-title"><span data-i18n="cp.t1">Six capabilities. </span><span class="cyan" data-i18n="cp.t2">One operator.</span></h2>
-    <p class="sec-sub" data-i18n="cp.s">Stop hiring three roles. The hybrid powerhouse delivers governance, growth, and commercial strategy from a single operator with full context.</p>
-  </div>
-
-  <div class="caps">
-    <div class="cap rv rv-d1"><span class="cap-i">📋</span><h3 class="cap-t" data-i18n="cp1t">PMO Governance</h3><p class="cap-d" data-i18n="cp1d">PMBOK-grade frameworks, risk management, decision logs, OKR alignment.</p></div>
-    <div class="cap rv rv-d2"><span class="cap-i">🚀</span><h3 class="cap-t" data-i18n="cp2t">Product Strategy</h3><p class="cap-d" data-i18n="cp2d">Discovery to delivery — user-centric products with measurable outcomes.</p></div>
-    <div class="cap rv rv-d3"><span class="cap-i">💼</span><h3 class="cap-t" data-i18n="cp3t">Business Development</h3><p class="cap-d" data-i18n="cp3d">B2B + B2G partnerships, contract negotiation, commercial pipelines.</p></div>
-    <div class="cap rv rv-d4"><span class="cap-i">☁️</span><h3 class="cap-t" data-i18n="cp4t">Cloud Migration</h3><p class="cap-d" data-i18n="cp4d">GCP infrastructure migration leadership with zero-downtime delivery.</p></div>
-    <div class="cap rv rv-d5"><span class="cap-i">🛡️</span><h3 class="cap-t" data-i18n="cp5t">Compliance &amp; Security</h3><p class="cap-d" data-i18n="cp5d">ZATCA, ISO, vendor governance — embedded from day one.</p></div>
-    <div class="cap rv rv-d6"><span class="cap-i">🌐</span><h3 class="cap-t" data-i18n="cp6t">Stakeholder Alignment</h3><p class="cap-d" data-i18n="cp6d">11+ groups orchestrated daily — internal, tech, business, government.</p></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-  <div class="contact rv">
-    <div class="ct-eyebrow" data-i18n="c.ey">Hire Once · Cover Three Roles</div>
-    <h2 class="ct-title" data-i18n="c.t">Let's build the next chapter — together.</h2>
-    <p class="ct-sub" data-i18n="c.s">Available for senior leadership engagements where governance, product, and commercial strategy must converge in one operator.</p>
-    <div class="ct-grid">
-      <a class="ct-card phone" href="tel:+966593935677">
-        <span class="ct-icon">📞</span>
-        <span class="ct-lbl" data-i18n="c.ph">Phone</span>
-        <span class="ct-val" style="color:var(--gold-l)">+966 59 393 5677</span>
-      </a>
-      <a class="ct-card email" href="mailto:A.alhumud0@gmail.com">
-        <span class="ct-icon">✉️</span>
-        <span class="ct-lbl" data-i18n="c.em">Email</span>
-        <span class="ct-val" style="color:var(--cyan)">A.alhumud0@gmail.com</span>
-      </a>
-      <a class="ct-card li" href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener">
-        <span class="ct-icon">💼</span>
-        <span class="ct-lbl" data-i18n="c.li">LinkedIn</span>
-        <span class="ct-val" style="color:var(--green)">www.linkedin.com/in/aalhumud</span>
-      </a>
+<section class="sec" id="caps">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow" data-i18n="cp.ey">Capabilities · Earned, Not Listed</span>
+      <h2 class="sec-h2" data-i18n="cp.h">What I bring <em>to the room.</em></h2>
+    </div>
+    <div class="caps">
+      <div class="cap rv"><div class="cap-ic">🏅</div><h4>PMP®</h4><p data-i18n="cap1.p">Project Management Professional · PMI. The discipline behind every delivery.</p></div>
+      <div class="cap rv d1"><div class="cap-ic">☁</div><h4>GCP Cloud</h4><p data-i18n="cap2.p">Full cloud infrastructure design, migration, and zero-downtime cutovers on Google Cloud.</p></div>
+      <div class="cap rv d2"><div class="cap-ic">🎨</div><h4>Design Thinking</h4><p data-i18n="cap3.p">User-obsessed problem framing, rapid prototyping, and iteration discipline.</p></div>
+      <div class="cap rv d3"><div class="cap-ic">⚖</div><h4>Risk & Governance</h4><p data-i18n="cap4.p">PMBOK frameworks, ISO 27001 alignment, OWASP gates. Sovereign-grade discretion.</p></div>
+      <div class="cap rv d4"><div class="cap-ic">🤖</div><h4>AI · Vibe Coding</h4><p data-i18n="cap5.p">Claude Code, Gemini API, agentic workflows. One operator scaling like a team.</p></div>
+      <div class="cap rv d5"><div class="cap-ic">🤝</div><h4>Executive Network</h4><p data-i18n="cap6.p">Sovereign and enterprise relationships across Saudi's energy, water, regulatory, and tech sectors.</p></div>
     </div>
   </div>
+</section>
 
-  <div class="foot">
-    <span data-i18n="foot">© Abdulrahman Alhumud · Senior PMO + Product + BD · PMP®</span>
-    · <a href="full.html" target="_blank" rel="noopener" data-i18n="foot.full">Full Portfolio</a>
-    · <a href="index.html" data-i18n="foot.short">Executive Summary</a>
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="contact-wrap rv">
+      <div>
+        <h2 class="contact-h" data-i18n="c.h">Need one operator who can do it all?</h2>
+        <p class="contact-p" data-i18n="c.p">I take on senior cross-functional mandates: PMO + Product + BD under one operating mind. Riyadh-based, sovereign-grade discretion, ships at machine speed with human judgment in the loop.</p>
+      </div>
+      <div class="contact-list">
+        <a href="tel:+966593935677"><div class="ic">📞</div><div class="meta"><small data-i18n="c.l1">Direct</small><b>+966 59 393 5677</b></div></a>
+        <a href="mailto:A.alhumud0@gmail.com"><div class="ic">✉</div><div class="meta"><small data-i18n="c.l2">Email</small><b>A.alhumud0@gmail.com</b></div></a>
+        <a href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener"><div class="ic">in</div><div class="meta"><small data-i18n="c.l3">LinkedIn</small><b>linkedin.com/in/aalhumud</b></div></a>
+      </div>
+    </div>
   </div>
 </section>
 
-</div>
+<footer><div class="wrap">© 2025 Abdulrahman Alhumud · <span data-i18n="f">The Hybrid Powerhouse · PM × Product × BD × AI</span></div></footer>
 
 <script>
 const I18N = {
   en: {
-    'brand':'The Hybrid Powerhouse · Elite Edition',
-    'ey':'Senior PMO + Product + Business Developer · PMP®',
-    'hook':'Three disciplines. One mind. Total impact.',
-    'role':'Senior PMO Leader · Product Strategist · Business Developer · PMP®',
-    'pitch':'The single mind that fuses PMO governance, product growth, and commercial strategy. GCP migration leader, #1 App Store builder, and 4× revenue multiplier — all in one playbook.',
-    'b1':'PMP® · PMO Leader','b2':'Product Builder','b3':'Revenue Strategist','b4':'GCP Cloud Migrator',
-    'cta1':'Bring Me In →','cta2':'View Full Portfolio',
-    'tc.eye':'PMP®','tc.lbl':'Triple Threat',
-    't.eye':'The Three Disciplines · One Operator',
-    't.t1':'Why settle for one when you can have ','t.t2':'all three?',
-    't.s':'Most leaders specialize. I integrate. PMO discipline meets product velocity meets commercial firepower — orchestrated by one operator with full enterprise context.',
-    'tr1.tag':'Project · Governance','tr1.t':'Disciplined Delivery',
-    'tr1.d':'PMP® governance across the full lifecycle. Risk, quality, scope, schedule — owned end-to-end with executive-grade reporting.',
-    'tr1.s1':'On-Time','tr1.s2':'Team Led',
-    'tr2.tag':'Product · Growth','tr2.t':'User-First Products',
-    'tr2.d':'From idea to App Store #1. Discovery, sprint, growth — products built around users with measurable outcome loops.',
-    'tr2.s1':'App Store','tr2.s2':'Impressions',
-    'tr3.tag':'Business · Strategy','tr3.t':'Commercial Firepower',
-    'tr3.d':'From handshake to P&L impact. Contracts, vendors, government partnerships — opening doors and compounding revenue.',
-    'tr3.s1':'Revenue','tr3.s2':'Contracts',
-    'd.eye':'Complete Portfolio Impact','d.t1':'The ','d.t2':'Full-Scale','d.t3':' Numbers',
-    'd.s':'Every metric. Every discipline. One operator delivering across product, operations, governance, and commercial strategy.',
-    'd1l':'Products Launched','d1s':'Mojaz → Rased',
-    'd2l':'Core Services','d2s':'Deployed & live',
-    'd3l':'Revenue Growth','d3s':'Total impact',
-    'd4l':'Fleet Growth','d4s':'Vehicle base',
-    'd5l':'Purchase Orders','d5s':'End-to-end',
-    'd6l':'Legal Contracts','d6s':'Negotiated',
-    'd7l':'On-Time Delivery','d7s':'PMP® standards',
-    'd8l':'Impressions','d8s':'Mojaz campaign',
-    'bn.t':'🛡️ Compliance & Security — The Foundation',
-    'bn.d':'Every product, service, and vendor relationship operates within a zero-compromise security framework — embedded from day one across all 11+ stakeholder groups.',
-    'bn.tag1':'ZATCA Compliant','bn.tag2':'ISO Aligned','bn.tag3':'GCP Security','bn.tag4':'Vendor Governance',
-    'cp.eye':'What You Get When You Hire Once',
-    'cp.t1':'Six capabilities. ','cp.t2':'One operator.',
-    'cp.s':'Stop hiring three roles. The hybrid powerhouse delivers governance, growth, and commercial strategy from a single operator with full context.',
-    'cp1t':'PMO Governance','cp1d':'PMBOK-grade frameworks, risk management, decision logs, OKR alignment.',
-    'cp2t':'Product Strategy','cp2d':'Discovery to delivery — user-centric products with measurable outcomes.',
-    'cp3t':'Business Development','cp3d':'B2B + B2G partnerships, contract negotiation, commercial pipelines.',
-    'cp4t':'Cloud Migration','cp4d':'GCP infrastructure migration leadership with zero-downtime delivery.',
-    'cp5t':'Compliance & Security','cp5d':'ZATCA, ISO, vendor governance — embedded from day one.',
-    'cp6t':'Stakeholder Alignment','cp6d':'11+ groups orchestrated daily — internal, tech, business, government.',
-    'c.ey':'Hire Once · Cover Three Roles','c.t':'Let\'s build the next chapter — together.',
-    'c.s':'Available for senior leadership engagements where governance, product, and commercial strategy must converge in one operator.',
-    'c.ph':'Phone','c.em':'Email','c.li':'LinkedIn',
-    'foot':'© Abdulrahman Alhumud · Senior PMO + Product + BD · PMP®','foot.full':'Full Portfolio','foot.short':'Executive Summary'
+    'n1':'Trinity','n2':'Impact','n3':'Vibe Coding','n4':'Network','n5':'Journey',
+    'eyebrow':'The Hybrid Powerhouse · Master Portfolio',
+    'hl1':'Three disciplines.','hl2':'One operator.','hl3':'<em>Total impact.</em>',
+    'lede':'The rare cross-functional executive who runs the full arc — Project Management discipline, Product instinct, and Business Development edge — fused into one operating mind. PMP-certified, #1 builder, 4× growth driver.',
+    'cta1':'View Full Deck <span class="arr">→</span>','cta2':'Get in Touch <span class="arr">→</span>',
+    'ts1.t':'PROJECT MGMT','ts1.s':'On-time delivery','ts2.t':'PRODUCT','ts2.s':'App Store · Saudi','ts3.t':'BUSINESS DEV','ts3.s':'Revenue growth',
+    'scroll':'Scroll',
+    't.ey':'The Trinity · Three Worlds, One Operator','t.h':'Cross-functional <em>by design.</em>',
+    't.s':'Each discipline strengthens the others. The PM brings governance to the Product. The Product brings empathy to the BD. The BD brings revenue back to the Program. Every angle, owned.',
+    'p1.h':'Governance & Delivery','p1.p':'PMP-certified discipline. 40+ POs, 55+ contracts, 90% on-time across multi-sector portfolios. Turnaround specialist — Rased 2023.','p1.m1':'On-time','p1.m2':'POs',
+    'p2.h':'Discovery & Scale','p2.p':'User-obsessed PdM. Mojaz hit #1 App Store in 4 months. 25M+ impressions. 5 live products. Full GCP cloud migrations.','p2.m1':'App Store','p2.m2':'Impressions',
+    'p3.h':'Pipeline & P&L','p3.p':'Deal closer with sovereign reach. 4× revenue growth. 500% fleet scale. 380+ enterprise clients. Petromin, SASCO, SWA, MEWA, MoEnergy, ZATCA.','p3.m1':'Revenue','p3.m2':'Fleet scale',
+    'im.ey':'Master Impact Dashboard · 2022–2025','im.h':'Every number, <em>owned end-to-end.</em>',
+    'im.s':'No vanity, no spin. Multi-million SAR portfolios delivered with PMP discipline, product instinct, and BD execution — under one operating system.',
+    'bm1.t':'Flagship · Revenue','bm1.h':'Revenue growth · 2022→2025','bm1.p':'Quadrupled top-line through disciplined renewals, B2G mandates, and full-funnel ownership.',
+    'bm2.t':'Product','bm2.p':'App Store rank · Saudi',
+    'bm3.t':'Reach','bm3.p':'Impressions',
+    'bm4.t':'Delivery','bm4.p':'On-time delivery',
+    'bm5.t':'Team','bm5.p':'Tech members led',
+    'bm6.t':'Commercial Volume','bm6.a':'Purchase Orders','bm6.b':'Contracts',
+    'bm7.t':'Scale','bm7.p':'Fleet growth',
+    'bm8.t':'Book','bm8.p':'Enterprise clients',
+    'bm9.t':'Portfolio','bm9.a':'Live products','bm9.b':'Active services','bm9.c':'Stakeholder bodies',
+    'cm.t':'Governance Compliance','cm.h':'PMBOK · ISO · OWASP · Risk Framework',
+    'cm.p':'Every program, product, and contract held to PMBOK discipline, ISO 27001 alignment, and OWASP-grade security gates. Sovereign-grade, audit-ready.',
+    'cm.l1':'Compliance Posture','cm.l2':'Audit-ready · 2025',
+    'v.ey':'AI × Trinity · Vibe Coding','v.h':'Three roles. One operator. <em>Agentic compression.</em>',
+    'v.s':'Claude Code, Gemini API, and agentic workflows are how one operator scales like a team. PM, product, and BD outputs — drafted, audited, shipped — at machine speed, with human judgment in the loop.',
+    'vc1.h':'Zimam · PMO SaaS','vc1.p':'Multi-tenant governance platform — built end-to-end with Claude Code. Roles, risk, KPI, stakeholders, all integrated.',
+    'vc2.h':'REMS · Security Audit','vc2.p':'Full code audit driven by Claude agents — OWASP gates, ISO 27001 mapping, remediation PRs auto-generated.',
+    'vc3.h':'HubEat · GCP Cloud','vc3.p':'Full cloud migration orchestrated with Gemini — IaC managed, zero-downtime, rollback under 5 minutes.',
+    'vc4.h':'Agentic Operations','vc4.p':'PM reports, A/B tests, BD briefs, contract redlines — all drafted by custom Claude agents, finalized by me.',
+    'n.ey':'Executive Network','n.h':'The book. <em>The trust. The track record.</em>',
+    'n.s':'Sovereign clients, energy majors, regulators, and platform partners. Years of executive-grade relationships across every layer of Saudi\'s strategic ecosystem.',
+    'j.ey':'The Master Timeline · One Operator, Three Worlds','j.h':'A trajectory <em>that compounds.</em>',
+    'j.s':'From governance lead, to product launcher, to deal closer — each chapter built the next. Same operator. Three operating models.',
+    'tly1':'FOUNDATION','tl1.h':'Governance & Foundations','tl1.p':'Built PMO discipline from the ground up. Established cadence, ownership maps, and risk registers across multi-sector portfolios. Signed early enterprise contracts.',
+    'tly2':'TURNAROUND','tl2.h':'The Rased Turnaround','tl2.p':'Inherited stalled programs. Rebuilt governance. Achieved 90% on-time delivery. Closed 40+ POs and 55+ contracts. Locked in B2G mandates with sovereign clients.',
+    'tly3':'PRODUCT','tl3.h':'The Mojaz Sprint','tl3.p':'Shipped 1 flagship product. Mojaz hit #1 App Store in 4 months. +250% downloads, 25M+ impressions. Pivoted into full PdM ownership alongside PMO leadership.',
+    'tly4':'SCALE','tl4.h':'Hybrid Powerhouse · Multiplied','tl4.p':'4 more products launched (5 total live). 12 services in active rotation. 4× revenue growth. 500% fleet expansion. 380+ enterprise clients. Full GCP migrations. Vibe-coding stack productized internally.',
+    'cp.ey':'Capabilities · Earned, Not Listed','cp.h':'What I bring <em>to the room.</em>',
+    'cap1.p':'Project Management Professional · PMI. The discipline behind every delivery.',
+    'cap2.p':'Full cloud infrastructure design, migration, and zero-downtime cutovers on Google Cloud.',
+    'cap3.p':'User-obsessed problem framing, rapid prototyping, and iteration discipline.',
+    'cap4.p':'PMBOK frameworks, ISO 27001 alignment, OWASP gates. Sovereign-grade discretion.',
+    'cap5.p':'Claude Code, Gemini API, agentic workflows. One operator scaling like a team.',
+    'cap6.p':'Sovereign and enterprise relationships across Saudi\'s energy, water, regulatory, and tech sectors.',
+    'c.h':'Need one operator who can do it all?','c.p':'I take on senior cross-functional mandates: PMO + Product + BD under one operating mind. Riyadh-based, sovereign-grade discretion, ships at machine speed with human judgment in the loop.',
+    'c.l1':'Direct','c.l2':'Email','c.l3':'LinkedIn',
+    'f':'The Hybrid Powerhouse · PM × Product × BD × AI',
   },
   ar: {
-    'brand':'القوة الهجينة · إصدار النخبة',
-    'ey':'PMO + منتج + تطوير أعمال أول · PMP®',
-    'hook':'ثلاث تخصصات. عقل واحد. أثر كامل.',
-    'role':'قائد PMO أول · استراتيجي منتج · مطور أعمال · PMP®',
-    'pitch':'العقل الواحد اللي يدمج حوكمة PMO، نمو المنتج، والاستراتيجية التجارية. قائد هجرة GCP، باني تطبيق المركز الأول، ومضاعف إيرادات 4 أضعاف — كلها في كتاب واحد.',
-    'b1':'PMP® · قائد PMO','b2':'باني منتجات','b3':'استراتيجي إيرادات','b4':'مهاجر GCP',
-    'cta1':'ضمّني للفريق ←','cta2':'شوف الملف الكامل',
-    'tc.eye':'PMP®','tc.lbl':'ثلاثي الأبعاد',
-    't.eye':'الثلاث تخصصات · مشغّل واحد',
-    't.t1':'ليش تكتفي بواحد وأنت تقدر تجمع ','t.t2':'الثلاثة؟',
-    't.s':'أغلب القادة يتخصصون. أنا أدمج. انضباط PMO يلتقي بسرعة المنتج بقوة التجارة — كلها منظّمة بمشغّل واحد وفهم مؤسسي كامل.',
-    'tr1.tag':'مشروع · حوكمة','tr1.t':'تسليم منضبط',
-    'tr1.d':'حوكمة PMP® عبر دورة الحياة الكاملة. مخاطر، جودة، نطاق، جدول — ملكية كاملة مع تقارير بمستوى تنفيذي.',
-    'tr1.s1':'في الموعد','tr1.s2':'فريق قدته',
-    'tr2.tag':'منتج · نمو','tr2.t':'منتجات العميل أولاً',
-    'tr2.d':'من فكرة لين المركز الأول. اكتشاف، سباق، نمو — منتجات مبنية حول العملاء بحلقات أثر قابلة للقياس.',
-    'tr2.s1':'متجر التطبيقات','tr2.s2':'ظهور',
-    'tr3.tag':'أعمال · استراتيجية','tr3.t':'قوة تجارية',
-    'tr3.d':'من المصافحة لين الأرباح. عقود، موردين، شراكات حكومية — أفتح الأبواب وأضاعف الإيرادات.',
-    'tr3.s1':'إيرادات','tr3.s2':'عقد',
-    'd.eye':'الأثر الكامل للمحفظة','d.t1':'الأرقام ','d.t2':'الشاملة','d.t3':'',
-    'd.s':'كل مؤشر. كل تخصص. مشغّل واحد يسلّم عبر المنتج والعمليات والحوكمة والاستراتيجية التجارية.',
-    'd1l':'منتج مطلق','d1s':'موجز ← راصد',
-    'd2l':'خدمة أساسية','d2s':'منشورة وشغالة',
-    'd3l':'نمو إيرادات','d3s':'الأثر الكلي',
-    'd4l':'نمو الأسطول','d4s':'قاعدة المركبات',
-    'd5l':'أمر شراء','d5s':'بداية لنهاية',
-    'd6l':'عقد قانوني','d6s':'متفاوض عليه',
-    'd7l':'تسليم في الموعد','d7s':'بمعايير PMP®',
-    'd8l':'ظهور','d8s':'حملة موجز',
-    'bn.t':'🛡️ الامتثال والأمن — الأساس',
-    'bn.d':'كل منتج وخدمة وعلاقة موردين تشتغل ضمن إطار أمن لا تهاون فيه — مدمج من اليوم الأول عبر جميع مجموعات أصحاب المصلحة (11+ مجموعة).',
-    'bn.tag1':'متوافق ZATCA','bn.tag2':'متوافق ISO','bn.tag3':'أمن GCP','bn.tag4':'حوكمة موردين',
-    'cp.eye':'وش بتاخذ لما توظف مرة واحدة',
-    'cp.t1':'ست قدرات. ','cp.t2':'مشغّل واحد.',
-    'cp.s':'وقّف توظيف ثلاث أدوار. القوة الهجينة تسلّم الحوكمة والنمو والاستراتيجية التجارية من مشغّل واحد بفهم كامل.',
-    'cp1t':'حوكمة PMO','cp1d':'أطر بمستوى PMBOK، إدارة مخاطر، سجلات قرارات، مواءمة OKR.',
-    'cp2t':'استراتيجية منتج','cp2d':'من الاكتشاف للتسليم — منتجات حول العميل بأثر قابل للقياس.',
-    'cp3t':'تطوير أعمال','cp3d':'شراكات B2B + B2G، تفاوض عقود، خطوط تجارية.',
-    'cp4t':'هجرة سحابية','cp4d':'قيادة هجرة بنية GCP بصفر توقف.',
-    'cp5t':'امتثال وأمن','cp5d':'ZATCA، ISO، حوكمة موردين — مدمج من اليوم الأول.',
-    'cp6t':'مواءمة أصحاب المصلحة','cp6d':'11+ مجموعة يومياً — داخلية، تقنية، أعمال، حكومية.',
-    'c.ey':'وظّف مرة · غطّي ثلاث أدوار','c.t':'نبني الفصل الجاي — سوا.',
-    'c.s':'متاح لتكليفات قيادة أولى تحتاج تتلاقى فيها الحوكمة والمنتج والاستراتيجية التجارية في مشغّل واحد.',
-    'c.ph':'الهاتف','c.em':'البريد','c.li':'لينكدإن',
-    'foot':'© عبدالرحمن الحمود · PMO + منتج + تطوير أعمال أول · PMP®','foot.full':'الملف الكامل','foot.short':'الملخص التنفيذي'
+    'n1':'الثلاثيّة','n2':'الأثر','n3':'فايب كودنق','n4':'شبكتنا','n5':'الرحلة',
+    'eyebrow':'القوة الهجينة · المحفظة الشاملة',
+    'hl1':'ثلاث تخصّصات.','hl2':'مشغّل واحد.','hl3':'<em>أثر كامل.</em>',
+    'lede':'القائد النادر اللي يدير المسار كامل — انضباط إدارة المشاريع، حدس المنتج، وحرفيّة تطوير الأعمال — كلها في عقل تشغيلي واحد. حاصل على PMP®، صانع المركز الأول، ومحرّك نموّ ٤×.',
+    'cta1':'شوف العرض الكامل <span class="arr">←</span>','cta2':'تواصل معي <span class="arr">←</span>',
+    'ts1.t':'إدارة مشاريع','ts1.s':'تسليم في الموعد','ts2.t':'منتج','ts2.s':'آب ستور · السعوديّة','ts3.t':'تطوير أعمال','ts3.s':'نمو الإيرادات',
+    'scroll':'انزل',
+    't.ey':'الثلاثيّة · ثلاث عوالم، مشغّل واحد','t.h':'متعدّد التخصّصات <em>بالتصميم.</em>',
+    't.s':'كل تخصّص يقوّي الآخر. الـ PM يعطي حوكمة للمنتج. المنتج يعطي تعاطفًا لتطوير الأعمال. وتطوير الأعمال يرجّع الإيرادات للبرنامج. كل زاوية مُتبنّاة.',
+    'p1.h':'حوكمة وتسليم','p1.p':'انضباط PMP. ٤٠+ أمر شراء، ٥٥+ عقد، ٩٠٪ في الموعد عبر محافظ متعدّدة. أخصّائي تحوّلات — راصد ٢٠٢٣.','p1.m1':'في الموعد','p1.m2':'أوامر شراء',
+    'p2.h':'اكتشاف وتوسّع','p2.p':'مدير منتج مهووس بالعميل. مجاز وصل للمركز الأول في ٤ شهور. ٢٥M+ ظهور. ٥ منتجات حيّة. هجرات GCP كاملة.','p2.m1':'آب ستور','p2.m2':'ظهور',
+    'p3.h':'بايبلاين وأرباح','p3.p':'مغلق صفقات بوصول سيادي. نمو ٤× في الإيرادات. ٥٠٠٪ توسّع أسطول. ٣٨٠+ عميل مؤسسي. بترومين، ساسكو، هيئة المياه، البيئة، وزارة الطاقة، زاتكا.','p3.m1':'إيرادات','p3.m2':'توسّع أسطول',
+    'im.ey':'لوحة الأثر الشاملة · 2022–2025','im.h':'كل رقم <em>مُتبنّى طرف لطرف.</em>',
+    'im.s':'بدون مبالغة. محافظ بملايين الريالات سُلّمت بانضباط PMP، وحدس منتج، وتنفيذ BD — تحت نظام تشغيل واحد.',
+    'bm1.t':'الإنجاز · الإيرادات','bm1.h':'نمو الإيرادات · 2022→2025','bm1.p':'ضاعفنا الإيرادات أربع مرات عبر تجديد منضبط، تفويضات B2G، وتبنّي القمع كاملاً.',
+    'bm2.t':'منتج','bm2.p':'ترتيب آب ستور · السعوديّة',
+    'bm3.t':'انتشار','bm3.p':'ظهور',
+    'bm4.t':'تسليم','bm4.p':'تسليم في الموعد',
+    'bm5.t':'فريق','bm5.p':'أعضاء تقنيون قُدتُهم',
+    'bm6.t':'حجم تجاري','bm6.a':'أوامر شراء','bm6.b':'عقود',
+    'bm7.t':'توسّع','bm7.p':'نمو أسطول',
+    'bm8.t':'محفظة','bm8.p':'عملاء مؤسسات',
+    'bm9.t':'المحفظة','bm9.a':'منتجات حيّة','bm9.b':'خدمات فعّالة','bm9.c':'جهات أصحاب مصلحة',
+    'cm.t':'التزام الحوكمة','cm.h':'PMBOK · ISO · OWASP · إطار المخاطر',
+    'cm.p':'كل برنامج ومنتج وعقد يخضع لانضباط PMBOK، توافق ISO 27001، وبوابات أمنية بمستوى OWASP. سيادي، جاهز للتدقيق.',
+    'cm.l1':'وضع الالتزام','cm.l2':'جاهز للتدقيق · 2025',
+    'v.ey':'الذكاء الاصطناعي × الثلاثيّة · فايب كودنق','v.h':'ثلاثة أدوار. مشغّل واحد. <em>ضغط بالوكلاء.</em>',
+    'v.s':'Claude Code، Gemini API، ومسارات الوكلاء هي طريقة المشغّل الواحد ليتوسّع كأنه فريق. مخرجات PM والمنتج وBD — تُصاغ وتُراجع وتُشحن — بسرعة آلة وبحكم بشري في الحلقة.',
+    'vc1.h':'زمام · منصة PMO','vc1.p':'منصة حوكمة متعددة المستأجرين — بُنيت طرف لطرف بـ Claude Code. أدوار، مخاطر، مؤشرات، أصحاب مصلحة، كلها متكاملة.',
+    'vc2.h':'REMS · تدقيق أمني','vc2.p':'تدقيق كود شامل بقيادة وكلاء Claude — بوابات OWASP، ربط بـ ISO 27001، وطلبات دمج للمعالجة تُولَّد تلقائيًا.',
+    'vc3.h':'HubEat · سحابة GCP','vc3.p':'هجرة سحابية كاملة مرتّبة بـ Gemini — مدارة كـ IaC، بدون انقطاع، خطة رجوع أقل من ٥ دقائق.',
+    'vc4.h':'عمليات بالوكلاء','vc4.p':'تقارير PM، تجارب A/B، إحاطات BD، مراجعة عقود — كلها تُصاغ بوكلاء Claude مخصّصين وأنا أراجع وأُغلق.',
+    'n.ey':'الشبكة التنفيذية','n.h':'المحفظة. <em>الثقة. السجل.</em>',
+    'n.s':'عملاء سياديون، شركات طاقة كبرى، جهات تنظيمية، وشركاء منصات. سنوات من علاقات بمستوى تنفيذي عبر كل طبقات منظومة السعودية الاستراتيجية.',
+    'j.ey':'الجدول الزمني الشامل · مشغّل واحد، ثلاث عوالم','j.h':'مسار <em>يتراكم.</em>',
+    'j.s':'من قائد حوكمة، إلى مُطلق منتج، إلى مغلق صفقات — كل فصل بنى اللي بعده. نفس المشغّل. ثلاثة نماذج تشغيل.',
+    'tly1':'الأساس','tl1.h':'حوكمة وأساسات','tl1.p':'بنيت انضباط PMO من الصفر. أرسيت الإيقاع، خرائط الملكية، وسجلات المخاطر عبر محافظ متعدّدة. وقّعنا أوّل عقود مؤسسيّة.',
+    'tly2':'تحوّل','tl2.h':'تحوّل راصد','tl2.p':'ورثت برامج متعثّرة. أعدت بناء الحوكمة. حقّقت تسليم ٩٠٪ في الموعد. أغلقت ٤٠+ أمر شراء و٥٥+ عقد. ثبّتنا تفويضات B2G مع عملاء سياديين.',
+    'tly3':'منتج','tl3.h':'سبرنت مجاز','tl3.p':'شحنت منتج رئيسي. مجاز وصل للمركز الأول في ٤ شهور. +٢٥٠٪ تحميلات، ٢٥M+ ظهور. تحوّلت لتبنّي PdM كامل بجوار قيادة PMO.',
+    'tly4':'توسّع','tl4.h':'القوة الهجينة · مُضاعفة','tl4.p':'٤ منتجات إضافية أُطلقت (٥ منتجات حيّة بالمجموع). ١٢ خدمة فعّالة. نمو ٤× في الإيرادات. ٥٠٠٪ توسّع أسطول. ٣٨٠+ عميل مؤسسي. هجرات GCP كاملة. منظومة فايب كودنق مُنتَجة داخليًا.',
+    'cp.ey':'القدرات · مكتسبة لا مُدرجة','cp.h':'إيش أجيب <em>للغرفة.</em>',
+    'cap1.p':'محترف إدارة مشاريع · PMI. الانضباط خلف كل تسليم.',
+    'cap2.p':'تصميم بنية تحتية سحابيّة كاملة، هجرة، وتحويلات بدون انقطاع على Google Cloud.',
+    'cap3.p':'تأطير المشكلة من زاوية المستخدم، نماذج سريعة، وانضباط في التكرار.',
+    'cap4.p':'أطر PMBOK، توافق ISO 27001، بوابات OWASP. سرّية بمستوى سيادي.',
+    'cap5.p':'Claude Code، Gemini API، ومسارات وكلاء. مشغّل واحد يتوسّع كفريق.',
+    'cap6.p':'علاقات سيادية ومؤسسيّة عبر قطاعات الطاقة، المياه، التنظيم، والتقنية في السعودية.',
+    'c.h':'تحتاج مشغّل واحد يقدر يسوّي كل شي؟','c.p':'أستلم مهمات تنفيذيّة متعدّدة التخصّصات: PMO + منتج + BD تحت عقل تشغيلي واحد. مقرّي الرياض، سرّيّة سيادية، شحن بسرعة آلة بحكم بشري في الحلقة.',
+    'c.l1':'مباشر','c.l2':'إيميل','c.l3':'لينكدإن',
+    'f':'القوة الهجينة · إدارة مشاريع × منتج × تطوير أعمال × ذكاء اصطناعي',
   }
 };
-let lang='en';
-function setLang(l){lang=l;document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(el=>{const v=(I18N[l]||I18N.en)[el.dataset.i18n];if(v)el.textContent=v});document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.dataset.lang===l))}
-function updateScale(){const s=Math.min(window.innerWidth/1280,window.innerHeight/780,1.05);document.documentElement.style.setProperty('--dscale',Math.max(s,0.7).toFixed(4))}
-updateScale();window.addEventListener('resize',updateScale);
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.classList.contains('m'))animateCounter(e.target);io.unobserve(e.target)}})},{threshold:0.18});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-function animateCounter(card){const span=card.querySelector('.cnt');if(!span)return;const target=+span.dataset.target;const duration=1400;const start=performance.now();function step(now){const t=Math.min(1,(now-start)/duration);const eased=1-Math.pow(1-t,3);span.textContent=Math.round(eased*target);if(t<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+const langBtn = document.getElementById('langBtn');
+let curLang = 'en';
+function setLang(lang){
+  curLang = lang;
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(dict[k]) el.innerHTML = dict[k];
+  });
+  langBtn.textContent = lang === 'ar' ? 'English' : 'العربية';
+}
+langBtn.addEventListener('click',()=>setLang(curLang==='en'?'ar':'en'));
+function animateCounter(el){
+  const target = parseFloat(el.dataset.target);
+  const dur = 1600, start = performance.now();
+  function step(now){
+    const t = Math.min((now-start)/dur, 1);
+    const eased = 1 - Math.pow(1-t, 3);
+    const val = target * eased;
+    el.textContent = target >= 100 ? Math.round(val) : (target%1?val.toFixed(1):Math.round(val));
+    if(t<1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.classList.add('in');
+      en.target.querySelectorAll('.cnt').forEach(c=>{ if(!c.dataset.done){c.dataset.done='1';animateCounter(c)} });
+      if(en.target.classList.contains('cnt') && !en.target.dataset.done){en.target.dataset.done='1';animateCounter(en.target)}
+      obs.unobserve(en.target);
+    }
+  });
+},{threshold:0.18});
+document.querySelectorAll('.rv, .cnt').forEach(el=>obs.observe(el));
+document.querySelectorAll('.b-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
+    card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id = a.getAttribute('href').slice(1);
+    const t = document.getElementById(id);
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
 </script>
 </body>
 </html>
