@@ -1,579 +1,1577 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-lang="en">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>Abdulrahman Alhumud — Tech Product Manager · Built #1</title>
-<meta name="description" content="Tech Product Manager. Built apps that hit #1 on App Store. 25M+ impressions, +250% downloads, GCP migrations, 5 products in 18 months." />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdulrahman Alhumud · Product Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg-0:#040b18; --bg-1:#06121f; --bg-2:#0a1a30;
-    --line:rgba(255,255,255,0.06); --line-2:rgba(255,255,255,0.10);
-    --ink:#e7f1ff; --ink-d:#a3b6ce; --ink-m:#6c7e95;
-    --blue:#0099ff; --blue-l:#5cc6ff; --blue-d:#0066cc;
-    --cyan:#00e5ff; --hot:#ff3d8a;
-    --tint:rgba(0,153,255,0.14);
-    --r-lg:22px; --r-md:14px; --r-sm:10px;
-    --font-en:'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-ar:'Tajawal', system-ui, sans-serif;
-    --font-mono:'JetBrains Mono', ui-monospace, monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
-  html,body{background:var(--bg-0);color:var(--ink);font-family:var(--font-en);overflow-x:hidden}
-  html[dir="rtl"]{font-family:var(--font-ar)}
-  a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(1100px 600px at 12% -10%, rgba(0,153,255,0.18), transparent 60%),radial-gradient(900px 700px at 100% 20%, rgba(0,229,255,0.08), transparent 65%),radial-gradient(700px 500px at 50% 110%, rgba(255,61,138,0.10), transparent 60%)}
-  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.4;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.022 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");mix-blend-mode:overlay}
-  .wrap{position:relative;z-index:5;max-width:1320px;margin:0 auto;padding:0 clamp(20px,3vw,48px)}
+/* ======================================
+   DESIGN TOKENS
+====================================== */
+:root {
+  --bg0: #070A13;
+  --bg1: #0F172A;
+  --bg2: #1E293B;
+  --accent: #3B82F6;
+  --accent-l: #60A5FA;
+  --violet: #8B5CF6;
+  --violet-l: #A78BFA;
+  --text: #F1F5F9;
+  --muted: #64748B;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --font-sans: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
 
-  .topbar{position:fixed;top:0;left:0;right:0;z-index:80;backdrop-filter:saturate(160%) blur(14px);background:linear-gradient(180deg, rgba(4,11,24,0.78), rgba(4,11,24,0.30));border-bottom:1px solid var(--line)}
-  .topbar-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-  .brand-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg, var(--blue), var(--cyan));display:grid;place-items:center;font-weight:800;color:#fff;font-size:13px;box-shadow:0 8px 20px -8px var(--blue)}
-  .brand-name{font-size:13.5px;color:var(--ink)}.brand-name b{color:var(--cyan)}
-  .nav{display:flex;align-items:center;gap:6px}
-  .nav a{padding:8px 14px;border-radius:999px;font-size:13px;color:var(--ink-d);transition:.25s}
-  .nav a:hover{color:var(--ink);background:rgba(255,255,255,0.04)}
-  .lang-btn{padding:9px 16px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,0.025);font-size:12.5px;font-weight:600;letter-spacing:.04em;transition:.25s}
-  .lang-btn:hover{background:rgba(0,153,255,0.12);border-color:var(--blue)}
+/* ======================================
+   RESET & BASE
+====================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-  .hero{position:relative;padding:140px 0 80px;min-height:100vh;display:flex;align-items:center}
-  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,5vw,80px);align-items:center}
-  @media(max-width:980px){.hero-grid{grid-template-columns:1fr;text-align:center}}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);font-weight:600;padding:6px 14px;border-radius:999px;background:var(--tint);border:1px solid rgba(0,229,255,0.25)}
-  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
-  html[dir="rtl"] .eyebrow{letter-spacing:0}
-  .hook{margin-top:22px;font-weight:800;line-height:1.05;letter-spacing:-0.02em;font-size:clamp(40px,5vw,68px);background:linear-gradient(180deg,#fff 0%, #cce5f7 75%, #7fa6c4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hook em{font-style:normal;color:var(--cyan);-webkit-text-fill-color:var(--cyan)}
-  html[dir="rtl"] .hook{font-size:clamp(32px,4vw,56px);line-height:1.18;letter-spacing:0}
-  .lede{margin-top:24px;max-width:560px;font-size:17px;line-height:1.65;color:var(--ink-d)}
-  html[dir="rtl"] .lede{font-size:18px}
-  @media(max-width:980px){.lede{margin-inline:auto}}
-  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
-  @media(max-width:980px){.cta-row{justify-content:center}}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:14px;font-weight:600;font-size:14px;transition:.25s}
-  .btn-primary{background:linear-gradient(135deg, var(--blue), var(--blue-d));color:#fff;box-shadow:0 14px 40px -14px var(--blue)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 50px -16px var(--blue)}
-  .btn-ghost{border:1px solid var(--line-2);background:rgba(255,255,255,0.02);color:var(--ink)}
-  .btn-ghost:hover{background:rgba(255,255,255,0.06);border-color:var(--blue)}
-  .btn .arr{transition:transform .25s}
-  .btn:hover .arr{transform:translateX(4px)}
-  html[dir="rtl"] .btn:hover .arr{transform:translateX(-4px)}
-  .hero-stats{margin-top:48px;display:flex;gap:32px;flex-wrap:wrap}
-  @media(max-width:980px){.hero-stats{justify-content:center}}
-  .hs{display:flex;flex-direction:column;gap:4px}
-  .hs-num{font-weight:800;font-size:28px;color:var(--cyan);letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
-  .hs-lbl{font-size:11px;color:var(--ink-m);letter-spacing:.18em;text-transform:uppercase}
-  html[dir="rtl"] .hs-lbl{letter-spacing:0}
+body {
+  font-family: var(--font-sans);
+  background: var(--bg0);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
 
-  /* PROFILE + APP MOCK side */
-  .profile-stage{position:relative;width:100%;max-width:480px;margin:0 auto;aspect-ratio:1/1}
-  .profile-frame{position:absolute;inset:8%;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#0e1a2e,#04090a);border:1px solid rgba(255,255,255,0.08);box-shadow:0 40px 100px -30px rgba(0,153,255,0.45), inset 0 0 60px rgba(0,0,0,0.4)}
-  .profile-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.04) saturate(1.05)}
-  .profile-frame .ph{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%, rgba(0,229,255,0.18), transparent 60%);font-size:120px;font-weight:800;color:rgba(255,255,255,0.12);letter-spacing:-0.04em}
-  .ring{position:absolute;inset:0;border-radius:50%;pointer-events:none}
-  .ring-1{background:conic-gradient(from 0deg, transparent 70%, var(--cyan) 85%, transparent 100%);animation:spin 14s linear infinite;-webkit-mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));opacity:.9}
-  .ring-2{border:1px dashed rgba(255,255,255,0.10);inset:-4%;animation:spin 60s linear infinite reverse}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .badge-fab{position:absolute;inset:auto auto -2% -2%;width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg, var(--hot), #b91456);color:#fff;font-weight:800;display:grid;place-items:center;box-shadow:0 18px 40px -10px rgba(255,61,138,0.5);border:3px solid var(--bg-0);text-align:center}
-  .badge-fab small{display:block;font-size:9px;letter-spacing:.18em;font-weight:700}
-  .badge-fab b{font-size:18px;display:block;margin-top:2px}
-  html[dir="rtl"] .badge-fab{inset:auto -2% -2% auto}
-  .float-chip{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:rgba(10,26,48,0.85);border:1px solid var(--line-2);backdrop-filter:blur(12px);font-size:12px;box-shadow:0 14px 30px -10px rgba(0,0,0,0.6)}
-  .float-chip .pulse{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
-  .fc-1{top:8%;left:-8%;animation:floaty 5s ease-in-out infinite}
-  .fc-2{bottom:18%;right:-12%;animation:floaty 6s ease-in-out infinite reverse}
-  @keyframes floaty{50%{transform:translateY(-8px)}}
-  .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-m);display:flex;flex-direction:column;align-items:center;gap:10px}
-  .scroll-hint .line{width:1px;height:36px;background:linear-gradient(180deg,var(--cyan),transparent);animation:slide 2s ease-in-out infinite}
-  @keyframes slide{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+/* BG glow */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 85% -10%, rgba(59,130,246,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 15% 110%, rgba(139,92,246,0.07) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
 
-  section{position:relative;z-index:5}
-  .sec{padding:clamp(80px,11vh,140px) 0;border-top:1px solid var(--line)}
-  .sec-head{display:flex;flex-direction:column;gap:18px;max-width:760px;margin-bottom:56px}
-  .sec-head.center{margin-inline:auto;text-align:center;align-items:center}
-  .sec-h2{font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-0.02em;background:linear-gradient(180deg,#fff,#9bb8d4);-webkit-background-clip:text;background-clip:text;color:transparent}
-  html[dir="rtl"] .sec-h2{line-height:1.2;letter-spacing:0}
-  .sec-sub{color:var(--ink-d);font-size:16px;line-height:1.6;max-width:600px}
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
 
-  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(170px,auto);gap:18px}
-  @media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}}
-  .b-card{position:relative;padding:26px;border-radius:var(--r-lg);background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, background .35s}
-  .b-card:hover{transform:translateY(-4px);border-color:rgba(0,153,255,0.35)}
-  .b-card::before{content:"";position:absolute;inset:0;opacity:0;transition:.35s;background:radial-gradient(400px 200px at var(--mx,50%) var(--my,50%), rgba(0,153,255,0.12), transparent 60%);pointer-events:none}
-  .b-card:hover::before{opacity:1}
-  .b-card .b-num{font-weight:800;font-size:clamp(36px,4vw,56px);letter-spacing:-0.03em;color:#fff;font-variant-numeric:tabular-nums;line-height:1}
-  .b-card .b-lbl{margin-top:14px;color:var(--ink-d);font-size:13.5px;line-height:1.5}
-  .b-card .b-tag{position:absolute;top:18px;right:18px;font-size:10px;color:var(--ink-m);letter-spacing:.18em;text-transform:uppercase}
-  html[dir="rtl"] .b-card .b-tag{right:auto;left:18px;letter-spacing:0}
-  .b-card.x2{grid-column:span 2}.b-card.y2{grid-row:span 2}
-  .b-card.feature{background:linear-gradient(135deg, rgba(0,153,255,0.14), rgba(0,229,255,0.04));border-color:rgba(0,229,255,0.30)}
-  .b-card.feature .b-num{background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .b-card.dark{background:linear-gradient(180deg, #0a1a30, #060e1a)}
-  .b-quote{font-family:Georgia, serif;font-style:italic;font-size:20px;line-height:1.4;color:var(--ink)}
-  .b-quote::before{content:"\201C";font-size:60px;color:var(--blue-d);line-height:0;display:block;margin-bottom:18px}
+* { position: relative; z-index: 1; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+em { font-style: italic; }
 
-  /* Chart-style sparkline mini-card */
-  .spark{position:absolute;bottom:18px;right:18px;width:120px;height:38px;opacity:.85}
-  html[dir="rtl"] .spark{right:auto;left:18px}
+/* ======================================
+   FLOATING LANG TOGGLE
+====================================== */
+.lang-toggle {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  background: rgba(15,23,42,0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(59,130,246,0.25);
+  border-radius: 100px;
+  padding: 4px;
+  gap: 2px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
 
-  .vibe-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
-  @media(max-width:1000px){.vibe-wrap{grid-template-columns:1fr}}
-  .term{border-radius:18px;overflow:hidden;border:1px solid var(--line-2);background:#060f1e;box-shadow:0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(0,153,255,0.06) inset;font-family:var(--font-mono);font-size:13px}
-  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0a1830;border-bottom:1px solid var(--line)}
-  .term-bar .dot{width:11px;height:11px;border-radius:50%}
-  .term-bar .red{background:#ff5f56}.term-bar .ylw{background:#febc2e}.term-bar .grn{background:#27c93f}
-  .term-title{margin-inline-start:14px;color:var(--ink-m);font-size:11px;letter-spacing:.08em}
-  .term-body{padding:22px 22px 26px;line-height:1.85;color:#bccde0;min-height:380px}
-  .prompt{color:var(--cyan);user-select:none;margin-inline-end:8px;font-weight:700}
-  .ok{color:#5cc6ff}.warn{color:#febc2e}.cmt{color:#5a708a;font-style:italic}.var{color:#7cc7ff}.str{color:#e6c989}.pink{color:var(--hot)}
-  .cursor::after{content:"\2588";color:var(--cyan);animation:blink 1s steps(2) infinite;margin-inline-start:2px}
-  @keyframes blink{50%{opacity:0}}
-  .vibe-cards{display:flex;flex-direction:column;gap:14px}
-  .vc{padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;transition:.3s}
-  .vc:hover{border-color:rgba(0,153,255,0.35);transform:translateX(4px)}
-  html[dir="rtl"] .vc:hover{transform:translateX(-4px)}
-  .vc-ic{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg, var(--tint), rgba(0,229,255,0.08));border:1px solid rgba(0,229,255,0.25);display:grid;place-items:center;font-size:20px}
-  .vc h4{font-size:15px;font-weight:700;margin-bottom:6px;color:#fff}
-  .vc p{font-size:13px;color:var(--ink-d);line-height:1.55}
+[dir="rtl"] .lang-toggle {
+  right: auto;
+  left: 24px;
+}
 
-  .marquee{position:relative;overflow:hidden;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg, transparent, rgba(255,255,255,0.015), transparent);-webkit-mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)}
-  .marquee-track{display:flex;gap:54px;width:max-content;animation:marq 38s linear infinite}
-  @keyframes marq{to{transform:translateX(-50%)}}
-  html[dir="rtl"] .marquee-track{animation-direction:reverse}
-  .logo-chip{display:flex;align-items:center;gap:12px;padding:14px 26px;border-radius:14px;background:rgba(255,255,255,0.025);border:1px solid var(--line);font-weight:600;color:var(--ink);white-space:nowrap;font-size:15px}
-  .logo-chip .lc-mark{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
-  .lc-petromin{background:linear-gradient(135deg,#e63946,#a4151c)}
-  .lc-sasco{background:linear-gradient(135deg,#0a7a3c,#0d6e3a)}
-  .lc-swa{background:linear-gradient(135deg,#0ea5e9,#0369a1)}
-  .lc-mewa{background:linear-gradient(135deg,#16a34a,#166534)}
-  .lc-energy{background:linear-gradient(135deg,#f59e0b,#b45309)}
-  .lc-zatca{background:linear-gradient(135deg,#3b82f6,#1e40af)}
-  .lc-rased{background:linear-gradient(135deg,#10b981,#047857)}
-  .lc-mojaz{background:linear-gradient(135deg,#8b5cf6,#5b21b6)}
+.lang-btn {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted);
+  transition: all 0.22s ease;
+}
 
-  .story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
-  @media(max-width:900px){.story-grid{grid-template-columns:1fr}}
-  .phase{position:relative;padding:30px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);overflow:hidden}
-  .phase-num{font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--cyan);font-weight:700}
-  .phase h4{font-size:22px;font-weight:700;margin-top:14px;color:#fff;letter-spacing:-0.01em}
-  .phase p{margin-top:14px;color:var(--ink-d);font-size:14px;line-height:1.6}
-  .phase-bar{margin-top:22px;height:4px;border-radius:4px;background:rgba(255,255,255,0.06);overflow:hidden}
-  .phase-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));transform-origin:left;transform:scaleX(0);transition:transform 1.4s ease}
-  html[dir="rtl"] .phase-bar i{transform-origin:right}
-  .in .phase-bar i{transform:scaleX(var(--p,0.5))}
+.lang-btn.active {
+  background: var(--accent);
+  color: #000;
+}
 
-  .badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  @media(max-width:900px){.badges-grid{grid-template-columns:repeat(2,1fr)}}
-  .bd{position:relative;padding:24px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);transition:.3s}
-  .bd:hover{transform:translateY(-3px);border-color:rgba(0,153,255,0.35)}
-  .bd-ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:rgba(0,153,255,0.10);border:1px solid rgba(0,229,255,0.25);margin-bottom:14px}
-  .bd h4{font-size:14px;font-weight:700;color:#fff}
-  .bd p{margin-top:6px;font-size:12px;color:var(--ink-m);line-height:1.5}
+/* ======================================
+   TOPBAR
+====================================== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 80px);
+  height: 68px;
+  background: rgba(7,10,19,0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(59,130,246,0.10);
+}
 
-  .contact-wrap{margin-top:48px;padding:clamp(36px,6vw,72px);border-radius:26px;background:linear-gradient(135deg, rgba(0,153,255,0.12), rgba(255,255,255,0.02));border:1px solid rgba(0,229,255,0.25);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;overflow:hidden}
-  @media(max-width:900px){.contact-wrap{grid-template-columns:1fr}}
-  .contact-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 80% 50%, rgba(0,229,255,0.12), transparent 60%);pointer-events:none}
-  .contact-h{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.02em;line-height:1.1}
-  html[dir="rtl"] .contact-h{line-height:1.25;letter-spacing:0}
-  .contact-p{margin-top:14px;color:var(--ink-d);font-size:15px;line-height:1.6;max-width:480px}
-  .contact-list{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2}
-  .contact-list a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;background:rgba(0,0,0,0.25);border:1px solid var(--line-2);transition:.3s}
-  .contact-list a:hover{border-color:var(--cyan);background:rgba(0,153,255,0.10);transform:translateX(4px)}
-  html[dir="rtl"] .contact-list a:hover{transform:translateX(-4px)}
-  .contact-list .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(0,153,255,0.15);border:1px solid rgba(0,229,255,0.25);font-size:16px}
-  .contact-list .meta{display:flex;flex-direction:column}
-  .contact-list .meta small{font-size:11px;color:var(--ink-m);letter-spacing:.16em;text-transform:uppercase}
-  html[dir="rtl"] .contact-list .meta small{letter-spacing:0}
-  .contact-list .meta b{font-size:15px;font-weight:600;color:#fff;margin-top:2px;font-family:var(--font-mono)}
-  html[dir="rtl"] .contact-list .meta b{font-family:var(--font-en)}
+.logo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+.logo span { color: var(--text); }
 
-  footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-m);font-size:12px;letter-spacing:.08em}
+nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 40px); }
+nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--text); }
 
-  .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
-  .rv.in{opacity:1;transform:none}
-  .rv.d1{transition-delay:.06s}.rv.d2{transition-delay:.14s}.rv.d3{transition-delay:.22s}.rv.d4{transition-delay:.30s}.rv.d5{transition-delay:.38s}.rv.d6{transition-delay:.46s}
-  @media(max-width:720px){.nav{display:none}.hero{padding-top:120px}}
+/* ======================================
+   HERO
+====================================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 90vh;
+  align-items: center;
+  padding: clamp(60px, 8vh, 120px) clamp(20px, 5vw, 80px);
+  gap: clamp(40px, 6vw, 80px);
+}
+
+.hero-left { display: flex; flex-direction: column; gap: 28px; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border: 1px solid rgba(59,130,246,0.45);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-l);
+  background: rgba(59,130,246,0.06);
+  width: fit-content;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-h1 {
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.hero-h1 em {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+[dir="rtl"] .hero-h1 { letter-spacing: 0; }
+
+.hero-sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+.stats-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.chip {
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, rgba(59,130,246,0.18) 0%, rgba(139,92,246,0.18) 100%);
+  border: 1px solid rgba(59,130,246,0.35);
+  color: var(--accent-l);
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.22s ease;
+  letter-spacing: 0.01em;
+}
+
+.cta-btn:hover {
+  background: var(--accent-l);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(59,130,246,0.4);
+}
+
+/* ---- Profile ---- */
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-wrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.profile-glass {
+  position: absolute;
+  inset: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(59,130,246,0.4);
+  box-shadow: 0 0 80px -20px rgba(59,130,246,0.5), inset 0 0 40px rgba(59,130,246,0.04);
+  background: rgba(59,130,246,0.08);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.profile-avatar-premium {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-fallback {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.profile-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed;
+}
+
+.r1 {
+  border-color: rgba(59,130,246,0.25);
+  animation: spin 18s linear infinite;
+}
+
+.r2 {
+  inset: 10px;
+  border-color: rgba(139,92,246,0.15);
+  animation: spin 30s linear infinite reverse;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.float-badge {
+  position: absolute;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: rgba(15,23,42,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(59,130,246,0.35);
+  color: var(--accent-l);
+  box-shadow: 0 4px 20px rgba(59,130,246,0.25);
+  animation: floatBadge 4s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+.b1 { top: 30px; right: 0; animation-delay: 0s; }
+.b2 { bottom: 30px; left: 0; animation-delay: 2s; }
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ======================================
+   SECTION SHARED
+====================================== */
+section {
+  padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px);
+}
+
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 48px;
+  line-height: 1.2;
+}
+
+[dir="rtl"] .section-title { letter-spacing: 0; }
+
+/* ======================================
+   BENTO GRID
+====================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-auto-rows: minmax(140px, auto);
+  gap: 16px;
+}
+
+.b-card {
+  background: var(--bg1);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  --mx: 50%;
+  --my: 50%;
+}
+
+.b-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 180px at var(--mx) var(--my), rgba(59,130,246,0.07) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.b-card:hover::before { opacity: 1; }
+
+.b-card:hover {
+  box-shadow: 0 8px 40px rgba(59,130,246,0.3), 0 2px 8px rgba(0,0,0,0.5);
+  border-color: rgba(59,130,246,0.3);
+  transform: translateY(-3px);
+}
+
+.b-card.span-3 { grid-column: span 3; }
+.b-card.span-2 { grid-column: span 2; }
+.b-card.span-4 { grid-column: span 4; }
+
+.b-card.feat {
+  grid-column: span 3;
+  grid-row: span 2;
+  background: linear-gradient(145deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
+  border-color: rgba(59,130,246,0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.feat-num {
+  font-size: clamp(5rem, 8vw, 7rem);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.feat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.feat-sub {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.count-wrap { display: flex; align-items: baseline; gap: 4px; }
+
+.count-num {
+  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--accent-l);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.count-suffix {
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.b-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.dark-card {
+  background: rgba(7,10,19,0.8);
+  border-color: rgba(59,130,246,0.15);
+}
+
+.stack-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.tech-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tech-chip {
+  padding: 5px 12px;
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-l);
+  font-weight: 500;
+}
+
+.quote-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(145deg, rgba(139,92,246,0.08), rgba(59,130,246,0.05));
+  border-color: rgba(139,92,246,0.2);
+}
+
+.quote-text {
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-style: italic;
+  color: var(--violet-l);
+  line-height: 1.65;
+  font-weight: 500;
+}
+
+.quote-text::before { content: '\201C'; }
+.quote-text::after  { content: '\201D'; }
+
+/* ======================================
+   EXECUTIVE COMMAND CENTER
+====================================== */
+.command-center { background: var(--bg1); }
+
+.cmd-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cmd-card {
+  background: var(--bg2);
+  border: 1px solid rgba(59,130,246,0.12);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cmd-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--violet));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cmd-card:hover::after { opacity: 1; }
+
+.cmd-card:hover {
+  border-color: rgba(59,130,246,0.3);
+  box-shadow: 0 12px 48px rgba(59,130,246,0.2);
+  transform: translateY(-4px);
+}
+
+.cmd-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15));
+  border: 1px solid rgba(59,130,246,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+}
+
+.cmd-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.cmd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+
+.cmd-tag {
+  padding: 3px 10px;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-l);
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+}
+
+.cmd-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.cmd-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #34D399;
+}
+
+.gov-nodes { display: flex; flex-direction: column; gap: 14px; }
+
+.gov-node {
+  padding: 14px 16px;
+  background: rgba(59,130,246,0.05);
+  border: 1px solid rgba(59,130,246,0.12);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.gov-node:hover {
+  background: rgba(59,130,246,0.1);
+  border-color: rgba(59,130,246,0.25);
+}
+
+.gov-node-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.gov-node-desc {
+  font-size: 0.77rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ======================================
+   CLIENT MARQUEE
+====================================== */
+.marquee-section {
+  padding: clamp(40px, 5vw, 60px) 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, transparent, rgba(59,130,246,0.03), transparent);
+}
+
+.marquee-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.marquee-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 8px 0;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 160px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg0), transparent);
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--bg0), transparent);
+}
+
+[dir="rtl"] .marquee-wrapper::before {
+  left: auto; right: 0;
+  background: linear-gradient(-90deg, var(--bg0), transparent);
+}
+
+[dir="rtl"] .marquee-wrapper::after {
+  right: auto; left: 0;
+  background: linear-gradient(90deg, var(--bg0), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track.rtl-marquee { animation-direction: reverse; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.client-chip {
+  padding: 10px 24px;
+  background: rgba(30,41,59,0.6);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: all 0.3s;
+  cursor: default;
+  letter-spacing: 0.02em;
+}
+
+.client-chip:hover {
+  color: var(--accent-l);
+  border-color: rgba(59,130,246,0.4);
+  box-shadow: 0 4px 20px rgba(59,130,246,0.25);
+  background: rgba(59,130,246,0.08);
+}
+
+/* ======================================
+   PRODUCT STORY
+====================================== */
+.story-phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.phase-card {
+  background: var(--bg1);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 0.3s ease;
+}
+
+.phase-card:hover {
+  border-color: rgba(59,130,246,0.25);
+  box-shadow: 0 8px 32px rgba(59,130,246,0.15);
+}
+
+.phase-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.phase-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.phase-time {
+  font-size: 0.77rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.phase-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.progress-bar-wrap { display: flex; flex-direction: column; gap: 6px; }
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.progress-track {
+  height: 4px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--violet));
+  border-radius: 100px;
+  width: 0%;
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ======================================
+   CREDENTIALS
+====================================== */
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.cred-card {
+  background: var(--bg1);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.cred-card:hover {
+  border-color: rgba(59,130,246,0.3);
+  box-shadow: 0 8px 32px rgba(59,130,246,0.2);
+  transform: translateY(-3px);
+}
+
+.cred-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+
+.cred-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.cred-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ======================================
+   CONTACT / FOOTER
+====================================== */
+.contact-section {
+  background: linear-gradient(180deg, var(--bg0), var(--bg1));
+  border-top: 1px solid rgba(59,130,246,0.1);
+}
+
+.contact-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+.contact-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.contact-row:hover { color: var(--accent-l); }
+
+.contact-icon {
+  width: 36px; height: 36px;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ======================================
+   REVEAL ANIMATIONS
+====================================== */
+.rv {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+
+.rv.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rv[data-delay="1"] { transition-delay: 0.10s; }
+.rv[data-delay="2"] { transition-delay: 0.20s; }
+.rv[data-delay="3"] { transition-delay: 0.30s; }
+.rv[data-delay="4"] { transition-delay: 0.40s; }
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+@media (max-width: 1100px) {
+  .bento-grid { grid-template-columns: repeat(6, 1fr); }
+  .b-card.feat   { grid-column: span 3; grid-row: span 2; }
+  .b-card.span-3 { grid-column: span 3; }
+  .b-card.span-2 { grid-column: span 3; }
+  .b-card.span-4 { grid-column: span 6; }
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 60px; }
+  .hero-right { order: -1; }
+  .profile-wrap { width: 240px; height: 240px; }
+  .cmd-grid { grid-template-columns: 1fr; }
+  .story-phases { grid-template-columns: 1fr; }
+  .cred-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .bento-grid { grid-template-columns: 1fr 1fr; }
+  .b-card.feat,
+  .b-card.span-3,
+  .b-card.span-2,
+  .b-card.span-4 { grid-column: span 2; }
+  nav { display: none; }
+  .cred-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ======================================
+   RTL OVERRIDES
+====================================== */
+[dir="rtl"] {
+  font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+}
+
+[dir="rtl"] .hero-sub     { max-width: 100%; }
+[dir="rtl"] .topbar       { flex-direction: row-reverse; }
+[dir="rtl"] nav           { flex-direction: row-reverse; }
+[dir="rtl"] .stats-chips  { flex-direction: row-reverse; }
+[dir="rtl"] .hero-left    { align-items: flex-end; text-align: right; }
+[dir="rtl"] .eyebrow      { flex-direction: row-reverse; }
+[dir="rtl"] .contact-inner { direction: rtl; }
+[dir="rtl"] .cmd-card::after { left: auto; right: 0; }
 </style>
 </head>
+
 <body>
 
+<!-- ============================
+     LANG TOGGLE
+============================= -->
+<div class="lang-toggle" role="group" aria-label="Language selector">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn"        id="btn-ar" onclick="setLang('ar')">AR</button>
+</div>
+
+<!-- ============================
+     TOPBAR
+============================= -->
 <header class="topbar">
-  <div class="wrap topbar-in">
-    <a href="#" class="brand"><span class="brand-mark">AA</span><span class="brand-name">Abdulrahman <b>Alhumud</b></span></a>
-    <nav class="nav">
-      <a href="#impact" data-i18n="n1">Impact</a>
-      <a href="#vibe" data-i18n="n2">Vibe Coding</a>
-      <a href="#network" data-i18n="n3">Network</a>
-      <a href="#story" data-i18n="n4">Mojaz Sprint</a>
-      <a href="#mastery" data-i18n="n5">Mastery</a>
-    </nav>
-    <button class="lang-btn" id="langBtn">العربية</button>
-  </div>
+  <div class="logo">Abdulrahman <span>· PdM</span></div>
+  <nav>
+    <a href="#products"  data-i18n="nav-product">Product</a>
+    <a href="#bento"     data-i18n="nav-metrics">Metrics</a>
+    <a href="#command"   data-i18n="nav-systems">Systems</a>
+    <a href="#contact"   data-i18n="nav-contact">Contact</a>
+  </nav>
 </header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow rv" data-i18n="eyebrow">Tech Product Manager · #1 App Builder</span>
-      <h1 class="hook rv d1" data-i18n="hook">I don't build features. I build <em>products that hit #1.</em></h1>
-      <p class="lede rv d2" data-i18n="lede">User-obsessed PdM with #1 App Store ranking in 4 months, +250% downloads, and 25M+ impressions. Five core products shipped, full GCP migrations, twelve supporting services — all data-driven, all production-grade.</p>
-      <div class="cta-row rv d3">
-        <a class="btn btn-primary" href="full.html" target="_blank" rel="noopener" data-i18n="cta1">View Full Deck <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="#contact" data-i18n="cta2">Get in Touch <span class="arr">→</span></a>
+<!-- ============================
+     HERO
+============================= -->
+<section class="hero" id="hero">
+
+  <div class="hero-left">
+    <div class="eyebrow rv" data-i18n="eyebrow">Product Manager · Builder</div>
+
+    <h1 class="hero-h1 rv" data-delay="1">
+      <span data-i18n="hero-h1-plain">I don't build features. I build </span><em data-i18n="hero-h1-em">products that hit #1.</em>
+    </h1>
+
+    <p class="hero-sub rv" data-delay="2" data-i18n="hero-sub">
+      5 products launched. 25M+ impressions. +250% downloads. Engineering product-market fit from first sprint to #1 App Store ranking.
+    </p>
+
+    <div class="stats-chips rv" data-delay="3">
+      <span class="chip" data-i18n="chip1">#1 App Store</span>
+      <span class="chip" data-i18n="chip2">25M+ Impressions</span>
+      <span class="chip" data-i18n="chip3">+250% Downloads</span>
+    </div>
+
+    <a href="#products" class="cta-btn rv" data-delay="4">
+      <span data-i18n="cta">See Products</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  <div class="hero-right rv" data-delay="2">
+    <div class="profile-wrap">
+      <div class="profile-glass">
+        <img
+          src="abdulrahman.png"
+          alt="Abdulrahman Alhumud"
+          class="profile-avatar-premium"
+          onerror="this.style.display='none';document.getElementById('av-fb').style.display='flex'">
+        <div id="av-fb" class="avatar-fallback" style="display:none">AA</div>
       </div>
-      <div class="hero-stats rv d4">
-        <div class="hs"><div class="hs-num">#<span class="cnt" data-target="1">0</span></div><div class="hs-lbl" data-i18n="hs1">App Store Ranking</div></div>
-        <div class="hs"><div class="hs-num">+<span class="cnt" data-target="250">0</span>%</div><div class="hs-lbl" data-i18n="hs2">Downloads Growth</div></div>
-        <div class="hs"><div class="hs-num"><span class="cnt" data-target="25">0</span>M+</div><div class="hs-lbl" data-i18n="hs3">Impressions</div></div>
+      <div class="profile-ring r1"></div>
+      <div class="profile-ring r2"></div>
+      <div class="float-badge b1" data-i18n="badge1">#1 RANK</div>
+      <div class="float-badge b2" data-i18n="badge2">+250%</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============================
+     BENTO GRID
+============================= -->
+<section id="bento" style="background: var(--bg1);">
+  <div class="section-eyebrow rv" data-i18n="bento-eyebrow">&gt; metrics.load()</div>
+  <div class="section-title rv"   data-i18n="bento-title">Numbers That Ship Products</div>
+
+  <div class="bento-grid">
+
+    <!-- Featured #1 -->
+    <div class="b-card feat rv" data-delay="1">
+      <span class="feat-num">#1</span>
+      <div class="feat-label" data-i18n="feat-label">APP STORE RANKING</div>
+      <div class="feat-sub"   data-i18n="feat-sub">Ranked #1 on Saudi App Store</div>
+    </div>
+
+    <!-- 25M Impressions -->
+    <div class="b-card span-2 rv" data-delay="2">
+      <div class="count-wrap">
+        <span class="count-num" data-target="25">0</span>
+        <span class="count-suffix">M+</span>
+      </div>
+      <div class="b-label" data-i18n="count1-label">Impressions</div>
+    </div>
+
+    <!-- +250% Downloads -->
+    <div class="b-card span-3 rv" data-delay="3">
+      <div class="count-wrap">
+        <span class="count-suffix" style="color:var(--accent-l);font-size:2rem;">+</span>
+        <span class="count-num" data-target="250">0</span>
+        <span class="count-suffix">%</span>
+      </div>
+      <div class="b-label" data-i18n="count2-label">YoY Downloads Growth</div>
+    </div>
+
+    <!-- 5 Products -->
+    <div class="b-card span-2 rv" data-delay="1">
+      <div class="count-wrap">
+        <span class="count-num" data-target="5">0</span>
+      </div>
+      <div class="b-label" data-i18n="count3-label">Products Launched</div>
+    </div>
+
+    <!-- 12 Services -->
+    <div class="b-card span-2 rv" data-delay="2">
+      <div class="count-wrap">
+        <span class="count-num" data-target="12">0</span>
+      </div>
+      <div class="b-label" data-i18n="count4-label">Core Services</div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="b-card span-4 dark-card rv" data-delay="3">
+      <div class="stack-title" data-i18n="stack-title">Tech Stack</div>
+      <div class="tech-chips">
+        <span class="tech-chip">GCP</span>
+        <span class="tech-chip">Firebase</span>
+        <span class="tech-chip">BigQuery</span>
+        <span class="tech-chip">Mixpanel</span>
+        <span class="tech-chip">Gemini API</span>
+        <span class="tech-chip">Figma</span>
+        <span class="tech-chip">Jira</span>
+        <span class="tech-chip">Odoo</span>
+        <span class="tech-chip">Vercel</span>
+        <span class="tech-chip">Zoho CRM</span>
       </div>
     </div>
-    <div class="rv d2">
-      <div class="profile-stage">
-        <div class="ring ring-2"></div>
-        <div class="profile-frame">
-          <img src="profile.jpg" alt="Abdulrahman Alhumud" onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='grid'">
-          <div class="ph" style="display:none">AA</div>
+
+    <!-- Quote -->
+    <div class="b-card span-2 quote-card rv" data-delay="4">
+      <p class="quote-text" data-i18n="quote">Great products aren't shipped — they're crafted sprint by sprint.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================
+     EXECUTIVE COMMAND CENTER
+============================= -->
+<section class="command-center" id="command">
+  <div class="section-eyebrow rv" style="font-family:var(--font-mono);">&gt; products.ship()</div>
+  <div class="section-title rv" data-i18n="cmd-title">Product Automation Systems</div>
+
+  <div class="cmd-grid" id="products">
+
+    <!-- Card A: CRM -->
+    <div class="cmd-card rv" data-delay="1">
+      <div class="cmd-icon">&#127959;&#65039;</div>
+      <div class="cmd-title" data-i18n="crm-title">CRM Architecture Module</div>
+      <div class="cmd-tags">
+        <span class="cmd-tag">Odoo</span>
+        <span class="cmd-tag">Zoho</span>
+        <span class="cmd-tag">Vercel</span>
+        <span class="cmd-tag">OAuth 2.0</span>
+      </div>
+      <p class="cmd-desc" data-i18n="crm-desc">
+        Deployed a fully integrated CRM pipeline — Odoo &amp; Zoho connected via OAuth 2.0 on Vercel. Automated lead tracking across 380+ enterprise clients.
+      </p>
+      <div class="cmd-status" data-i18n="crm-status">&#129001; Live</div>
+    </div>
+
+    <!-- Card B: Jira -->
+    <div class="cmd-card rv" data-delay="2">
+      <div class="cmd-icon">&#9889;</div>
+      <div class="cmd-title" data-i18n="jira-title">Sprint Intelligence Hub</div>
+      <div class="cmd-tags">
+        <span class="cmd-tag">Jira API</span>
+        <span class="cmd-tag">Outlook</span>
+        <span class="cmd-tag">Auto-Reports</span>
+      </div>
+      <p class="cmd-desc" data-i18n="jira-desc">
+        Automated daily sprint reports generated from Jira boards and dispatched via Outlook — PM intelligence on autopilot, saving 3hr+ per week per PM.
+      </p>
+      <div class="cmd-status" data-i18n="jira-status">&#129001; Active</div>
+    </div>
+
+    <!-- Card C: Governance -->
+    <div class="cmd-card rv" data-delay="3">
+      <div class="cmd-icon">&#128737;&#65039;</div>
+      <div class="cmd-title" data-i18n="gov-title">Governance Engines</div>
+      <div class="gov-nodes">
+        <div class="gov-node">
+          <div class="gov-node-name">Zimam</div>
+          <div class="gov-node-desc" data-i18n="zimam-desc">Executive audit dashboard for governance visibility</div>
         </div>
-        <div class="ring ring-1"></div>
-        <div class="badge-fab"><div><small>#1</small><b>RANK</b></div></div>
-        <div class="float-chip fc-1"><span class="pulse"></span><span data-i18n="chip1">5 Products · Shipped</span></div>
-        <div class="float-chip fc-2"><span class="pulse"></span><span data-i18n="chip2">GCP · Cloud Native</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-hint"><span data-i18n="scroll">Scroll</span><span class="line"></span></div>
-</section>
-
-<section class="sec" id="impact">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="s1.ey">Product Impact · 2022–2025</span>
-      <h2 class="sec-h2" data-i18n="s1.h">Numbers that <em style="color:var(--cyan);font-style:normal">tell on themselves.</em></h2>
-      <p class="sec-sub" data-i18n="s1.s">Shipped at the speed of a startup, governed at the discipline of an enterprise. Every metric below is owned end-to-end — discovery to retention.</p>
-    </div>
-    <div class="bento">
-      <div class="b-card feature x2 y2 rv">
-        <span class="b-tag" data-i18n="b1.t">Flagship</span>
-        <div class="b-num">#<span class="cnt" data-target="1">0</span></div>
-        <div class="b-lbl" style="font-size:18px;color:#fff;margin-top:18px" data-i18n="b1.h">App Store · Saudi Arabia</div>
-        <p style="color:var(--ink-d);font-size:14px;margin-top:10px;line-height:1.6;max-width:380px" data-i18n="b1.p">Mojaz hit #1 ranking in 4 months — 25M+ impressions, +250% downloads, organic press pickup.</p>
-        <svg class="spark" viewBox="0 0 120 38" fill="none"><path d="M0,32 L20,28 L35,30 L55,18 L75,22 L95,10 L120,4" stroke="url(#g1)" stroke-width="2.5" fill="none" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" x2="120" y1="0" y2="0"><stop stop-color="#0099ff"/><stop offset="1" stop-color="#00e5ff"/></linearGradient></defs></svg>
-      </div>
-      <div class="b-card rv d1">
-        <span class="b-tag" data-i18n="b2.t">Reach</span>
-        <div class="b-num"><span class="cnt" data-target="25">0</span>M+</div>
-        <div class="b-lbl" data-i18n="b2.p">Impressions across product launches & campaigns.</div>
-      </div>
-      <div class="b-card rv d2">
-        <span class="b-tag" data-i18n="b3.t">Growth</span>
-        <div class="b-num">+<span class="cnt" data-target="250">0</span>%</div>
-        <div class="b-lbl" data-i18n="b3.p">Download growth on Mojaz in 4 months.</div>
-      </div>
-      <div class="b-card rv d3">
-        <span class="b-tag" data-i18n="b4.t">Products</span>
-        <div class="b-num"><span class="cnt" data-target="5">0</span></div>
-        <div class="b-lbl" data-i18n="b4.p">Live products shipped (1 in 2024, 4 in 2025).</div>
-      </div>
-      <div class="b-card rv d4">
-        <span class="b-tag" data-i18n="b5.t">Services</span>
-        <div class="b-num"><span class="cnt" data-target="12">0</span></div>
-        <div class="b-lbl" data-i18n="b5.p">Supporting services in active rotation.</div>
-      </div>
-      <div class="b-card dark x2 rv d5">
-        <span class="b-tag" data-i18n="b6.t">Stack</span>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px">
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(0,153,255,0.10);border:1px solid rgba(0,229,255,0.20);color:var(--cyan);font-weight:600">GCP</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">Firebase</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">BigQuery</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">Mixpanel</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">A/B Tools</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,61,138,0.10);border:1px solid rgba(255,61,138,0.25);color:var(--hot);font-weight:600">Claude Code</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.20);color:var(--cyan);font-weight:600">Gemini API</span>
+        <div class="gov-node">
+          <div class="gov-node-name">HubEat</div>
+          <div class="gov-node-desc" data-i18n="hubeat-desc">GCP-powered gathering logistics &amp; fleet optimization hub</div>
         </div>
-        <div class="b-lbl" style="margin-top:14px" data-i18n="b6.p">Cloud, analytics, experimentation, and AI tooling.</div>
-      </div>
-      <div class="b-card x2 rv d6">
-        <div class="b-quote" data-i18n="b7.q">A product that doesn't earn its rank is just a feature in a folder.</div>
-        <div style="margin-top:18px;display:flex;align-items:center;gap:12px">
-          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;font-weight:800;color:#fff;font-size:13px">AA</div>
-          <div><div style="font-size:13px;font-weight:600">Abdulrahman Alhumud</div><div style="font-size:11px;color:var(--ink-m);letter-spacing:.1em" data-i18n="b7.r">Tech Product Manager</div></div>
+        <div class="gov-node">
+          <div class="gov-node-name">REMS</div>
+          <div class="gov-node-desc" data-i18n="rems-desc">Real Estate Management System — security &amp; compliance engine</div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<section class="sec" id="vibe">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="v.ey">AI × Product · Vibe Coding</span>
-      <h2 class="sec-h2" data-i18n="v.h">I prototype with Claude. <em style="color:var(--cyan);font-style:normal">I ship with conviction.</em></h2>
-      <p class="sec-sub" data-i18n="v.s">From rapid prototyping to live A/B experiments, Claude Code and Gemini API let me move from "idea on a Slack thread" to "user in production" in days. The customer doesn't care how I got there; they care that it works.</p>
+<!-- ============================
+     CLIENT MARQUEE
+============================= -->
+<div class="marquee-section">
+  <div class="marquee-label" data-i18n="marquee-label">Powering Saudi Arabia's Leading Enterprises</div>
+  <div class="marquee-wrapper">
+    <div class="marquee-track" id="marquee-track">
+      <span class="client-chip">Petromin</span>
+      <span class="client-chip">SASCO</span>
+      <span class="client-chip">Saudi Water Authority</span>
+      <span class="client-chip">MEWA</span>
+      <span class="client-chip">Ministry of Energy</span>
+      <span class="client-chip">ZATCA</span>
+      <!-- Duplicate for seamless infinite loop -->
+      <span class="client-chip">Petromin</span>
+      <span class="client-chip">SASCO</span>
+      <span class="client-chip">Saudi Water Authority</span>
+      <span class="client-chip">MEWA</span>
+      <span class="client-chip">Ministry of Energy</span>
+      <span class="client-chip">ZATCA</span>
     </div>
-    <div class="vibe-wrap">
-      <div class="term rv">
-        <div class="term-bar">
-          <span class="dot red"></span><span class="dot ylw"></span><span class="dot grn"></span>
-          <span class="term-title">~/product/mojaz-experiments · zsh</span>
+  </div>
+</div>
+
+<!-- ============================
+     PRODUCT STORY
+============================= -->
+<section id="story" style="background: var(--bg0);">
+  <div class="section-eyebrow rv" style="font-family:var(--font-mono);">&gt; mojaz.sprint()</div>
+  <div class="section-title rv" data-i18n="story-title">The Mojaz Sprint — From Idea to #1</div>
+
+  <div class="story-phases">
+
+    <div class="phase-card rv" data-delay="1">
+      <div class="phase-num"  data-i18n="phase1-num">Phase 01</div>
+      <div class="phase-name" data-i18n="phase1-name">Discover</div>
+      <div class="phase-time" data-i18n="phase1-time">Week 1–2</div>
+      <p class="phase-desc"   data-i18n="phase1-desc">User research + competitive analysis → product brief. Defined core value proposition and identified top friction points in the market.</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-label">
+          <span data-i18n="prog-completion">Completion</span>
+          <span>100%</span>
         </div>
-        <div class="term-body">
-<p><span class="prompt">$</span> <span class="var">claude</span> prototype <span class="str">"new onboarding flow"</span> --target ios</p>
-<p class="cmt"># Figma + SwiftUI scaffold · 48h ship-ready</p>
-<p><span class="ok">✓</span> Discovery synthesis · 132 user interviews parsed</p>
-<p><span class="ok">✓</span> Top 7 friction points → ranked &amp; backlog'd</p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">gemini</span> analyze cohort-q3.json --metric retention</p>
-<p class="pink">D1: 71% &nbsp; D7: 48% &nbsp; D30: 33%</p>
-<p class="cmt"># Above benchmark · Mojaz holding strong</p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">claude</span> ab-test --variant <span class="str">"onb-v3"</span> --traffic 0.20</p>
-<p><span class="ok">✓</span> Test live · power 0.86 · 4-day window</p>
-<p><span class="ok">✓</span> Winner: v3 (+18% activation, p&lt;0.01)</p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">claude</span> ship release v2.4.0 --rollout 100</p>
-<p><span class="cursor"></span></p>
+        <div class="progress-track">
+          <div class="progress-fill" data-p="1.0"></div>
         </div>
       </div>
-      <div class="vibe-cards">
-        <div class="vc rv d1"><div class="vc-ic">🎯</div><div><h4 data-i18n="vc1.h">Mojaz · #1 App Store</h4><p data-i18n="vc1.p">Vibe-coded onboarding, gamified retention loops, and AI-personalized recommendations — went from launch to #1 in 4 months.</p></div></div>
-        <div class="vc rv d2"><div class="vc-ic">🧪</div><div><h4 data-i18n="vc2.h">Claude-Driven Discovery</h4><p data-i18n="vc2.p">132 user interviews parsed, themed, and prioritized by Claude agents — research synthesis collapsed from weeks to hours.</p></div></div>
-        <div class="vc rv d3"><div class="vc-ic">☁</div><div><h4 data-i18n="vc3.h">HubEat · GCP Migration</h4><p data-i18n="vc3.p">Full cloud migration on Google Cloud Platform — zero-downtime cutover, IaC-managed, observability baked in.</p></div></div>
-        <div class="vc rv d4"><div class="vc-ic">📊</div><div><h4 data-i18n="vc4.h">Live A/B Engine</h4><p data-i18n="vc4.p">Custom Gemini-powered A/B layer on top of Firebase — tests live in 5 min, winners auto-promoted to rollout.</p></div></div>
+    </div>
+
+    <div class="phase-card rv" data-delay="2">
+      <div class="phase-num"  data-i18n="phase2-num">Phase 02</div>
+      <div class="phase-name" data-i18n="phase2-name">Ship</div>
+      <div class="phase-time" data-i18n="phase2-time">Week 3–8</div>
+      <p class="phase-desc"   data-i18n="phase2-desc">Sprint cycles, A/B tests, 25M impressions milestone. Iterative development with continuous user feedback loops and data-driven prioritization.</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-label">
+          <span data-i18n="prog-completion">Completion</span>
+          <span>92%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" data-p="0.92"></div>
+        </div>
       </div>
+    </div>
+
+    <div class="phase-card rv" data-delay="3">
+      <div class="phase-num"  data-i18n="phase3-num">Phase 03</div>
+      <div class="phase-name" data-i18n="phase3-name">Scale</div>
+      <div class="phase-time" data-i18n="phase3-time">Week 9–12</div>
+      <p class="phase-desc"   data-i18n="phase3-desc">#1 App Store, +250% downloads. Scaling infrastructure, optimizing performance, and maintaining top position through continuous iteration.</p>
+      <div class="progress-bar-wrap">
+        <div class="progress-label">
+          <span data-i18n="prog-completion">Completion</span>
+          <span>88%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" data-p="0.88"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================
+     CREDENTIALS
+============================= -->
+<section style="background: var(--bg1);">
+  <div class="section-eyebrow rv" style="font-family:var(--font-mono);">&gt; certs.verify()</div>
+  <div class="section-title rv" data-i18n="cred-title">Credentials &amp; Tooling</div>
+
+  <div class="cred-grid">
+    <div class="cred-card rv" data-delay="1">
+      <span class="cred-icon">&#127942;</span>
+      <div class="cred-title" data-i18n="cred1-title">PMP® Certified</div>
+      <div class="cred-sub"   data-i18n="cred1-sub">Project Management Professional — PMI</div>
+    </div>
+    <div class="cred-card rv" data-delay="2">
+      <span class="cred-icon">&#9729;&#65039;</span>
+      <div class="cred-title" data-i18n="cred2-title">GCP Cloud Infrastructure</div>
+      <div class="cred-sub"   data-i18n="cred2-sub">Google Cloud Platform — Data &amp; DevOps</div>
+    </div>
+    <div class="cred-card rv" data-delay="3">
+      <span class="cred-icon">&#128161;</span>
+      <div class="cred-title" data-i18n="cred3-title">Design Thinking</div>
+      <div class="cred-sub"   data-i18n="cred3-sub">Human-centered product innovation</div>
+    </div>
+    <div class="cred-card rv" data-delay="4">
+      <span class="cred-icon">&#129302;</span>
+      <div class="cred-title" data-i18n="cred4-title">AI Product Tooling</div>
+      <div class="cred-sub"   data-i18n="cred4-sub">Gemini API · Mixpanel · Predictive Analytics</div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="network">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <span class="eyebrow" data-i18n="n.ey">Executive Network</span>
-      <h2 class="sec-h2" data-i18n="n.h">Products integrated with <em style="color:var(--cyan);font-style:normal">national infrastructure.</em></h2>
-      <p class="sec-sub" data-i18n="n.s">Live integrations and enterprise partnerships across Saudi's regulators, utilities, and energy ecosystem.</p>
-    </div>
-  </div>
-  <div class="marquee rv">
-    <div class="marquee-track">
-      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
-      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
-      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
-      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
-      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
-      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
-      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
-      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
-      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
-      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
-      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
-      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
-      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
-      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
-      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
-      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
+<!-- ============================
+     CONTACT
+============================= -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-h2 rv" data-i18n="contact-h2">Let's Build the Next #1.</h2>
+    <p class="contact-sub rv" data-delay="1" data-i18n="contact-sub">Open to product leadership roles, consulting, and advisory positions.</p>
+
+    <div class="contact-links rv" data-delay="2">
+      <a href="tel:+966593935677" class="contact-row">
+        <div class="contact-icon">&#128222;</div>
+        <span>+966 59 393 5677</span>
+      </a>
+      <a href="mailto:A.alhumud0@gmail.com" class="contact-row">
+        <div class="contact-icon">&#9993;&#65039;</div>
+        <span>A.alhumud0@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/aalhumud" target="_blank" rel="noopener" class="contact-row">
+        <div class="contact-icon">&#128188;</div>
+        <span>linkedin.com/in/aalhumud</span>
+      </a>
     </div>
   </div>
 </section>
 
-<section class="sec" id="story">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="st.ey">Case Study · The Mojaz Sprint</span>
-      <h2 class="sec-h2" data-i18n="st.h">From launch to <em style="color:var(--cyan);font-style:normal">#1 in 4 months.</em></h2>
-      <p class="sec-sub" data-i18n="st.s">No vanity metrics, no growth-hacker tricks. Pure product discipline: discover, ship, measure, double-down.</p>
-    </div>
-    <div class="story-grid">
-      <div class="phase rv">
-        <span class="phase-num">01 · DISCOVER</span>
-        <h4 data-i18n="ph1.h">Listen at Scale</h4>
-        <p data-i18n="ph1.p">132 user interviews. Pain → ranked. Onboarding cut by 60%. Killed three features the user never asked for.</p>
-        <div class="phase-bar" style="--p:0.88"><i></i></div>
-      </div>
-      <div class="phase rv d1">
-        <span class="phase-num">02 · SHIP</span>
-        <h4 data-i18n="ph2.h">Weekly Releases</h4>
-        <p data-i18n="ph2.p">Continuous shipping cadence. Every Friday a release. Hot-fix paths under 90 min. Crash-free sessions stayed above 99.7%.</p>
-        <div class="phase-bar" style="--p:0.92"><i></i></div>
-      </div>
-      <div class="phase rv d2">
-        <span class="phase-num">03 · SCALE</span>
-        <h4 data-i18n="ph3.h">Hit #1, Then Hold</h4>
-        <p data-i18n="ph3.p">Hit #1 in week 16. Held the rank through Q4 with sustained retention &gt; 33% at D30. 25M+ impressions across organic + paid.</p>
-        <div class="phase-bar" style="--p:0.96"><i></i></div>
-      </div>
-    </div>
-  </div>
-</section>
+<footer>
+  <span data-i18n="footer">© 2025 Abdulrahman Alhumud · Shipping products that matter.</span>
+</footer>
 
-<section class="sec" id="mastery">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="m.ey">Product Mastery & Credentials</span>
-      <h2 class="sec-h2" data-i18n="m.h">Built. <em style="color:var(--cyan);font-style:normal">Not theorized.</em></h2>
-    </div>
-    <div class="badges-grid">
-      <div class="bd rv"><div class="bd-ic">🏅</div><h4>PMP®</h4><p data-i18n="bd1.p">Discipline meets discovery · PMI</p></div>
-      <div class="bd rv d1"><div class="bd-ic">☁</div><h4>GCP Cloud</h4><p data-i18n="bd2.p">Cloud-native architecture · zero-downtime cutovers</p></div>
-      <div class="bd rv d2"><div class="bd-ic">🎨</div><h4>Design Thinking</h4><p data-i18n="bd3.p">User-obsessed framing · rapid prototyping</p></div>
-      <div class="bd rv d3"><div class="bd-ic">🤖</div><h4>AI Tooling</h4><p data-i18n="bd4.p">Claude Code · Gemini · agentic workflows in production</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="contact">
-  <div class="wrap">
-    <div class="contact-wrap rv">
-      <div>
-        <h2 class="contact-h" data-i18n="c.h">Need a product that earns its rank?</h2>
-        <p class="contact-p" data-i18n="c.p">I take on product leadership mandates, zero-to-one builds, and growth turnarounds. Strong with consumer apps, fintech, and B2B platforms. Riyadh-based, ships fast, ships well.</p>
-      </div>
-      <div class="contact-list">
-        <a href="tel:+966593935677"><div class="ic">📞</div><div class="meta"><small data-i18n="c.l1">Direct</small><b>+966 59 393 5677</b></div></a>
-        <a href="mailto:A.alhumud0@gmail.com"><div class="ic">✉</div><div class="meta"><small data-i18n="c.l2">Email</small><b>A.alhumud0@gmail.com</b></div></a>
-        <a href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener"><div class="ic">in</div><div class="meta"><small data-i18n="c.l3">LinkedIn</small><b>linkedin.com/in/aalhumud</b></div></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer><div class="wrap">© 2025 Abdulrahman Alhumud · <span data-i18n="f">Tech Product Manager · Built #1</span></div></footer>
-
+<!-- ============================
+     JAVASCRIPT
+============================= -->
 <script>
-const I18N = {
+/* ---- i18n Strings ---- */
+const i18n = {
   en: {
-    'n1':'Impact','n2':'Vibe Coding','n3':'Network','n4':'Mojaz Sprint','n5':'Mastery',
-    'eyebrow':'Tech Product Manager · #1 App Builder',
-    'hook':'I don\'t build features. I build <em>products that hit #1.</em>',
-    'lede':'User-obsessed PdM with #1 App Store ranking in 4 months, +250% downloads, and 25M+ impressions. Five core products shipped, full GCP migrations, twelve supporting services — all data-driven, all production-grade.',
-    'cta1':'View Full Deck <span class="arr">→</span>','cta2':'Get in Touch <span class="arr">→</span>',
-    'hs1':'App Store Ranking','hs2':'Downloads Growth','hs3':'Impressions',
-    'chip1':'5 Products · Shipped','chip2':'GCP · Cloud Native','scroll':'Scroll',
-    's1.ey':'Product Impact · 2022–2025','s1.h':'Numbers that <em style="color:var(--cyan);font-style:normal">tell on themselves.</em>',
-    's1.s':'Shipped at the speed of a startup, governed at the discipline of an enterprise. Every metric below is owned end-to-end — discovery to retention.',
-    'b1.t':'Flagship','b1.h':'App Store · Saudi Arabia','b1.p':'Mojaz hit #1 ranking in 4 months — 25M+ impressions, +250% downloads, organic press pickup.',
-    'b2.t':'Reach','b2.p':'Impressions across product launches & campaigns.',
-    'b3.t':'Growth','b3.p':'Download growth on Mojaz in 4 months.',
-    'b4.t':'Products','b4.p':'Live products shipped (1 in 2024, 4 in 2025).',
-    'b5.t':'Services','b5.p':'Supporting services in active rotation.',
-    'b6.t':'Stack','b6.p':'Cloud, analytics, experimentation, and AI tooling.',
-    'b7.q':'A product that doesn\'t earn its rank is just a feature in a folder.','b7.r':'Tech Product Manager',
-    'v.ey':'AI × Product · Vibe Coding','v.h':'I prototype with Claude. <em style="color:var(--cyan);font-style:normal">I ship with conviction.</em>',
-    'v.s':'From rapid prototyping to live A/B experiments, Claude Code and Gemini API let me move from "idea on a Slack thread" to "user in production" in days. The customer doesn\'t care how I got there; they care that it works.',
-    'vc1.h':'Mojaz · #1 App Store','vc1.p':'Vibe-coded onboarding, gamified retention loops, and AI-personalized recommendations — went from launch to #1 in 4 months.',
-    'vc2.h':'Claude-Driven Discovery','vc2.p':'132 user interviews parsed, themed, and prioritized by Claude agents — research synthesis collapsed from weeks to hours.',
-    'vc3.h':'HubEat · GCP Migration','vc3.p':'Full cloud migration on Google Cloud Platform — zero-downtime cutover, IaC-managed, observability baked in.',
-    'vc4.h':'Live A/B Engine','vc4.p':'Custom Gemini-powered A/B layer on top of Firebase — tests live in 5 min, winners auto-promoted to rollout.',
-    'n.ey':'Executive Network','n.h':'Products integrated with <em style="color:var(--cyan);font-style:normal">national infrastructure.</em>',
-    'n.s':'Live integrations and enterprise partnerships across Saudi\'s regulators, utilities, and energy ecosystem.',
-    'st.ey':'Case Study · The Mojaz Sprint','st.h':'From launch to <em style="color:var(--cyan);font-style:normal">#1 in 4 months.</em>',
-    'st.s':'No vanity metrics, no growth-hacker tricks. Pure product discipline: discover, ship, measure, double-down.',
-    'ph1.h':'Listen at Scale','ph1.p':'132 user interviews. Pain → ranked. Onboarding cut by 60%. Killed three features the user never asked for.',
-    'ph2.h':'Weekly Releases','ph2.p':'Continuous shipping cadence. Every Friday a release. Hot-fix paths under 90 min. Crash-free sessions stayed above 99.7%.',
-    'ph3.h':'Hit #1, Then Hold','ph3.p':'Hit #1 in week 16. Held the rank through Q4 with sustained retention > 33% at D30. 25M+ impressions across organic + paid.',
-    'm.ey':'Product Mastery & Credentials','m.h':'Built. <em style="color:var(--cyan);font-style:normal">Not theorized.</em>',
-    'bd1.p':'Discipline meets discovery · PMI','bd2.p':'Cloud-native architecture · zero-downtime cutovers',
-    'bd3.p':'User-obsessed framing · rapid prototyping','bd4.p':'Claude Code · Gemini · agentic workflows in production',
-    'c.h':'Need a product that earns its rank?','c.p':'I take on product leadership mandates, zero-to-one builds, and growth turnarounds. Strong with consumer apps, fintech, and B2B platforms. Riyadh-based, ships fast, ships well.',
-    'c.l1':'Direct','c.l2':'Email','c.l3':'LinkedIn',
-    'f':'Tech Product Manager · Built #1',
+    'eyebrow':        'Product Manager · Builder',
+    'hero-h1-plain':  "I don't build features. I build ",
+    'hero-h1-em':     'products that hit #1.',
+    'hero-sub':       '5 products launched. 25M+ impressions. +250% downloads. Engineering product-market fit from first sprint to #1 App Store ranking.',
+    'chip1':          '#1 App Store',
+    'chip2':          '25M+ Impressions',
+    'chip3':          '+250% Downloads',
+    'cta':            'See Products',
+    'badge1':         '#1 RANK',
+    'badge2':         '+250%',
+    'nav-product':    'Product',
+    'nav-metrics':    'Metrics',
+    'nav-systems':    'Systems',
+    'nav-contact':    'Contact',
+    'bento-eyebrow':  '> metrics.load()',
+    'bento-title':    'Numbers That Ship Products',
+    'feat-label':     'APP STORE RANKING',
+    'feat-sub':       'Ranked #1 on Saudi App Store',
+    'count1-label':   'Impressions',
+    'count2-label':   'YoY Downloads Growth',
+    'count3-label':   'Products Launched',
+    'count4-label':   'Core Services',
+    'stack-title':    'Tech Stack',
+    'quote':          "Great products aren’t shipped — they’re crafted sprint by sprint.",
+    'cmd-title':      'Product Automation Systems',
+    'crm-title':      'CRM Architecture Module',
+    'crm-desc':       'Deployed a fully integrated CRM pipeline — Odoo & Zoho connected via OAuth 2.0 on Vercel. Automated lead tracking across 380+ enterprise clients.',
+    'crm-status':     '🟢 Live',
+    'jira-title':     'Sprint Intelligence Hub',
+    'jira-desc':      'Automated daily sprint reports generated from Jira boards and dispatched via Outlook — PM intelligence on autopilot, saving 3hr+ per week per PM.',
+    'jira-status':    '🟢 Active',
+    'gov-title':      'Governance Engines',
+    'zimam-desc':     'Executive audit dashboard for governance visibility',
+    'hubeat-desc':    'GCP-powered gathering logistics & fleet optimization hub',
+    'rems-desc':      'Real Estate Management System — security & compliance engine',
+    'marquee-label':  "Powering Saudi Arabia’s Leading Enterprises",
+    'story-title':    'The Mojaz Sprint — From Idea to #1',
+    'phase1-num':     'Phase 01',
+    'phase1-name':    'Discover',
+    'phase1-time':    'Week 1–2',
+    'phase1-desc':    'User research + competitive analysis → product brief. Defined core value proposition and identified top friction points in the market.',
+    'phase2-num':     'Phase 02',
+    'phase2-name':    'Ship',
+    'phase2-time':    'Week 3–8',
+    'phase2-desc':    'Sprint cycles, A/B tests, 25M impressions milestone. Iterative development with continuous user feedback loops and data-driven prioritization.',
+    'phase3-num':     'Phase 03',
+    'phase3-name':    'Scale',
+    'phase3-time':    'Week 9–12',
+    'phase3-desc':    '#1 App Store, +250% downloads. Scaling infrastructure, optimizing performance, and maintaining top position through continuous iteration.',
+    'prog-completion':'Completion',
+    'cred-title':     'Credentials & Tooling',
+    'cred1-title':    'PMP® Certified',
+    'cred1-sub':      'Project Management Professional — PMI',
+    'cred2-title':    'GCP Cloud Infrastructure',
+    'cred2-sub':      'Google Cloud Platform — Data & DevOps',
+    'cred3-title':    'Design Thinking',
+    'cred3-sub':      'Human-centered product innovation',
+    'cred4-title':    'AI Product Tooling',
+    'cred4-sub':      'Gemini API · Mixpanel · Predictive Analytics',
+    'contact-h2':     "Let’s Build the Next #1.",
+    'contact-sub':    'Open to product leadership roles, consulting, and advisory positions.',
+    'footer':         '© 2025 Abdulrahman Alhumud · Shipping products that matter.',
   },
   ar: {
-    'n1':'الأثر','n2':'فايب كودنق','n3':'شبكتنا','n4':'سبرنت مجاز','n5':'المهارات',
-    'eyebrow':'مدير منتجات تقني · صانع تطبيق رقم ١',
-    'hook':'ما أصنع مجرّد ميزات.. <em>أصنع منتجات تتصدّر.</em>',
-    'lede':'مدير منتجات مهووس بالعميل، وصلت بتطبيق مجاز للمركز الأول في ٤ أشهر، نمو تحميلات ٢٥٠٪+، و٢٥ مليون+ ظهور. خمسة منتجات أساسية شُحنت، هجرات كاملة لـ GCP، واثنا عشر خدمة مساندة — كلها بقرار مبني على بيانات وبجودة إنتاجية.',
-    'cta1':'شوف العرض الكامل <span class="arr">←</span>','cta2':'تواصل معي <span class="arr">←</span>',
-    'hs1':'ترتيب آب ستور','hs2':'نمو التحميلات','hs3':'ظهور',
-    'chip1':'٥ منتجات · شُحنت','chip2':'GCP · سحابة','scroll':'انزل',
-    's1.ey':'أثر المنتج · 2022–2025','s1.h':'أرقام <em style="color:var(--cyan);font-style:normal">تتكلّم عن نفسها.</em>',
-    's1.s':'أشحن بسرعة شركة ناشئة، وأحكم بانضباط مؤسسة. كل مؤشر تحت متبنّاه طرف لطرف — من الاكتشاف للاحتفاظ.',
-    'b1.t':'الإنجاز','b1.h':'آب ستور · السعودية','b1.p':'مجاز وصل للمركز الأول في ٤ شهور — ٢٥M+ ظهور، تحميلات +٢٥٠٪، وتغطية إعلامية عضويّة.',
-    'b2.t':'الانتشار','b2.p':'ظهور عبر إطلاقات المنتج والحملات.',
-    'b3.t':'النمو','b3.p':'نمو تحميلات مجاز في ٤ شهور.',
-    'b4.t':'المنتجات','b4.p':'منتجات حيّة شُحنت (١ في 2024، و٤ في 2025).',
-    'b5.t':'الخدمات','b5.p':'خدمات مساندة فعّالة قيد التشغيل.',
-    'b6.t':'التقنيات','b6.p':'سحابة، تحليلات، تجارب، وأدوات ذكاء اصطناعي.',
-    'b7.q':'منتج ما يستحق ترتيبه، يبقى مجرّد ميزة في مجلد.','b7.r':'مدير منتجات تقني',
-    'v.ey':'ذكاء اصطناعي × منتج · فايب كودنق','v.h':'أعمل برتوتايب بـ Claude.. <em style="color:var(--cyan);font-style:normal">وأشحن بقناعة.</em>',
-    'v.s':'من النموذج السريع لتجارب A/B حيّة، أدوات Claude Code وGemini تخليني أنقل الفكرة من ثريد سلاك لمستخدم في الإنتاج خلال أيام. العميل ما يهمّه كيف وصلت؛ يهمّه أنه يشتغل.',
-    'vc1.h':'مجاز · المركز الأول','vc1.p':'انبوردنق عُمل بـ vibe-coding، حلقات احتفاظ مُحفّزة، وتوصيات شخصيّة بالذكاء الاصطناعي — من الإطلاق للمركز الأول في ٤ شهور.',
-    'vc2.h':'اكتشاف بقيادة Claude','vc2.p':'١٣٢ مقابلة مستخدم مُحلّلة ومُصنّفة ومُرتّبة بأولوية عبر وكلاء Claude — تركيب البحث انضغط من أسابيع لساعات.',
-    'vc3.h':'HubEat · هجرة GCP','vc3.p':'هجرة سحابية كاملة على Google Cloud — تحويل بدون انقطاع، بنية تحتية ككود، ومراقبة مدمجة.',
-    'vc4.h':'محرّك A/B حيّ','vc4.p':'طبقة A/B مخصّصة فوق Firebase مدعومة بـ Gemini — تجارب تشتغل خلال ٥ دقائق، والفائز ينطلق تلقائيًا.',
-    'n.ey':'الشبكة التنفيذية','n.h':'منتجات مدمجة مع <em style="color:var(--cyan);font-style:normal">البنية التحتية الوطنية.</em>',
-    'n.s':'تكاملات حيّة وشراكات مؤسسية عبر الجهات التنظيمية والمرافق وقطاع الطاقة في السعودية.',
-    'st.ey':'دراسة حالة · سبرنت مجاز','st.h':'من الإطلاق <em style="color:var(--cyan);font-style:normal">للمركز الأول في ٤ شهور.</em>',
-    'st.s':'بدون مؤشرات وهميّة وبدون حِيَل نمو. انضباط منتج: اكتشف، اشحن، قِس، ضاعف.',
-    'ph1.h':'الإنصات بحجم كبير','ph1.p':'١٣٢ مقابلة مستخدم. الألم مُرتّب. الانبوردنق انخفض ٦٠٪. أوقفت ٣ ميزات ما طلبها أحد.',
-    'ph2.h':'إصدارات أسبوعيّة','ph2.p':'إيقاع شحن مستمر. كل خميس إصدار. مسارات الإصلاح العاجل أقل من ٩٠ دقيقة. الجلسات بدون كراش فوق ٩٩.٧٪.',
-    'ph3.h':'تصدّر.. ثم ثبّت','ph3.p':'وصلنا للمركز الأول في الأسبوع ١٦. ثبّتنا الترتيب طول الربع الرابع باحتفاظ يوم ٣٠ فوق ٣٣٪. ٢٥ مليون+ ظهور عضوي ومدفوع.',
-    'm.ey':'مهارات وشهادات المنتج','m.h':'مبني، <em style="color:var(--cyan);font-style:normal">مو نظري.</em>',
-    'bd1.p':'انضباط يلتقي بالاكتشاف · PMI','bd2.p':'بنية سحابيّة · تحويلات بدون انقطاع',
-    'bd3.p':'تأطير من زاوية المستخدم · نماذج سريعة','bd4.p':'Claude Code · Gemini · مسارات وكلاء في الإنتاج',
-    'c.h':'تحتاج منتج يستحقّ ترتيبه؟','c.p':'أستلم مهمات قيادة منتج، بناء من صفر، وتحوّلات نمو. قوي مع تطبيقات المستهلك والفنتك ومنصّات B2B. مقرّي الرياض، شحن سريع وجودة عالية.',
-    'c.l1':'مباشر','c.l2':'إيميل','c.l3':'لينكدإن',
-    'f':'مدير منتجات تقني · صنع المركز الأول',
+    'eyebrow':        'مدير منتج · بنّاء',
+    'hero-h1-plain':  'ما أصنع مجرّد ميزات.. ',
+    'hero-h1-em':     'أصنع منتجات تتصدّر.',
+    'hero-sub':       'خمس منتجات أطلقتها، 25 مليون ظهور، ونمو 250%.. وكل واحدة وصلت للقمة.',
+    'chip1':          '#1 تطبيقات',
+    'chip2':          '+25 مليون ظهور',
+    'chip3':          '+250% تحميل',
+    'cta':            'استعرض المنتجات ←',
+    'badge1':         'المرتبة #1',
+    'badge2':         '+250%',
+    'nav-product':    'المنتجات',
+    'nav-metrics':    'الأرقام',
+    'nav-systems':    'الأنظمة',
+    'nav-contact':    'التواصل',
+    'bento-eyebrow':  '> metrics.load()',
+    'bento-title':    'أرقام تُشحن معها المنتجات',
+    'feat-label':     'تصنيف متجر التطبيقات',
+    'feat-sub':       'المرتبة #1 في متجر التطبيقات السعودي',
+    'count1-label':   'ظهور',
+    'count2-label':   'نمو التحميلات سنوياً',
+    'count3-label':   'منتجات أُطلقت',
+    'count4-label':   'خدمات أساسية',
+    'stack-title':    'التقنيات المستخدمة',
+    'quote':          'المنتجات العظيمة لا تُشحن — تُصنع سبرينتاً بعد سبرينت.',
+    'cmd-title':      'أنظمة أتمتة المنتجات',
+    'crm-title':      'وحدة بنية إدارة العملاء',
+    'crm-desc':       'نشر منظومة CRM متكاملة — Odoo وZoho مربوطتان عبر OAuth 2.0 على Vercel. تتبع تلقائي للعملاء عبر 380+ عميل مؤسسي.',
+    'crm-status':     '🟢 مباشر',
+    'jira-title':     'مركز ذكاء السبرينت',
+    'jira-desc':      'تقارير سبرينت يومية مؤتمتة من لوحات Jira وترسل عبر Outlook — ذكاء اصطناعي لمدير المنتج يوفر +3 ساعات أسبوعياً لكل مدير.',
+    'jira-status':    '🟢 نشط',
+    'gov-title':      'محركات الحوكمة',
+    'zimam-desc':     'لوحة تدقيق تنفيذية لرؤية حوكمة المؤسسة',
+    'hubeat-desc':    'منصة لوجستيات وأسطول مدعومة بـ GCP',
+    'rems-desc':      'نظام إدارة العقارات — محرك الأمان والامتثال',
+    'marquee-label':  'ندعم كبرى مؤسسات المملكة العربية السعودية',
+    'story-title':    'سبرينت مجاز — من الفكرة إلى المرتبة #1',
+    'phase1-num':     'المرحلة 01',
+    'phase1-name':    'الاكتشاف',
+    'phase1-time':    'الأسبوع 1–2',
+    'phase1-desc':    'بحث المستخدمين + تحليل المنافسين → وثيقة المنتج. تحديد عرض القيمة وأبرز نقاط الاحتكاك في السوق.',
+    'phase2-num':     'المرحلة 02',
+    'phase2-name':    'الإطلاق',
+    'phase2-time':    'الأسبوع 3–8',
+    'phase2-desc':    'دورات سبرينت، اختبارات A/B، وبلوغ 25 مليون ظهور. تطوير تكراري مع حلقات تغذية راجعة مستمرة.',
+    'phase3-num':     'المرحلة 03',
+    'phase3-name':    'التوسع',
+    'phase3-time':    'الأسبوع 9–12',
+    'phase3-desc':    '#1 متجر التطبيقات، +250% تحميل. توسيع البنية التحتية والحفاظ على الصدارة عبر التحسين المستمر.',
+    'prog-completion':'الإنجاز',
+    'cred-title':     'الشهادات والأدوات',
+    'cred1-title':    'شهادة PMP®',
+    'cred1-sub':      'محترف إدارة المشاريع — PMI',
+    'cred2-title':    'بنية GCP السحابية',
+    'cred2-sub':      'منصة Google Cloud — البيانات و DevOps',
+    'cred3-title':    'التفكير التصميمي',
+    'cred3-sub':      'ابتكار منتجات يمحوره الإنسان',
+    'cred4-title':    'أدوات منتج الذكاء الاصطناعي',
+    'cred4-sub':      'Gemini API · Mixpanel · تحليل تنبؤي',
+    'contact-h2':     'لنبني المنتج الرائد القادم.',
+    'contact-sub':    'متاح لمناصب قيادة المنتج، الاستشارات، والأدوار الاستشارية.',
+    'footer':         '© 2025 عبدالرحمن الحمود · نشحن منتجات تُحدث فرقاً.',
   }
 };
-const langBtn = document.getElementById('langBtn');
-let curLang = 'en';
-function setLang(lang){
-  curLang = lang;
-  const dict = I18N[lang];
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k = el.getAttribute('data-i18n');
-    if(dict[k]) el.innerHTML = dict[k];
-  });
-  langBtn.textContent = lang === 'ar' ? 'English' : 'العربية';
-}
-langBtn.addEventListener('click',()=>setLang(curLang==='en'?'ar':'en'));
-function animateCounter(el){
-  const target = parseFloat(el.dataset.target);
-  const dur = 1600, start = performance.now();
-  function step(now){
-    const t = Math.min((now-start)/dur, 1);
-    const eased = 1 - Math.pow(1-t, 3);
-    const val = target * eased;
-    el.textContent = target >= 100 ? Math.round(val) : (target%1?val.toFixed(1):Math.round(val));
-    if(t<1) requestAnimationFrame(step);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(step);
-}
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){
-      en.target.classList.add('in');
-      en.target.querySelectorAll('.cnt').forEach(c=>{ if(!c.dataset.done){c.dataset.done='1';animateCounter(c)} });
-      if(en.target.classList.contains('cnt') && !en.target.dataset.done){en.target.dataset.done='1';animateCounter(en.target)}
-      obs.unobserve(en.target);
+
+let currentLang = 'en';
+
+function setLang(l) {
+  currentLang = l;
+  const html = document.documentElement;
+  html.lang = l;
+  html.dir = l === 'ar' ? 'rtl' : 'ltr';
+
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-ar').classList.toggle('active', l === 'ar');
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[l] && i18n[l][key] !== undefined) {
+      el.textContent = i18n[l][key];
     }
   });
-},{threshold:0.18});
-document.querySelectorAll('.rv, .cnt').forEach(el=>obs.observe(el));
-document.querySelectorAll('.b-card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
-    card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
+
+  // Marquee direction
+  const track = document.getElementById('marquee-track');
+  if (track) {
+    track.classList.toggle('rtl-marquee', l === 'ar');
+  }
+}
+
+/* ---- Scroll Reveal ---- */
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.rv').forEach(el => observer.observe(el));
+}
+
+/* ---- CountUp ---- */
+function countUp(el, target, duration) {
+  const start = performance.now();
+  function update(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(target * eased);
+    if (p < 1) requestAnimationFrame(update);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(update);
+}
+
+function initCounters() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = parseInt(entry.target.dataset.target, 10);
+        countUp(entry.target, target, 1800);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count-num').forEach(c => observer.observe(c));
+}
+
+/* ---- Progress Bars ---- */
+function initProgressBars() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const p = parseFloat(entry.target.dataset.p);
+        entry.target.style.width = (p * 100) + '%';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.progress-fill').forEach(f => observer.observe(f));
+}
+
+/* ---- Mouse Glow on Bento Cards ---- */
+function initCardGlow() {
+  document.querySelectorAll('.b-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+    });
   });
-});
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id = a.getAttribute('href').slice(1);
-    const t = document.getElementById(id);
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
-  });
+}
+
+/* ---- Boot ---- */
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  initCounters();
+  initProgressBars();
+  initCardGlow();
 });
 </script>
+
 </body>
 </html>

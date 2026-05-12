@@ -1,633 +1,782 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-lang="en">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>Abdulrahman Alhumud — Strategic Business Developer · Deal Closer</title>
-<meta name="description" content="Strategic Business Developer. 4× revenue growth, 500% fleet scale, 380+ enterprise clients, sovereign-grade partnerships (Petromin, SASCO, SWA)." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdulrahman Alhumud · Business Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg0:#070A13;--bg1:#0F172A;--bg2:#1E293B;--gold:#F59E0B;--gold-l:#FCD34D;--navy:#1E3A5F;--text:#F1F5F9;--muted:#64748B;--radius:16px;--radius-sm:8px;--tr:0.35s cubic-bezier(0.4,0,0.2,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg0);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.65;min-height:100vh;overflow-x:hidden;position:relative}
+    html[dir="rtl"] body{font-family:'Tajawal','Plus Jakarta Sans',sans-serif}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 40% at 85% 10%,rgba(245,158,11,.08) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 15% 80%,rgba(30,58,95,.18) 0%,transparent 60%);pointer-events:none;z-index:0}
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-size:180px 180px;opacity:.35;pointer-events:none;z-index:0}
+    *{position:relative;z-index:1}
+    .container{max-width:1280px;margin:0 auto;padding:0 2rem}
+    section{padding:5.5rem 0}
+    .section-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.75rem}
+    .section-title{font-size:clamp(1.6rem,3vw,2.5rem);font-weight:700;line-height:1.2;margin-bottom:1rem}
+    .section-sub{font-size:1rem;color:var(--muted);max-width:600px;line-height:1.75}
+    .code-label{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--gold);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);padding:.3rem .8rem;border-radius:6px;display:inline-block;margin-bottom:1rem}
+    .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .rv.visible{opacity:1;transform:translateY(0)}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    /* LANG TOGGLE */
+    .lang-toggle{position:fixed;top:1.2rem;right:1.5rem;z-index:1000;display:flex;gap:.25rem;background:rgba(15,23,42,.8);border:1px solid rgba(245,158,11,.25);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:999px;padding:.3rem}
+    html[dir="rtl"] .lang-toggle{right:auto;left:1.5rem}
+    .lang-btn{background:transparent;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.78rem;font-weight:600;color:var(--muted);padding:.35rem .85rem;border-radius:999px;transition:var(--tr)}
+    .lang-btn.active{background:var(--gold);color:#000}
 
-<style>
-  :root{
-    --bg-0:#050d22; --bg-1:#08152e; --bg-2:#0c1f44;
-    --line:rgba(255,255,255,0.06); --line-2:rgba(255,255,255,0.10);
-    --ink:#f1ecdc; --ink-d:#bdb39a; --ink-m:#807866;
-    --navy:#0c1f44; --navy-l:#1a3a7a; --navy-d:#06112a;
-    --gold:#d4a948; --gold-l:#f0c668; --gold-d:#a88332;
-    --champ:#e8cd87;
-    --tint:rgba(212,169,72,0.14);
-    --r-lg:22px; --r-md:14px; --r-sm:10px;
-    --font-en:'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-ar:'Tajawal', system-ui, sans-serif;
-    --font-display:'Playfair Display', Georgia, serif;
-    --font-mono:'JetBrains Mono', ui-monospace, monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
-  html,body{background:var(--bg-0);color:var(--ink);font-family:var(--font-en);overflow-x:hidden}
-  html[dir="rtl"]{font-family:var(--font-ar)}
-  a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(1100px 600px at 12% -10%, rgba(212,169,72,0.16), transparent 60%),radial-gradient(900px 700px at 100% 20%, rgba(232,205,135,0.06), transparent 65%),radial-gradient(700px 500px at 50% 110%, rgba(26,58,122,0.30), transparent 60%)}
-  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.4;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.020 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");mix-blend-mode:overlay}
-  .wrap{position:relative;z-index:5;max-width:1320px;margin:0 auto;padding:0 clamp(20px,3vw,48px)}
+    /* TOPBAR */
+    .topbar{position:sticky;top:0;z-index:900;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(7,10,19,.88);border-bottom:1px solid rgba(245,158,11,.08);padding:.9rem 0}
+    .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    html[dir="rtl"] .topbar-inner{flex-direction:row-reverse}
+    .logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.05rem;font-weight:700;color:var(--gold);text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+    .nav{display:flex;gap:2.5rem;list-style:none}
+    html[dir="rtl"] .nav{flex-direction:row-reverse}
+    .nav a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:var(--tr)}
+    .nav a:hover{color:var(--gold)}
 
-  .topbar{position:fixed;top:0;left:0;right:0;z-index:80;backdrop-filter:saturate(160%) blur(14px);background:linear-gradient(180deg, rgba(5,13,34,0.85), rgba(5,13,34,0.35));border-bottom:1px solid var(--line)}
-  .topbar-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-  .brand-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg, var(--gold), var(--gold-d));display:grid;place-items:center;font-weight:800;color:#1a1a1a;font-size:13px;box-shadow:0 8px 20px -8px var(--gold)}
-  .brand-name{font-size:13.5px;color:var(--ink)}.brand-name b{color:var(--gold-l)}
-  .nav{display:flex;align-items:center;gap:6px}
-  .nav a{padding:8px 14px;border-radius:999px;font-size:13px;color:var(--ink-d);transition:.25s}
-  .nav a:hover{color:var(--ink);background:rgba(255,255,255,0.04)}
-  .lang-btn{padding:9px 16px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,0.025);font-size:12.5px;font-weight:600;letter-spacing:.04em;transition:.25s}
-  .lang-btn:hover{background:var(--tint);border-color:var(--gold-d)}
+    /* HERO */
+    .hero{min-height:90vh;display:flex;align-items:center;padding:5rem 0 4rem}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .hero-eyebrow{display:inline-flex;align-items:center;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.35);color:var(--gold);font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.45rem 1.1rem;border-radius:999px;margin-bottom:1.75rem}
+    .hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.5vw,4.2rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-.02em}
+    .hero-h1 em{font-style:italic;color:var(--gold);font-weight:900}
+    html[dir="rtl"] .hero-h1{font-family:'Tajawal',serif;font-size:clamp(2rem,4vw,3.5rem)}
+    .hero-sub{font-size:1rem;color:var(--muted);max-width:480px;margin-bottom:2rem;line-height:1.75}
+    html[dir="rtl"] .hero-sub{max-width:100%}
+    .stat-chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.5rem}
+    html[dir="rtl"] .stat-chips{flex-direction:row-reverse}
+    .stat-chip{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--gold-l);font-size:.78rem;font-weight:600;padding:.4rem 1rem;border-radius:999px;letter-spacing:.04em}
+    .cta-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:#000;font-weight:700;font-size:.95rem;padding:.85rem 2rem;border-radius:999px;text-decoration:none;transition:var(--tr)}
+    .cta-primary:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,158,11,.35)}
 
-  .hero{position:relative;padding:140px 0 80px;min-height:100vh;display:flex;align-items:center}
-  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,5vw,80px);align-items:center}
-  @media(max-width:980px){.hero-grid{grid-template-columns:1fr;text-align:center}}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-l);font-weight:600;padding:6px 14px;border-radius:999px;background:var(--tint);border:1px solid rgba(212,169,72,0.30)}
-  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 12px var(--gold-l)}
-  html[dir="rtl"] .eyebrow{letter-spacing:0}
-  .hook{margin-top:22px;font-family:var(--font-display);font-weight:700;line-height:1.05;letter-spacing:-0.02em;font-size:clamp(40px,5vw,68px);background:linear-gradient(180deg,#fff 0%, #ead7a0 60%, #b89236 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hook em{font-style:italic;color:var(--gold-l);-webkit-text-fill-color:var(--gold-l)}
-  html[dir="rtl"] .hook{font-family:var(--font-ar);font-size:clamp(32px,4vw,56px);line-height:1.18;letter-spacing:0}
-  html[dir="rtl"] .hook em{font-style:normal}
-  .lede{margin-top:24px;max-width:560px;font-size:17px;line-height:1.65;color:var(--ink-d)}
-  html[dir="rtl"] .lede{font-size:18px}
-  @media(max-width:980px){.lede{margin-inline:auto}}
-  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
-  @media(max-width:980px){.cta-row{justify-content:center}}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:14px;font-weight:600;font-size:14px;transition:.25s}
-  .btn-primary{background:linear-gradient(135deg, var(--gold), var(--gold-d));color:#1a1a1a;box-shadow:0 14px 40px -14px var(--gold)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 50px -16px var(--gold)}
-  .btn-ghost{border:1px solid var(--line-2);background:rgba(255,255,255,0.02);color:var(--ink)}
-  .btn-ghost:hover{background:rgba(255,255,255,0.06);border-color:var(--gold-d)}
-  .btn .arr{transition:transform .25s}
-  .btn:hover .arr{transform:translateX(4px)}
-  html[dir="rtl"] .btn:hover .arr{transform:translateX(-4px)}
-  .hero-stats{margin-top:48px;display:flex;gap:32px;flex-wrap:wrap}
-  @media(max-width:980px){.hero-stats{justify-content:center}}
-  .hs{display:flex;flex-direction:column;gap:4px}
-  .hs-num{font-family:var(--font-display);font-weight:700;font-size:32px;color:var(--gold-l);letter-spacing:-0.02em;font-variant-numeric:tabular-nums}
-  html[dir="rtl"] .hs-num{font-family:var(--font-ar)}
-  .hs-lbl{font-size:11px;color:var(--ink-m);letter-spacing:.18em;text-transform:uppercase}
-  html[dir="rtl"] .hs-lbl{letter-spacing:0}
+    /* PROFILE */
+    .profile-wrap{position:relative;width:380px;height:380px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+    .profile-glass{width:260px;height:260px;border-radius:50%;border:2px solid rgba(245,158,11,.4);box-shadow:0 0 80px -20px rgba(245,158,11,.5),0 0 0 1px rgba(245,158,11,.08);background:rgba(245,158,11,.08);overflow:hidden;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);position:relative;z-index:2}
+    .profile-avatar-premium{width:100%;height:100%;object-fit:cover;object-position:center top}
+    .avatar-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:var(--gold);background:radial-gradient(circle,rgba(245,158,11,.15) 0%,transparent 70%)}
+    .profile-ring{position:absolute;top:50%;left:50%;border-radius:50%;transform:translate(-50%,-50%);z-index:1}
+    .profile-ring.r1{width:320px;height:320px;border:1.5px solid rgba(245,158,11,.22);animation:orbit-cw 20s linear infinite}
+    .profile-ring.r2{width:370px;height:370px;border:1px dashed rgba(245,158,11,.13);animation:orbit-ccw 35s linear infinite}
+    @keyframes orbit-cw{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+    @keyframes orbit-ccw{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(-360deg)}}
+    .float-badge{position:absolute;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:var(--gold-l);font-size:.7rem;font-weight:700;padding:.4rem .9rem;border-radius:999px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);letter-spacing:.06em;white-space:nowrap;z-index:3}
+    .float-badge.b1{top:28px;right:8px;animation:badge-float 3s ease-in-out infinite alternate}
+    .float-badge.b2{bottom:38px;left:4px;animation:badge-float 3s ease-in-out infinite alternate 1.5s}
+    @keyframes badge-float{from{transform:translateY(0)}to{transform:translateY(-8px)}}
 
-  .profile-stage{position:relative;width:100%;max-width:480px;margin:0 auto;aspect-ratio:1/1}
-  .profile-frame{position:absolute;inset:8%;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#0d1d3e,#050d22);border:2px solid rgba(212,169,72,0.40);box-shadow:0 40px 100px -30px rgba(212,169,72,0.50), inset 0 0 60px rgba(0,0,0,0.4)}
-  .profile-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.04) saturate(1.05)}
-  .profile-frame .ph{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%, rgba(232,205,135,0.18), transparent 60%);font-size:120px;font-weight:800;color:rgba(255,255,255,0.12);letter-spacing:-0.04em}
-  .ring{position:absolute;inset:0;border-radius:50%;pointer-events:none}
-  .ring-1{background:conic-gradient(from 0deg, transparent 70%, var(--gold-l) 85%, transparent 100%);animation:spin 18s linear infinite;-webkit-mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));opacity:.9}
-  .ring-2{border:1px dashed rgba(212,169,72,0.18);inset:-4%;animation:spin 60s linear infinite reverse}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .badge-fab{position:absolute;inset:auto auto -2% -2%;width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg, var(--gold-l), var(--gold-d));color:#1a1a1a;font-weight:800;display:grid;place-items:center;box-shadow:0 18px 40px -10px rgba(212,169,72,0.6);border:3px solid var(--bg-0);text-align:center}
-  .badge-fab small{display:block;font-size:9px;letter-spacing:.18em;font-weight:700}
-  .badge-fab b{font-family:var(--font-display);font-size:24px;display:block;margin-top:-2px}
-  html[dir="rtl"] .badge-fab{inset:auto -2% -2% auto}
-  html[dir="rtl"] .badge-fab b{font-family:var(--font-ar)}
-  .float-chip{position:absolute;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:rgba(8,21,46,0.92);border:1px solid rgba(212,169,72,0.30);backdrop-filter:blur(12px);font-size:12px;box-shadow:0 14px 30px -10px rgba(0,0,0,0.6)}
-  .float-chip .pulse{width:8px;height:8px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 12px var(--gold-l)}
-  .fc-1{top:8%;left:-8%;animation:floaty 5s ease-in-out infinite}
-  .fc-2{bottom:18%;right:-12%;animation:floaty 6s ease-in-out infinite reverse}
-  @keyframes floaty{50%{transform:translateY(-8px)}}
-  .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-m);display:flex;flex-direction:column;align-items:center;gap:10px}
-  .scroll-hint .line{width:1px;height:36px;background:linear-gradient(180deg,var(--gold-l),transparent);animation:slide 2s ease-in-out infinite}
-  @keyframes slide{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+    /* BENTO */
+    .bento-grid{display:grid;grid-template-columns:repeat(8,1fr);grid-auto-rows:185px;gap:1rem;margin-top:2rem}
+    .b-card{background:rgba(15,23,42,.82);border:1px solid rgba(245,158,11,.1);border-radius:var(--radius);padding:1.5rem;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;transition:var(--tr);cursor:default}
+    .b-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(245,158,11,.07) 0%,transparent 60%);opacity:0;transition:opacity .4s ease;border-radius:inherit;pointer-events:none}
+    .b-card:hover{border-color:rgba(245,158,11,.3);box-shadow:0 0 40px rgba(245,158,11,.15),0 4px 20px rgba(0,0,0,.4);transform:translateY(-3px)}
+    .b-card:hover::before{opacity:1}
+    .b-card.feat{grid-column:span 3;grid-row:span 2;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,rgba(30,58,95,.55) 0%,rgba(15,23,42,.92) 100%);border-color:rgba(245,158,11,.2)}
+    .b-card.span-2{grid-column:span 2}
+    .b-card.span-3{grid-column:span 3}
+    .b-card.span-4{grid-column:span 4}
+    .b-num{font-family:'Playfair Display',serif;font-size:clamp(3rem,5vw,4.5rem);font-weight:900;color:var(--gold);line-height:1;margin-bottom:.4rem}
+    .b-card.feat .b-num{font-size:clamp(4.5rem,8vw,7rem)}
+    .b-label{font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+    .b-sub{font-size:.75rem;color:var(--muted);line-height:1.5}
+    .b-card.dark{background:rgba(7,10,19,.9);border-color:rgba(245,158,11,.13)}
+    .b-card.quote-card{background:rgba(30,58,95,.3);border-color:rgba(245,158,11,.2);align-items:center;justify-content:center;text-align:center}
+    .b-quote{font-family:'Playfair Display',serif;font-size:.9rem;font-style:italic;color:var(--gold-l);line-height:1.7}
+    .exec-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+    .exec-pill{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--gold-l);font-size:.68rem;font-weight:600;padding:.28rem .65rem;border-radius:999px}
 
-  section{position:relative;z-index:5}
-  .sec{padding:clamp(80px,11vh,140px) 0;border-top:1px solid var(--line)}
-  .sec-head{display:flex;flex-direction:column;gap:18px;max-width:760px;margin-bottom:56px}
-  .sec-head.center{margin-inline:auto;text-align:center;align-items:center}
-  .sec-h2{font-family:var(--font-display);font-weight:700;font-size:clamp(32px,4vw,52px);line-height:1.05;letter-spacing:-0.02em;background:linear-gradient(180deg,#fff,#cdbb84);-webkit-background-clip:text;background-clip:text;color:transparent}
-  html[dir="rtl"] .sec-h2{font-family:var(--font-ar);line-height:1.2;letter-spacing:0}
-  .sec-h2 em{font-style:italic;color:var(--gold-l);-webkit-text-fill-color:var(--gold-l)}
-  html[dir="rtl"] .sec-h2 em{font-style:normal}
-  .sec-sub{color:var(--ink-d);font-size:16px;line-height:1.6;max-width:600px}
+    /* COMMAND CENTER */
+    .command-center{background:rgba(15,23,42,.35)}
+    .command-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .cmd-card{background:rgba(7,10,19,.88);border:1px solid rgba(245,158,11,.1);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;gap:1rem;transition:var(--tr)}
+    .cmd-card:hover{border-color:rgba(245,158,11,.3);box-shadow:0 0 40px rgba(245,158,11,.1),0 4px 28px rgba(0,0,0,.5);transform:translateY(-3px)}
+    .cmd-header{display:flex;align-items:center;gap:.75rem}
+    .cmd-icon{width:40px;height:40px;border-radius:10px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.22);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .cmd-title{font-size:1rem;font-weight:700;color:var(--text)}
+    .cmd-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+    .cmd-tag{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.18);color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:.22rem .55rem;border-radius:5px}
+    .cmd-desc{font-size:.86rem;color:var(--muted);line-height:1.65;flex:1}
+    .cmd-status{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.18);padding:.28rem .75rem;border-radius:999px;display:inline-flex;align-items:center;gap:.4rem;width:fit-content}
+    .gov-nodes{display:flex;flex-direction:column;gap:.8rem}
+    .gov-node{background:rgba(30,58,95,.22);border:1px solid rgba(245,158,11,.1);border-radius:var(--radius-sm);padding:.8rem 1rem;transition:var(--tr)}
+    .gov-node:hover{background:rgba(30,58,95,.38);border-color:rgba(245,158,11,.22)}
+    .gov-node-name{font-size:.82rem;font-weight:700;color:var(--gold);margin-bottom:.2rem}
+    .gov-node-desc{font-size:.73rem;color:var(--muted);line-height:1.5}
 
-  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(170px,auto);gap:18px}
-  @media(max-width:900px){.bento{grid-template-columns:repeat(2,1fr)}}
-  .b-card{position:relative;padding:26px;border-radius:var(--r-lg);background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, background .35s}
-  .b-card:hover{transform:translateY(-4px);border-color:rgba(212,169,72,0.40)}
-  .b-card::before{content:"";position:absolute;inset:0;opacity:0;transition:.35s;background:radial-gradient(400px 200px at var(--mx,50%) var(--my,50%), rgba(212,169,72,0.12), transparent 60%);pointer-events:none}
-  .b-card:hover::before{opacity:1}
-  .b-card .b-num{font-family:var(--font-display);font-weight:700;font-size:clamp(42px,5vw,68px);letter-spacing:-0.03em;color:#fff;font-variant-numeric:tabular-nums;line-height:1}
-  html[dir="rtl"] .b-card .b-num{font-family:var(--font-ar);font-weight:800}
-  .b-card .b-lbl{margin-top:14px;color:var(--ink-d);font-size:13.5px;line-height:1.5}
-  .b-card .b-tag{position:absolute;top:18px;right:18px;font-size:10px;color:var(--ink-m);letter-spacing:.18em;text-transform:uppercase}
-  html[dir="rtl"] .b-card .b-tag{right:auto;left:18px;letter-spacing:0}
-  .b-card.x2{grid-column:span 2}.b-card.y2{grid-row:span 2}
-  .b-card.feature{background:linear-gradient(135deg, rgba(212,169,72,0.14), rgba(232,205,135,0.04));border-color:rgba(212,169,72,0.40)}
-  .b-card.feature .b-num{background:linear-gradient(135deg,#fff,var(--gold-l));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .b-card.dark{background:linear-gradient(180deg, #0a1a3a, #06112a)}
-  .b-quote{font-family:var(--font-display);font-style:italic;font-size:22px;line-height:1.4;color:var(--ink)}
-  html[dir="rtl"] .b-quote{font-family:var(--font-ar);font-style:normal}
-  .b-quote::before{content:"\201C";font-size:60px;color:var(--gold-d);line-height:0;display:block;margin-bottom:18px}
+    /* SECTORS */
+    .sectors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .sector-card{background:rgba(7,10,19,.88);border:1px solid rgba(245,158,11,.1);border-radius:var(--radius);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1rem;transition:var(--tr)}
+    .sector-card:hover{border-color:rgba(245,158,11,.3);box-shadow:0 0 50px rgba(245,158,11,.1);transform:translateY(-4px)}
+    .sector-icon{font-size:2.5rem;line-height:1}
+    .sector-name{font-size:1.2rem;font-weight:700;color:var(--gold)}
+    .sector-desc{font-size:.82rem;color:var(--muted)}
+    .sector-accounts{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+    .sector-accounts li{font-size:.8rem;color:var(--text);font-weight:500;display:flex;align-items:center;gap:.5rem}
+    .sector-accounts li::before{content:'';width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0}
 
-  .vibe-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
-  @media(max-width:1000px){.vibe-wrap{grid-template-columns:1fr}}
-  .term{border-radius:18px;overflow:hidden;border:1px solid rgba(212,169,72,0.25);background:#06112a;box-shadow:0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,169,72,0.08) inset;font-family:var(--font-mono);font-size:13px}
-  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0a1a3a;border-bottom:1px solid var(--line)}
-  .term-bar .dot{width:11px;height:11px;border-radius:50%}
-  .term-bar .red{background:#ff5f56}.term-bar .ylw{background:#febc2e}.term-bar .grn{background:#27c93f}
-  .term-title{margin-inline-start:14px;color:var(--ink-m);font-size:11px;letter-spacing:.08em}
-  .term-body{padding:22px 22px 26px;line-height:1.85;color:#d4c89e;min-height:380px}
-  .prompt{color:var(--gold-l);user-select:none;margin-inline-end:8px;font-weight:700}
-  .ok{color:#a8d878}.warn{color:#febc2e}.cmt{color:#7a6e4f;font-style:italic}.var{color:var(--champ)}.str{color:#e6b974}.wins{color:var(--gold-l);font-weight:700}
-  .cursor::after{content:"\2588";color:var(--gold-l);animation:blink 1s steps(2) infinite;margin-inline-start:2px}
-  @keyframes blink{50%{opacity:0}}
-  .vibe-cards{display:flex;flex-direction:column;gap:14px}
-  .vc{padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;transition:.3s}
-  .vc:hover{border-color:rgba(212,169,72,0.40);transform:translateX(4px)}
-  html[dir="rtl"] .vc:hover{transform:translateX(-4px)}
-  .vc-ic{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg, var(--tint), rgba(232,205,135,0.08));border:1px solid rgba(212,169,72,0.30);display:grid;place-items:center;font-size:20px}
-  .vc h4{font-size:15px;font-weight:700;margin-bottom:6px;color:#fff}
-  .vc p{font-size:13px;color:var(--ink-d);line-height:1.55}
+    /* MARQUEE */
+    .marquee-section{padding:3.5rem 0;overflow:hidden}
+    .marquee-label{text-align:center;font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:2rem}
+    .marquee-track-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent 0%,black 12%,black 88%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,black 12%,black 88%,transparent 100%)}
+    .marquee-track{display:flex;width:max-content;animation:marquee-scroll 22s linear infinite}
+    .marquee-track:hover{animation-play-state:paused}
+    @keyframes marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .marquee-item{padding:.7rem 2.5rem;font-size:1rem;font-weight:600;color:var(--muted);white-space:nowrap;transition:var(--tr);border-right:1px solid rgba(245,158,11,.1);cursor:default}
+    .marquee-item:hover{color:var(--gold)}
 
-  .marquee{position:relative;overflow:hidden;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg, transparent, rgba(255,255,255,0.015), transparent);-webkit-mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)}
-  .marquee-track{display:flex;gap:54px;width:max-content;animation:marq 38s linear infinite}
-  @keyframes marq{to{transform:translateX(-50%)}}
-  html[dir="rtl"] .marquee-track{animation-direction:reverse}
-  .logo-chip{display:flex;align-items:center;gap:12px;padding:14px 26px;border-radius:14px;background:rgba(255,255,255,0.025);border:1px solid var(--line);font-weight:600;color:var(--ink);white-space:nowrap;font-size:15px}
-  .logo-chip .lc-mark{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
-  .lc-petromin{background:linear-gradient(135deg,#e63946,#a4151c)}
-  .lc-sasco{background:linear-gradient(135deg,#0a7a3c,#0d6e3a)}
-  .lc-swa{background:linear-gradient(135deg,#0ea5e9,#0369a1)}
-  .lc-mewa{background:linear-gradient(135deg,#16a34a,#166534)}
-  .lc-energy{background:linear-gradient(135deg,#f59e0b,#b45309)}
-  .lc-zatca{background:linear-gradient(135deg,#3b82f6,#1e40af)}
-  .lc-rased{background:linear-gradient(135deg,#10b981,#047857)}
-  .lc-mojaz{background:linear-gradient(135deg,#8b5cf6,#5b21b6)}
+    /* GROWTH ARC */
+    .growth-arc{background:rgba(15,23,42,.3)}
+    .arc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+    .arc-card{background:rgba(7,10,19,.82);border:1px solid rgba(245,158,11,.1);border-radius:var(--radius);padding:2rem;transition:var(--tr);position:relative;overflow:hidden}
+    .arc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--gold),var(--gold-l))}
+    .arc-card:hover{border-color:rgba(245,158,11,.25);transform:translateY(-3px)}
+    .arc-phase{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem}
+    .arc-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold);margin-bottom:.35rem}
+    .arc-timeline{font-size:.75rem;color:var(--muted);margin-bottom:1rem;font-weight:500}
+    .arc-desc{font-size:.84rem;color:var(--muted);line-height:1.65;margin-bottom:1.25rem}
+    .progress-bar-wrap{background:rgba(245,158,11,.1);border-radius:999px;height:4px;overflow:hidden}
+    .progress-bar{height:100%;background:linear-gradient(to right,var(--gold),var(--gold-l));border-radius:999px;width:0%;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
 
-  .story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px}
-  @media(max-width:900px){.story-grid{grid-template-columns:1fr}}
-  .phase{position:relative;padding:30px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);overflow:hidden}
-  .phase-num{font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--gold-l);font-weight:700}
-  .phase h4{font-family:var(--font-display);font-size:24px;font-weight:700;margin-top:14px;color:#fff;letter-spacing:-0.01em}
-  html[dir="rtl"] .phase h4{font-family:var(--font-ar)}
-  .phase p{margin-top:14px;color:var(--ink-d);font-size:14px;line-height:1.6}
-  .phase-bar{margin-top:22px;height:4px;border-radius:4px;background:rgba(255,255,255,0.06);overflow:hidden}
-  .phase-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-l));transform-origin:left;transform:scaleX(0);transition:transform 1.4s ease}
-  html[dir="rtl"] .phase-bar i{transform-origin:right}
-  .in .phase-bar i{transform:scaleX(var(--p,0.5))}
+    /* CREDENTIALS */
+    .cred-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:3rem}
+    .cred-card{background:rgba(7,10,19,.88);border:1px solid rgba(245,158,11,.1);border-radius:var(--radius);padding:1.75rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:var(--tr)}
+    .cred-card:hover{border-color:rgba(245,158,11,.3);box-shadow:0 0 30px rgba(245,158,11,.1);transform:translateY(-3px)}
+    .cred-icon{width:50px;height:50px;border-radius:13px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.22);display:flex;align-items:center;justify-content:center;font-size:1.35rem}
+    .cred-title{font-size:.95rem;font-weight:700;color:var(--text)}
+    .cred-sub{font-size:.75rem;color:var(--muted);line-height:1.55}
+    .cred-pills{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center}
+    .cred-pill{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);color:var(--gold);font-size:.62rem;font-weight:600;padding:.2rem .5rem;border-radius:999px}
 
-  .badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-  @media(max-width:900px){.badges-grid{grid-template-columns:repeat(2,1fr)}}
-  .bd-card{position:relative;padding:24px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);transition:.3s}
-  .bd-card:hover{transform:translateY(-3px);border-color:rgba(212,169,72,0.40)}
-  .bd-ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:rgba(212,169,72,0.12);border:1px solid rgba(212,169,72,0.30);margin-bottom:14px}
-  .bd-card h4{font-size:14px;font-weight:700;color:#fff}
-  .bd-card p{margin-top:6px;font-size:12px;color:var(--ink-m);line-height:1.5}
+    /* CONTACT */
+    .contact-section{background:rgba(15,23,42,.45);border-top:1px solid rgba(245,158,11,.07)}
+    .contact-inner{text-align:center;max-width:640px;margin:0 auto}
+    .contact-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;margin-bottom:1rem}
+    .contact-sub{color:var(--muted);font-size:1rem;margin-bottom:2.5rem}
+    .contact-links{display:flex;flex-direction:column;gap:1rem;align-items:center;margin-bottom:2rem}
+    .contact-link{display:inline-flex;align-items:center;gap:.75rem;color:var(--text);text-decoration:none;font-size:.95rem;font-weight:500;transition:var(--tr);padding:.75rem 1.5rem;border-radius:999px;border:1px solid rgba(245,158,11,.13);background:rgba(245,158,11,.04);min-width:280px;justify-content:center}
+    .contact-link:hover{color:var(--gold);border-color:rgba(245,158,11,.38);background:rgba(245,158,11,.1)}
+    html[dir="rtl"] .contact-link{flex-direction:row-reverse}
+    .footer{padding:2rem 0;border-top:1px solid rgba(245,158,11,.05)}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    html[dir="rtl"] .footer-inner{flex-direction:row-reverse}
+    .footer-copy{font-size:.78rem;color:var(--muted)}
+    .footer-tagline{font-size:.76rem;color:var(--muted);font-style:italic;text-align:right}
+    html[dir="rtl"] .footer-tagline{text-align:left}
 
-  .contact-wrap{margin-top:48px;padding:clamp(36px,6vw,72px);border-radius:26px;background:linear-gradient(135deg, rgba(212,169,72,0.14), rgba(255,255,255,0.02));border:1px solid rgba(212,169,72,0.30);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;overflow:hidden}
-  @media(max-width:900px){.contact-wrap{grid-template-columns:1fr}}
-  .contact-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 80% 50%, rgba(232,205,135,0.15), transparent 60%);pointer-events:none}
-  .contact-h{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-0.02em;line-height:1.1}
-  html[dir="rtl"] .contact-h{font-family:var(--font-ar);line-height:1.25;letter-spacing:0}
-  .contact-p{margin-top:14px;color:var(--ink-d);font-size:15px;line-height:1.6;max-width:480px}
-  .contact-list{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2}
-  .contact-list a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;background:rgba(0,0,0,0.30);border:1px solid var(--line-2);transition:.3s}
-  .contact-list a:hover{border-color:var(--gold-l);background:rgba(212,169,72,0.10);transform:translateX(4px)}
-  html[dir="rtl"] .contact-list a:hover{transform:translateX(-4px)}
-  .contact-list .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(212,169,72,0.18);border:1px solid rgba(212,169,72,0.35);font-size:16px}
-  .contact-list .meta{display:flex;flex-direction:column}
-  .contact-list .meta small{font-size:11px;color:var(--ink-m);letter-spacing:.16em;text-transform:uppercase}
-  html[dir="rtl"] .contact-list .meta small{letter-spacing:0}
-  .contact-list .meta b{font-size:15px;font-weight:600;color:#fff;margin-top:2px;font-family:var(--font-mono)}
-  html[dir="rtl"] .contact-list .meta b{font-family:var(--font-en)}
-
-  footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-m);font-size:12px;letter-spacing:.08em}
-
-  .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
-  .rv.in{opacity:1;transform:none}
-  .rv.d1{transition-delay:.06s}.rv.d2{transition-delay:.14s}.rv.d3{transition-delay:.22s}.rv.d4{transition-delay:.30s}.rv.d5{transition-delay:.38s}.rv.d6{transition-delay:.46s}
-  @media(max-width:720px){.nav{display:none}.hero{padding-top:120px}}
-
-  /* Sector tabs */
-  .sectors{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
-  @media(max-width:900px){.sectors{grid-template-columns:1fr}}
-  .sector{padding:30px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));transition:.3s}
-  .sector:hover{border-color:rgba(212,169,72,0.40);transform:translateY(-3px)}
-  .sector-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--gold-l);font-weight:700}
-  .sector h4{font-family:var(--font-display);font-size:22px;margin-top:12px;color:#fff}
-  html[dir="rtl"] .sector h4{font-family:var(--font-ar)}
-  .sector p{margin-top:12px;color:var(--ink-d);font-size:14px;line-height:1.6}
-  .sector ul{margin-top:18px;list-style:none;display:flex;flex-direction:column;gap:8px}
-  .sector ul li{font-size:13px;color:var(--ink-d);padding-inline-start:18px;position:relative}
-  .sector ul li::before{content:"◆";position:absolute;inset-inline-start:0;color:var(--gold-l);font-size:10px;top:1px}
-</style>
+    /* RESPONSIVE */
+    @media(max-width:1100px){
+      .bento-grid{grid-template-columns:repeat(4,1fr)}
+      .b-card.feat{grid-column:span 2;grid-row:span 2}
+      .b-card.span-3{grid-column:span 2}
+      .b-card.span-4{grid-column:span 4}
+    }
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      .profile-wrap{width:300px;height:300px}
+      .profile-glass{width:200px;height:200px}
+      .profile-ring.r1{width:250px;height:250px}
+      .profile-ring.r2{width:290px;height:290px}
+      .command-grid,.sectors-grid,.arc-grid{grid-template-columns:1fr}
+      .cred-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:640px){
+      .nav{gap:1.2rem}
+      .bento-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto}
+      .b-card.feat,.b-card.span-2,.b-card.span-3,.b-card.span-4{grid-column:span 2}
+      .cred-grid{grid-template-columns:1fr 1fr}
+      .footer-inner{flex-direction:column;text-align:center}
+      .footer-tagline{text-align:center}
+    }
+  </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="wrap topbar-in">
-    <a href="#" class="brand"><span class="brand-mark">AA</span><span class="brand-name">Abdulrahman <b>Alhumud</b></span></a>
-    <nav class="nav">
-      <a href="#impact" data-i18n="n1">Impact</a>
-      <a href="#vibe" data-i18n="n2">Vibe Coding</a>
-      <a href="#network" data-i18n="n3">Network</a>
-      <a href="#story" data-i18n="n4">Case Study</a>
-      <a href="#sectors" data-i18n="n5">Sectors</a>
-    </nav>
-    <button class="lang-btn" id="langBtn">العربية</button>
+  <!-- LANG TOGGLE -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btn-ar" onclick="setLang('ar')">AR</button>
   </div>
-</header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow rv" data-i18n="eyebrow">Strategic Business Developer · Deal Closer</span>
-      <h1 class="hook rv d1" data-i18n="hook">I open doors. <em>I close deals.</em></h1>
-      <p class="lede rv d2" data-i18n="lede">Strategic deal architect with 4× revenue growth, 500% fleet scale, and a 380+ enterprise client book. I translate handshake conversations into signed contracts — Petromin, SASCO, SWA, MEWA, Ministry of Energy, ZATCA.</p>
-      <div class="cta-row rv d3">
-        <a class="btn btn-primary" href="full.html" target="_blank" rel="noopener" data-i18n="cta1">View Full Deck <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="#contact" data-i18n="cta2">Get in Touch <span class="arr">→</span></a>
-      </div>
-      <div class="hero-stats rv d4">
-        <div class="hs"><div class="hs-num"><span class="cnt" data-target="4">0</span>×</div><div class="hs-lbl" data-i18n="hs1">Revenue Growth</div></div>
-        <div class="hs"><div class="hs-num"><span class="cnt" data-target="500">0</span>%</div><div class="hs-lbl" data-i18n="hs2">Fleet Scale</div></div>
-        <div class="hs"><div class="hs-num"><span class="cnt" data-target="380">0</span>+</div><div class="hs-lbl" data-i18n="hs3">Enterprise Clients</div></div>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <a href="#hero" class="logo">Abdulrahman &middot; BD</a>
+        <nav><ul class="nav">
+          <li><a href="#bento" data-i18n="nav_revenue">Revenue</a></li>
+          <li><a href="#command" data-i18n="nav_clients">Clients</a></li>
+          <li><a href="#sectors" data-i18n="nav_network">Network</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        </ul></nav>
       </div>
     </div>
-    <div class="rv d2">
-      <div class="profile-stage">
-        <div class="ring ring-2"></div>
-        <div class="profile-frame">
-          <img src="profile.jpg" alt="Abdulrahman Alhumud" onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='grid'">
-          <div class="ph" style="display:none">AA</div>
-        </div>
-        <div class="ring ring-1"></div>
-        <div class="badge-fab"><div><small>4×</small><b>REV</b></div></div>
-        <div class="float-chip fc-1"><span class="pulse"></span><span data-i18n="chip1">B2G · Sovereign Grade</span></div>
-        <div class="float-chip fc-2"><span class="pulse"></span><span data-i18n="chip2">55+ Contracts Closed</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-hint"><span data-i18n="scroll">Scroll</span><span class="line"></span></div>
-</section>
+  </header>
 
-<section class="sec" id="impact">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="s1.ey">Commercial Impact · 2022–2025</span>
-      <h2 class="sec-h2" data-i18n="s1.h">Revenue, <em>compounded.</em></h2>
-      <p class="sec-sub" data-i18n="s1.s">Pipeline-to-P&L is not a slide. It's a discipline. Every number below was earned with face-to-face trust, executive-grade discretion, and zero shortcuts.</p>
-    </div>
-    <div class="bento">
-      <div class="b-card feature x2 y2 rv">
-        <span class="b-tag" data-i18n="b1.t">Flagship</span>
-        <div class="b-num"><span class="cnt" data-target="4">0</span>×</div>
-        <div class="b-lbl" style="font-size:18px;color:#fff;margin-top:18px" data-i18n="b1.h">Revenue Growth · 2022→2025</div>
-        <p style="color:var(--ink-d);font-size:14px;margin-top:10px;line-height:1.6;max-width:380px" data-i18n="b1.p">Tripled and then quadrupled revenue across consecutive fiscal years — built on enterprise renewals, new B2G mandates, and disciplined upsell motion.</p>
-        <div style="position:absolute;bottom:24px;right:24px;font-size:52px;opacity:.10">💎</div>
-      </div>
-      <div class="b-card rv d1">
-        <span class="b-tag" data-i18n="b2.t">Scale</span>
-        <div class="b-num"><span class="cnt" data-target="500">0</span>%</div>
-        <div class="b-lbl" data-i18n="b2.p">Fleet expansion across enterprise contracts.</div>
-      </div>
-      <div class="b-card rv d2">
-        <span class="b-tag" data-i18n="b3.t">Pipeline</span>
-        <div class="b-num"><span class="cnt" data-target="40">0</span>+</div>
-        <div class="b-lbl" data-i18n="b3.p">Purchase Orders closed with enterprise & sovereign clients.</div>
-      </div>
-      <div class="b-card rv d3">
-        <span class="b-tag" data-i18n="b4.t">Legal</span>
-        <div class="b-num"><span class="cnt" data-target="55">0</span>+</div>
-        <div class="b-lbl" data-i18n="b4.p">Contracts negotiated, redlined, signed.</div>
-      </div>
-      <div class="b-card rv d4">
-        <span class="b-tag" data-i18n="b5.t">Book</span>
-        <div class="b-num"><span class="cnt" data-target="380">0</span>+</div>
-        <div class="b-lbl" data-i18n="b5.p">Enterprise clients onboarded under my book.</div>
-      </div>
-      <div class="b-card dark x2 rv d5">
-        <span class="b-tag" data-i18n="b6.t">Network</span>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px">
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(212,169,72,0.10);border:1px solid rgba(212,169,72,0.30);color:var(--gold-l);font-weight:600">Petromin</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">SASCO</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">SWA</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">MEWA</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">Ministry of Energy</span>
-          <span style="padding:7px 14px;border-radius:999px;font-size:12px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink)">ZATCA</span>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="rv">
+          <div class="hero-eyebrow" data-i18n="eyebrow">Business Developer &middot; Growth Architect</div>
+          <h1 class="hero-h1">
+            <span class="en-only">I open doors. <em>I close deals.</em></span>
+            <span class="ar-only" style="display:none">&#x623;&#x641;&#x62A;&#x62D; &#x623;&#x628;&#x648;&#x627;&#x628; &#x627;&#x644;&#x641;&#x631;&#x635;.. <em>&#x648;&#x623;&#x63A;&#x644;&#x642; &#x627;&#x644;&#x635;&#x641;&#x642;&#x627;&#x62A;.</em></span>
+          </h1>
+          <p class="hero-sub">
+            <span class="en-only" data-i18n="sub_en">4&times; revenue growth. 380+ enterprise clients. 55+ legal contracts. Building strategic partnerships that translate into real numbers.</span>
+            <span class="ar-only" style="display:none" data-i18n="sub_ar">&#x646;&#x645;&#x648; 4 &#x623;&#x636;&#x639;&#x627;&#x641; &#x641;&#x64A; &#x627;&#x644;&#x625;&#x64A;&#x631;&#x627;&#x62F;&#x627;&#x62A;. 380+ &#x639;&#x645;&#x64A;&#x644; &#x645;&#x624;&#x633;&#x633;&#x64A;. 55+ &#x639;&#x642;&#x62F;. &#x634;&#x631;&#x627;&#x643;&#x627;&#x62A; &#x627;&#x633;&#x62A;&#x631;&#x627;&#x62A;&#x64A;&#x62C;&#x64A;&#x629; &#x62A;&#x62A;&#x631;&#x62C;&#x645; &#x644;&#x623;&#x631;&#x642;&#x627;&#x645; &#x62D;&#x642;&#x64A;&#x642;&#x64A;&#x629;.</span>
+          </p>
+          <div class="stat-chips">
+            <span class="stat-chip" data-i18n="chip1">4&times; Revenue</span>
+            <span class="stat-chip" data-i18n="chip2">380+ Clients</span>
+            <span class="stat-chip" data-i18n="chip3">500% Fleet</span>
+          </div>
+          <a href="#bento" class="cta-primary" data-i18n="cta">See Revenue Impact &rarr;</a>
         </div>
-        <div class="b-lbl" style="margin-top:16px" data-i18n="b6.p">Sovereign and enterprise relationships maintained at executive level.</div>
-      </div>
-      <div class="b-card x2 rv d6">
-        <div class="b-quote" data-i18n="b7.q">Deals close on trust. Trust is built between meetings — not during them.</div>
-        <div style="margin-top:18px;display:flex;align-items:center;gap:12px">
-          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-d));display:grid;place-items:center;font-weight:800;color:#1a1a1a;font-size:13px">AA</div>
-          <div><div style="font-size:13px;font-weight:600">Abdulrahman Alhumud</div><div style="font-size:11px;color:var(--ink-m);letter-spacing:.1em" data-i18n="b7.r">Strategic BD · Deal Closer</div></div>
+
+        <div class="rv" style="transition-delay:.18s;display:flex;justify-content:center;">
+          <div class="profile-wrap">
+            <div class="profile-glass">
+              <img src="abdulrahman.png" alt="Abdulrahman Alhumud" class="profile-avatar-premium"
+                   onerror="this.style.display='none';document.getElementById('av-fb').style.display='flex'">
+              <div id="av-fb" class="avatar-fallback" style="display:none">AA</div>
+            </div>
+            <div class="profile-ring r1"></div>
+            <div class="profile-ring r2"></div>
+            <div class="float-badge b1">4&times; REV</div>
+            <div class="float-badge b2">380+ Clients</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="sec" id="vibe">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="v.ey">AI × Commerce · Vibe Coding</span>
-      <h2 class="sec-h2" data-i18n="v.h">Pipeline that <em>runs itself.</em></h2>
-      <p class="sec-sub" data-i18n="v.s">Claude Code and Gemini run my CRM scoring, drafted proposals, contract red-line passes, and partner-account intel — so my human time goes to the conversation that closes the deal.</p>
-    </div>
-    <div class="vibe-wrap">
-      <div class="term rv">
-        <div class="term-bar">
-          <span class="dot red"></span><span class="dot ylw"></span><span class="dot grn"></span>
-          <span class="term-title">~/bd-stack/pipeline-engine · zsh</span>
+  <!-- BENTO GRID -->
+  <section id="bento">
+    <div class="container">
+      <div class="section-label rv" data-i18n="bento_label">Revenue &middot; Impact &middot; Network</div>
+      <div class="bento-grid">
+
+        <div class="b-card feat rv">
+          <div class="b-num">4&times;</div>
+          <div class="b-label" data-i18n="b_rev_title">Revenue Growth</div>
+          <div class="b-sub" data-i18n="b_rev_sub">Revenue multiplied in 24 months</div>
         </div>
-        <div class="term-body">
-<p><span class="prompt">$</span> <span class="var">claude</span> score-leads ./q3-pipeline.csv --tier enterprise</p>
-<p class="cmt"># 142 leads · enrichment + ICP scoring</p>
-<p><span class="ok">✓</span> Top 14 prioritized · win-prob &gt; 60%</p>
-<p><span class="wins">$</span> Estimated ARR upside: <span class="wins">SAR 12.4M</span></p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">claude</span> draft proposal --client <span class="str">"Petromin"</span> --product fleet-svc</p>
-<p class="cmt"># RFP-grade proposal · branding · legal annexes</p>
-<p><span class="ok">✓</span> 48-page deck · 14 min · ready for redline</p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">gemini</span> redline contracts/sasco-msa-v3.docx</p>
-<p><span class="warn">!</span> 9 risk flags identified · indemnity clauses</p>
-<p><span class="ok">✓</span> Counter-language drafted · ready for legal</p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">claude</span> brief --executive --client swa --duration 5min</p>
-<p><span class="cursor"></span></p>
+
+        <div class="b-card span-2 rv" style="transition-delay:.08s">
+          <div class="b-num"><span class="count-num" data-target="380">0</span>+</div>
+          <div class="b-label" data-i18n="b_clients_title">Enterprise Clients</div>
+          <div class="b-sub" data-i18n="b_clients_sub">Active accounts across Saudi Arabia</div>
+        </div>
+
+        <div class="b-card span-3 rv" style="transition-delay:.12s">
+          <div class="b-num"><span class="count-num" data-target="500">0</span>%</div>
+          <div class="b-label" data-i18n="b_fleet_title">Fleet Growth</div>
+          <div class="b-sub" data-i18n="b_fleet_sub">Operational scale expanded 5&times; in 18 months</div>
+        </div>
+
+        <div class="b-card span-2 rv" style="transition-delay:.16s">
+          <div class="b-num"><span class="count-num" data-target="40">0</span>+</div>
+          <div class="b-label" data-i18n="b_po_title">Purchase Orders</div>
+          <div class="b-sub" data-i18n="b_po_sub">Structured procurement pipeline</div>
+        </div>
+
+        <div class="b-card span-2 rv" style="transition-delay:.2s">
+          <div class="b-num"><span class="count-num" data-target="55">0</span>+</div>
+          <div class="b-label" data-i18n="b_contract_title">Legal Contracts</div>
+          <div class="b-sub" data-i18n="b_contract_sub">Executed &amp; actively managed</div>
+        </div>
+
+        <div class="b-card span-4 dark rv" style="transition-delay:.24s;justify-content:flex-start;padding-top:1.75rem">
+          <div class="b-label" data-i18n="b_exec_title">Executive Network</div>
+          <div class="b-sub" data-i18n="b_exec_sub">Government &amp; enterprise at C-suite level</div>
+          <div class="exec-pills">
+            <span class="exec-pill">Petromin</span>
+            <span class="exec-pill">SASCO</span>
+            <span class="exec-pill">SWA</span>
+            <span class="exec-pill">MEWA</span>
+            <span class="exec-pill">Ministry of Energy</span>
+            <span class="exec-pill">ZATCA</span>
+          </div>
+        </div>
+
+        <div class="b-card span-2 quote-card rv" style="transition-delay:.28s">
+          <div class="b-quote" data-i18n="b_quote">&ldquo;Deals are built on trust. Numbers are built on execution.&rdquo;</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE COMMAND CENTER -->
+  <section class="command-center" id="command">
+    <div class="container">
+      <div class="rv">
+        <div class="code-label" data-i18n="cmd_label">&gt; revenue.track()</div>
+        <div class="section-label" data-i18n="cmd_eyebrow">Business Intelligence Systems</div>
+        <h2 class="section-title" data-i18n="cmd_title">Executive Command Center</h2>
+        <p class="section-sub" data-i18n="cmd_sub">Automated systems driving 380+ accounts, 55+ contracts, and 500% operational scale &mdash; zero manual friction.</p>
+      </div>
+      <div class="command-grid">
+
+        <div class="cmd-card rv" style="transition-delay:.1s">
+          <div class="cmd-header">
+            <div class="cmd-icon">&#9881;&#65039;</div>
+            <div class="cmd-title" data-i18n="crm_title">CRM Architecture Module</div>
+          </div>
+          <div class="cmd-tags">
+            <span class="cmd-tag">Odoo</span>
+            <span class="cmd-tag">Zoho</span>
+            <span class="cmd-tag">Vercel</span>
+            <span class="cmd-tag">OAuth 2.0</span>
+          </div>
+          <div class="cmd-desc" data-i18n="crm_desc">Fully integrated Odoo &amp; Zoho CRM deployed on Vercel &mdash; automated lead pipeline for 380+ enterprise accounts. OAuth-secured. Zero manual friction.</div>
+          <div class="cmd-status"><span>&#x1F7E2;</span><span data-i18n="crm_status">Active &middot; 380+ Accounts</span></div>
+        </div>
+
+        <div class="cmd-card rv" style="transition-delay:.2s">
+          <div class="cmd-header">
+            <div class="cmd-icon">&#128203;</div>
+            <div class="cmd-title" data-i18n="contract_title">Contract &amp; Proposal Engine</div>
+          </div>
+          <div class="cmd-tags">
+            <span class="cmd-tag">Jira API</span>
+            <span class="cmd-tag">Outlook</span>
+            <span class="cmd-tag">Auto-Reports</span>
+          </div>
+          <div class="cmd-desc" data-i18n="contract_desc">Automated contract tracking and proposal dispatch &mdash; connected Jira to Outlook, generating daily status reports for 55+ active contracts without manual intervention.</div>
+          <div class="cmd-status"><span>&#x1F7E2;</span><span data-i18n="contract_status">Tracking 55+ Contracts</span></div>
+        </div>
+
+        <div class="cmd-card rv" style="transition-delay:.3s">
+          <div class="cmd-header">
+            <div class="cmd-icon">&#127963;&#65039;</div>
+            <div class="cmd-title" data-i18n="gov_title">Governance Engines</div>
+          </div>
+          <div class="gov-nodes">
+            <div class="gov-node">
+              <div class="gov-node-name">Zimam</div>
+              <div class="gov-node-desc" data-i18n="zimam_desc">Executive audit dashboard &mdash; financial governance &amp; accountability</div>
+            </div>
+            <div class="gov-node">
+              <div class="gov-node-name">HubEat</div>
+              <div class="gov-node-desc" data-i18n="hubeat_desc">Fleet logistics optimization hub &mdash; 500% scale managed</div>
+            </div>
+            <div class="gov-node">
+              <div class="gov-node-name">REMS</div>
+              <div class="gov-node-desc" data-i18n="rems_desc">Regulatory compliance engine &mdash; ZATCA, Ministry standards</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORS -->
+  <section id="sectors">
+    <div class="container">
+      <div class="rv">
+        <div class="section-label" data-i18n="sectors_label">Market Penetration</div>
+        <h2 class="section-title" data-i18n="sectors_title">Sectors Penetrated</h2>
+        <p class="section-sub" data-i18n="sectors_sub">From sovereign government ministries to enterprise energy players &mdash; relationships built at the top tier.</p>
+      </div>
+      <div class="sectors-grid">
+
+        <div class="sector-card rv" style="transition-delay:.1s">
+          <div class="sector-icon">&#127963;&#65039;</div>
+          <div class="sector-name" data-i18n="sector_b2g_name">B2G Sovereign</div>
+          <div class="sector-desc" data-i18n="sector_b2g_desc">Serving government entities at the highest decision-making level</div>
+          <ul class="sector-accounts">
+            <li>Ministry of Energy</li>
+            <li>ZATCA</li>
+            <li>Saudi Water Authority</li>
+            <li>MEWA</li>
+          </ul>
+        </div>
+
+        <div class="sector-card rv" style="transition-delay:.2s">
+          <div class="sector-icon">&#9889;</div>
+          <div class="sector-name" data-i18n="sector_energy_name">Energy &amp; Utility</div>
+          <div class="sector-desc" data-i18n="sector_energy_desc">Strategic partnerships across Saudi Arabia&rsquo;s energy backbone</div>
+          <ul class="sector-accounts">
+            <li>Petromin</li>
+            <li>SASCO</li>
+            <li>MEWA</li>
+          </ul>
+        </div>
+
+        <div class="sector-card rv" style="transition-delay:.3s">
+          <div class="sector-icon">&#128311;</div>
+          <div class="sector-name" data-i18n="sector_tech_name">Tech &amp; Platforms</div>
+          <div class="sector-desc" data-i18n="sector_tech_desc">SaaS products, digital transformation, and CRM automation</div>
+          <ul class="sector-accounts">
+            <li>Zimam (Governance SaaS)</li>
+            <li>HubEat (Fleet Platform)</li>
+            <li>REMS (Compliance Engine)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="marquee-section">
+    <div class="container">
+      <div class="marquee-label rv" data-i18n="marquee_label">380+ Enterprise Clients &mdash; Saudi Arabia&rsquo;s Largest Accounts</div>
+    </div>
+    <div class="marquee-track-wrap">
+      <div class="marquee-track">
+        <span class="marquee-item">Petromin</span>
+        <span class="marquee-item">SASCO</span>
+        <span class="marquee-item">Saudi Water Authority</span>
+        <span class="marquee-item">MEWA</span>
+        <span class="marquee-item">Ministry of Energy</span>
+        <span class="marquee-item">ZATCA</span>
+        <span class="marquee-item">Petromin</span>
+        <span class="marquee-item">SASCO</span>
+        <span class="marquee-item">Saudi Water Authority</span>
+        <span class="marquee-item">MEWA</span>
+        <span class="marquee-item">Ministry of Energy</span>
+        <span class="marquee-item">ZATCA</span>
+        <span class="marquee-item">Petromin</span>
+        <span class="marquee-item">SASCO</span>
+        <span class="marquee-item">Saudi Water Authority</span>
+        <span class="marquee-item">MEWA</span>
+        <span class="marquee-item">Ministry of Energy</span>
+        <span class="marquee-item">ZATCA</span>
+        <span class="marquee-item">Petromin</span>
+        <span class="marquee-item">SASCO</span>
+        <span class="marquee-item">Saudi Water Authority</span>
+        <span class="marquee-item">MEWA</span>
+        <span class="marquee-item">Ministry of Energy</span>
+        <span class="marquee-item">ZATCA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROWTH ARC -->
+  <section class="growth-arc" id="growth">
+    <div class="container">
+      <div class="rv">
+        <div class="section-label" data-i18n="arc_label">Strategic Execution Timeline</div>
+        <h2 class="section-title" data-i18n="arc_title">The 4&times; Growth Arc</h2>
+        <p class="section-sub" data-i18n="arc_sub">Three phases. One outcome &mdash; a business development playbook that turned market access into multiplied revenue.</p>
+      </div>
+      <div class="arc-grid">
+
+        <div class="arc-card rv" style="transition-delay:.1s">
+          <div class="arc-phase" data-i18n="arc_p1_label">Phase 01 &middot; Month 1&ndash;3</div>
+          <div class="arc-title" data-i18n="arc_p1_title">Map</div>
+          <div class="arc-timeline" data-i18n="arc_p1_time">Market Mapping &amp; Executive Entry</div>
+          <div class="arc-desc" data-i18n="arc_p1_desc">Full market intelligence sweep. Identified key government and enterprise decision-makers. Built executive introductions. Structured a 40+ purchase order pipeline from day one.</div>
+          <div class="progress-bar-wrap"><div class="progress-bar" data-progress="33"></div></div>
+        </div>
+
+        <div class="arc-card rv" style="transition-delay:.2s">
+          <div class="arc-phase" data-i18n="arc_p2_label">Phase 02 &middot; Month 4&ndash;9</div>
+          <div class="arc-title" data-i18n="arc_p2_title">Win</div>
+          <div class="arc-timeline" data-i18n="arc_p2_time">Contract Close &amp; Client Expansion</div>
+          <div class="arc-desc" data-i18n="arc_p2_desc">Closed 55+ legal contracts with government ministries and enterprise accounts. Scaled client base to 380+ active accounts. Deployed CRM automation to remove all manual overhead.</div>
+          <div class="progress-bar-wrap"><div class="progress-bar" data-progress="66"></div></div>
+        </div>
+
+        <div class="arc-card rv" style="transition-delay:.3s">
+          <div class="arc-phase" data-i18n="arc_p3_label">Phase 03 &middot; Month 10&ndash;18</div>
+          <div class="arc-title" data-i18n="arc_p3_title">Expand</div>
+          <div class="arc-timeline" data-i18n="arc_p3_time">Revenue Milestone &amp; Scale</div>
+          <div class="arc-desc" data-i18n="arc_p3_desc">Delivered 500% fleet growth through strategic vendor and logistics deals. Hit the 4&times; revenue milestone. Built governance systems (Zimam, REMS, HubEat) to sustain and compound growth.</div>
+          <div class="progress-bar-wrap"><div class="progress-bar" data-progress="100"></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section id="credentials">
+    <div class="container">
+      <div class="rv">
+        <div class="section-label" data-i18n="cred_label">Credentials &amp; Expertise</div>
+        <h2 class="section-title" data-i18n="cred_title">Certified. Networked. Execution-Ready.</h2>
+      </div>
+      <div class="cred-grid">
+
+        <div class="cred-card rv" style="transition-delay:.08s">
+          <div class="cred-icon">&#128208;</div>
+          <div class="cred-title" data-i18n="cred_pmp">PMP&reg; Certified</div>
+          <div class="cred-sub" data-i18n="cred_pmp_sub">Project Management Professional &mdash; PMI accredited. Structured delivery methodology for complex enterprise deals.</div>
+        </div>
+
+        <div class="cred-card rv" style="transition-delay:.16s">
+          <div class="cred-icon">&#9729;&#65039;</div>
+          <div class="cred-title" data-i18n="cred_gcp">GCP Cloud Infrastructure</div>
+          <div class="cred-sub" data-i18n="cred_gcp_sub">Google Cloud Platform infrastructure competency &mdash; underpins CRM and SaaS product deployments at scale.</div>
+        </div>
+
+        <div class="cred-card rv" style="transition-delay:.24s">
+          <div class="cred-icon">&#128161;</div>
+          <div class="cred-title" data-i18n="cred_dt">Design Thinking</div>
+          <div class="cred-sub" data-i18n="cred_dt_sub">Human-centered problem-solving applied to proposal design, client journey, and deal structuring.</div>
+        </div>
+
+        <div class="cred-card rv" style="transition-delay:.32s">
+          <div class="cred-icon">&#129309;</div>
+          <div class="cred-title" data-i18n="cred_network">Executive Network</div>
+          <div class="cred-sub" data-i18n="cred_network_sub">Trusted relationships with C-suite leaders across Saudi Arabia&rsquo;s top entities.</div>
+          <div class="cred-pills">
+            <span class="cred-pill">Petromin</span>
+            <span class="cred-pill">SASCO</span>
+            <span class="cred-pill">MEWA</span>
+            <span class="cred-pill">Ministry of Energy</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-inner rv">
+        <div class="section-label" data-i18n="contact_label">Get In Touch</div>
+        <h2 class="contact-title" data-i18n="contact_title">Let&rsquo;s Build the Next Deal</h2>
+        <p class="contact-sub" data-i18n="contact_sub">Whether you&rsquo;re looking for a strategic partner, a BD lead, or a growth architect &mdash; let&rsquo;s talk numbers.</p>
+        <div class="contact-links">
+          <a href="tel:+966593935677" class="contact-link"><span>&#128222;</span><span>+966 59 393 5677</span></a>
+          <a href="mailto:A.alhumud0@gmail.com" class="contact-link"><span>&#9993;&#65039;</span><span>A.alhumud0@gmail.com</span></a>
+          <a href="https://linkedin.com/in/aalhumud" target="_blank" rel="noopener" class="contact-link"><span>&#128188;</span><span>linkedin.com/in/aalhumud</span></a>
         </div>
       </div>
-      <div class="vibe-cards">
-        <div class="vc rv d1"><div class="vc-ic">🎯</div><div><h4 data-i18n="vc1.h">Lead Scoring Engine</h4><p data-i18n="vc1.p">Claude-driven ICP scoring across 142+ enterprise leads — automated enrichment, win-prob ranking, and ARR projection.</p></div></div>
-        <div class="vc rv d2"><div class="vc-ic">📜</div><div><h4 data-i18n="vc2.h">RFP-Grade Proposals</h4><p data-i18n="vc2.p">Full proposal decks drafted in minutes, not days. Branded, legally-annexed, redline-ready. Win rates up sharply.</p></div></div>
-        <div class="vc rv d3"><div class="vc-ic">⚖</div><div><h4 data-i18n="vc3.h">Contract Redlining</h4><p data-i18n="vc3.p">Gemini-led red-line analysis catches indemnity, liability, and IP-ownership clauses before counsel even opens the file.</p></div></div>
-        <div class="vc rv d4"><div class="vc-ic">🤝</div><div><h4 data-i18n="vc4.h">Executive Briefings</h4><p data-i18n="vc4.p">5-minute, board-ready briefs auto-generated for every C-level meeting — context, asks, talking points, follow-ups.</p></div></div>
-      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="sec" id="network">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <span class="eyebrow" data-i18n="n.ey">Executive Network</span>
-      <h2 class="sec-h2" data-i18n="n.h">The book that <em>writes itself.</em></h2>
-      <p class="sec-sub" data-i18n="n.s">Sovereign clients, energy majors, regulators, and ecosystem partners. Trust, earned across years — and across boardrooms.</p>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy">&copy; 2025 Abdulrahman Alhumud</div>
+        <div class="footer-tagline" data-i18n="footer_tagline">Every relationship is a deal. Every deal is a strategy.</div>
+      </div>
     </div>
-  </div>
-  <div class="marquee rv">
-    <div class="marquee-track">
-      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
-      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
-      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
-      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
-      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
-      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
-      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
-      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
-      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
-      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
-      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
-      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
-      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
-      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
-      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
-      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<section class="sec" id="story">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="st.ey">Case Study · The 4× Growth Arc</span>
-      <h2 class="sec-h2" data-i18n="st.h">From pipeline <em>to P&L.</em></h2>
-      <p class="sec-sub" data-i18n="st.s">No discount sprees, no growth-hack shortcuts. Disciplined segmentation, enterprise renewals, and B2G mandate capture — repeated across three fiscal years.</p>
-    </div>
-    <div class="story-grid">
-      <div class="phase rv">
-        <span class="phase-num">01 · MAP</span>
-        <h4 data-i18n="ph1.h">Segment & Target</h4>
-        <p data-i18n="ph1.p">Mapped the energy & utility ecosystem. Identified 14 sovereign accounts as ICP. Killed three low-fit verticals to focus headcount.</p>
-        <div class="phase-bar" style="--p:0.85"><i></i></div>
-      </div>
-      <div class="phase rv d1">
-        <span class="phase-num">02 · WIN</span>
-        <h4 data-i18n="ph2.h">Close & Land</h4>
-        <p data-i18n="ph2.p">40+ POs signed. 55+ contracts redlined and finalized. Brought in Petromin, SASCO, SWA. Average deal velocity halved.</p>
-        <div class="phase-bar" style="--p:0.94"><i></i></div>
-      </div>
-      <div class="phase rv d2">
-        <span class="phase-num">03 · EXPAND</span>
-        <h4 data-i18n="ph3.h">Renew & Upsell</h4>
-        <p data-i18n="ph3.p">Built renewal motion. Tripled then quadrupled revenue. 500% fleet expansion. 380+ enterprise clients in active book.</p>
-        <div class="phase-bar" style="--p:0.98"><i></i></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="sectors">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="sec.ey">Sectors & Mandates</span>
-      <h2 class="sec-h2" data-i18n="sec.h">Where I <em>play to win.</em></h2>
-    </div>
-    <div class="sectors">
-      <div class="sector rv">
-        <span class="sector-tag">B2G · GOV</span>
-        <h4 data-i18n="sect1.h">Sovereign Mandates</h4>
-        <p data-i18n="sect1.p">Sovereign-grade RFPs, ministerial relationships, and regulator coordination. Discretion is non-negotiable.</p>
-        <ul><li>MEWA · Ministry of Energy</li><li>ZATCA · regulatory integration</li><li>Saudi Water Authority</li></ul>
-      </div>
-      <div class="sector rv d1">
-        <span class="sector-tag">B2B · ENERGY</span>
-        <h4 data-i18n="sect2.h">Energy & Utility</h4>
-        <p data-i18n="sect2.p">Strategic accounts in the energy ecosystem — fleet, fuel, and operational scaling.</p>
-        <ul><li>Petromin · enterprise fleet</li><li>SASCO · retail & logistics</li><li>Cross-sector upsell</li></ul>
-      </div>
-      <div class="sector rv d2">
-        <span class="sector-tag">B2B · TECH</span>
-        <h4 data-i18n="sect3.h">Tech & Platforms</h4>
-        <p data-i18n="sect3.p">SaaS, cloud, and AI products into enterprise — integration, change management, executive sponsorship.</p>
-        <ul><li>Cloud migrations · GCP</li><li>AI tooling rollouts</li><li>Mojaz · consumer-platform partnerships</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="mastery">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="m.ey">Mastery & Credentials</span>
-      <h2 class="sec-h2" data-i18n="m.h">The toolkit <em>behind the close.</em></h2>
-    </div>
-    <div class="badges-grid">
-      <div class="bd-card rv"><div class="bd-ic">🏅</div><h4>PMP®</h4><p data-i18n="bd1.p">Discipline in delivery · PMI-certified</p></div>
-      <div class="bd-card rv d1"><div class="bd-ic">☁</div><h4>GCP Cloud</h4><p data-i18n="bd2.p">Selling cloud + infrastructure into enterprise</p></div>
-      <div class="bd-card rv d2"><div class="bd-ic">🎨</div><h4>Design Thinking</h4><p data-i18n="bd3.p">Frame the client's problem before pitching the answer</p></div>
-      <div class="bd-card rv d3"><div class="bd-ic">🤖</div><h4>AI Tooling</h4><p data-i18n="bd4.p">Claude + Gemini scaled across BD ops</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="contact">
-  <div class="wrap">
-    <div class="contact-wrap rv">
-      <div>
-        <h2 class="contact-h" data-i18n="c.h">Have a pipeline that needs a closer?</h2>
-        <p class="contact-p" data-i18n="c.p">I take on senior BD mandates, sovereign-grade engagements, and revenue turnarounds. Riyadh-based, executive discretion, fast onboarding.</p>
-      </div>
-      <div class="contact-list">
-        <a href="tel:+966593935677"><div class="ic">📞</div><div class="meta"><small data-i18n="c.l1">Direct</small><b>+966 59 393 5677</b></div></a>
-        <a href="mailto:A.alhumud0@gmail.com"><div class="ic">✉</div><div class="meta"><small data-i18n="c.l2">Email</small><b>A.alhumud0@gmail.com</b></div></a>
-        <a href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener"><div class="ic">in</div><div class="meta"><small data-i18n="c.l3">LinkedIn</small><b>linkedin.com/in/aalhumud</b></div></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer><div class="wrap">© 2025 Abdulrahman Alhumud · <span data-i18n="f">Strategic Business Developer · Deal Closer</span></div></footer>
-
-<script>
-const I18N = {
-  en: {
-    'n1':'Impact','n2':'Vibe Coding','n3':'Network','n4':'Case Study','n5':'Sectors',
-    'eyebrow':'Strategic Business Developer · Deal Closer',
-    'hook':'I open doors. <em>I close deals.</em>',
-    'lede':'Strategic deal architect with 4× revenue growth, 500% fleet scale, and a 380+ enterprise client book. I translate handshake conversations into signed contracts — Petromin, SASCO, SWA, MEWA, Ministry of Energy, ZATCA.',
-    'cta1':'View Full Deck <span class="arr">→</span>','cta2':'Get in Touch <span class="arr">→</span>',
-    'hs1':'Revenue Growth','hs2':'Fleet Scale','hs3':'Enterprise Clients',
-    'chip1':'B2G · Sovereign Grade','chip2':'55+ Contracts Closed','scroll':'Scroll',
-    's1.ey':'Commercial Impact · 2022–2025','s1.h':'Revenue, <em>compounded.</em>',
-    's1.s':'Pipeline-to-P&L is not a slide. It\'s a discipline. Every number below was earned with face-to-face trust, executive-grade discretion, and zero shortcuts.',
-    'b1.t':'Flagship','b1.h':'Revenue Growth · 2022→2025','b1.p':'Tripled and then quadrupled revenue across consecutive fiscal years — built on enterprise renewals, new B2G mandates, and disciplined upsell motion.',
-    'b2.t':'Scale','b2.p':'Fleet expansion across enterprise contracts.',
-    'b3.t':'Pipeline','b3.p':'Purchase Orders closed with enterprise & sovereign clients.',
-    'b4.t':'Legal','b4.p':'Contracts negotiated, redlined, signed.',
-    'b5.t':'Book','b5.p':'Enterprise clients onboarded under my book.',
-    'b6.t':'Network','b6.p':'Sovereign and enterprise relationships maintained at executive level.',
-    'b7.q':'Deals close on trust. Trust is built between meetings — not during them.','b7.r':'Strategic BD · Deal Closer',
-    'v.ey':'AI × Commerce · Vibe Coding','v.h':'Pipeline that <em>runs itself.</em>',
-    'v.s':'Claude Code and Gemini run my CRM scoring, drafted proposals, contract red-line passes, and partner-account intel — so my human time goes to the conversation that closes the deal.',
-    'vc1.h':'Lead Scoring Engine','vc1.p':'Claude-driven ICP scoring across 142+ enterprise leads — automated enrichment, win-prob ranking, and ARR projection.',
-    'vc2.h':'RFP-Grade Proposals','vc2.p':'Full proposal decks drafted in minutes, not days. Branded, legally-annexed, redline-ready. Win rates up sharply.',
-    'vc3.h':'Contract Redlining','vc3.p':'Gemini-led red-line analysis catches indemnity, liability, and IP-ownership clauses before counsel even opens the file.',
-    'vc4.h':'Executive Briefings','vc4.p':'5-minute, board-ready briefs auto-generated for every C-level meeting — context, asks, talking points, follow-ups.',
-    'n.ey':'Executive Network','n.h':'The book that <em>writes itself.</em>',
-    'n.s':'Sovereign clients, energy majors, regulators, and ecosystem partners. Trust, earned across years — and across boardrooms.',
-    'st.ey':'Case Study · The 4× Growth Arc','st.h':'From pipeline <em>to P&L.</em>',
-    'st.s':'No discount sprees, no growth-hack shortcuts. Disciplined segmentation, enterprise renewals, and B2G mandate capture — repeated across three fiscal years.',
-    'ph1.h':'Segment & Target','ph1.p':'Mapped the energy & utility ecosystem. Identified 14 sovereign accounts as ICP. Killed three low-fit verticals to focus headcount.',
-    'ph2.h':'Close & Land','ph2.p':'40+ POs signed. 55+ contracts redlined and finalized. Brought in Petromin, SASCO, SWA. Average deal velocity halved.',
-    'ph3.h':'Renew & Upsell','ph3.p':'Built renewal motion. Tripled then quadrupled revenue. 500% fleet expansion. 380+ enterprise clients in active book.',
-    'sec.ey':'Sectors & Mandates','sec.h':'Where I <em>play to win.</em>',
-    'sect1.h':'Sovereign Mandates','sect1.p':'Sovereign-grade RFPs, ministerial relationships, and regulator coordination. Discretion is non-negotiable.',
-    'sect2.h':'Energy & Utility','sect2.p':'Strategic accounts in the energy ecosystem — fleet, fuel, and operational scaling.',
-    'sect3.h':'Tech & Platforms','sect3.p':'SaaS, cloud, and AI products into enterprise — integration, change management, executive sponsorship.',
-    'm.ey':'Mastery & Credentials','m.h':'The toolkit <em>behind the close.</em>',
-    'bd1.p':'Discipline in delivery · PMI-certified','bd2.p':'Selling cloud + infrastructure into enterprise',
-    'bd3.p':'Frame the client\'s problem before pitching the answer','bd4.p':'Claude + Gemini scaled across BD ops',
-    'c.h':'Have a pipeline that needs a closer?','c.p':'I take on senior BD mandates, sovereign-grade engagements, and revenue turnarounds. Riyadh-based, executive discretion, fast onboarding.',
-    'c.l1':'Direct','c.l2':'Email','c.l3':'LinkedIn',
-    'f':'Strategic Business Developer · Deal Closer',
-  },
-  ar: {
-    'n1':'الأثر','n2':'فايب كودنق','n3':'شبكتنا','n4':'دراسة حالة','n5':'القطاعات',
-    'eyebrow':'مطوّر أعمال استراتيجي · مغلق صفقات',
-    'hook':'أفتح أبواب الفرص.. <em>وأغلق الصفقات.</em>',
-    'lede':'مهندس صفقات استراتيجي بنموّ إيرادات ٤×، توسّع أسطول ٥٠٠٪، ومحفظة ٣٨٠+ عميل مؤسسي. أحوّل صفقات المصافحة لعقود موقّعة — بترومين، ساسكو، هيئة المياه، البيئة، وزارة الطاقة، وزاتكا.',
-    'cta1':'شوف العرض الكامل <span class="arr">←</span>','cta2':'تواصل معي <span class="arr">←</span>',
-    'hs1':'نمو الإيرادات','hs2':'توسّع الأسطول','hs3':'عملاء مؤسسات',
-    'chip1':'B2G · سيادي','chip2':'٥٥+ عقد مُغلق','scroll':'انزل',
-    's1.ey':'الأثر التجاري · 2022–2025','s1.h':'إيرادات <em>تتراكم.</em>',
-    's1.s':'الانتقال من البايبلاين للأرباح مو شريحة عرض، انضباط. كل رقم تحت اكتسبته بثقة وجاهية، بسرية تنفيذية، ومن دون أي اختصارات.',
-    'b1.t':'الإنجاز','b1.h':'نمو الإيرادات · 2022→2025','b1.p':'ضاعفنا الإيرادات ثم رفعناها لـ ٤× خلال سنوات ماليّة متتالية — مبني على تجديد المؤسسات، تفويضات سيادية جديدة، وحركة upsell منضبطة.',
-    'b2.t':'التوسّع','b2.p':'توسعة الأسطول عبر عقود المؤسسات.',
-    'b3.t':'البايبلاين','b3.p':'أوامر شراء مُغلقة مع جهات سيادية ومؤسسات.',
-    'b4.t':'القانوني','b4.p':'عقود تفاوضنا عليها، خططنا تعديلاتها، ووقّعنا.',
-    'b5.t':'المحفظة','b5.p':'عملاء مؤسسات تم استقطابهم تحت محفظتي.',
-    'b6.t':'الشبكة','b6.p':'علاقات سيادية ومؤسسيّة محفوظة على مستوى القيادات التنفيذية.',
-    'b7.q':'الصفقات تُغلق بالثقة. والثقة تُبنى بين الاجتماعات، مو فيها.','b7.r':'مطوّر أعمال · مغلق صفقات',
-    'v.ey':'الذكاء الاصطناعي × التجارة · فايب كودنق','v.h':'بايبلاين <em>يدير نفسه.</em>',
-    'v.s':'Claude وGemini يديرون لي تقييم العملاء، صياغة المقترحات، مراجعة العقود، وذكاء الحسابات — وقتي البشري يصرف على المحادثة اللي تُغلق الصفقة.',
-    'vc1.h':'محرك تقييم العملاء','vc1.p':'تقييم ICP مدعوم بـ Claude لـ١٤٢+ عميل مؤسسي — إثراء آلي، ترتيب احتمال الفوز، وتوقّع الإيراد السنوي.',
-    'vc2.h':'مقترحات بمستوى RFP','vc2.p':'عروض كاملة تُصاغ بدقائق مو أيام. هويّة بصرية، ملاحق قانونيّة، جاهزة للمراجعة. نسب فوز ارتفعت بشكل واضح.',
-    'vc3.h':'مراجعة العقود','vc3.p':'تحليل عقود بقيادة Gemini يلتقط بنود التعويض، المسؤولية، وملكية IP قبل ما يفتح المحامي الملف.',
-    'vc4.h':'إحاطات تنفيذية','vc4.p':'موجز ٥ دقائق جاهز لكل اجتماع تنفيذي — السياق، الطلبات، نقاط الحوار، والمتابعات.',
-    'n.ey':'الشبكة التنفيذية','n.h':'المحفظة اللي <em>تكتب نفسها.</em>',
-    'n.s':'عملاء سياديون، شركات طاقة كبرى، جهات تنظيمية، وشركاء منظومة. ثقة بنيناها عبر سنين وعبر مجالس إدارة.',
-    'st.ey':'دراسة حالة · رحلة الـ ٤×','st.h':'من البايبلاين <em>للأرباح.</em>',
-    'st.s':'بدون تخفيضات وبدون اختصارات نمو. تجزئة منضبطة، تجديدات مؤسسيّة، والتقاط تفويضات سيادية — مكرّر عبر ثلاث سنوات ماليّة.',
-    'ph1.h':'تجزئة واستهداف','ph1.p':'رسمنا منظومة الطاقة والمرافق. حددنا ١٤ حساب سيادي كـ ICP. أوقفنا ٣ قطاعات غير ملائمة لنركّز الفريق.',
-    'ph2.h':'إغلاق واستحواذ','ph2.p':'٤٠+ أمر شراء موقّع. ٥٥+ عقد روجع وأغلق. جلبنا بترومين وساسكو وهيئة المياه. سرعة الصفقة الوسطية انخفضت للنصف.',
-    'ph3.h':'تجديد وتوسيع','ph3.p':'بنينا حركة تجديد. ضاعفنا ثم رفعنا الإيرادات لـ ٤×. توسعة أسطول ٥٠٠٪. ٣٨٠+ عميل مؤسسي في المحفظة النشطة.',
-    'sec.ey':'القطاعات والتفويضات','sec.h':'وين <em>ألعب عشان أفوز.</em>',
-    'sect1.h':'تفويضات سيادية','sect1.p':'مناقصات بمعايير سيادية، علاقات وزاريّة، وتنسيق مع الجهات التنظيمية. السريّة شرط أساسي.',
-    'sect2.h':'الطاقة والمرافق','sect2.p':'حسابات استراتيجية في منظومة الطاقة — أسطول، وقود، وتوسّع تشغيلي.',
-    'sect3.h':'التقنية والمنصات','sect3.p':'منتجات SaaS وسحابيّة وذكاء اصطناعي تدخل المؤسسات — تكامل، إدارة تغيير، ورعاية تنفيذية.',
-    'm.ey':'المهارات والشهادات','m.h':'العدّة <em>اللي خلف الإغلاق.</em>',
-    'bd1.p':'انضباط في التسليم · شهادة PMI','bd2.p':'بيع السحابة والبنية التحتية للمؤسسات',
-    'bd3.p':'تأطير مشكلة العميل قبل عرض الحل','bd4.p':'Claude + Gemini موسّعة على عمليات BD',
-    'c.h':'عندك بايبلاين يحتاج مغلق؟','c.p':'أستلم مهمات BD تنفيذيّة، تفويضات سياديّة، وتحوّلات إيرادات. مقرّي الرياض، سرية تنفيذية، وانطلاقة سريعة.',
-    'c.l1':'مباشر','c.l2':'إيميل','c.l3':'لينكدإن',
-    'f':'مطوّر أعمال استراتيجي · مغلق صفقات',
-  }
-};
-const langBtn = document.getElementById('langBtn');
-let curLang = 'en';
-function setLang(lang){
-  curLang = lang;
-  const dict = I18N[lang];
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k = el.getAttribute('data-i18n');
-    if(dict[k]) el.innerHTML = dict[k];
-  });
-  langBtn.textContent = lang === 'ar' ? 'English' : 'العربية';
-}
-langBtn.addEventListener('click',()=>setLang(curLang==='en'?'ar':'en'));
-function animateCounter(el){
-  const target = parseFloat(el.dataset.target);
-  const dur = 1600, start = performance.now();
-  function step(now){
-    const t = Math.min((now-start)/dur, 1);
-    const eased = 1 - Math.pow(1-t, 3);
-    const val = target * eased;
-    el.textContent = target >= 100 ? Math.round(val) : (target%1?val.toFixed(1):Math.round(val));
-    if(t<1) requestAnimationFrame(step);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(step);
-}
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){
-      en.target.classList.add('in');
-      en.target.querySelectorAll('.cnt').forEach(c=>{ if(!c.dataset.done){c.dataset.done='1';animateCounter(c)} });
-      if(en.target.classList.contains('cnt') && !en.target.dataset.done){en.target.dataset.done='1';animateCounter(en.target)}
-      obs.unobserve(en.target);
+  <script>
+  /* =============================================
+     I18N DICTIONARY
+  ============================================= */
+  var i18n = {
+    en: {
+      nav_revenue:'Revenue', nav_clients:'Clients', nav_network:'Network', nav_contact:'Contact',
+      eyebrow:'Business Developer · Growth Architect',
+      sub_en:'4× revenue growth. 380+ enterprise clients. 55+ legal contracts. Building strategic partnerships that translate into real numbers.',
+      chip1:'4× Revenue', chip2:'380+ Clients', chip3:'500% Fleet',
+      cta:'See Revenue Impact →',
+      bento_label:'Revenue · Impact · Network',
+      b_rev_title:'Revenue Growth', b_rev_sub:'Revenue multiplied in 24 months',
+      b_clients_title:'Enterprise Clients', b_clients_sub:'Active accounts across Saudi Arabia',
+      b_fleet_title:'Fleet Growth', b_fleet_sub:'Operational scale expanded 5× in 18 months',
+      b_po_title:'Purchase Orders', b_po_sub:'Structured procurement pipeline',
+      b_contract_title:'Legal Contracts', b_contract_sub:'Executed & actively managed',
+      b_exec_title:'Executive Network', b_exec_sub:'Government & enterprise at C-suite level',
+      b_quote:'“Deals are built on trust. Numbers are built on execution.”',
+      cmd_label:'> revenue.track()',
+      cmd_eyebrow:'Business Intelligence Systems',
+      cmd_title:'Executive Command Center',
+      cmd_sub:'Automated systems driving 380+ accounts, 55+ contracts, and 500% operational scale — zero manual friction.',
+      crm_title:'CRM Architecture Module',
+      crm_desc:'Fully integrated Odoo & Zoho CRM deployed on Vercel — automated lead pipeline for 380+ enterprise accounts. OAuth-secured. Zero manual friction.',
+      crm_status:'Active · 380+ Accounts',
+      contract_title:'Contract & Proposal Engine',
+      contract_desc:'Automated contract tracking and proposal dispatch — connected Jira to Outlook, generating daily status reports for 55+ active contracts without manual intervention.',
+      contract_status:'Tracking 55+ Contracts',
+      gov_title:'Governance Engines',
+      zimam_desc:'Executive audit dashboard — financial governance & accountability',
+      hubeat_desc:'Fleet logistics optimization hub — 500% scale managed',
+      rems_desc:'Regulatory compliance engine — ZATCA, Ministry standards',
+      sectors_label:'Market Penetration', sectors_title:'Sectors Penetrated',
+      sectors_sub:'From sovereign government ministries to enterprise energy players — relationships built at the top tier.',
+      sector_b2g_name:'B2G Sovereign', sector_b2g_desc:'Serving government entities at the highest decision-making level',
+      sector_energy_name:'Energy & Utility', sector_energy_desc:'Strategic partnerships across Saudi Arabia’s energy backbone',
+      sector_tech_name:'Tech & Platforms', sector_tech_desc:'SaaS products, digital transformation, and CRM automation',
+      marquee_label:'380+ Enterprise Clients — Saudi Arabia’s Largest Accounts',
+      arc_label:'Strategic Execution Timeline', arc_title:'The 4× Growth Arc',
+      arc_sub:'Three phases. One outcome — a business development playbook that turned market access into multiplied revenue.',
+      arc_p1_label:'Phase 01 · Month 1–3', arc_p1_title:'Map',
+      arc_p1_time:'Market Mapping & Executive Entry',
+      arc_p1_desc:'Full market intelligence sweep. Identified key government and enterprise decision-makers. Built executive introductions. Structured a 40+ purchase order pipeline from day one.',
+      arc_p2_label:'Phase 02 · Month 4–9', arc_p2_title:'Win',
+      arc_p2_time:'Contract Close & Client Expansion',
+      arc_p2_desc:'Closed 55+ legal contracts with government ministries and enterprise accounts. Scaled client base to 380+ active accounts. Deployed CRM automation to remove all manual overhead.',
+      arc_p3_label:'Phase 03 · Month 10–18', arc_p3_title:'Expand',
+      arc_p3_time:'Revenue Milestone & Scale',
+      arc_p3_desc:'Delivered 500% fleet growth through strategic vendor and logistics deals. Hit the 4× revenue milestone. Built governance systems (Zimam, REMS, HubEat) to sustain and compound growth.',
+      cred_label:'Credentials & Expertise', cred_title:'Certified. Networked. Execution-Ready.',
+      cred_pmp:'PMP® Certified',
+      cred_pmp_sub:'Project Management Professional — PMI accredited. Structured delivery methodology for complex enterprise deals.',
+      cred_gcp:'GCP Cloud Infrastructure',
+      cred_gcp_sub:'Google Cloud Platform infrastructure competency — underpins CRM and SaaS product deployments at scale.',
+      cred_dt:'Design Thinking',
+      cred_dt_sub:'Human-centered problem-solving applied to proposal design, client journey, and deal structuring.',
+      cred_network:'Executive Network',
+      cred_network_sub:'Trusted relationships with C-suite leaders across Saudi Arabia’s top entities.',
+      contact_label:'Get In Touch', contact_title:'Let’s Build the Next Deal',
+      contact_sub:'Whether you’re looking for a strategic partner, a BD lead, or a growth architect — let’s talk numbers.',
+      footer_tagline:'Every relationship is a deal. Every deal is a strategy.'
+    },
+    ar: {
+      nav_revenue:'الإيرادات', nav_clients:'العملاء', nav_network:'الشبكة', nav_contact:'التواصل',
+      eyebrow:'مطوّر أعمال · معماري النمو',
+      sub_ar:'نمو 4 أضعاف في الإيرادات. 380+ عميل مؤسسي. 55+ عقد. شراكات استراتيجية تترجم لأرقام حقيقية.',
+      chip1:'4× إيرادات', chip2:'380+ عميل', chip3:'500% نمو الأسطول',
+      cta:'شاهد تأثير الإيرادات ←',
+      bento_label:'الإيرادات · التأثير · الشبكة',
+      b_rev_title:'نمو الإيرادات', b_rev_sub:'تضاعف الإيراد في 24 شهرًا',
+      b_clients_title:'عملاء مؤسسيون', b_clients_sub:'حسابات نشطة في أرجاء المملكة',
+      b_fleet_title:'نمو الأسطول', b_fleet_sub:'توسع تشغيلي 5× في 18 شهرًا',
+      b_po_title:'أوامر الشراء', b_po_sub:'خط أنابيب مشتريات منظّم',
+      b_contract_title:'عقود قانونية', b_contract_sub:'منجزة وتُدار باحترافية',
+      b_exec_title:'الشبكة التنفيذية', b_exec_sub:'علاقات حكومية ومؤسسية على مستوى الإدارة العليا',
+      b_quote:'“الصفقات تُبنى على الثقة. والأرقام تُبنى على التنفيذ.”',
+      cmd_label:'> revenue.track()',
+      cmd_eyebrow:'أنظمة الذكاء التجاري',
+      cmd_title:'مركز القيادة التنفيذية',
+      cmd_sub:'أنظمة مؤتمتة تدير 380+ حساب، 55+ عقد، وتوسع تشغيلي 500% — دون أي تدخل يدوي.',
+      crm_title:'وحدة هندسة CRM',
+      crm_desc:'إدارة علاقات عملاء متكاملة (Odoo & Zoho) منشورة على Vercel — خط أنابيب مؤتمت لـ 380+ حساب مؤسسي.',
+      crm_status:'نشط · 380+ حساب',
+      contract_title:'محرك العقود والمقترحات',
+      contract_desc:'تتبع عقود مؤتمت وإرسال مقترحات — ربط Jira بـ Outlook لتوليد تقارير يومية لـ 55+ عقد.',
+      contract_status:'يتتبع 55+ عقد',
+      gov_title:'محركات الحوكمة',
+      zimam_desc:'لوحة تدقيق تنفيذية — حوكمة مالية ومساءلة',
+      hubeat_desc:'مركز تحسين لوجستيات الأسطول — يدير توسع 500%',
+      rems_desc:'محرك الامتثال التنظيمي — معايير هيئة الزكاة والوزارة',
+      sectors_label:'اختراق السوق', sectors_title:'القطاعات المخترقة',
+      sectors_sub:'من وزارات حكومية سيادية إلى شركات طاقة مؤسسية — علاقات تُبنى عند القمة.',
+      sector_b2g_name:'القطاع الحكومي', sector_b2g_desc:'خدمة الجهات الحكومية على أعلى مستوى صنع القرار',
+      sector_energy_name:'الطاقة والمرافق', sector_energy_desc:'شراكات استراتيجية عبر العمود الفقري لقطاع الطاقة',
+      sector_tech_name:'التقنية والمنصات', sector_tech_desc:'SaaS والتحول الرقمي وأتمتة CRM',
+      marquee_label:'أكثر من 380 عميلًا مؤسسيًا — كبرى الشركات في المملكة',
+      arc_label:'الجدول الزمني للتنفيذ', arc_title:'قوس النمو 4×',
+      arc_sub:'ثلاث مراحل. نتيجة واحدة — كتاب استراتيجي حوّل الوصول إلى السوق إلى إيرادات مضاعفة.',
+      arc_p1_label:'المرحلة 01 · الشهر 1-3', arc_p1_title:'رسم الخريطة',
+      arc_p1_time:'استطلاع السوق والدخول التنفيذي',
+      arc_p1_desc:'مسح شامل لاستخبارات السوق. تحديد صانعي القرار الحكوميين والمؤسسيين. بناء مقدمات تنفيذية أولية. هيكلة خط أنابيب بـ 40+ أمر شراء.',
+      arc_p2_label:'المرحلة 02 · الشهر 4-9', arc_p2_title:'الفوز',
+      arc_p2_time:'إغلاق العقود وتوسيع قاعدة العملاء',
+      arc_p2_desc:'إغلاق 55+ عقدًا قانونيًا مع الوزارات والمؤسسات. توسيع قاعدة العملاء إلى 380+ حساب نشط.',
+      arc_p3_label:'المرحلة 03 · الشهر 10-18', arc_p3_title:'التوسع',
+      arc_p3_time:'مرحلة الإنجاز والتوسع',
+      arc_p3_desc:'تحقيق نمو 500% في الأسطول. الوصول لإنجاز 4× الإيرادات. بناء أنظمة الحوكمة.',
+      cred_label:'المؤهلات والخبرات', cred_title:'معتمد. متشبّك. جاهز للتنفيذ.',
+      cred_pmp:'معتمد PMP®',
+      cred_pmp_sub:'محترف إدارة المشاريع — معتمد من PMI.',
+      cred_gcp:'بنية تحتية GCP سحابية',
+      cred_gcp_sub:'كفاءة بنية تحتية على منصة Google Cloud.',
+      cred_dt:'التفكير التصميمي',
+      cred_dt_sub:'منهجية حل المشكلات المتمحورة حول الإنسان.',
+      cred_network:'الشبكة التنفيذية',
+      cred_network_sub:'علاقات موثوقة مع قادة C-Suite عبر كبرى الجهات في المملكة.',
+      contact_label:'تواصل معي', contact_title:'لنبني الصفقة التالية',
+      contact_sub:'سواء كنت تبحث عن شريك استراتيجي أو قائد BD — دعنا نتحدث بالأرقام.',
+      footer_tagline:'كل علاقة صفقة. وكل صفقة استراتيجية.'
     }
+  };
+
+  function setLang(l) {
+    var html = document.documentElement;
+    html.setAttribute('lang', l);
+    html.setAttribute('dir', l === 'ar' ? 'rtl' : 'ltr');
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-ar').classList.toggle('active', l === 'ar');
+    var dict = i18n[l];
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    // Handle hero h1 visibility
+    document.querySelectorAll('.en-only').forEach(function(el) {
+      el.style.display = l === 'en' ? '' : 'none';
+    });
+    document.querySelectorAll('.ar-only').forEach(function(el) {
+      el.style.display = l === 'ar' ? '' : 'none';
+    });
+    document.body.style.fontFamily = l === 'ar'
+      ? "'Tajawal','Plus Jakarta Sans',sans-serif"
+      : "'Plus Jakarta Sans',sans-serif";
+  }
+
+  function initScrollReveal() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach(function(el) { obs.observe(el); });
+  }
+
+  function animateCount(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    var duration = 1800;
+    var start = performance.now();
+    function step(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.floor(eased * target);
+      if (t < 1) requestAnimationFrame(step);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function initCountUp() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { animateCount(e.target); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.count-num').forEach(function(el) { obs.observe(el); });
+  }
+
+  function initProgressBars() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var bar = e.target;
+          setTimeout(function() { bar.style.width = bar.getAttribute('data-progress') + '%'; }, 150);
+          obs.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.progress-bar').forEach(function(b) { obs.observe(b); });
+  }
+
+  function initBentoGlow() {
+    document.querySelectorAll('.b-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    initScrollReveal();
+    initCountUp();
+    initProgressBars();
+    initBentoGlow();
   });
-},{threshold:0.18});
-document.querySelectorAll('.rv, .cnt').forEach(el=>obs.observe(el));
-document.querySelectorAll('.b-card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
-    card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
-  });
-});
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id = a.getAttribute('href').slice(1);
-    const t = document.getElementById(id);
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
-  });
-});
-</script>
+  </script>
+
 </body>
 </html>

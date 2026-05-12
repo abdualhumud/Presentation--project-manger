@@ -1,736 +1,1656 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-lang="en">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>Abdulrahman Alhumud — The Hybrid Powerhouse · PM · Product · Growth</title>
-<meta name="description" content="The rare cross-functional executive. Project Management × Product × Business Development. PMP-certified. 4× revenue. #1 App Store. 90% On-Time Delivery." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdulrahman Alhumud · The Hybrid Executive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ─── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --bg0:      #030712;
+      --bg1:      #0F172A;
+      --bg2:      #1E293B;
+      --chrome:   #CBD5E1;
+      --chrome-l: #F1F5F9;
+      --gold:     #F0C040;
+      --cyan:     #00E5FF;
+      --green:    #10B981;
+      --text:     #F8FAFC;
+      --muted:    #475569;
+      --section-gap: clamp(5rem, 10vw, 9rem);
+    }
 
-<style>
-  :root{
-    --bg-0:#030712; --bg-1:#060d1e; --bg-2:#0a142e;
-    --line:rgba(255,255,255,0.06); --line-2:rgba(255,255,255,0.10);
-    --ink:#f4f0e5; --ink-d:#b5b2a3; --ink-m:#6f6c5f;
-    --gold:#f0c040; --gold-l:#ffd870; --gold-d:#b88e1a;
-    --cyan:#00e5ff; --cyan-d:#0099cc;
-    --green:#3ed580; --green-d:#1aa05a;
-    --hot:#ff4d8a;
-    --r-lg:24px; --r-md:14px; --r-sm:10px;
-    --font-en:'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-ar:'Tajawal', system-ui, sans-serif;
-    --font-display:'Playfair Display', Georgia, serif;
-    --font-mono:'JetBrains Mono', ui-monospace, monospace;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
-  html,body{background:var(--bg-0);color:var(--ink);font-family:var(--font-en);overflow-x:hidden}
-  html[dir="rtl"]{font-family:var(--font-ar)}
-  a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
-  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(1200px 700px at 15% -10%, rgba(240,192,64,0.16), transparent 60%),radial-gradient(900px 700px at 95% 25%, rgba(0,229,255,0.10), transparent 60%),radial-gradient(800px 600px at 50% 110%, rgba(62,213,128,0.12), transparent 60%),radial-gradient(600px 400px at 80% 85%, rgba(255,77,138,0.08), transparent 60%)}
-  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.5;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.025 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");mix-blend-mode:overlay}
-  .wrap{position:relative;z-index:5;max-width:1340px;margin:0 auto;padding:0 clamp(20px,3vw,48px)}
+    /* ─── RESET & BASE ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-  .topbar{position:fixed;top:0;left:0;right:0;z-index:80;backdrop-filter:saturate(160%) blur(14px);background:linear-gradient(180deg, rgba(3,7,18,0.85), rgba(3,7,18,0.30));border-bottom:1px solid var(--line)}
-  .topbar-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-  .brand-mark{width:36px;height:36px;border-radius:11px;background:conic-gradient(from 0deg, var(--gold), var(--cyan), var(--green), var(--gold));display:grid;place-items:center;font-weight:800;color:#0a0a0a;font-size:13px;box-shadow:0 8px 24px -8px var(--gold);position:relative}
-  .brand-mark::after{content:"";position:absolute;inset:2px;border-radius:9px;background:#030712;display:grid;place-items:center}
-  .brand-mark span{position:relative;z-index:2;color:var(--gold-l)}
-  .brand-name{font-size:13.5px;color:var(--ink)}.brand-name b{background:linear-gradient(90deg, var(--gold-l), var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .nav{display:flex;align-items:center;gap:6px}
-  .nav a{padding:8px 14px;border-radius:999px;font-size:13px;color:var(--ink-d);transition:.25s}
-  .nav a:hover{color:var(--ink);background:rgba(255,255,255,0.04)}
-  .lang-btn{padding:9px 16px;border-radius:999px;border:1px solid var(--line-2);background:rgba(255,255,255,0.025);font-size:12.5px;font-weight:600;letter-spacing:.04em;transition:.25s}
-  .lang-btn:hover{background:rgba(240,192,64,0.10);border-color:var(--gold-d)}
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg0);
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+    [dir="rtl"] { font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif; }
 
-  .hero{position:relative;padding:140px 0 80px;min-height:100vh;display:flex;align-items:center}
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,5vw,80px);align-items:center}
-  @media(max-width:980px){.hero-grid{grid-template-columns:1fr;text-align:center}}
-  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-l);font-weight:700;padding:6px 14px;border-radius:999px;background:linear-gradient(90deg, rgba(240,192,64,0.14), rgba(0,229,255,0.10));border:1px solid rgba(240,192,64,0.30)}
-  .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 12px var(--gold-l)}
-  html[dir="rtl"] .eyebrow{letter-spacing:0}
+    /* ─── BACKGROUND GLOWS ──────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 6% 10%, rgba(240,192,64,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 55% at 94% 45%, rgba(0,229,255,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 40% at 10% 88%, rgba(16,185,129,0.04) 0%, transparent 70%);
+    }
 
-  .hook{margin-top:22px;font-family:var(--font-display);font-weight:800;line-height:1.0;letter-spacing:-0.025em;font-size:clamp(44px,5.8vw,84px)}
-  .hook .l1{display:block;background:linear-gradient(180deg,#fff,#d4ccb4);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hook .l2{display:block;background:linear-gradient(90deg,var(--gold-l), var(--cyan), var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:flow 8s ease-in-out infinite}
-  .hook .l3{display:block;font-style:italic;color:#fff;-webkit-text-fill-color:#fff}
-  @keyframes flow{0%,100%{background-position:0 0}50%{background-position:100% 0}}
-  html[dir="rtl"] .hook{font-family:var(--font-ar);font-size:clamp(34px,4.5vw,64px);line-height:1.15;letter-spacing:0}
-  html[dir="rtl"] .hook .l3{font-style:normal}
+    /* ─── GRAIN OVERLAY ─────────────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.025;
+    }
 
-  .lede{margin-top:24px;max-width:560px;font-size:17px;line-height:1.65;color:var(--ink-d)}
-  html[dir="rtl"] .lede{font-size:18px}
-  @media(max-width:980px){.lede{margin-inline:auto}}
+    /* ─── TYPOGRAPHY ────────────────────────────────────────────── */
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .serif { font-family: 'Playfair Display', serif; }
 
-  .cta-row{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
-  @media(max-width:980px){.cta-row{justify-content:center}}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:14px;font-weight:600;font-size:14px;transition:.25s}
-  .btn-primary{background:linear-gradient(135deg, var(--gold), var(--gold-d));color:#0a0a0a;box-shadow:0 14px 40px -14px var(--gold)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 50px -16px var(--gold)}
-  .btn-ghost{border:1px solid var(--line-2);background:rgba(255,255,255,0.02);color:var(--ink)}
-  .btn-ghost:hover{background:rgba(255,255,255,0.06);border-color:var(--gold-d)}
-  .btn .arr{transition:transform .25s}
-  .btn:hover .arr{transform:translateX(4px)}
-  html[dir="rtl"] .btn:hover .arr{transform:translateX(-4px)}
+    .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.62rem, 1vw, 0.72rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 4vw, 3.1rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
 
-  .trinity-strip{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  @media(max-width:980px){.trinity-strip{max-width:520px;margin-inline:auto}}
-  .ts{padding:14px 16px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
-  .ts small{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-m)}
-  html[dir="rtl"] .ts small{letter-spacing:0}
-  .ts b{font-family:var(--font-display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-0.02em;line-height:1.05}
-  html[dir="rtl"] .ts b{font-family:var(--font-ar);font-weight:800}
-  .ts span{font-size:11px;color:var(--ink-d);margin-top:2px}
-  .ts.pm b{color:var(--green)}.ts.pd b{color:var(--cyan)}.ts.bd b{color:var(--gold-l)}
+    /* ─── LAYOUT ────────────────────────────────────────────────── */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+      position: relative;
+      z-index: 2;
+    }
+    section { padding: var(--section-gap) 0; }
 
-  /* HERO PROFILE — ORBIT TRINITY */
-  .profile-stage{position:relative;width:100%;max-width:540px;margin:0 auto;aspect-ratio:1/1}
-  .profile-frame{position:absolute;inset:18%;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#0a142e,#030712);border:2px solid rgba(240,192,64,0.45);box-shadow:0 40px 100px -30px rgba(240,192,64,0.45), inset 0 0 60px rgba(0,0,0,0.4)}
-  .profile-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:contrast(1.05) saturate(1.06)}
-  .profile-frame .ph{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%, rgba(240,192,64,0.18), transparent 60%);font-size:130px;font-weight:800;color:rgba(255,255,255,0.12);letter-spacing:-0.04em}
-  .t-ring{position:absolute;inset:0;border-radius:50%;pointer-events:none}
-  .t-ring.r-gold{border:1px dashed rgba(240,192,64,0.32);inset:0;animation:spin 80s linear infinite}
-  .t-ring.r-cyan{background:conic-gradient(from 90deg, transparent 78%, var(--cyan) 90%, transparent 100%);inset:6%;animation:spin 22s linear infinite;-webkit-mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));opacity:.85}
-  .t-ring.r-green{background:conic-gradient(from 270deg, transparent 78%, var(--green) 90%, transparent 100%);inset:12%;animation:spin 18s linear infinite reverse;-webkit-mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));mask:radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));opacity:.85}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .orbit-ic{position:absolute;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;letter-spacing:.05em;border:2px solid var(--bg-0);box-shadow:0 14px 30px -10px rgba(0,0,0,0.6)}
-  .orbit-ic.o1{background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;top:0%;left:50%;transform:translate(-50%,-30%)}
-  .orbit-ic.o2{background:linear-gradient(135deg,var(--cyan),var(--cyan-d));color:#0a0a0a;top:50%;right:-2%;transform:translate(0,-50%)}
-  .orbit-ic.o3{background:linear-gradient(135deg,var(--gold-l),var(--gold-d));color:#0a0a0a;bottom:6%;left:6%}
-  .orbit-ic.o4{background:linear-gradient(135deg,var(--hot),#a51252);color:#fff;top:14%;right:8%;width:42px;height:42px;font-size:11px}
-  html[dir="rtl"] .orbit-ic.o2{right:auto;left:-2%}
-  html[dir="rtl"] .orbit-ic.o3{left:auto;right:6%}
-  html[dir="rtl"] .orbit-ic.o4{right:auto;left:8%}
+    /* ─── KEYFRAMES ─────────────────────────────────────────────── */
+    @keyframes spin   { to { transform: rotate(360deg);  } }
+    @keyframes flow   { 0%,100%{background-position:0 0} 50%{background-position:100% 0} }
+    @keyframes marquee  { from{transform:translateX(0)}    to{transform:translateX(-50%)} }
+    @keyframes marqueeR { from{transform:translateX(-50%)} to{transform:translateX(0)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
 
-  .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-m);display:flex;flex-direction:column;align-items:center;gap:10px}
-  .scroll-hint .line{width:1px;height:36px;background:linear-gradient(180deg,var(--gold-l),transparent);animation:slide 2s ease-in-out infinite}
-  @keyframes slide{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+    /* ─── SCROLL REVEAL ─────────────────────────────────────────── */
+    .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.72s ease, transform 0.72s ease; }
+    .rv.visible { opacity: 1; transform: none; }
 
-  section{position:relative;z-index:5}
-  .sec{padding:clamp(80px,11vh,140px) 0;border-top:1px solid var(--line)}
-  .sec-head{display:flex;flex-direction:column;gap:18px;max-width:780px;margin-bottom:56px}
-  .sec-head.center{margin-inline:auto;text-align:center;align-items:center}
-  .sec-h2{font-family:var(--font-display);font-weight:700;font-size:clamp(34px,4.2vw,56px);line-height:1.05;letter-spacing:-0.02em;background:linear-gradient(180deg,#fff,#c8c1a8);-webkit-background-clip:text;background-clip:text;color:transparent}
-  html[dir="rtl"] .sec-h2{font-family:var(--font-ar);line-height:1.2;letter-spacing:0}
-  .sec-h2 em{font-style:italic;background:linear-gradient(90deg,var(--gold-l), var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
-  html[dir="rtl"] .sec-h2 em{font-style:normal}
-  .sec-sub{color:var(--ink-d);font-size:16px;line-height:1.6;max-width:600px}
+    /* ═══════════════════════════════════════════════════════════════
+       LANG TOGGLE
+    ═══════════════════════════════════════════════════════════════ */
+    #lang-toggle {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      background: rgba(15,23,42,0.8);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(203,213,225,0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+    }
+    #lang-toggle button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.42rem 1.1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      transition: all 0.22s ease;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    #lang-toggle button.active {
+      background: #fff;
+      color: #030712;
+      border-radius: 999px;
+    }
 
-  /* TRINITY PILLARS */
-  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  @media(max-width:980px){.pillars{grid-template-columns:1fr}}
-  .pillar{position:relative;padding:36px;border-radius:24px;border:1px solid var(--line);background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));overflow:hidden;transition:.4s}
-  .pillar:hover{transform:translateY(-4px);border-color:var(--p-ac, var(--line-2))}
-  .pillar::before{content:"";position:absolute;top:0;inset-inline-start:0;width:100%;height:3px;background:var(--p-ac, var(--gold-l));opacity:.8}
-  .pillar.pm{--p-ac:var(--green)}
-  .pillar.pd{--p-ac:var(--cyan)}
-  .pillar.bd{--p-ac:var(--gold-l)}
-  .pillar-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--p-ac, var(--gold-l));font-weight:700}
-  .pillar h3{font-family:var(--font-display);font-size:30px;margin-top:14px;color:#fff;line-height:1.1}
-  html[dir="rtl"] .pillar h3{font-family:var(--font-ar)}
-  .pillar p{margin-top:14px;color:var(--ink-d);font-size:14.5px;line-height:1.6}
-  .pillar-metrics{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .pm-cell{padding:14px 16px;border-radius:12px;background:rgba(0,0,0,0.25);border:1px solid var(--line)}
-  .pm-cell b{display:block;font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--p-ac, var(--gold-l));letter-spacing:-0.02em;line-height:1}
-  html[dir="rtl"] .pm-cell b{font-family:var(--font-ar);font-weight:800}
-  .pm-cell span{display:block;font-size:11px;color:var(--ink-m);margin-top:6px;letter-spacing:.06em}
+    /* ═══════════════════════════════════════════════════════════════
+       TOPBAR
+    ═══════════════════════════════════════════════════════════════ */
+    #topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: 64px;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(3,7,18,0.72);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(203,213,225,0.06);
+      transition: background 0.3s ease;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .brand-ring {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--gold) 0deg 120deg,
+        var(--cyan) 120deg 240deg,
+        var(--green) 240deg 360deg
+      );
+      flex-shrink: 0;
+      box-shadow: 0 0 14px rgba(240,192,64,0.3);
+    }
+    .brand-text {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--chrome-l);
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 2.5vw, 2rem);
+      list-style: none;
+    }
+    .topbar-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.83rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .topbar-nav a:hover { color: var(--chrome-l); }
+    @media(max-width:768px) { .topbar-nav { display: none; } }
 
-  /* BENTO */
-  .bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
-  @media(max-width:1080px){.bento{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:680px){.bento{grid-template-columns:repeat(2,1fr)}}
-  .b-card{position:relative;padding:24px;border-radius:var(--r-lg);background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s, background .35s}
-  .b-card:hover{transform:translateY(-4px);border-color:rgba(240,192,64,0.30)}
-  .b-card::before{content:"";position:absolute;inset:0;opacity:0;transition:.35s;background:radial-gradient(400px 200px at var(--mx,50%) var(--my,50%), rgba(240,192,64,0.10), transparent 60%);pointer-events:none}
-  .b-card:hover::before{opacity:1}
-  .b-card .b-num{font-family:var(--font-display);font-weight:700;font-size:clamp(32px,3.5vw,46px);letter-spacing:-0.03em;color:#fff;font-variant-numeric:tabular-nums;line-height:1}
-  html[dir="rtl"] .b-card .b-num{font-family:var(--font-ar);font-weight:800}
-  .b-card .b-lbl{margin-top:12px;color:var(--ink-d);font-size:13px;line-height:1.5}
-  .b-card .b-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--ink-m);text-transform:uppercase;display:block;margin-bottom:14px}
-  html[dir="rtl"] .b-card .b-tag{letter-spacing:0}
-  .b-card.x2{grid-column:span 2}.b-card.x3{grid-column:span 3}.b-card.y2{grid-row:span 2}
-  .b-card.gold{background:linear-gradient(135deg, rgba(240,192,64,0.14), rgba(184,142,26,0.04));border-color:rgba(240,192,64,0.40)}
-  .b-card.gold .b-num{background:linear-gradient(135deg,#fff,var(--gold-l));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .b-card.cyan{background:linear-gradient(135deg, rgba(0,229,255,0.10), rgba(0,153,204,0.04));border-color:rgba(0,229,255,0.30)}
-  .b-card.cyan .b-num{color:var(--cyan)}
-  .b-card.green{background:linear-gradient(135deg, rgba(62,213,128,0.10), rgba(26,160,90,0.04));border-color:rgba(62,213,128,0.30)}
-  .b-card.green .b-num{color:var(--green)}
-  .b-card.hot{background:linear-gradient(135deg, rgba(255,77,138,0.08), rgba(165,18,82,0.04));border-color:rgba(255,77,138,0.25)}
-  .b-card.hot .b-num{color:var(--hot)}
-  .b-card.dark{background:linear-gradient(180deg, #0a142e, #060d1e)}
+    /* ═══════════════════════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════════════════════ */
+    #hero {
+      padding-top: calc(64px + clamp(3rem, 6vw, 6rem));
+      padding-bottom: var(--section-gap);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.5rem, 5vw, 6rem);
+      align-items: center;
+    }
+    @media(max-width:900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-right { order: -1; display: flex; justify-content: center; }
+    }
 
-  /* COMPLIANCE BANNER */
-  .compliance{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:32px 36px;border-radius:24px;background:linear-gradient(135deg, rgba(62,213,128,0.10), rgba(0,229,255,0.06));border:1px solid rgba(62,213,128,0.30);position:relative;overflow:hidden;margin-top:36px}
-  @media(max-width:780px){.compliance{flex-direction:column;text-align:center}}
-  .compliance::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 200px at 80% 50%, rgba(62,213,128,0.12), transparent 70%);pointer-events:none}
-  .cmp-l{position:relative;z-index:2}
-  .cmp-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--green);font-weight:700}
-  .cmp-h{font-family:var(--font-display);font-weight:700;font-size:30px;color:#fff;margin-top:8px;letter-spacing:-0.02em}
-  html[dir="rtl"] .cmp-h{font-family:var(--font-ar)}
-  .cmp-p{color:var(--ink-d);font-size:14px;margin-top:6px;max-width:520px;line-height:1.55}
-  .cmp-r{position:relative;z-index:2;display:flex;align-items:center;gap:18px}
-  .cmp-num{font-family:var(--font-display);font-weight:700;font-size:72px;background:linear-gradient(135deg,#fff,var(--green));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-0.04em;line-height:1}
-  html[dir="rtl"] .cmp-num{font-family:var(--font-ar);font-weight:900}
+    /* EYEBROW BADGE */
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.38rem 1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(0.58rem, 1vw, 0.7rem);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+    .eb-pm  { color: var(--gold); }
+    .eb-sep { color: var(--muted); }
+    .eb-pdm { color: var(--cyan); }
+    .eb-bd  { color: var(--green); }
 
-  /* VIBE */
-  .vibe-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
-  @media(max-width:1000px){.vibe-wrap{grid-template-columns:1fr}}
-  .term{border-radius:18px;overflow:hidden;border:1px solid rgba(240,192,64,0.25);background:#060d1e;box-shadow:0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(240,192,64,0.08) inset;font-family:var(--font-mono);font-size:13px}
-  .term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#0a142e;border-bottom:1px solid var(--line)}
-  .term-bar .dot{width:11px;height:11px;border-radius:50%}
-  .term-bar .red{background:#ff5f56}.term-bar .ylw{background:#febc2e}.term-bar .grn{background:#27c93f}
-  .term-title{margin-inline-start:14px;color:var(--ink-m);font-size:11px;letter-spacing:.08em}
-  .term-body{padding:22px 22px 26px;line-height:1.85;color:#d1cbb0;min-height:380px}
-  .prompt{color:var(--gold-l);user-select:none;margin-inline-end:8px;font-weight:700}
-  .ok{color:var(--green)}.warn{color:#febc2e}.cmt{color:#6e6856;font-style:italic}.var{color:var(--cyan)}.str{color:var(--gold-l)}.wins{color:var(--green);font-weight:700}.pink{color:var(--hot)}
-  .cursor::after{content:"\2588";color:var(--gold-l);animation:blink 1s steps(2) infinite;margin-inline-start:2px}
-  @keyframes blink{50%{opacity:0}}
-  .vibe-cards{display:flex;flex-direction:column;gap:14px}
-  .vc{padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);display:flex;gap:16px;align-items:flex-start;transition:.3s}
-  .vc:hover{border-color:rgba(240,192,64,0.35);transform:translateX(4px)}
-  html[dir="rtl"] .vc:hover{transform:translateX(-4px)}
-  .vc-ic{flex-shrink:0;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg, rgba(240,192,64,0.14), rgba(0,229,255,0.06));border:1px solid rgba(240,192,64,0.25);display:grid;place-items:center;font-size:20px}
-  .vc h4{font-size:15px;font-weight:700;margin-bottom:6px;color:#fff}
-  .vc p{font-size:13px;color:var(--ink-d);line-height:1.55}
+    /* HOOK H1 */
+    .hook {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12em;
+      font-size: clamp(2rem, 5.5vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+    }
+    .hook .l1 { color: var(--gold); }
+    .hook .l2 {
+      background: linear-gradient(90deg, var(--gold), var(--cyan), var(--green), var(--gold));
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: flow 8s ease-in-out infinite;
+    }
+    .hook .l3 { color: var(--chrome-l); }
 
-  /* MARQUEE */
-  .marquee{position:relative;overflow:hidden;padding:24px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(90deg, transparent, rgba(255,255,255,0.015), transparent);-webkit-mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);mask:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)}
-  .marquee-track{display:flex;gap:54px;width:max-content;animation:marq 38s linear infinite}
-  @keyframes marq{to{transform:translateX(-50%)}}
-  html[dir="rtl"] .marquee-track{animation-direction:reverse}
-  .logo-chip{display:flex;align-items:center;gap:12px;padding:14px 26px;border-radius:14px;background:rgba(255,255,255,0.025);border:1px solid var(--line);font-weight:600;color:var(--ink);white-space:nowrap;font-size:15px}
-  .logo-chip .lc-mark{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
-  .lc-petromin{background:linear-gradient(135deg,#e63946,#a4151c)}
-  .lc-sasco{background:linear-gradient(135deg,#0a7a3c,#0d6e3a)}
-  .lc-swa{background:linear-gradient(135deg,#0ea5e9,#0369a1)}
-  .lc-mewa{background:linear-gradient(135deg,#16a34a,#166534)}
-  .lc-energy{background:linear-gradient(135deg,#f59e0b,#b45309)}
-  .lc-zatca{background:linear-gradient(135deg,#3b82f6,#1e40af)}
-  .lc-rased{background:linear-gradient(135deg,#10b981,#047857)}
-  .lc-mojaz{background:linear-gradient(135deg,#8b5cf6,#5b21b6)}
+    .hero-sub {
+      font-size: clamp(0.88rem, 1.5vw, 1.05rem);
+      color: var(--muted);
+      line-height: 1.72;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
 
-  /* JOURNEY TIMELINE */
-  .timeline{position:relative;display:flex;flex-direction:column;gap:18px}
-  .tl{display:grid;grid-template-columns:140px 1fr;gap:20px;padding:24px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);transition:.3s}
-  .tl:hover{border-color:rgba(240,192,64,0.30);transform:translateX(4px)}
-  html[dir="rtl"] .tl:hover{transform:translateX(-4px)}
-  @media(max-width:780px){.tl{grid-template-columns:1fr;gap:8px}}
-  .tl-year{font-family:var(--font-display);font-weight:700;font-size:36px;color:var(--gold-l);letter-spacing:-0.02em;line-height:1}
-  html[dir="rtl"] .tl-year{font-family:var(--font-ar);font-weight:800}
-  .tl-tag{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--ink-m);margin-top:8px}
-  html[dir="rtl"] .tl-tag{letter-spacing:0}
-  .tl-body h4{font-size:18px;font-weight:700;color:#fff}
-  .tl-body p{margin-top:8px;color:var(--ink-d);font-size:14px;line-height:1.6}
-  .tl-chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
-  .tl-chips span{padding:5px 10px;border-radius:999px;font-size:11px;background:rgba(255,255,255,0.04);border:1px solid var(--line-2);color:var(--ink-d)}
-  .tl-chips .green{background:rgba(62,213,128,0.10);color:var(--green);border-color:rgba(62,213,128,0.20)}
-  .tl-chips .cyan{background:rgba(0,229,255,0.08);color:var(--cyan);border-color:rgba(0,229,255,0.20)}
-  .tl-chips .gold{background:rgba(240,192,64,0.10);color:var(--gold-l);border-color:rgba(240,192,64,0.20)}
+    /* TRINITY STAT STRIP */
+    .trinity-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      max-width: 460px;
+    }
+    .t-stat {
+      padding: 1rem 1.2rem;
+      background: rgba(3,7,18,0.65);
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+    .t-stat .t-num {
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-weight: 800;
+      line-height: 1;
+      font-family: 'Playfair Display', serif;
+    }
+    .t-stat .t-lbl {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .t-stat.sg .t-num { color: var(--gold);  }
+    .t-stat.sc .t-num { color: var(--cyan);  }
+    .t-stat.sv .t-num { color: var(--green); }
 
-  /* CAPABILITIES */
-  .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:980px){.caps{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:600px){.caps{grid-template-columns:1fr}}
-  .cap{padding:22px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));border:1px solid var(--line);transition:.3s}
-  .cap:hover{transform:translateY(-3px);border-color:rgba(240,192,64,0.35)}
-  .cap-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:rgba(240,192,64,0.12);border:1px solid rgba(240,192,64,0.25);margin-bottom:14px}
-  .cap h4{font-size:14px;font-weight:700;color:#fff}
-  .cap p{margin-top:6px;font-size:12.5px;color:var(--ink-m);line-height:1.55}
+    /* ─── PROFILE ORBIT FRAME ───────────────────────────────────── */
+    .profile-wrap {
+      position: relative;
+      width: clamp(220px, 30vw, 340px);
+      height: clamp(220px, 30vw, 340px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-glass {
+      position: relative;
+      z-index: 5;
+      width: 80%; height: 80%;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow:
+        0 0 100px -30px rgba(240,192,64,0.2),
+        0 0 60px -20px rgba(0,229,255,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-avatar-premium {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .avatar-fallback {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(240,192,64,0.2), rgba(0,229,255,0.15));
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: var(--chrome-l);
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.02em;
+    }
 
-  /* CONTACT */
-  .contact-wrap{margin-top:48px;padding:clamp(36px,6vw,72px);border-radius:28px;background:linear-gradient(135deg, rgba(240,192,64,0.12), rgba(0,229,255,0.05), rgba(62,213,128,0.05));border:1px solid rgba(240,192,64,0.30);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;position:relative;overflow:hidden}
-  @media(max-width:900px){.contact-wrap{grid-template-columns:1fr}}
-  .contact-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(500px 300px at 80% 50%, rgba(240,192,64,0.14), transparent 60%);pointer-events:none}
-  .contact-h{font-family:var(--font-display);font-size:clamp(28px,3.5vw,44px);font-weight:700;letter-spacing:-0.02em;line-height:1.1}
-  html[dir="rtl"] .contact-h{font-family:var(--font-ar);line-height:1.25;letter-spacing:0}
-  .contact-p{margin-top:14px;color:var(--ink-d);font-size:15px;line-height:1.6;max-width:480px}
-  .contact-list{display:flex;flex-direction:column;gap:14px;position:relative;z-index:2}
-  .contact-list a{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;background:rgba(0,0,0,0.30);border:1px solid var(--line-2);transition:.3s}
-  .contact-list a:hover{border-color:var(--gold-l);background:rgba(240,192,64,0.10);transform:translateX(4px)}
-  html[dir="rtl"] .contact-list a:hover{transform:translateX(-4px)}
-  .contact-list .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:rgba(240,192,64,0.16);border:1px solid rgba(240,192,64,0.30);font-size:16px}
-  .contact-list .meta{display:flex;flex-direction:column}
-  .contact-list .meta small{font-size:11px;color:var(--ink-m);letter-spacing:.16em;text-transform:uppercase}
-  html[dir="rtl"] .contact-list .meta small{letter-spacing:0}
-  .contact-list .meta b{font-size:15px;font-weight:600;color:#fff;margin-top:2px;font-family:var(--font-mono)}
-  html[dir="rtl"] .contact-list .meta b{font-family:var(--font-en)}
+    /* TRINITY RINGS */
+    .t-ring {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .t-ring.r-gold {
+      inset: -16px;
+      border: 1px dashed rgba(240,192,64,0.3);
+      animation: spin 60s linear infinite;
+    }
+    .t-ring.r-cyan {
+      inset: -28px;
+      background: conic-gradient(from 90deg, transparent 78%, var(--cyan) 90%, transparent 100%);
+      -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+      mask: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+      animation: spin 20s linear infinite;
+    }
+    .t-ring.r-green {
+      inset: -42px;
+      background: conic-gradient(from 180deg, transparent 78%, var(--green) 90%, transparent 100%);
+      -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+      mask: radial-gradient(closest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+      animation: spin 16s linear infinite reverse;
+    }
 
-  footer{padding:40px 0;border-top:1px solid var(--line);text-align:center;color:var(--ink-m);font-size:12px;letter-spacing:.08em}
+    /* ORBIT ICONS */
+    .orbit-ic {
+      position: absolute;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
+      z-index: 6;
+      letter-spacing: 0.04em;
+    }
+    .orbit-ic.o1 { top: 5%;  right: 0;    background: rgba(240,192,64,0.15); color: var(--gold);   }
+    .orbit-ic.o2 { top: 45%; right: -15%; background: rgba(0,229,255,0.12);  color: var(--cyan);   }
+    .orbit-ic.o3 { bottom: 10%; right: 5%; background: rgba(16,185,129,0.12); color: var(--green); }
+    .orbit-ic.o4 { top: 20%; left: -5%;   background: rgba(203,213,225,0.1); color: var(--chrome); }
 
-  .rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
-  .rv.in{opacity:1;transform:none}
-  .rv.d1{transition-delay:.06s}.rv.d2{transition-delay:.14s}.rv.d3{transition-delay:.22s}.rv.d4{transition-delay:.30s}.rv.d5{transition-delay:.38s}.rv.d6{transition-delay:.46s}.rv.d7{transition-delay:.54s}.rv.d8{transition-delay:.62s}
-  @media(max-width:720px){.nav{display:none}.hero{padding-top:120px}}
-</style>
+    /* ═══════════════════════════════════════════════════════════════
+       TRINITY PILLARS
+    ═══════════════════════════════════════════════════════════════ */
+    #trinity { background: var(--bg1); }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media(max-width:900px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+    .pillar-card {
+      background: var(--bg2);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .pillar-card.p-gold::before  { background: var(--gold);  box-shadow: 0 0 20px rgba(240,192,64,0.5); }
+    .pillar-card.p-cyan::before  { background: var(--cyan);  box-shadow: 0 0 20px rgba(0,229,255,0.4); }
+    .pillar-card.p-green::before { background: var(--green); box-shadow: 0 0 20px rgba(16,185,129,0.4); }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: 0 24px 64px rgba(0,0,0,0.45); }
+
+    .pillar-pill {
+      display: inline-flex;
+      padding: 0.28rem 0.8rem;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
+    .pillar-pill.g { background: rgba(240,192,64,0.12); color: var(--gold);  border: 1px solid rgba(240,192,64,0.22); }
+    .pillar-pill.c { background: rgba(0,229,255,0.1);   color: var(--cyan);  border: 1px solid rgba(0,229,255,0.2); }
+    .pillar-pill.v { background: rgba(16,185,129,0.1);  color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+
+    .pillar-title {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: var(--chrome-l);
+      margin-bottom: 0.7rem;
+    }
+    .pillar-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.68;
+      margin-bottom: 1.5rem;
+    }
+    .pillar-stats {
+      display: flex;
+      gap: 1.4rem;
+    }
+    .ps .ps-num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+    }
+    .ps .ps-lbl {
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      margin-top: 0.2rem;
+    }
+    .p-gold .ps-num  { color: var(--gold);  }
+    .p-cyan .ps-num  { color: var(--cyan);  }
+    .p-green .ps-num { color: var(--green); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       MASTER BENTO GRID
+    ═══════════════════════════════════════════════════════════════ */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: minmax(140px, auto);
+      gap: 1rem;
+    }
+    @media(max-width:1100px) { .bento-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media(max-width:680px)  { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .bc {
+      background: var(--bg1);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+      cursor: default;
+    }
+    .bc:hover { transform: translateY(-3px); }
+    .bc.s2 { grid-column: span 2; }
+    .bc.r2 { grid-row: span 2; }
+    .bc.feat { background: linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,41,59,0.92)); }
+
+    /* per-color hover */
+    .bc.gc:hover { border-color: rgba(240,192,64,0.28); box-shadow: 0 0 48px rgba(240,192,64,0.07); }
+    .bc.cc:hover { border-color: rgba(0,229,255,0.22);  box-shadow: 0 0 48px rgba(0,229,255,0.06); }
+    .bc.vc:hover { border-color: rgba(16,185,129,0.22); box-shadow: 0 0 48px rgba(16,185,129,0.06); }
+
+    /* mouse glow layer */
+    .bc::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: radial-gradient(120px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    .bc:hover::before { opacity: 1; }
+
+    .b-num {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .b-lbl {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .b-num.g  { color: var(--gold);   }
+    .b-num.c  { color: var(--cyan);   }
+    .b-num.v  { color: var(--green);  }
+    .b-num.ch { color: var(--chrome); }
+
+    /* FEAT CELL RING */
+    .feat-ring-wrap {
+      position: relative;
+      width: 58px; height: 58px;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+    .feat-conic {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(var(--gold) 0deg 120deg, var(--cyan) 120deg 240deg, var(--green) 240deg 360deg);
+      box-shadow: 0 0 28px rgba(240,192,64,0.22);
+      animation: spin 20s linear infinite;
+    }
+    .feat-core {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 68%; height: 68%;
+      border-radius: 50%;
+      background: var(--bg1);
+    }
+    .feat-title {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--chrome-l);
+      margin-bottom: 0.5rem;
+    }
+    .feat-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .tri-label {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+    .tri-label span {
+      font-size: 0.62rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .tg { background: rgba(240,192,64,0.15); color: var(--gold); }
+    .tc { background: rgba(0,229,255,0.12);  color: var(--cyan); }
+    .tv { background: rgba(16,185,129,0.12); color: var(--green); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       COMMAND CENTER
+    ═══════════════════════════════════════════════════════════════ */
+    #systems { background: var(--bg1); }
+
+    .cmd-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media(max-width:900px) { .cmd-grid { grid-template-columns: 1fr; } }
+
+    .cmd-card {
+      background: var(--bg0);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: clamp(1.5rem, 2.5vw, 2rem);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .cmd-card:hover { border-color: rgba(0,229,255,0.18); box-shadow: 0 0 60px rgba(0,229,255,0.04); }
+
+    .cmd-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+    }
+    .cmd-title { font-size: 1rem; font-weight: 700; color: var(--chrome-l); }
+    .status-badge {
+      font-size: 0.68rem;
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(16,185,129,0.12);
+      color: var(--green);
+      border: 1px solid rgba(16,185,129,0.2);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .cmd-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .cmd-tag {
+      font-size: 0.62rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.05);
+      color: var(--chrome);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+    }
+    .cmd-desc { font-size: 0.862rem; color: var(--muted); line-height: 1.65; }
+
+    /* GOV NODES */
+    .gov-nodes { display: flex; flex-direction: column; gap: 0.9rem; }
+    .gov-node {
+      padding: 0.95rem 1.1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+    .gov-node:hover { border-color: rgba(240,192,64,0.2); }
+    .gov-node-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--chrome-l);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.3rem;
+    }
+    .gov-node-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       COMPLIANCE BANNER
+    ═══════════════════════════════════════════════════════════════ */
+    #compliance { padding: clamp(3rem, 6vw, 5rem) 0; }
+
+    .compliance-card {
+      background: var(--bg1);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 4px solid var(--chrome-l);
+      border-radius: 16px;
+      padding: clamp(2rem, 4vw, 3.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    [dir="rtl"] .compliance-card { border-left: 1px solid rgba(255,255,255,0.07); border-right: 4px solid var(--chrome-l); }
+
+    .compliance-big {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+    .compliance-num {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      font-family: 'Playfair Display', serif;
+      color: var(--chrome-l);
+      line-height: 1;
+    }
+    .compliance-label {
+      font-size: clamp(1rem, 2vw, 1.45rem);
+      font-weight: 700;
+      color: var(--chrome);
+    }
+    .compliance-chips { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .c-chip {
+      padding: 0.38rem 1rem;
+      border-radius: 999px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.04em;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color: var(--chrome-l);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       CLIENT MARQUEE
+    ═══════════════════════════════════════════════════════════════ */
+    #clients { padding: var(--section-gap) 0; }
+
+    .marquee-label {
+      text-align: center;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 2.5rem;
+    }
+    .marquee-outer {
+      overflow: hidden;
+      -webkit-mask: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+      mask: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 1.75rem;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    [dir="rtl"] .marquee-track { animation-name: marqueeR; }
+
+    .client-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.72rem 1.8rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+    .client-pill.b2g:hover  { color: var(--gold);  border-color: rgba(240,192,64,0.3);  background: rgba(240,192,64,0.05); }
+    .client-pill.tech:hover { color: var(--cyan);  border-color: rgba(0,229,255,0.25);   background: rgba(0,229,255,0.04); }
+    .client-pill.nrg:hover  { color: var(--green); border-color: rgba(16,185,129,0.25);  background: rgba(16,185,129,0.04); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       JOURNEY TIMELINE
+    ═══════════════════════════════════════════════════════════════ */
+    #journey { background: var(--bg1); }
+
+    .timeline {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 96px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(203,213,225,0.14) 8%, rgba(203,213,225,0.14) 92%, transparent);
+    }
+    [dir="rtl"] .timeline::before { left: auto; right: 96px; }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 2rem;
+      padding: 1.8rem 0;
+      position: relative;
+    }
+    .tl-year {
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      color: var(--muted);
+      text-align: right;
+      padding-top: 0.1rem;
+      transition: color 0.2s;
+    }
+    .tl-item:hover .tl-year { color: var(--chrome-l); }
+
+    .tl-dot {
+      position: absolute;
+      left: 92px;
+      top: 2.1rem;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--muted);
+      border: 2px solid var(--bg1);
+      transition: background 0.2s, transform 0.2s;
+    }
+    [dir="rtl"] .tl-dot { left: auto; right: 92px; }
+    .tl-item:hover .tl-dot { background: var(--chrome-l); transform: scale(1.3); }
+
+    .tl-body { padding-left: 0.5rem; }
+    [dir="rtl"] .tl-body { padding-left: 0; padding-right: 0.5rem; }
+
+    .tl-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--chrome-l);
+      margin-bottom: 0.4rem;
+    }
+    .tl-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
+    }
+    .tl-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tl-chip {
+      font-size: 0.6rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.58rem;
+      border-radius: 5px;
+    }
+    .tl-chip.g { background: rgba(240,192,64,0.12); color: var(--gold); }
+    .tl-chip.c { background: rgba(0,229,255,0.1);   color: var(--cyan); }
+    .tl-chip.v { background: rgba(16,185,129,0.1);  color: var(--green); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       CAPABILITY CARDS
+    ═══════════════════════════════════════════════════════════════ */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media(max-width:900px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:540px) { .cap-grid { grid-template-columns: 1fr; } }
+
+    .cap-card {
+      background: var(--bg1);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .cap-card:hover { transform: translateY(-3px); box-shadow: 0 20px 60px rgba(0,0,0,0.45); }
+
+    .cap-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .cap-icon.g  { background: rgba(240,192,64,0.12); }
+    .cap-icon.c  { background: rgba(0,229,255,0.1); }
+    .cap-icon.ch { background: rgba(203,213,225,0.08); }
+    .cap-icon.v  { background: rgba(16,185,129,0.1); }
+
+    .cap-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--chrome-l);
+      margin-bottom: 0.45rem;
+    }
+    .cap-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .cap-accent {
+      width: 28px; height: 2px;
+      border-radius: 2px;
+      margin-top: 1.1rem;
+    }
+    .cap-accent.g  { background: var(--gold);   }
+    .cap-accent.c  { background: var(--cyan);   }
+    .cap-accent.ch { background: var(--chrome); }
+    .cap-accent.v  { background: var(--green);  }
+
+    /* ═══════════════════════════════════════════════════════════════
+       CONTACT / FOOTER
+    ═══════════════════════════════════════════════════════════════ */
+    #contact { padding: var(--section-gap) 0 0; }
+
+    .contact-wrap {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .contact-top-border {
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold) 33.3%, var(--cyan) 33.3% 66.6%, var(--green) 66.6%);
+      border-radius: 3px 3px 0 0;
+      margin-bottom: 3rem;
+    }
+    [dir="rtl"] .contact-top-border {
+      background: linear-gradient(270deg, var(--gold) 33.3%, var(--cyan) 33.3% 66.6%, var(--green) 66.6%);
+    }
+    .contact-title {
+      font-size: clamp(1.5rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--chrome-l);
+      margin-bottom: 0.5rem;
+    }
+    .contact-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--chrome-l);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      transition: all 0.25s ease;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .contact-link:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .footer-bar {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .footer-text {
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── SCROLLBAR ─────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg0); }
+    ::-webkit-scrollbar-thumb { background: rgba(203,213,225,0.2); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(203,213,225,0.35); }
+
+    /* ─── COUNT ANIM ────────────────────────────────────────────── */
+    .count-num { display: inline-block; }
+  </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="wrap topbar-in">
-    <a href="#" class="brand"><span class="brand-mark"><span>AA</span></span><span class="brand-name">Abdulrahman <b>Alhumud</b></span></a>
-    <nav class="nav">
-      <a href="#trinity" data-i18n="n1">Trinity</a>
-      <a href="#impact" data-i18n="n2">Impact</a>
-      <a href="#vibe" data-i18n="n3">Vibe Coding</a>
-      <a href="#network" data-i18n="n4">Network</a>
-      <a href="#journey" data-i18n="n5">Journey</a>
+  <!-- ═══ 1. LANG TOGGLE ══════════════════════════════════════════ -->
+  <div id="lang-toggle">
+    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+    <button id="btn-ar" onclick="setLang('ar')">AR</button>
+  </div>
+
+  <!-- ═══ 2. TOPBAR ═══════════════════════════════════════════════ -->
+  <header id="topbar">
+    <a class="brand" href="#">
+      <div class="brand-ring"></div>
+      <span class="brand-text">Abdulrahman · Hybrid Executive</span>
+    </a>
+    <nav>
+      <ul class="topbar-nav">
+        <li><a href="#trinity"      data-i18n="nav-trinity">Trinity</a></li>
+        <li><a href="#bento"        data-i18n="nav-metrics">Metrics</a></li>
+        <li><a href="#systems"      data-i18n="nav-systems">Systems</a></li>
+        <li><a href="#journey"      data-i18n="nav-journey">Journey</a></li>
+        <li><a href="#contact"      data-i18n="nav-contact">Contact</a></li>
+      </ul>
     </nav>
-    <button class="lang-btn" id="langBtn">العربية</button>
-  </div>
-</header>
+  </header>
 
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow rv" data-i18n="eyebrow">The Hybrid Powerhouse · Master Portfolio</span>
-      <h1 class="hook rv d1">
-        <span class="l1" data-i18n="hl1">Three disciplines.</span>
-        <span class="l2" data-i18n="hl2">One operator.</span>
-        <span class="l3" data-i18n="hl3"><em>Total impact.</em></span>
-      </h1>
-      <p class="lede rv d2" data-i18n="lede">The rare cross-functional executive who runs the full arc — Project Management discipline, Product instinct, and Business Development edge — fused into one operating mind. PMP-certified, #1 builder, 4× growth driver.</p>
-      <div class="cta-row rv d3">
-        <a class="btn btn-primary" href="full.html" target="_blank" rel="noopener" data-i18n="cta1">View Full Deck <span class="arr">→</span></a>
-        <a class="btn btn-ghost" href="#contact" data-i18n="cta2">Get in Touch <span class="arr">→</span></a>
-      </div>
-      <div class="trinity-strip rv d4">
-        <div class="ts pm"><small data-i18n="ts1.t">PROJECT MGMT</small><b><span class="cnt" data-target="90">0</span>%</b><span data-i18n="ts1.s">On-time delivery</span></div>
-        <div class="ts pd"><small data-i18n="ts2.t">PRODUCT</small><b>#<span class="cnt" data-target="1">0</span></b><span data-i18n="ts2.s">App Store · Saudi</span></div>
-        <div class="ts bd"><small data-i18n="ts3.t">BUSINESS DEV</small><b><span class="cnt" data-target="4">0</span>×</b><span data-i18n="ts3.s">Revenue growth</span></div>
-      </div>
-    </div>
-    <div class="rv d2">
-      <div class="profile-stage">
-        <div class="t-ring r-gold"></div>
-        <div class="t-ring r-cyan"></div>
-        <div class="t-ring r-green"></div>
-        <div class="profile-frame">
-          <img src="profile.jpg" alt="Abdulrahman Alhumud" onerror="this.style.display='none';this.parentElement.querySelector('.ph').style.display='grid'">
-          <div class="ph" style="display:none">AA</div>
-        </div>
-        <div class="orbit-ic o1">PM</div>
-        <div class="orbit-ic o2">PdM</div>
-        <div class="orbit-ic o3">BD</div>
-        <div class="orbit-ic o4">AI</div>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-hint"><span data-i18n="scroll">Scroll</span><span class="line"></span></div>
-</section>
+  <!-- ═══ 3. HERO ══════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
 
-<!-- TRINITY PILLARS -->
-<section class="sec" id="trinity">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="t.ey">The Trinity · Three Worlds, One Operator</span>
-      <h2 class="sec-h2" data-i18n="t.h">Cross-functional <em>by design.</em></h2>
-      <p class="sec-sub" data-i18n="t.s">Each discipline strengthens the others. The PM brings governance to the Product. The Product brings empathy to the BD. The BD brings revenue back to the Program. Every angle, owned.</p>
-    </div>
-    <div class="pillars">
-      <div class="pillar pm rv">
-        <span class="pillar-tag">01 · PROJECT MANAGEMENT</span>
-        <h3 data-i18n="p1.h">Governance & Delivery</h3>
-        <p data-i18n="p1.p">PMP-certified discipline. 40+ POs, 55+ contracts, 90% on-time across multi-sector portfolios. Turnaround specialist — Rased 2023.</p>
-        <div class="pillar-metrics">
-          <div class="pm-cell"><b><span class="cnt" data-target="90">0</span>%</b><span data-i18n="p1.m1">On-time</span></div>
-          <div class="pm-cell"><b><span class="cnt" data-target="40">0</span>+</b><span data-i18n="p1.m2">POs</span></div>
-        </div>
-      </div>
-      <div class="pillar pd rv d1">
-        <span class="pillar-tag">02 · PRODUCT MANAGEMENT</span>
-        <h3 data-i18n="p2.h">Discovery & Scale</h3>
-        <p data-i18n="p2.p">User-obsessed PdM. Mojaz hit #1 App Store in 4 months. 25M+ impressions. 5 live products. Full GCP cloud migrations.</p>
-        <div class="pillar-metrics">
-          <div class="pm-cell"><b>#<span class="cnt" data-target="1">0</span></b><span data-i18n="p2.m1">App Store</span></div>
-          <div class="pm-cell"><b><span class="cnt" data-target="25">0</span>M+</b><span data-i18n="p2.m2">Impressions</span></div>
-        </div>
-      </div>
-      <div class="pillar bd rv d2">
-        <span class="pillar-tag">03 · BUSINESS DEVELOPMENT</span>
-        <h3 data-i18n="p3.h">Pipeline & P&L</h3>
-        <p data-i18n="p3.p">Deal closer with sovereign reach. 4× revenue growth. 500% fleet scale. 380+ enterprise clients. Petromin, SASCO, SWA, MEWA, MoEnergy, ZATCA.</p>
-        <div class="pillar-metrics">
-          <div class="pm-cell"><b><span class="cnt" data-target="4">0</span>×</b><span data-i18n="p3.m1">Revenue</span></div>
-          <div class="pm-cell"><b><span class="cnt" data-target="500">0</span>%</b><span data-i18n="p3.m2">Fleet scale</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- LEFT — HOOK -->
+        <div class="hero-left">
+          <div class="eyebrow-badge rv">
+            <span class="eb-pm" data-i18n="eb-pm">The Hybrid Executive</span>
+            <span class="eb-sep">—</span>
+            <span class="eb-pdm">PM</span>
+            <span class="eb-sep">·</span>
+            <span class="eb-pdm">PdM</span>
+            <span class="eb-sep">·</span>
+            <span class="eb-bd">BD</span>
+          </div>
 
-<!-- MASTER IMPACT BENTO -->
-<section class="sec" id="impact">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="im.ey">Master Impact Dashboard · 2022–2025</span>
-      <h2 class="sec-h2" data-i18n="im.h">Every number, <em>owned end-to-end.</em></h2>
-      <p class="sec-sub" data-i18n="im.s">No vanity, no spin. Multi-million SAR portfolios delivered with PMP discipline, product instinct, and BD execution — under one operating system.</p>
-    </div>
-    <div class="bento">
-      <div class="b-card gold x2 y2 rv">
-        <span class="b-tag" data-i18n="bm1.t">Flagship · Revenue</span>
-        <div class="b-num"><span class="cnt" data-target="4">0</span>×</div>
-        <div class="b-lbl" style="font-size:18px;color:#fff;margin-top:18px" data-i18n="bm1.h">Revenue growth · 2022→2025</div>
-        <p style="color:var(--ink-d);font-size:13.5px;margin-top:8px;line-height:1.6" data-i18n="bm1.p">Quadrupled top-line through disciplined renewals, B2G mandates, and full-funnel ownership.</p>
-        <div style="position:absolute;bottom:24px;right:24px;font-size:48px;opacity:.10">💎</div>
+          <h1 class="hook rv" style="transition-delay:0.1s">
+            <span class="l1" data-i18n="l1">Management Expertise.</span>
+            <span class="l2" data-i18n="l2">Product Obsession.</span>
+            <span class="l3" data-i18n="l3">Business Intelligence.</span>
+          </h1>
+
+          <p class="hero-sub rv" style="transition-delay:0.2s" data-i18n="sub">
+            The rarest profile in Saudi business — where PMO rigor meets product craft meets revenue growth. 5 products launched. 4× revenue. 90% on-time. All in one executive.
+          </p>
+
+          <div class="trinity-strip rv" style="transition-delay:0.3s">
+            <div class="t-stat sg">
+              <div class="t-num">90%</div>
+              <div class="t-lbl">PM Precision</div>
+            </div>
+            <div class="t-stat sc">
+              <div class="t-num">#1</div>
+              <div class="t-lbl">Product Rank</div>
+            </div>
+            <div class="t-stat sv">
+              <div class="t-num">4×</div>
+              <div class="t-lbl">Revenue</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT — TRINITY ORBIT PROFILE -->
+        <div class="hero-right rv" style="transition-delay:0.2s">
+          <div class="profile-wrap trinity">
+            <div class="profile-glass">
+              <img src="abdulrahman.png" alt="Abdulrahman Alhumud" class="profile-avatar-premium"
+                   onerror="this.style.display='none';document.getElementById('av-fb').style.display='flex'">
+              <div id="av-fb" class="avatar-fallback" style="display:none">AA</div>
+            </div>
+            <div class="t-ring r-gold"></div>
+            <div class="t-ring r-cyan"></div>
+            <div class="t-ring r-green"></div>
+            <div class="orbit-ic o1">PM</div>
+            <div class="orbit-ic o2">PdM</div>
+            <div class="orbit-ic o3">BD</div>
+            <div class="orbit-ic o4">AI</div>
+          </div>
+        </div>
+
       </div>
-      <div class="b-card cyan rv d1"><span class="b-tag" data-i18n="bm2.t">Product</span><div class="b-num">#<span class="cnt" data-target="1">0</span></div><div class="b-lbl" data-i18n="bm2.p">App Store rank · Saudi</div></div>
-      <div class="b-card cyan rv d2"><span class="b-tag" data-i18n="bm3.t">Reach</span><div class="b-num"><span class="cnt" data-target="25">0</span>M+</div><div class="b-lbl" data-i18n="bm3.p">Impressions</div></div>
-      <div class="b-card green rv d3"><span class="b-tag" data-i18n="bm4.t">Delivery</span><div class="b-num"><span class="cnt" data-target="90">0</span>%</div><div class="b-lbl" data-i18n="bm4.p">On-time delivery</div></div>
-      <div class="b-card green rv d4"><span class="b-tag" data-i18n="bm5.t">Team</span><div class="b-num"><span class="cnt" data-target="40">0</span>+</div><div class="b-lbl" data-i18n="bm5.p">Tech members led</div></div>
-      <div class="b-card gold x2 rv d5">
-        <span class="b-tag" data-i18n="bm6.t">Commercial Volume</span>
-        <div style="display:flex;gap:32px;align-items:baseline;margin-top:6px">
-          <div><div class="b-num"><span class="cnt" data-target="40">0</span>+</div><div class="b-lbl" data-i18n="bm6.a">Purchase Orders</div></div>
-          <div><div class="b-num"><span class="cnt" data-target="55">0</span>+</div><div class="b-lbl" data-i18n="bm6.b">Contracts</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. TRINITY PILLARS ══════════════════════════════════════ -->
+  <section id="trinity">
+    <div class="container">
+      <p class="section-eyebrow rv" data-i18n="eyebrow-trinity">&gt; trinity.disciplines.load()</p>
+      <h2 class="section-title rv" data-i18n="title-trinity">One Executive. Three Disciplines.</h2>
+
+      <div class="pillars-grid">
+
+        <div class="pillar-card p-gold rv">
+          <div class="pillar-pill g">PM</div>
+          <h3 class="pillar-title" data-i18n="pm-title">Project Management</h3>
+          <p class="pillar-desc" data-i18n="pm-desc">Governance-first execution. 90% OTD. 40+ purchase orders managed. 55+ contracts delivered. PMP® certified framework applied to every engagement.</p>
+          <div class="pillar-stats">
+            <div class="ps"><div class="ps-num">90%</div><div class="ps-lbl">On-Time</div></div>
+            <div class="ps"><div class="ps-num">40+</div><div class="ps-lbl">POs</div></div>
+            <div class="ps"><div class="ps-num">55+</div><div class="ps-lbl">Contracts</div></div>
+          </div>
+        </div>
+
+        <div class="pillar-card p-cyan rv" style="transition-delay:0.1s">
+          <div class="pillar-pill c">PdM</div>
+          <h3 class="pillar-title" data-i18n="pdm-title">Product Management</h3>
+          <p class="pillar-desc" data-i18n="pdm-desc">Full lifecycle product ownership. 5 products launched. #1 App Store ranking achieved with Mojaz. 25M+ impressions across the portfolio.</p>
+          <div class="pillar-stats">
+            <div class="ps"><div class="ps-num">#1</div><div class="ps-lbl">App Store</div></div>
+            <div class="ps"><div class="ps-num">5</div><div class="ps-lbl">Products</div></div>
+            <div class="ps"><div class="ps-num">25M+</div><div class="ps-lbl">Impressions</div></div>
+          </div>
+        </div>
+
+        <div class="pillar-card p-green rv" style="transition-delay:0.2s">
+          <div class="pillar-pill v">BD</div>
+          <h3 class="pillar-title" data-i18n="bd-title">Business Development</h3>
+          <p class="pillar-desc" data-i18n="bd-desc">Revenue architecture at scale. 4× revenue growth. 380+ enterprise clients onboarded. Contracts across Petromin, SASCO, MEWA, Ministry of Energy.</p>
+          <div class="pillar-stats">
+            <div class="ps"><div class="ps-num">4×</div><div class="ps-lbl">Revenue</div></div>
+            <div class="ps"><div class="ps-num">380+</div><div class="ps-lbl">Clients</div></div>
+            <div class="ps"><div class="ps-num">500%</div><div class="ps-lbl">Fleet Growth</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5. MASTER BENTO GRID ════════════════════════════════════ -->
+  <section id="bento">
+    <div class="container">
+      <p class="section-eyebrow rv" data-i18n="eyebrow-bento">&gt; metrics.executive.render()</p>
+      <h2 class="section-title rv" data-i18n="title-bento">The Full Numbers.</h2>
+
+      <div class="bento-grid rv" style="transition-delay:0.1s">
+
+        <!-- FEAT (span 2, rows 2) -->
+        <div class="bc s2 r2 feat">
+          <div class="feat-ring-wrap">
+            <div class="feat-conic"></div>
+            <div class="feat-core"></div>
+          </div>
+          <div class="feat-title" data-i18n="feat-title">The Full Stack Executive</div>
+          <p class="feat-desc" data-i18n="feat-desc">PM · PdM · BD unified into a single executive capability — the rarest intersection in Saudi Arabia's business landscape.</p>
+          <div class="tri-label">
+            <span class="tg">PROJECT MGT</span>
+            <span class="tc">PRODUCT</span>
+            <span class="tv">BIZ DEV</span>
+          </div>
+        </div>
+
+        <!-- 90% OTD -->
+        <div class="bc s2 gc">
+          <div class="b-num g"><span class="count-num" data-target="90" data-suffix="%">0%</span></div>
+          <div class="b-lbl">On-Time Delivery Rate</div>
+        </div>
+
+        <!-- #1 App Store -->
+        <div class="bc s2 cc">
+          <div class="b-num c">#1</div>
+          <div class="b-lbl">App Store Ranking · Mojaz</div>
+        </div>
+
+        <!-- 4× Revenue -->
+        <div class="bc s2 vc">
+          <div class="b-num v">4×</div>
+          <div class="b-lbl">Revenue Growth</div>
+        </div>
+
+        <!-- 500% Fleet -->
+        <div class="bc s2 gc">
+          <div class="b-num g"><span class="count-num" data-target="500" data-suffix="%">0%</span></div>
+          <div class="b-lbl">Fleet Expansion · Rased Sprint</div>
+        </div>
+
+        <!-- 380+ Clients -->
+        <div class="bc s2 vc">
+          <div class="b-num v"><span class="count-num" data-target="380" data-suffix="+">0+</span></div>
+          <div class="b-lbl">Enterprise Clients</div>
+        </div>
+
+        <!-- 5 / 12 -->
+        <div class="bc s2">
+          <div class="b-num ch">5 / 12</div>
+          <div class="b-lbl">Products Launched / Services</div>
+        </div>
+
+        <!-- 25M+ -->
+        <div class="bc s2 cc">
+          <div class="b-num c">25M+</div>
+          <div class="b-lbl">Portfolio Impressions</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. EXECUTIVE COMMAND CENTER ═════════════════════════════ -->
+  <section id="systems">
+    <div class="container">
+      <p class="section-eyebrow rv" data-i18n="eyebrow-systems">&gt; hybrid.systems.init()</p>
+      <h2 class="section-title rv" data-i18n="title-systems">Automated Executive Intelligence</h2>
+
+      <div class="cmd-grid">
+
+        <!-- A: CRM -->
+        <div class="cmd-card rv">
+          <div class="cmd-header">
+            <div class="cmd-title" data-i18n="crm-title">CRM Architecture Module</div>
+            <div class="status-badge">&#x1F7E2; Live</div>
+          </div>
+          <div class="cmd-tags">
+            <span class="cmd-tag">Odoo</span>
+            <span class="cmd-tag">Zoho</span>
+            <span class="cmd-tag">Vercel</span>
+            <span class="cmd-tag">OAuth 2.0</span>
+          </div>
+          <p class="cmd-desc" data-i18n="crm-desc">Unified CRM pipeline for 380+ enterprise clients — Odoo &amp; Zoho integrated with OAuth 2.0 on Vercel. Automated lead-to-contract tracking across all BD activities.</p>
+        </div>
+
+        <!-- B: Jira Hub -->
+        <div class="cmd-card rv" style="transition-delay:0.1s">
+          <div class="cmd-header">
+            <div class="cmd-title" data-i18n="jira-title">Executive Intelligence Hub</div>
+            <div class="status-badge">&#x1F7E2; Active</div>
+          </div>
+          <div class="cmd-tags">
+            <span class="cmd-tag">Jira API</span>
+            <span class="cmd-tag">Outlook</span>
+            <span class="cmd-tag">Auto-Reports</span>
+          </div>
+          <p class="cmd-desc" data-i18n="jira-desc">Cross-discipline daily intelligence reports — PM sprint status, product metrics, BD pipeline — auto-generated from Jira and dispatched via Outlook.</p>
+        </div>
+
+        <!-- C: Governance Engines -->
+        <div class="cmd-card rv" style="transition-delay:0.2s">
+          <div class="cmd-header">
+            <div class="cmd-title" data-i18n="gov-title">Governance Engines</div>
+            <div class="status-badge">&#x1F7E2; Deployed</div>
+          </div>
+          <div class="gov-nodes">
+            <div class="gov-node">
+              <div class="gov-node-name">Zimam</div>
+              <p class="gov-node-desc" data-i18n="zimam-desc">Executive governance audit dashboard — real-time KPI visibility</p>
+            </div>
+            <div class="gov-node">
+              <div class="gov-node-name">HubEat</div>
+              <p class="gov-node-desc" data-i18n="hubEat-desc">GCP-powered fleet &amp; logistics optimization hub</p>
+            </div>
+            <div class="gov-node">
+              <div class="gov-node-name">REMS</div>
+              <p class="gov-node-desc" data-i18n="rems-desc">Real Estate &amp; security compliance engine — OWASP certified</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 7. COMPLIANCE BANNER ════════════════════════════════════ -->
+  <section id="compliance">
+    <div class="container">
+      <div class="compliance-card rv">
+        <div class="compliance-big">
+          <div class="compliance-num"><span class="count-num" data-target="100" data-suffix="%">0%</span></div>
+          <div class="compliance-label" data-i18n="compliance-label">Compliance Rate</div>
+        </div>
+        <div class="compliance-chips">
+          <span class="c-chip">PMBOK</span>
+          <span class="c-chip">ISO Standards</span>
+          <span class="c-chip">OWASP Security</span>
+          <span class="c-chip">PMP® Framework</span>
+          <span class="c-chip">GCP Certified</span>
         </div>
       </div>
-      <div class="b-card hot rv d6"><span class="b-tag" data-i18n="bm7.t">Scale</span><div class="b-num"><span class="cnt" data-target="500">0</span>%</div><div class="b-lbl" data-i18n="bm7.p">Fleet growth</div></div>
-      <div class="b-card hot rv d7"><span class="b-tag" data-i18n="bm8.t">Book</span><div class="b-num"><span class="cnt" data-target="380">0</span>+</div><div class="b-lbl" data-i18n="bm8.p">Enterprise clients</div></div>
-      <div class="b-card dark x2 rv d8">
-        <span class="b-tag" data-i18n="bm9.t">Portfolio</span>
-        <div style="display:flex;gap:32px;align-items:baseline;margin-top:6px">
-          <div><div class="b-num"><span class="cnt" data-target="5">0</span></div><div class="b-lbl" data-i18n="bm9.a">Live products</div></div>
-          <div><div class="b-num"><span class="cnt" data-target="12">0</span></div><div class="b-lbl" data-i18n="bm9.b">Active services</div></div>
-          <div><div class="b-num"><span class="cnt" data-target="11">0</span>+</div><div class="b-lbl" data-i18n="bm9.c">Stakeholder bodies</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ 8. CLIENT MARQUEE ════════════════════════════════════════ -->
+  <section id="clients">
+    <div class="container">
+      <p class="marquee-label" data-i18n="clients-label">Serving Saudi Arabia's Most Strategic Organizations</p>
+    </div>
+    <div class="marquee-outer">
+      <div class="marquee-track" id="marquee-track">
+        <div class="client-pill b2g">Petromin Corporation</div>
+        <div class="client-pill nrg">Ministry of Energy</div>
+        <div class="client-pill b2g">SASCO</div>
+        <div class="client-pill nrg">MEWA</div>
+        <div class="client-pill tech">Mojaz — App #1</div>
+        <div class="client-pill tech">HubEat Platform</div>
+        <div class="client-pill b2g">Zimam Governance</div>
+        <div class="client-pill nrg">REMS Security</div>
+        <div class="client-pill b2g">Rased Fleet</div>
+        <div class="client-pill tech">Odoo Enterprise</div>
+        <!-- duplicate for seamless loop -->
+        <div class="client-pill b2g">Petromin Corporation</div>
+        <div class="client-pill nrg">Ministry of Energy</div>
+        <div class="client-pill b2g">SASCO</div>
+        <div class="client-pill nrg">MEWA</div>
+        <div class="client-pill tech">Mojaz — App #1</div>
+        <div class="client-pill tech">HubEat Platform</div>
+        <div class="client-pill b2g">Zimam Governance</div>
+        <div class="client-pill nrg">REMS Security</div>
+        <div class="client-pill b2g">Rased Fleet</div>
+        <div class="client-pill tech">Odoo Enterprise</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 9. JOURNEY TIMELINE ══════════════════════════════════════ -->
+  <section id="journey">
+    <div class="container">
+      <p class="section-eyebrow rv" data-i18n="eyebrow-journey">&gt; journey.executive.trace()</p>
+      <h2 class="section-title rv" data-i18n="title-journey">The Executive Journey</h2>
+
+      <div class="timeline">
+
+        <div class="tl-item rv">
+          <div class="tl-year">2022</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title" data-i18n="tl22-title">CRM Architecture &amp; First Major BD Win</div>
+            <p class="tl-desc" data-i18n="tl22-desc">Launched the unified CRM integration architecture on Vercel with Odoo &amp; Zoho. Secured the first major enterprise contract: Petromin fleet partnership — setting the foundation for 380+ client scale.</p>
+            <div class="tl-chips">
+              <span class="tl-chip v">BD</span>
+              <span class="tl-chip g">PM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item rv" style="transition-delay:0.1s">
+          <div class="tl-year">2023</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title" data-i18n="tl23-title">Rased Sprint &amp; HubEat Launch</div>
+            <p class="tl-desc" data-i18n="tl23-desc">Led the Rased Sprint achieving 500% fleet growth — the most ambitious operational scale-up in the portfolio. Simultaneously shipped the HubEat GCP-powered logistics platform from concept to production.</p>
+            <div class="tl-chips">
+              <span class="tl-chip g">PM</span>
+              <span class="tl-chip c">PdM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item rv" style="transition-delay:0.2s">
+          <div class="tl-year">2024</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title" data-i18n="tl24-title">#1 App Store &amp; 380+ Enterprise Milestone</div>
+            <p class="tl-desc" data-i18n="tl24-desc">Mojaz secured the #1 App Store ranking — a product milestone achieved through rigorous lifecycle management and data-driven iteration. BD pipeline reached 380+ active enterprise clients across Saudi Arabia.</p>
+            <div class="tl-chips">
+              <span class="tl-chip c">PdM</span>
+              <span class="tl-chip v">BD</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item rv" style="transition-delay:0.3s">
+          <div class="tl-year">2025</div>
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-title" data-i18n="tl25-title">Full Hybrid Executive — 4× Revenue</div>
+            <p class="tl-desc" data-i18n="tl25-desc">Completed the REMS security audit (OWASP certified), launched the Zimam executive governance dashboard, and delivered 4× revenue growth across the full portfolio — cementing the hybrid executive profile.</p>
+            <div class="tl-chips">
+              <span class="tl-chip g">PM</span>
+              <span class="tl-chip c">PdM</span>
+              <span class="tl-chip v">BD</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 10. CAPABILITY CARDS ════════════════════════════════════ -->
+  <section id="capabilities">
+    <div class="container">
+      <p class="section-eyebrow rv" data-i18n="eyebrow-caps">&gt; capabilities.executive.index()</p>
+      <h2 class="section-title rv" data-i18n="title-caps">Core Executive Capabilities</h2>
+
+      <div class="cap-grid">
+
+        <div class="cap-card rv">
+          <div class="cap-icon g">&#9881;</div>
+          <div class="cap-title" data-i18n="cap1-title">PMP&#174; Execution Framework</div>
+          <p class="cap-desc" data-i18n="cap1-desc">PMBOK-aligned governance applied across every project engagement. 90% OTD, 40+ POs, 55+ contracts delivered with zero compliance failures.</p>
+          <div class="cap-accent g"></div>
+        </div>
+
+        <div class="cap-card rv" style="transition-delay:0.1s">
+          <div class="cap-icon c">&#9729;</div>
+          <div class="cap-title" data-i18n="cap2-title">GCP Cloud Infrastructure</div>
+          <p class="cap-desc" data-i18n="cap2-desc">Google Cloud Platform architecture powering HubEat's logistics engine. Scalable, fault-tolerant, production-grade deployments for Saudi enterprise workloads.</p>
+          <div class="cap-accent c"></div>
+        </div>
+
+        <div class="cap-card rv" style="transition-delay:0.2s">
+          <div class="cap-icon ch">&#11201;</div>
+          <div class="cap-title" data-i18n="cap3-title">Design Thinking Systems</div>
+          <p class="cap-desc" data-i18n="cap3-desc">Human-centered product design methodology embedded in every sprint. From user research to #1 App Store ranking — design is a competitive weapon.</p>
+          <div class="cap-accent ch"></div>
+        </div>
+
+        <div class="cap-card rv" style="transition-delay:0.1s">
+          <div class="cap-icon g">&#11043;</div>
+          <div class="cap-title" data-i18n="cap4-title">Risk &amp; Governance</div>
+          <p class="cap-desc" data-i18n="cap4-desc">Executive-level risk architecture — OWASP security certification, real-time KPI dashboards, and audit trails across all active programs.</p>
+          <div class="cap-accent g"></div>
+        </div>
+
+        <div class="cap-card rv" style="transition-delay:0.2s">
+          <div class="cap-icon ch">&#11042;</div>
+          <div class="cap-title" data-i18n="cap5-title">Automated AI Systems</div>
+          <p class="cap-desc" data-i18n="cap5-desc">Zimam governance engine, HubEat logistics AI, REMS compliance automation, and CRM intelligence pipelines — intelligence embedded in operations.</p>
+          <div class="cap-accent ch"></div>
+        </div>
+
+        <div class="cap-card rv" style="transition-delay:0.3s">
+          <div class="cap-icon v">&#9678;</div>
+          <div class="cap-title" data-i18n="cap6-title">Executive Network</div>
+          <p class="cap-desc" data-i18n="cap6-desc">Deep relationships across Saudi Arabia's strategic sectors — Petromin, SASCO, MEWA, Ministry of Energy. 380+ enterprise clients built through trust and delivery.</p>
+          <div class="cap-accent v"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 11. CONTACT / FOOTER ════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrap rv">
+        <div class="contact-top-border"></div>
+        <p class="section-eyebrow" style="text-align:center;margin-bottom:1rem" data-i18n="eyebrow-contact">&gt; contact.executive.connect()</p>
+        <h2 class="contact-title" data-i18n="contact-title">Ready to Build Something<br>Extraordinary?</h2>
+        <p class="contact-sub" data-i18n="contact-sub">One executive. Three disciplines. Infinite precision. Let's architect your next breakthrough together.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="tel:+966593935677">
+            <span>&#128222;</span>
+            <span>+966 59 393 5677</span>
+          </a>
+          <a class="contact-link" href="mailto:A.alhumud0@gmail.com">
+            <span>&#9993;</span>
+            <span>A.alhumud0@gmail.com</span>
+          </a>
+          <a class="contact-link" href="https://linkedin.com/in/aalhumud" target="_blank" rel="noopener noreferrer">
+            <span>&#11042;</span>
+            <span>linkedin.com/in/aalhumud</span>
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- COMPLIANCE BANNER -->
-    <div class="compliance rv">
-      <div class="cmp-l">
-        <span class="cmp-tag" data-i18n="cm.t">Governance Compliance</span>
-        <div class="cmp-h" data-i18n="cm.h">PMBOK · ISO · OWASP · Risk Framework</div>
-        <div class="cmp-p" data-i18n="cm.p">Every program, product, and contract held to PMBOK discipline, ISO 27001 alignment, and OWASP-grade security gates. Sovereign-grade, audit-ready.</div>
-      </div>
-      <div class="cmp-r">
-        <div class="cmp-num"><span class="cnt" data-target="100">0</span>%</div>
-        <div style="display:flex;flex-direction:column;align-items:flex-start"><div style="font-size:12px;color:var(--ink-m);letter-spacing:.16em;text-transform:uppercase" data-i18n="cm.l1">Compliance Posture</div><div style="font-size:14px;color:var(--green);font-weight:700" data-i18n="cm.l2">Audit-ready · 2025</div></div>
+    <div class="footer-bar">
+      <div class="container">
+        <p class="footer-text" data-i18n="footer">&#169; 2025 Abdulrahman Alhumud &middot; The intersection of precision, product, and growth.</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- VIBE -->
-<section class="sec" id="vibe">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="v.ey">AI × Trinity · Vibe Coding</span>
-      <h2 class="sec-h2" data-i18n="v.h">Three roles. One operator. <em>Agentic compression.</em></h2>
-      <p class="sec-sub" data-i18n="v.s">Claude Code, Gemini API, and agentic workflows are how one operator scales like a team. PM, product, and BD outputs — drafted, audited, shipped — at machine speed, with human judgment in the loop.</p>
-    </div>
-    <div class="vibe-wrap">
-      <div class="term rv">
-        <div class="term-bar">
-          <span class="dot red"></span><span class="dot ylw"></span><span class="dot grn"></span>
-          <span class="term-title">~/abdulrahman/master-stack · zsh</span>
-        </div>
-        <div class="term-body">
-<p><span class="prompt">$</span> <span class="var">claude</span> orchestrate --role <span class="str">"hybrid-exec"</span></p>
-<p class="cmt"># Loading: PM agent · PdM agent · BD agent</p>
-<p><span class="ok">✓</span> Risk register · sprint plan · stakeholder map</p>
-<p><span class="ok">✓</span> User-interview synthesis · A/B test framework</p>
-<p><span class="ok">✓</span> Lead scoring · proposal drafting · redline pass</p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">claude</span> audit ./rems --mode <span class="str">"security+governance"</span></p>
-<p><span class="warn">!</span> 7 high-severity findings → triaged</p>
-<p><span class="ok">✓</span> Remediation PRs · ISO 27001 mapped</p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">gemini</span> migrate hubeat --gcp --zero-downtime</p>
-<p><span class="ok">✓</span> Cutover plan · rollback &lt;5min · IaC managed</p>
-<p>&nbsp;</p>
-<p><span class="prompt">$</span> <span class="var">claude</span> brief --board --duration 5min</p>
-<p class="wins">✓ Brief ready · Petromin · MEWA · SWA</p>
-<p><span class="cursor"></span></p>
-        </div>
-      </div>
-      <div class="vibe-cards">
-        <div class="vc rv d1"><div class="vc-ic">⚡</div><div><h4 data-i18n="vc1.h">Zimam · PMO SaaS</h4><p data-i18n="vc1.p">Multi-tenant governance platform — built end-to-end with Claude Code. Roles, risk, KPI, stakeholders, all integrated.</p></div></div>
-        <div class="vc rv d2"><div class="vc-ic">🛡</div><div><h4 data-i18n="vc2.h">REMS · Security Audit</h4><p data-i18n="vc2.p">Full code audit driven by Claude agents — OWASP gates, ISO 27001 mapping, remediation PRs auto-generated.</p></div></div>
-        <div class="vc rv d3"><div class="vc-ic">☁</div><div><h4 data-i18n="vc3.h">HubEat · GCP Cloud</h4><p data-i18n="vc3.p">Full cloud migration orchestrated with Gemini — IaC managed, zero-downtime, rollback under 5 minutes.</p></div></div>
-        <div class="vc rv d4"><div class="vc-ic">🤖</div><div><h4 data-i18n="vc4.h">Agentic Operations</h4><p data-i18n="vc4.p">PM reports, A/B tests, BD briefs, contract redlines — all drafted by custom Claude agents, finalized by me.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- ═══════════════════════════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════════════════════════ -->
+  <script>
+    /* ─── i18n DICTIONARY ────────────────────────────────────────── */
+    const I18N = {
+      en: {
+        'l1':               'Management Expertise.',
+        'l2':               'Product Obsession.',
+        'l3':               'Business Intelligence.',
+        'sub':              'The rarest profile in Saudi business — where PMO rigor meets product craft meets revenue growth. 5 products launched. 4× revenue. 90% on-time. All in one executive.',
+        'eyebrow-trinity':  '&gt; trinity.disciplines.load()',
+        'eyebrow-bento':    '&gt; metrics.executive.render()',
+        'eyebrow-systems':  '&gt; hybrid.systems.init()',
+        'eyebrow-journey':  '&gt; journey.executive.trace()',
+        'eyebrow-caps':     '&gt; capabilities.executive.index()',
+        'eyebrow-contact':  '&gt; contact.executive.connect()',
+        'eb-pm':            'The Hybrid Executive',
+        'nav-trinity':      'Trinity',
+        'nav-metrics':      'Metrics',
+        'nav-systems':      'Systems',
+        'nav-journey':      'Journey',
+        'nav-contact':      'Contact',
+        'title-trinity':    'One Executive. Three Disciplines.',
+        'pm-title':         'Project Management',
+        'pm-desc':          'Governance-first execution. 90% OTD. 40+ purchase orders managed. 55+ contracts delivered. PMP® certified framework applied to every engagement.',
+        'pdm-title':        'Product Management',
+        'pdm-desc':         'Full lifecycle product ownership. 5 products launched. #1 App Store ranking achieved with Mojaz. 25M+ impressions across the portfolio.',
+        'bd-title':         'Business Development',
+        'bd-desc':          'Revenue architecture at scale. 4× revenue growth. 380+ enterprise clients onboarded. Contracts across Petromin, SASCO, MEWA, Ministry of Energy.',
+        'title-bento':      'The Full Numbers.',
+        'feat-title':       'The Full Stack Executive',
+        'feat-desc':        'PM · PdM · BD unified into a single executive capability — the rarest intersection in Saudi Arabia\'s business landscape.',
+        'title-systems':    'Automated Executive Intelligence',
+        'crm-title':        'CRM Architecture Module',
+        'crm-desc':         'Unified CRM pipeline for 380+ enterprise clients — Odoo & Zoho integrated with OAuth 2.0 on Vercel. Automated lead-to-contract tracking across all BD activities.',
+        'jira-title':       'Executive Intelligence Hub',
+        'jira-desc':        'Cross-discipline daily intelligence reports — PM sprint status, product metrics, BD pipeline — auto-generated from Jira and dispatched via Outlook.',
+        'gov-title':        'Governance Engines',
+        'zimam-desc':       'Executive governance audit dashboard — real-time KPI visibility',
+        'hubEat-desc':      'GCP-powered fleet & logistics optimization hub',
+        'rems-desc':        'Real Estate & security compliance engine — OWASP certified',
+        'compliance-label': 'Compliance Rate',
+        'clients-label':    'Serving Saudi Arabia\'s Most Strategic Organizations',
+        'title-journey':    'The Executive Journey',
+        'tl22-title':       'CRM Architecture & First Major BD Win',
+        'tl22-desc':        'Launched the unified CRM integration architecture on Vercel with Odoo & Zoho. Secured the first major enterprise contract: Petromin fleet partnership — setting the foundation for 380+ client scale.',
+        'tl23-title':       'Rased Sprint & HubEat Launch',
+        'tl23-desc':        'Led the Rased Sprint achieving 500% fleet growth — the most ambitious operational scale-up in the portfolio. Simultaneously shipped the HubEat GCP-powered logistics platform from concept to production.',
+        'tl24-title':       '#1 App Store & 380+ Enterprise Milestone',
+        'tl24-desc':        'Mojaz secured the #1 App Store ranking — a product milestone achieved through rigorous lifecycle management. BD pipeline reached 380+ active enterprise clients across Saudi Arabia.',
+        'tl25-title':       'Full Hybrid Executive — 4× Revenue',
+        'tl25-desc':        'Completed the REMS security audit (OWASP certified), launched the Zimam executive governance dashboard, and delivered 4× revenue growth across the full portfolio.',
+        'title-caps':       'Core Executive Capabilities',
+        'cap1-title':       'PMP® Execution Framework',
+        'cap1-desc':        'PMBOK-aligned governance applied across every project engagement. 90% OTD, 40+ POs, 55+ contracts delivered with zero compliance failures.',
+        'cap2-title':       'GCP Cloud Infrastructure',
+        'cap2-desc':        'Google Cloud Platform architecture powering HubEat\'s logistics engine. Scalable, fault-tolerant, production-grade deployments for Saudi enterprise workloads.',
+        'cap3-title':       'Design Thinking Systems',
+        'cap3-desc':        'Human-centered product design methodology embedded in every sprint. From user research to #1 App Store ranking — design is a competitive weapon.',
+        'cap4-title':       'Risk & Governance',
+        'cap4-desc':        'Executive-level risk architecture — OWASP security certification, real-time KPI dashboards, and audit trails across all active programs.',
+        'cap5-title':       'Automated AI Systems',
+        'cap5-desc':        'Zimam governance engine, HubEat logistics AI, REMS compliance automation, and CRM intelligence pipelines — intelligence embedded in operations.',
+        'cap6-title':       'Executive Network',
+        'cap6-desc':        'Deep relationships across Saudi Arabia\'s strategic sectors — Petromin, SASCO, MEWA, Ministry of Energy. 380+ enterprise clients built through trust and delivery.',
+        'contact-title':    'Ready to Build Something Extraordinary?',
+        'contact-sub':      'One executive. Three disciplines. Infinite precision. Let\'s architect your next breakthrough together.',
+        'footer':           '© 2025 Abdulrahman Alhumud · The intersection of precision, product, and growth.',
+      },
+      ar: {
+        'l1':               'خبرة الإدارة.',
+        'l2':               'شغف بناء المنتجات.',
+        'l3':               'ذكاء تطوير الأعمال.',
+        'sub':              'أندر الملفات في عالم الأعمال السعودي — حيث دقة إدارة المشاريع تلتقي بإبداع المنتج وقدرة النمو. في قالب واحد.',
+        'eyebrow-trinity':  '&gt; trinity.disciplines.load()',
+        'eyebrow-bento':    '&gt; metrics.executive.render()',
+        'eyebrow-systems':  '&gt; hybrid.systems.init()',
+        'eyebrow-journey':  '&gt; journey.executive.trace()',
+        'eyebrow-caps':     '&gt; capabilities.executive.index()',
+        'eyebrow-contact':  '&gt; contact.executive.connect()',
+        'eb-pm':            'المدير التنفيذي الهجين',
+        'nav-trinity':      'الثلاثية',
+        'nav-metrics':      'المقاييس',
+        'nav-systems':      'الأنظمة',
+        'nav-journey':      'المسيرة',
+        'nav-contact':      'التواصل',
+        'title-trinity':    'مدير تنفيذي واحد. ثلاثة تخصصات.',
+        'pm-title':         'إدارة المشاريع',
+        'pm-desc':          'تنفيذ يُقدّم الحوكمة أولاً. 90% تسليم في الوقت. 40+ أوامر شراء. 55+ عقداً. إطار PMP® معتمد.',
+        'pdm-title':        'إدارة المنتجات',
+        'pdm-desc':         'ملكية المنتج من الفكرة للإطلاق. 5 منتجات أُطلقت. المرتبة الأولى في App Store مع موجاز. 25+ مليون انطباع.',
+        'bd-title':         'تطوير الأعمال',
+        'bd-desc':          'هندسة الإيرادات بحجم مؤسسي. نمو 4× في الإيرادات. 380+ عميل مؤسسي. عقود مع بيترومين وساسكو وميوا ووزارة الطاقة.',
+        'title-bento':      'الأرقام الكاملة.',
+        'feat-title':       'المدير التنفيذي متكامل المهارات',
+        'feat-desc':        'إدارة مشاريع · إدارة منتجات · تطوير أعمال — في قدرة تنفيذية واحدة.',
+        'title-systems':    'الذكاء التنفيذي الآلي',
+        'crm-title':        'وحدة بنية CRM',
+        'crm-desc':         'خط أنابيب CRM موحد لـ 380+ عميل — Odoo و Zoho مع OAuth 2.0 على Vercel. تتبع آلي من الفرصة للعقد.',
+        'jira-title':       'مركز الذكاء التنفيذي',
+        'jira-desc':        'تقارير ذكاء يومية — حالة السبرينت، مقاييس المنتج، خط البيع — من Jira عبر Outlook.',
+        'gov-title':        'محركات الحوكمة',
+        'zimam-desc':       'لوحة تدقيق الحوكمة — رؤية KPI فورية',
+        'hubEat-desc':      'مركز تحسين الأسطول واللوجستيكات بـ GCP',
+        'rems-desc':        'محرك امتثال العقارات والأمن — OWASP معتمد',
+        'compliance-label': 'معدل الامتثال',
+        'clients-label':    'نخدم أكثر المنظمات استراتيجية في المملكة',
+        'title-journey':    'مسيرة المدير التنفيذي',
+        'tl22-title':       'بنية CRM وأول انتصار تجاري كبير',
+        'tl22-desc':        'إطلاق بنية CRM الموحدة. تأمين أول عقد مؤسسي: شراكة أسطول بيترومين.',
+        'tl23-title':       'سبرينت راصد وإطلاق HubEat',
+        'tl23-desc':        'قيادة سبرينت راصد لتحقيق نمو 500% في الأسطول. شحن منصة HubEat من الفكرة إلى الإنتاج.',
+        'tl24-title':       'المرتبة الأولى App Store و380+ مؤسسة',
+        'tl24-desc':        'حصل موجاز على المرتبة الأولى. وصل خط البيع إلى 380+ عميل عبر المملكة.',
+        'tl25-title':       'المدير الهجين الكامل — نمو 4×',
+        'tl25-desc':        'اكتمال تدقيق REMS الأمني OWASP، إطلاق لوحة زمام، وتحقيق نمو 4× في الإيرادات.',
+        'title-caps':       'الكفاءات التنفيذية الأساسية',
+        'cap1-title':       'إطار تنفيذ PMP®',
+        'cap1-desc':        'حوكمة PMBOK على كل مشاركة. 90% تسليم في الوقت، 40+ أمر شراء، 55+ عقداً.',
+        'cap2-title':       'بنية GCP السحابية',
+        'cap2-desc':        'معمارية Google Cloud تُشغّل محرك لوجستيكات HubEat. نشر قابل للتوسع وعالي الجاهزية.',
+        'cap3-title':       'أنظمة التفكير التصميمي',
+        'cap3-desc':        'منهجية تصميم تتمحور حول المستخدم في كل سبرينت. من البحث إلى المرتبة الأولى.',
+        'cap4-title':       'المخاطر والحوكمة',
+        'cap4-desc':        'هندسة مخاطر تنفيذية — اعتماد OWASP، لوحات KPI فورية، ومسارات تدقيق.',
+        'cap5-title':       'أنظمة الذكاء الاصطناعي الآلية',
+        'cap5-desc':        'زمام، HubEat، REMS، وخطوط ذكاء CRM — ذكاء مدمج مباشرة في العمليات.',
+        'cap6-title':       'الشبكة التنفيذية',
+        'cap6-desc':        'علاقات عميقة عبر القطاعات الاستراتيجية — بيترومين، ساسكو، ميوا، وزارة الطاقة. 380+ عميل.',
+        'contact-title':    'هل أنت مستعد لبناء شيء استثنائي؟',
+        'contact-sub':      'مدير تنفيذي واحد. ثلاثة تخصصات. دقة لا نهاية لها. لنبنِ اختراقك التالي معاً.',
+        'footer':           '© 2025 عبدالرحمن الحمود · تقاطع الدقة والمنتج والنمو.',
+      }
+    };
 
-<!-- NETWORK -->
-<section class="sec" id="network">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <span class="eyebrow" data-i18n="n.ey">Executive Network</span>
-      <h2 class="sec-h2" data-i18n="n.h">The book. <em>The trust. The track record.</em></h2>
-      <p class="sec-sub" data-i18n="n.s">Sovereign clients, energy majors, regulators, and platform partners. Years of executive-grade relationships across every layer of Saudi's strategic ecosystem.</p>
-    </div>
-  </div>
-  <div class="marquee rv">
-    <div class="marquee-track">
-      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
-      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
-      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
-      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
-      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
-      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
-      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
-      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
-      <div class="logo-chip"><span class="lc-mark lc-petromin">P</span> Petromin</div>
-      <div class="logo-chip"><span class="lc-mark lc-sasco">S</span> SASCO</div>
-      <div class="logo-chip"><span class="lc-mark lc-swa">SWA</span> Saudi Water Authority</div>
-      <div class="logo-chip"><span class="lc-mark lc-mewa">M</span> MEWA</div>
-      <div class="logo-chip"><span class="lc-mark lc-energy">E</span> Ministry of Energy</div>
-      <div class="logo-chip"><span class="lc-mark lc-zatca">Z</span> ZATCA</div>
-      <div class="logo-chip"><span class="lc-mark lc-mojaz">M</span> Mojaz</div>
-      <div class="logo-chip"><span class="lc-mark lc-rased">R</span> Rased</div>
-    </div>
-  </div>
-</section>
+    /* ─── LANG SWITCH ────────────────────────────────────────────── */
+    let currentLang = 'en';
 
-<!-- JOURNEY TIMELINE -->
-<section class="sec" id="journey">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="j.ey">The Master Timeline · One Operator, Three Worlds</span>
-      <h2 class="sec-h2" data-i18n="j.h">A trajectory <em>that compounds.</em></h2>
-      <p class="sec-sub" data-i18n="j.s">From governance lead, to product launcher, to deal closer — each chapter built the next. Same operator. Three operating models.</p>
-    </div>
-    <div class="timeline">
-      <div class="tl rv">
-        <div><div class="tl-year">2022</div><span class="tl-tag" data-i18n="tly1">FOUNDATION</span></div>
-        <div class="tl-body">
-          <h4 data-i18n="tl1.h">Governance & Foundations</h4>
-          <p data-i18n="tl1.p">Built PMO discipline from the ground up. Established cadence, ownership maps, and risk registers across multi-sector portfolios. Signed early enterprise contracts.</p>
-          <div class="tl-chips"><span class="green">PMP Discipline</span><span class="green">PMO Setup</span><span class="gold">First Contracts</span></div>
-        </div>
-      </div>
-      <div class="tl rv d1">
-        <div><div class="tl-year">2023</div><span class="tl-tag" data-i18n="tly2">TURNAROUND</span></div>
-        <div class="tl-body">
-          <h4 data-i18n="tl2.h">The Rased Turnaround</h4>
-          <p data-i18n="tl2.p">Inherited stalled programs. Rebuilt governance. Achieved 90% on-time delivery. Closed 40+ POs and 55+ contracts. Locked in B2G mandates with sovereign clients.</p>
-          <div class="tl-chips"><span class="green">90% OTD</span><span class="green">40+ POs</span><span class="gold">55+ Contracts</span><span class="gold">Petromin · SASCO</span></div>
-        </div>
-      </div>
-      <div class="tl rv d2">
-        <div><div class="tl-year">2024</div><span class="tl-tag" data-i18n="tly3">PRODUCT</span></div>
-        <div class="tl-body">
-          <h4 data-i18n="tl3.h">The Mojaz Sprint</h4>
-          <p data-i18n="tl3.p">Shipped 1 flagship product. Mojaz hit #1 App Store in 4 months. +250% downloads, 25M+ impressions. Pivoted into full PdM ownership alongside PMO leadership.</p>
-          <div class="tl-chips"><span class="cyan">#1 App Store</span><span class="cyan">25M+ Impressions</span><span class="cyan">+250% Downloads</span></div>
-        </div>
-      </div>
-      <div class="tl rv d3">
-        <div><div class="tl-year">2025</div><span class="tl-tag" data-i18n="tly4">SCALE</span></div>
-        <div class="tl-body">
-          <h4 data-i18n="tl4.h">Hybrid Powerhouse · Multiplied</h4>
-          <p data-i18n="tl4.p">4 more products launched (5 total live). 12 services in active rotation. 4× revenue growth. 500% fleet expansion. 380+ enterprise clients. Full GCP migrations. Vibe-coding stack productized internally.</p>
-          <div class="tl-chips"><span class="gold">4× Revenue</span><span class="gold">500% Fleet</span><span class="gold">380+ Clients</span><span class="cyan">5 Products</span><span class="green">GCP Native</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    function setLang(l) {
+      currentLang = l;
+      const html = document.documentElement;
+      html.lang = l;
+      html.dir  = l === 'ar' ? 'rtl' : 'ltr';
 
-<!-- CAPABILITIES -->
-<section class="sec" id="caps">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow" data-i18n="cp.ey">Capabilities · Earned, Not Listed</span>
-      <h2 class="sec-h2" data-i18n="cp.h">What I bring <em>to the room.</em></h2>
-    </div>
-    <div class="caps">
-      <div class="cap rv"><div class="cap-ic">🏅</div><h4>PMP®</h4><p data-i18n="cap1.p">Project Management Professional · PMI. The discipline behind every delivery.</p></div>
-      <div class="cap rv d1"><div class="cap-ic">☁</div><h4>GCP Cloud</h4><p data-i18n="cap2.p">Full cloud infrastructure design, migration, and zero-downtime cutovers on Google Cloud.</p></div>
-      <div class="cap rv d2"><div class="cap-ic">🎨</div><h4>Design Thinking</h4><p data-i18n="cap3.p">User-obsessed problem framing, rapid prototyping, and iteration discipline.</p></div>
-      <div class="cap rv d3"><div class="cap-ic">⚖</div><h4>Risk & Governance</h4><p data-i18n="cap4.p">PMBOK frameworks, ISO 27001 alignment, OWASP gates. Sovereign-grade discretion.</p></div>
-      <div class="cap rv d4"><div class="cap-ic">🤖</div><h4>AI · Vibe Coding</h4><p data-i18n="cap5.p">Claude Code, Gemini API, agentic workflows. One operator scaling like a team.</p></div>
-      <div class="cap rv d5"><div class="cap-ic">🤝</div><h4>Executive Network</h4><p data-i18n="cap6.p">Sovereign and enterprise relationships across Saudi's energy, water, regulatory, and tech sectors.</p></div>
-    </div>
-  </div>
-</section>
+      document.getElementById('btn-en').classList.toggle('active', l === 'en');
+      document.getElementById('btn-ar').classList.toggle('active', l === 'ar');
 
-<section class="sec" id="contact">
-  <div class="wrap">
-    <div class="contact-wrap rv">
-      <div>
-        <h2 class="contact-h" data-i18n="c.h">Need one operator who can do it all?</h2>
-        <p class="contact-p" data-i18n="c.p">I take on senior cross-functional mandates: PMO + Product + BD under one operating mind. Riyadh-based, sovereign-grade discretion, ships at machine speed with human judgment in the loop.</p>
-      </div>
-      <div class="contact-list">
-        <a href="tel:+966593935677"><div class="ic">📞</div><div class="meta"><small data-i18n="c.l1">Direct</small><b>+966 59 393 5677</b></div></a>
-        <a href="mailto:A.alhumud0@gmail.com"><div class="ic">✉</div><div class="meta"><small data-i18n="c.l2">Email</small><b>A.alhumud0@gmail.com</b></div></a>
-        <a href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener"><div class="ic">in</div><div class="meta"><small data-i18n="c.l3">LinkedIn</small><b>linkedin.com/in/aalhumud</b></div></a>
-      </div>
-    </div>
-  </div>
-</section>
+      const dict = I18N[l];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
 
-<footer><div class="wrap">© 2025 Abdulrahman Alhumud · <span data-i18n="f">The Hybrid Powerhouse · PM × Product × BD × AI</span></div></footer>
-
-<script>
-const I18N = {
-  en: {
-    'n1':'Trinity','n2':'Impact','n3':'Vibe Coding','n4':'Network','n5':'Journey',
-    'eyebrow':'The Hybrid Powerhouse · Master Portfolio',
-    'hl1':'Three disciplines.','hl2':'One operator.','hl3':'<em>Total impact.</em>',
-    'lede':'The rare cross-functional executive who runs the full arc — Project Management discipline, Product instinct, and Business Development edge — fused into one operating mind. PMP-certified, #1 builder, 4× growth driver.',
-    'cta1':'View Full Deck <span class="arr">→</span>','cta2':'Get in Touch <span class="arr">→</span>',
-    'ts1.t':'PROJECT MGMT','ts1.s':'On-time delivery','ts2.t':'PRODUCT','ts2.s':'App Store · Saudi','ts3.t':'BUSINESS DEV','ts3.s':'Revenue growth',
-    'scroll':'Scroll',
-    't.ey':'The Trinity · Three Worlds, One Operator','t.h':'Cross-functional <em>by design.</em>',
-    't.s':'Each discipline strengthens the others. The PM brings governance to the Product. The Product brings empathy to the BD. The BD brings revenue back to the Program. Every angle, owned.',
-    'p1.h':'Governance & Delivery','p1.p':'PMP-certified discipline. 40+ POs, 55+ contracts, 90% on-time across multi-sector portfolios. Turnaround specialist — Rased 2023.','p1.m1':'On-time','p1.m2':'POs',
-    'p2.h':'Discovery & Scale','p2.p':'User-obsessed PdM. Mojaz hit #1 App Store in 4 months. 25M+ impressions. 5 live products. Full GCP cloud migrations.','p2.m1':'App Store','p2.m2':'Impressions',
-    'p3.h':'Pipeline & P&L','p3.p':'Deal closer with sovereign reach. 4× revenue growth. 500% fleet scale. 380+ enterprise clients. Petromin, SASCO, SWA, MEWA, MoEnergy, ZATCA.','p3.m1':'Revenue','p3.m2':'Fleet scale',
-    'im.ey':'Master Impact Dashboard · 2022–2025','im.h':'Every number, <em>owned end-to-end.</em>',
-    'im.s':'No vanity, no spin. Multi-million SAR portfolios delivered with PMP discipline, product instinct, and BD execution — under one operating system.',
-    'bm1.t':'Flagship · Revenue','bm1.h':'Revenue growth · 2022→2025','bm1.p':'Quadrupled top-line through disciplined renewals, B2G mandates, and full-funnel ownership.',
-    'bm2.t':'Product','bm2.p':'App Store rank · Saudi',
-    'bm3.t':'Reach','bm3.p':'Impressions',
-    'bm4.t':'Delivery','bm4.p':'On-time delivery',
-    'bm5.t':'Team','bm5.p':'Tech members led',
-    'bm6.t':'Commercial Volume','bm6.a':'Purchase Orders','bm6.b':'Contracts',
-    'bm7.t':'Scale','bm7.p':'Fleet growth',
-    'bm8.t':'Book','bm8.p':'Enterprise clients',
-    'bm9.t':'Portfolio','bm9.a':'Live products','bm9.b':'Active services','bm9.c':'Stakeholder bodies',
-    'cm.t':'Governance Compliance','cm.h':'PMBOK · ISO · OWASP · Risk Framework',
-    'cm.p':'Every program, product, and contract held to PMBOK discipline, ISO 27001 alignment, and OWASP-grade security gates. Sovereign-grade, audit-ready.',
-    'cm.l1':'Compliance Posture','cm.l2':'Audit-ready · 2025',
-    'v.ey':'AI × Trinity · Vibe Coding','v.h':'Three roles. One operator. <em>Agentic compression.</em>',
-    'v.s':'Claude Code, Gemini API, and agentic workflows are how one operator scales like a team. PM, product, and BD outputs — drafted, audited, shipped — at machine speed, with human judgment in the loop.',
-    'vc1.h':'Zimam · PMO SaaS','vc1.p':'Multi-tenant governance platform — built end-to-end with Claude Code. Roles, risk, KPI, stakeholders, all integrated.',
-    'vc2.h':'REMS · Security Audit','vc2.p':'Full code audit driven by Claude agents — OWASP gates, ISO 27001 mapping, remediation PRs auto-generated.',
-    'vc3.h':'HubEat · GCP Cloud','vc3.p':'Full cloud migration orchestrated with Gemini — IaC managed, zero-downtime, rollback under 5 minutes.',
-    'vc4.h':'Agentic Operations','vc4.p':'PM reports, A/B tests, BD briefs, contract redlines — all drafted by custom Claude agents, finalized by me.',
-    'n.ey':'Executive Network','n.h':'The book. <em>The trust. The track record.</em>',
-    'n.s':'Sovereign clients, energy majors, regulators, and platform partners. Years of executive-grade relationships across every layer of Saudi\'s strategic ecosystem.',
-    'j.ey':'The Master Timeline · One Operator, Three Worlds','j.h':'A trajectory <em>that compounds.</em>',
-    'j.s':'From governance lead, to product launcher, to deal closer — each chapter built the next. Same operator. Three operating models.',
-    'tly1':'FOUNDATION','tl1.h':'Governance & Foundations','tl1.p':'Built PMO discipline from the ground up. Established cadence, ownership maps, and risk registers across multi-sector portfolios. Signed early enterprise contracts.',
-    'tly2':'TURNAROUND','tl2.h':'The Rased Turnaround','tl2.p':'Inherited stalled programs. Rebuilt governance. Achieved 90% on-time delivery. Closed 40+ POs and 55+ contracts. Locked in B2G mandates with sovereign clients.',
-    'tly3':'PRODUCT','tl3.h':'The Mojaz Sprint','tl3.p':'Shipped 1 flagship product. Mojaz hit #1 App Store in 4 months. +250% downloads, 25M+ impressions. Pivoted into full PdM ownership alongside PMO leadership.',
-    'tly4':'SCALE','tl4.h':'Hybrid Powerhouse · Multiplied','tl4.p':'4 more products launched (5 total live). 12 services in active rotation. 4× revenue growth. 500% fleet expansion. 380+ enterprise clients. Full GCP migrations. Vibe-coding stack productized internally.',
-    'cp.ey':'Capabilities · Earned, Not Listed','cp.h':'What I bring <em>to the room.</em>',
-    'cap1.p':'Project Management Professional · PMI. The discipline behind every delivery.',
-    'cap2.p':'Full cloud infrastructure design, migration, and zero-downtime cutovers on Google Cloud.',
-    'cap3.p':'User-obsessed problem framing, rapid prototyping, and iteration discipline.',
-    'cap4.p':'PMBOK frameworks, ISO 27001 alignment, OWASP gates. Sovereign-grade discretion.',
-    'cap5.p':'Claude Code, Gemini API, agentic workflows. One operator scaling like a team.',
-    'cap6.p':'Sovereign and enterprise relationships across Saudi\'s energy, water, regulatory, and tech sectors.',
-    'c.h':'Need one operator who can do it all?','c.p':'I take on senior cross-functional mandates: PMO + Product + BD under one operating mind. Riyadh-based, sovereign-grade discretion, ships at machine speed with human judgment in the loop.',
-    'c.l1':'Direct','c.l2':'Email','c.l3':'LinkedIn',
-    'f':'The Hybrid Powerhouse · PM × Product × BD × AI',
-  },
-  ar: {
-    'n1':'الثلاثيّة','n2':'الأثر','n3':'فايب كودنق','n4':'شبكتنا','n5':'الرحلة',
-    'eyebrow':'القوة الهجينة · المحفظة الشاملة',
-    'hl1':'ثلاث تخصّصات.','hl2':'مشغّل واحد.','hl3':'<em>أثر كامل.</em>',
-    'lede':'القائد النادر اللي يدير المسار كامل — انضباط إدارة المشاريع، حدس المنتج، وحرفيّة تطوير الأعمال — كلها في عقل تشغيلي واحد. حاصل على PMP®، صانع المركز الأول، ومحرّك نموّ ٤×.',
-    'cta1':'شوف العرض الكامل <span class="arr">←</span>','cta2':'تواصل معي <span class="arr">←</span>',
-    'ts1.t':'إدارة مشاريع','ts1.s':'تسليم في الموعد','ts2.t':'منتج','ts2.s':'آب ستور · السعوديّة','ts3.t':'تطوير أعمال','ts3.s':'نمو الإيرادات',
-    'scroll':'انزل',
-    't.ey':'الثلاثيّة · ثلاث عوالم، مشغّل واحد','t.h':'متعدّد التخصّصات <em>بالتصميم.</em>',
-    't.s':'كل تخصّص يقوّي الآخر. الـ PM يعطي حوكمة للمنتج. المنتج يعطي تعاطفًا لتطوير الأعمال. وتطوير الأعمال يرجّع الإيرادات للبرنامج. كل زاوية مُتبنّاة.',
-    'p1.h':'حوكمة وتسليم','p1.p':'انضباط PMP. ٤٠+ أمر شراء، ٥٥+ عقد، ٩٠٪ في الموعد عبر محافظ متعدّدة. أخصّائي تحوّلات — راصد ٢٠٢٣.','p1.m1':'في الموعد','p1.m2':'أوامر شراء',
-    'p2.h':'اكتشاف وتوسّع','p2.p':'مدير منتج مهووس بالعميل. مجاز وصل للمركز الأول في ٤ شهور. ٢٥M+ ظهور. ٥ منتجات حيّة. هجرات GCP كاملة.','p2.m1':'آب ستور','p2.m2':'ظهور',
-    'p3.h':'بايبلاين وأرباح','p3.p':'مغلق صفقات بوصول سيادي. نمو ٤× في الإيرادات. ٥٠٠٪ توسّع أسطول. ٣٨٠+ عميل مؤسسي. بترومين، ساسكو، هيئة المياه، البيئة، وزارة الطاقة، زاتكا.','p3.m1':'إيرادات','p3.m2':'توسّع أسطول',
-    'im.ey':'لوحة الأثر الشاملة · 2022–2025','im.h':'كل رقم <em>مُتبنّى طرف لطرف.</em>',
-    'im.s':'بدون مبالغة. محافظ بملايين الريالات سُلّمت بانضباط PMP، وحدس منتج، وتنفيذ BD — تحت نظام تشغيل واحد.',
-    'bm1.t':'الإنجاز · الإيرادات','bm1.h':'نمو الإيرادات · 2022→2025','bm1.p':'ضاعفنا الإيرادات أربع مرات عبر تجديد منضبط، تفويضات B2G، وتبنّي القمع كاملاً.',
-    'bm2.t':'منتج','bm2.p':'ترتيب آب ستور · السعوديّة',
-    'bm3.t':'انتشار','bm3.p':'ظهور',
-    'bm4.t':'تسليم','bm4.p':'تسليم في الموعد',
-    'bm5.t':'فريق','bm5.p':'أعضاء تقنيون قُدتُهم',
-    'bm6.t':'حجم تجاري','bm6.a':'أوامر شراء','bm6.b':'عقود',
-    'bm7.t':'توسّع','bm7.p':'نمو أسطول',
-    'bm8.t':'محفظة','bm8.p':'عملاء مؤسسات',
-    'bm9.t':'المحفظة','bm9.a':'منتجات حيّة','bm9.b':'خدمات فعّالة','bm9.c':'جهات أصحاب مصلحة',
-    'cm.t':'التزام الحوكمة','cm.h':'PMBOK · ISO · OWASP · إطار المخاطر',
-    'cm.p':'كل برنامج ومنتج وعقد يخضع لانضباط PMBOK، توافق ISO 27001، وبوابات أمنية بمستوى OWASP. سيادي، جاهز للتدقيق.',
-    'cm.l1':'وضع الالتزام','cm.l2':'جاهز للتدقيق · 2025',
-    'v.ey':'الذكاء الاصطناعي × الثلاثيّة · فايب كودنق','v.h':'ثلاثة أدوار. مشغّل واحد. <em>ضغط بالوكلاء.</em>',
-    'v.s':'Claude Code، Gemini API، ومسارات الوكلاء هي طريقة المشغّل الواحد ليتوسّع كأنه فريق. مخرجات PM والمنتج وBD — تُصاغ وتُراجع وتُشحن — بسرعة آلة وبحكم بشري في الحلقة.',
-    'vc1.h':'زمام · منصة PMO','vc1.p':'منصة حوكمة متعددة المستأجرين — بُنيت طرف لطرف بـ Claude Code. أدوار، مخاطر، مؤشرات، أصحاب مصلحة، كلها متكاملة.',
-    'vc2.h':'REMS · تدقيق أمني','vc2.p':'تدقيق كود شامل بقيادة وكلاء Claude — بوابات OWASP، ربط بـ ISO 27001، وطلبات دمج للمعالجة تُولَّد تلقائيًا.',
-    'vc3.h':'HubEat · سحابة GCP','vc3.p':'هجرة سحابية كاملة مرتّبة بـ Gemini — مدارة كـ IaC، بدون انقطاع، خطة رجوع أقل من ٥ دقائق.',
-    'vc4.h':'عمليات بالوكلاء','vc4.p':'تقارير PM، تجارب A/B، إحاطات BD، مراجعة عقود — كلها تُصاغ بوكلاء Claude مخصّصين وأنا أراجع وأُغلق.',
-    'n.ey':'الشبكة التنفيذية','n.h':'المحفظة. <em>الثقة. السجل.</em>',
-    'n.s':'عملاء سياديون، شركات طاقة كبرى، جهات تنظيمية، وشركاء منصات. سنوات من علاقات بمستوى تنفيذي عبر كل طبقات منظومة السعودية الاستراتيجية.',
-    'j.ey':'الجدول الزمني الشامل · مشغّل واحد، ثلاث عوالم','j.h':'مسار <em>يتراكم.</em>',
-    'j.s':'من قائد حوكمة، إلى مُطلق منتج، إلى مغلق صفقات — كل فصل بنى اللي بعده. نفس المشغّل. ثلاثة نماذج تشغيل.',
-    'tly1':'الأساس','tl1.h':'حوكمة وأساسات','tl1.p':'بنيت انضباط PMO من الصفر. أرسيت الإيقاع، خرائط الملكية، وسجلات المخاطر عبر محافظ متعدّدة. وقّعنا أوّل عقود مؤسسيّة.',
-    'tly2':'تحوّل','tl2.h':'تحوّل راصد','tl2.p':'ورثت برامج متعثّرة. أعدت بناء الحوكمة. حقّقت تسليم ٩٠٪ في الموعد. أغلقت ٤٠+ أمر شراء و٥٥+ عقد. ثبّتنا تفويضات B2G مع عملاء سياديين.',
-    'tly3':'منتج','tl3.h':'سبرنت مجاز','tl3.p':'شحنت منتج رئيسي. مجاز وصل للمركز الأول في ٤ شهور. +٢٥٠٪ تحميلات، ٢٥M+ ظهور. تحوّلت لتبنّي PdM كامل بجوار قيادة PMO.',
-    'tly4':'توسّع','tl4.h':'القوة الهجينة · مُضاعفة','tl4.p':'٤ منتجات إضافية أُطلقت (٥ منتجات حيّة بالمجموع). ١٢ خدمة فعّالة. نمو ٤× في الإيرادات. ٥٠٠٪ توسّع أسطول. ٣٨٠+ عميل مؤسسي. هجرات GCP كاملة. منظومة فايب كودنق مُنتَجة داخليًا.',
-    'cp.ey':'القدرات · مكتسبة لا مُدرجة','cp.h':'إيش أجيب <em>للغرفة.</em>',
-    'cap1.p':'محترف إدارة مشاريع · PMI. الانضباط خلف كل تسليم.',
-    'cap2.p':'تصميم بنية تحتية سحابيّة كاملة، هجرة، وتحويلات بدون انقطاع على Google Cloud.',
-    'cap3.p':'تأطير المشكلة من زاوية المستخدم، نماذج سريعة، وانضباط في التكرار.',
-    'cap4.p':'أطر PMBOK، توافق ISO 27001، بوابات OWASP. سرّية بمستوى سيادي.',
-    'cap5.p':'Claude Code، Gemini API، ومسارات وكلاء. مشغّل واحد يتوسّع كفريق.',
-    'cap6.p':'علاقات سيادية ومؤسسيّة عبر قطاعات الطاقة، المياه، التنظيم، والتقنية في السعودية.',
-    'c.h':'تحتاج مشغّل واحد يقدر يسوّي كل شي؟','c.p':'أستلم مهمات تنفيذيّة متعدّدة التخصّصات: PMO + منتج + BD تحت عقل تشغيلي واحد. مقرّي الرياض، سرّيّة سيادية، شحن بسرعة آلة بحكم بشري في الحلقة.',
-    'c.l1':'مباشر','c.l2':'إيميل','c.l3':'لينكدإن',
-    'f':'القوة الهجينة · إدارة مشاريع × منتج × تطوير أعمال × ذكاء اصطناعي',
-  }
-};
-const langBtn = document.getElementById('langBtn');
-let curLang = 'en';
-function setLang(lang){
-  curLang = lang;
-  const dict = I18N[lang];
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k = el.getAttribute('data-i18n');
-    if(dict[k]) el.innerHTML = dict[k];
-  });
-  langBtn.textContent = lang === 'ar' ? 'English' : 'العربية';
-}
-langBtn.addEventListener('click',()=>setLang(curLang==='en'?'ar':'en'));
-function animateCounter(el){
-  const target = parseFloat(el.dataset.target);
-  const dur = 1600, start = performance.now();
-  function step(now){
-    const t = Math.min((now-start)/dur, 1);
-    const eased = 1 - Math.pow(1-t, 3);
-    const val = target * eased;
-    el.textContent = target >= 100 ? Math.round(val) : (target%1?val.toFixed(1):Math.round(val));
-    if(t<1) requestAnimationFrame(step);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(step);
-}
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(en.isIntersecting){
-      en.target.classList.add('in');
-      en.target.querySelectorAll('.cnt').forEach(c=>{ if(!c.dataset.done){c.dataset.done='1';animateCounter(c)} });
-      if(en.target.classList.contains('cnt') && !en.target.dataset.done){en.target.dataset.done='1';animateCounter(en.target)}
-      obs.unobserve(en.target);
+      const track = document.getElementById('marquee-track');
+      if (track) track.style.animationName = l === 'ar' ? 'marqueeR' : 'marquee';
     }
-  });
-},{threshold:0.18});
-document.querySelectorAll('.rv, .cnt').forEach(el=>obs.observe(el));
-document.querySelectorAll('.b-card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r = card.getBoundingClientRect();
-    card.style.setProperty('--mx', ((e.clientX-r.left)/r.width*100)+'%');
-    card.style.setProperty('--my', ((e.clientY-r.top)/r.height*100)+'%');
-  });
-});
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id = a.getAttribute('href').slice(1);
-    const t = document.getElementById(id);
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
-  });
-});
-</script>
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+    const revealObs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.rv').forEach(el => revealObs.observe(el));
+
+    /* ─── COUNT-UP ───────────────────────────────────────────────── */
+    function animateCount(el) {
+      const target   = parseFloat(el.getAttribute('data-target'));
+      const suffix   = el.getAttribute('data-suffix') || '';
+      const duration = 1800;
+      const fps      = 60;
+      const steps    = duration / (1000 / fps);
+      let current    = 0;
+      const step     = target / steps;
+
+      const tick = () => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.round(current) + suffix;
+        if (current < target) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    const countObs = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+      }),
+      { threshold: 0.5 }
+    );
+    document.querySelectorAll('.count-num[data-target]').forEach(el => countObs.observe(el));
+
+    /* ─── BENTO MOUSE GLOW ───────────────────────────────────────── */
+    document.querySelectorAll('.bc').forEach(cell => {
+      cell.addEventListener('mousemove', e => {
+        const r = cell.getBoundingClientRect();
+        cell.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        cell.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+      });
+    });
+
+    /* ─── TOPBAR SCROLL ──────────────────────────────────────────── */
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.style.background = window.scrollY > 40
+        ? 'rgba(3,7,18,0.94)'
+        : 'rgba(3,7,18,0.72)';
+    }, { passive: true });
+
+    /* ─── INIT ───────────────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.rv').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add('visible');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
