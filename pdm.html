@@ -12,13 +12,15 @@
    DESIGN TOKENS
 ====================================== */
 :root {
-  --bg0: #070A13;
+  --bg0: #080C16;
   --bg1: #0F172A;
   --bg2: #1E293B;
   --accent: #3B82F6;
   --accent-l: #60A5FA;
   --violet: #8B5CF6;
   --violet-l: #A78BFA;
+  --accent-rgb: 59,130,246;
+  --violet-rgb: 139,92,246;
   --text: #F1F5F9;
   --muted: #64748B;
   --radius-sm: 8px;
@@ -29,6 +31,16 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
+/* ---- VIEW 2: Energy & Water palette override ---- */
+body.view-energy {
+  --accent: #0D9488;
+  --accent-l: #2DD4BF;
+  --violet: #06B6D4;
+  --violet-l: #67E8F9;
+  --accent-rgb: 13,148,136;
+  --violet-rgb: 6,182,212;
+}
+
 /* ======================================
    RESET & BASE
 ====================================== */
@@ -37,12 +49,13 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg0);
+  background: linear-gradient(180deg, var(--bg0) 0%, #0B1120 100%);
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
   position: relative;
+  transition: background 0.5s ease;
 }
 
 /* BG glow */
@@ -51,10 +64,11 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 85% -10%, rgba(59,130,246,0.10) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 15% 110%, rgba(139,92,246,0.07) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 60% at 85% -10%, rgba(var(--accent-rgb),0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 15% 110%, rgba(var(--violet-rgb),0.08) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
+  transition: background 0.5s ease;
 }
 
 /* Grain overlay */
@@ -87,11 +101,12 @@ em { font-style: italic; }
   background: rgba(15,23,42,0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(59,130,246,0.25);
+  border: 1px solid rgba(var(--accent-rgb),0.25);
   border-radius: 100px;
   padding: 4px;
   gap: 2px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  transition: border-color 0.4s ease;
 }
 
 [dir="rtl"] .lang-toggle {
@@ -130,29 +145,105 @@ em { font-style: italic; }
   justify-content: space-between;
   padding: 0 clamp(20px, 5vw, 80px);
   height: 68px;
-  background: rgba(7,10,19,0.80);
+  background: rgba(8,12,22,0.82);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(59,130,246,0.10);
+  border-bottom: 1px solid rgba(var(--accent-rgb),0.12);
+  transition: border-color 0.4s ease;
 }
 
 .logo {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-l);
   letter-spacing: -0.01em;
+  transition: color 0.4s ease;
+  white-space: nowrap;
 }
 .logo span { color: var(--text); }
 
-nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 40px); }
+nav { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 32px); }
 nav a {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--muted);
   letter-spacing: 0.01em;
   transition: color 0.2s;
+  white-space: nowrap;
 }
 nav a:hover { color: var(--text); }
+
+/* ======================================
+   VIEW SWITCH (DUAL-VIEW ENGINE)
+====================================== */
+.view-switch-bar {
+  display: flex;
+  justify-content: center;
+  padding: 22px clamp(20px, 5vw, 80px) 6px;
+}
+
+.view-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15,23,42,0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(var(--accent-rgb),0.25);
+  border-radius: 100px;
+  padding: 5px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  max-width: 100%;
+  transition: border-color 0.4s ease;
+}
+
+.view-btn {
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 1.1vw, 0.86rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 9px clamp(14px, 2vw, 26px);
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.view-btn .vdot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor; opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.view-btn.active {
+  background: linear-gradient(135deg, var(--accent), var(--violet));
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(var(--accent-rgb),0.45);
+}
+.view-btn.active .vdot { opacity: 1; box-shadow: 0 0 8px #fff; }
+
+/* ======================================
+   VIEW CONTAINERS / CROSS-FADE
+====================================== */
+.view {
+  display: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.view.view-active {
+  display: block;
+}
+.view.view-shown {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* ======================================
    HERO
@@ -160,28 +251,28 @@ nav a:hover { color: var(--text); }
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 90vh;
   align-items: center;
-  padding: clamp(60px, 8vh, 120px) clamp(20px, 5vw, 80px);
+  padding: clamp(40px, 5vh, 80px) clamp(20px, 5vw, 80px);
   gap: clamp(40px, 6vw, 80px);
 }
 
-.hero-left { display: flex; flex-direction: column; gap: 28px; }
+.hero-left { display: flex; flex-direction: column; gap: 24px; }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 7px 18px;
-  border: 1px solid rgba(59,130,246,0.45);
+  border: 1px solid rgba(var(--accent-rgb),0.45);
   border-radius: 100px;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-l);
-  background: rgba(59,130,246,0.06);
+  background: rgba(var(--accent-rgb),0.06);
   width: fit-content;
+  transition: border-color 0.4s ease, color 0.4s ease;
 }
 
 .eyebrow::before {
@@ -200,7 +291,7 @@ nav a:hover { color: var(--text); }
 }
 
 .hero-h1 {
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-size: clamp(2rem, 3.8vw, 3.6rem);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.03em;
@@ -218,9 +309,9 @@ nav a:hover { color: var(--text); }
 [dir="rtl"] .hero-h1 { letter-spacing: 0; }
 
 .hero-sub {
-  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
   color: var(--muted);
-  max-width: 500px;
+  max-width: 520px;
   line-height: 1.7;
 }
 
@@ -232,9 +323,10 @@ nav a:hover { color: var(--text); }
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  background: linear-gradient(135deg, rgba(59,130,246,0.18) 0%, rgba(139,92,246,0.18) 100%);
-  border: 1px solid rgba(59,130,246,0.35);
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.18) 0%, rgba(var(--violet-rgb),0.18) 100%);
+  border: 1px solid rgba(var(--accent-rgb),0.35);
   color: var(--accent-l);
+  transition: border-color 0.4s ease, color 0.4s ease;
 }
 
 .cta-btn {
@@ -243,7 +335,7 @@ nav a:hover { color: var(--text); }
   gap: 8px;
   padding: 14px 32px;
   background: var(--accent);
-  color: #000;
+  color: #fff;
   font-weight: 700;
   font-size: 0.95rem;
   border-radius: var(--radius-md);
@@ -256,8 +348,9 @@ nav a:hover { color: var(--text); }
 
 .cta-btn:hover {
   background: var(--accent-l);
+  color: #000;
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(59,130,246,0.4);
+  box-shadow: 0 12px 40px rgba(var(--accent-rgb),0.4);
 }
 
 /* ---- Profile ---- */
@@ -271,20 +364,22 @@ nav a:hover { color: var(--text); }
   position: relative;
   width: 320px;
   height: 320px;
+  max-width: 70vw;
 }
 
 .profile-glass {
   position: absolute;
   inset: 40px;
   border-radius: 50%;
-  border: 2px solid rgba(59,130,246,0.4);
-  box-shadow: 0 0 80px -20px rgba(59,130,246,0.5), inset 0 0 40px rgba(59,130,246,0.04);
-  background: rgba(59,130,246,0.08);
+  border: 2px solid rgba(var(--accent-rgb),0.4);
+  box-shadow: 0 0 80px -20px rgba(var(--accent-rgb),0.5), inset 0 0 40px rgba(var(--accent-rgb),0.04);
+  background: rgba(var(--accent-rgb),0.08);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(4px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .profile-avatar-premium {
@@ -315,13 +410,13 @@ nav a:hover { color: var(--text); }
 }
 
 .r1 {
-  border-color: rgba(59,130,246,0.25);
+  border-color: rgba(var(--accent-rgb),0.25);
   animation: spin 18s linear infinite;
 }
 
 .r2 {
   inset: 10px;
-  border-color: rgba(139,92,246,0.15);
+  border-color: rgba(var(--violet-rgb),0.15);
   animation: spin 30s linear infinite reverse;
 }
 
@@ -339,11 +434,12 @@ nav a:hover { color: var(--text); }
   letter-spacing: 0.06em;
   background: rgba(15,23,42,0.85);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(59,130,246,0.35);
+  border: 1px solid rgba(var(--accent-rgb),0.35);
   color: var(--accent-l);
-  box-shadow: 0 4px 20px rgba(59,130,246,0.25);
+  box-shadow: 0 4px 20px rgba(var(--accent-rgb),0.25);
   animation: floatBadge 4s ease-in-out infinite;
   white-space: nowrap;
+  transition: border-color 0.4s ease, color 0.4s ease;
 }
 
 .b1 { top: 30px; right: 0; animation-delay: 0s; }
@@ -358,7 +454,7 @@ nav a:hover { color: var(--text); }
    SECTION SHARED
 ====================================== */
 section {
-  padding: clamp(60px, 8vw, 100px) clamp(20px, 5vw, 80px);
+  padding: clamp(54px, 7vw, 96px) clamp(20px, 5vw, 80px);
 }
 
 .section-eyebrow {
@@ -368,14 +464,23 @@ section {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 10px;
+  transition: color 0.4s ease;
 }
 
 .section-title {
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  margin-bottom: 48px;
+  margin-bottom: 16px;
   line-height: 1.2;
+}
+
+.section-intro {
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  color: var(--muted);
+  max-width: 720px;
+  line-height: 1.7;
+  margin-bottom: 44px;
 }
 
 [dir="rtl"] .section-title { letter-spacing: 0; }
@@ -406,7 +511,7 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle 180px at var(--mx) var(--my), rgba(59,130,246,0.07) 0%, transparent 70%);
+  background: radial-gradient(circle 180px at var(--mx) var(--my), rgba(var(--accent-rgb),0.08) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.4s;
   pointer-events: none;
@@ -416,9 +521,9 @@ section {
 .b-card:hover::before { opacity: 1; }
 
 .b-card:hover {
-  box-shadow: 0 8px 40px rgba(59,130,246,0.3), 0 2px 8px rgba(0,0,0,0.5);
-  border-color: rgba(59,130,246,0.3);
-  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(var(--accent-rgb),0.3), 0 2px 8px rgba(0,0,0,0.5);
+  border-color: rgba(var(--accent-rgb),0.3);
+  transform: scale(1.02) translateY(-3px);
 }
 
 .b-card.span-3 { grid-column: span 3; }
@@ -428,15 +533,15 @@ section {
 .b-card.feat {
   grid-column: span 3;
   grid-row: span 2;
-  background: linear-gradient(145deg, rgba(59,130,246,0.12), rgba(139,92,246,0.08));
-  border-color: rgba(59,130,246,0.25);
+  background: linear-gradient(145deg, rgba(var(--accent-rgb),0.12), rgba(var(--violet-rgb),0.08));
+  border-color: rgba(var(--accent-rgb),0.25);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
 .feat-num {
-  font-size: clamp(5rem, 8vw, 7rem);
+  font-size: clamp(4rem, 7vw, 6rem);
   font-weight: 800;
   line-height: 1;
   background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
@@ -466,11 +571,12 @@ section {
 .count-wrap { display: flex; align-items: baseline; gap: 4px; }
 
 .count-num {
-  font-size: clamp(2.4rem, 4vw, 3.5rem);
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
   font-weight: 800;
   color: var(--accent-l);
   letter-spacing: -0.04em;
   line-height: 1;
+  transition: color 0.4s ease;
 }
 
 .count-suffix {
@@ -487,8 +593,8 @@ section {
 }
 
 .dark-card {
-  background: rgba(7,10,19,0.8);
-  border-color: rgba(59,130,246,0.15);
+  background: rgba(8,12,22,0.8);
+  border-color: rgba(var(--accent-rgb),0.15);
 }
 
 .stack-title {
@@ -504,21 +610,22 @@ section {
 
 .tech-chip {
   padding: 5px 12px;
-  background: rgba(59,130,246,0.08);
-  border: 1px solid rgba(59,130,246,0.2);
+  background: rgba(var(--accent-rgb),0.08);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
   border-radius: 6px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--accent-l);
   font-weight: 500;
+  transition: border-color 0.4s ease, color 0.4s ease;
 }
 
 .quote-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(145deg, rgba(139,92,246,0.08), rgba(59,130,246,0.05));
-  border-color: rgba(139,92,246,0.2);
+  background: linear-gradient(145deg, rgba(var(--violet-rgb),0.08), rgba(var(--accent-rgb),0.05));
+  border-color: rgba(var(--violet-rgb),0.2);
 }
 
 .quote-text {
@@ -527,13 +634,14 @@ section {
   color: var(--violet-l);
   line-height: 1.65;
   font-weight: 500;
+  transition: color 0.4s ease;
 }
 
 .quote-text::before { content: '\201C'; }
 .quote-text::after  { content: '\201D'; }
 
 /* ======================================
-   EXECUTIVE COMMAND CENTER
+   COMMAND CENTER / CAPABILITY GRID
 ====================================== */
 .command-center { background: var(--bg1); }
 
@@ -545,9 +653,9 @@ section {
 
 .cmd-card {
   background: var(--bg2);
-  border: 1px solid rgba(59,130,246,0.12);
+  border: 1px solid rgba(var(--accent-rgb),0.12);
   border-radius: var(--radius-lg);
-  padding: 32px;
+  padding: 30px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -566,42 +674,61 @@ section {
 .cmd-card:hover::after { opacity: 1; }
 
 .cmd-card:hover {
-  border-color: rgba(59,130,246,0.3);
-  box-shadow: 0 12px 48px rgba(59,130,246,0.2);
-  transform: translateY(-4px);
+  border-color: rgba(var(--accent-rgb),0.3);
+  box-shadow: 0 12px 48px rgba(var(--accent-rgb),0.2);
+  transform: scale(1.02) translateY(-4px);
+}
+
+/* Energy-priority emphasis card */
+.cmd-card.priority {
+  background: linear-gradient(150deg, rgba(var(--accent-rgb),0.16), rgba(var(--violet-rgb),0.08));
+  border-color: rgba(var(--accent-rgb),0.4);
 }
 
 .cmd-icon {
   width: 48px; height: 48px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.15));
-  border: 1px solid rgba(59,130,246,0.25);
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.2), rgba(var(--violet-rgb),0.15));
+  border: 1px solid rgba(var(--accent-rgb),0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
   margin-bottom: 18px;
+  transition: border-color 0.4s ease;
+}
+
+.cmd-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  transition: color 0.4s ease;
 }
 
 .cmd-title {
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--text);
+  line-height: 1.35;
 }
 
 .cmd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 
 .cmd-tag {
   padding: 3px 10px;
-  background: rgba(59,130,246,0.1);
-  border: 1px solid rgba(59,130,246,0.2);
+  background: rgba(var(--accent-rgb),0.1);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
   border-radius: 100px;
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--accent-l);
   font-family: var(--font-mono);
   letter-spacing: 0.03em;
+  transition: border-color 0.4s ease, color 0.4s ease;
 }
 
 .cmd-desc {
@@ -622,19 +749,19 @@ section {
 
 .gov-node {
   padding: 14px 16px;
-  background: rgba(59,130,246,0.05);
-  border: 1px solid rgba(59,130,246,0.12);
+  background: rgba(var(--accent-rgb),0.05);
+  border: 1px solid rgba(var(--accent-rgb),0.12);
   border-radius: var(--radius-sm);
   transition: all 0.2s;
 }
 
 .gov-node:hover {
-  background: rgba(59,130,246,0.1);
-  border-color: rgba(59,130,246,0.25);
+  background: rgba(var(--accent-rgb),0.1);
+  border-color: rgba(var(--accent-rgb),0.25);
 }
 
 .gov-node-name {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 4px;
@@ -652,7 +779,7 @@ section {
 .marquee-section {
   padding: clamp(40px, 5vw, 60px) 0;
   overflow: hidden;
-  background: linear-gradient(180deg, transparent, rgba(59,130,246,0.03), transparent);
+  background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb),0.03), transparent);
 }
 
 .marquee-label {
@@ -663,6 +790,7 @@ section {
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 28px;
+  padding: 0 20px;
 }
 
 .marquee-wrapper {
@@ -705,7 +833,7 @@ section {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 
 .marquee-track.rtl-marquee { animation-direction: reverse; }
@@ -727,17 +855,19 @@ section {
   transition: all 0.3s;
   cursor: default;
   letter-spacing: 0.02em;
+  filter: grayscale(1);
 }
 
 .client-chip:hover {
   color: var(--accent-l);
-  border-color: rgba(59,130,246,0.4);
-  box-shadow: 0 4px 20px rgba(59,130,246,0.25);
-  background: rgba(59,130,246,0.08);
+  border-color: rgba(var(--accent-rgb),0.4);
+  box-shadow: 0 4px 20px rgba(var(--accent-rgb),0.25);
+  background: rgba(var(--accent-rgb),0.08);
+  filter: grayscale(0);
 }
 
 /* ======================================
-   PRODUCT STORY
+   PRODUCT STORY / TIMELINE
 ====================================== */
 .story-phases {
   display: grid;
@@ -754,8 +884,9 @@ section {
 }
 
 .phase-card:hover {
-  border-color: rgba(59,130,246,0.25);
-  box-shadow: 0 8px 32px rgba(59,130,246,0.15);
+  border-color: rgba(var(--accent-rgb),0.25);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb),0.15);
+  transform: scale(1.02);
 }
 
 .phase-num {
@@ -765,6 +896,7 @@ section {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 8px;
+  transition: color 0.4s ease;
 }
 
 .phase-name {
@@ -832,9 +964,9 @@ section {
 }
 
 .cred-card:hover {
-  border-color: rgba(59,130,246,0.3);
-  box-shadow: 0 8px 32px rgba(59,130,246,0.2);
-  transform: translateY(-3px);
+  border-color: rgba(var(--accent-rgb),0.3);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb),0.2);
+  transform: scale(1.02) translateY(-3px);
 }
 
 .cred-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
@@ -853,11 +985,12 @@ section {
 }
 
 /* ======================================
-   CONTACT / FOOTER
+   CONTACT / FOOTER (shared, outside views)
 ====================================== */
 .contact-section {
   background: linear-gradient(180deg, var(--bg0), var(--bg1));
-  border-top: 1px solid rgba(59,130,246,0.1);
+  border-top: 1px solid rgba(var(--accent-rgb),0.1);
+  transition: border-color 0.4s ease;
 }
 
 .contact-inner {
@@ -884,7 +1017,6 @@ section {
   flex-direction: column;
   gap: 14px;
   align-items: center;
-  margin-bottom: 48px;
 }
 
 .contact-row {
@@ -900,14 +1032,15 @@ section {
 
 .contact-icon {
   width: 36px; height: 36px;
-  background: rgba(59,130,246,0.1);
-  border: 1px solid rgba(59,130,246,0.2);
+  background: rgba(var(--accent-rgb),0.1);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
   flex-shrink: 0;
+  transition: border-color 0.4s ease;
 }
 
 footer {
@@ -949,7 +1082,7 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 60px; }
+  .hero { grid-template-columns: 1fr; padding-top: 40px; }
   .hero-right { order: -1; }
   .profile-wrap { width: 240px; height: 240px; }
   .cmd-grid { grid-template-columns: 1fr; }
@@ -965,6 +1098,7 @@ footer {
   .b-card.span-4 { grid-column: span 2; }
   nav { display: none; }
   .cred-grid { grid-template-columns: 1fr 1fr; }
+  .view-switch { flex-wrap: wrap; justify-content: center; }
 }
 
 /* ======================================
@@ -975,6 +1109,7 @@ footer {
 }
 
 [dir="rtl"] .hero-sub     { max-width: 100%; }
+[dir="rtl"] .section-intro { max-width: 100%; }
 [dir="rtl"] .topbar       { flex-direction: row-reverse; }
 [dir="rtl"] nav           { flex-direction: row-reverse; }
 [dir="rtl"] .stats-chips  { flex-direction: row-reverse; }
@@ -988,7 +1123,7 @@ footer {
 <body>
 
 <!-- ============================
-     LANG TOGGLE
+     LANG TOGGLE (frosted floating)
 ============================= -->
 <div class="lang-toggle" role="group" aria-label="Language selector">
   <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
@@ -1001,321 +1136,639 @@ footer {
 <header class="topbar">
   <div class="logo">Abdulrahman <span>· PdM</span></div>
   <nav>
-    <a href="#products"  data-i18n="nav-product">Product</a>
-    <a href="#bento"     data-i18n="nav-metrics">Metrics</a>
-    <a href="#command"   data-i18n="nav-systems">Systems</a>
-    <a href="#contact"   data-i18n="nav-contact">Contact</a>
+    <a href="#capabilities" data-i18n="nav-product">Capabilities</a>
+    <a href="#metrics"      data-i18n="nav-metrics">Metrics</a>
+    <a href="#story"        data-i18n="nav-systems">Track Record</a>
+    <a href="#contact"      data-i18n="nav-contact">Contact</a>
   </nav>
 </header>
 
 <!-- ============================
-     HERO
+     VIEW SWITCH (DUAL-VIEW ENGINE)
 ============================= -->
-<section class="hero" id="hero">
-
-  <div class="hero-left">
-    <div class="eyebrow rv" data-i18n="eyebrow">Product Manager · Builder</div>
-
-    <h1 class="hero-h1 rv" data-delay="1">
-      <span data-i18n="hero-h1-plain">I don't build features. I build </span><em data-i18n="hero-h1-em">products that hit #1.</em>
-    </h1>
-
-    <p class="hero-sub rv" data-delay="2" data-i18n="hero-sub">
-      5 products launched. 25M+ impressions. +250% downloads. Engineering product-market fit from first sprint to #1 App Store ranking.
-    </p>
-
-    <div class="stats-chips rv" data-delay="3">
-      <span class="chip" data-i18n="chip1">#1 App Store</span>
-      <span class="chip" data-i18n="chip2">25M+ Impressions</span>
-      <span class="chip" data-i18n="chip3">+250% Downloads</span>
-    </div>
-
-    <a href="#products" class="cta-btn rv" data-delay="4">
-      <span data-i18n="cta">See Products</span>
-      <span aria-hidden="true">→</span>
-    </a>
-  </div>
-
-  <div class="hero-right rv" data-delay="2">
-    <div class="profile-wrap">
-      <div class="profile-glass">
-        <img
-          src="abdulrahman.png"
-          alt="Abdulrahman Alhumud"
-          class="profile-avatar-premium"
-          onerror="this.style.display='none';document.getElementById('av-fb').style.display='flex'">
-        <div id="av-fb" class="avatar-fallback" style="display:none">AA</div>
-      </div>
-      <div class="profile-ring r1"></div>
-      <div class="profile-ring r2"></div>
-      <div class="float-badge b1" data-i18n="badge1">#1 RANK</div>
-      <div class="float-badge b2" data-i18n="badge2">+250%</div>
-    </div>
-  </div>
-
-</section>
-
-<!-- ============================
-     BENTO GRID
-============================= -->
-<section id="bento" style="background: var(--bg1);">
-  <div class="section-eyebrow rv" data-i18n="bento-eyebrow">&gt; metrics.load()</div>
-  <div class="section-title rv"   data-i18n="bento-title">Numbers That Ship Products</div>
-
-  <div class="bento-grid">
-
-    <!-- Featured #1 -->
-    <div class="b-card feat rv" data-delay="1">
-      <span class="feat-num">#1</span>
-      <div class="feat-label" data-i18n="feat-label">APP STORE RANKING</div>
-      <div class="feat-sub"   data-i18n="feat-sub">Ranked #1 on Saudi App Store</div>
-    </div>
-
-    <!-- 25M Impressions -->
-    <div class="b-card span-2 rv" data-delay="2">
-      <div class="count-wrap">
-        <span class="count-num" data-target="25">0</span>
-        <span class="count-suffix">M+</span>
-      </div>
-      <div class="b-label" data-i18n="count1-label">Impressions</div>
-    </div>
-
-    <!-- +250% Downloads -->
-    <div class="b-card span-3 rv" data-delay="3">
-      <div class="count-wrap">
-        <span class="count-suffix" style="color:var(--accent-l);font-size:2rem;">+</span>
-        <span class="count-num" data-target="250">0</span>
-        <span class="count-suffix">%</span>
-      </div>
-      <div class="b-label" data-i18n="count2-label">YoY Downloads Growth</div>
-    </div>
-
-    <!-- 5 Products -->
-    <div class="b-card span-2 rv" data-delay="1">
-      <div class="count-wrap">
-        <span class="count-num" data-target="5">0</span>
-      </div>
-      <div class="b-label" data-i18n="count3-label">Products Launched</div>
-    </div>
-
-    <!-- 12 Services -->
-    <div class="b-card span-2 rv" data-delay="2">
-      <div class="count-wrap">
-        <span class="count-num" data-target="12">0</span>
-      </div>
-      <div class="b-label" data-i18n="count4-label">Core Services</div>
-    </div>
-
-    <!-- Tech Stack -->
-    <div class="b-card span-4 dark-card rv" data-delay="3">
-      <div class="stack-title" data-i18n="stack-title">Tech Stack</div>
-      <div class="tech-chips">
-        <span class="tech-chip">GCP</span>
-        <span class="tech-chip">Firebase</span>
-        <span class="tech-chip">BigQuery</span>
-        <span class="tech-chip">Mixpanel</span>
-        <span class="tech-chip">Gemini API</span>
-        <span class="tech-chip">Figma</span>
-        <span class="tech-chip">Jira</span>
-        <span class="tech-chip">Odoo</span>
-        <span class="tech-chip">Vercel</span>
-        <span class="tech-chip">Zoho CRM</span>
-      </div>
-    </div>
-
-    <!-- Quote -->
-    <div class="b-card span-2 quote-card rv" data-delay="4">
-      <p class="quote-text" data-i18n="quote">Great products aren't shipped — they're crafted sprint by sprint.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================
-     EXECUTIVE COMMAND CENTER
-============================= -->
-<section class="command-center" id="command">
-  <div class="section-eyebrow rv" style="font-family:var(--font-mono);">&gt; products.ship()</div>
-  <div class="section-title rv" data-i18n="cmd-title">Product Automation Systems</div>
-
-  <div class="cmd-grid" id="products">
-
-    <!-- Card A: CRM -->
-    <div class="cmd-card rv" data-delay="1">
-      <div class="cmd-icon">&#127959;&#65039;</div>
-      <div class="cmd-title" data-i18n="crm-title">CRM Architecture Module</div>
-      <div class="cmd-tags">
-        <span class="cmd-tag">Odoo</span>
-        <span class="cmd-tag">Zoho</span>
-        <span class="cmd-tag">Vercel</span>
-        <span class="cmd-tag">OAuth 2.0</span>
-      </div>
-      <p class="cmd-desc" data-i18n="crm-desc">
-        Deployed a fully integrated CRM pipeline — Odoo &amp; Zoho connected via OAuth 2.0 on Vercel. Automated lead tracking across 380+ enterprise clients.
-      </p>
-      <div class="cmd-status" data-i18n="crm-status">&#129001; Live</div>
-    </div>
-
-    <!-- Card B: Jira -->
-    <div class="cmd-card rv" data-delay="2">
-      <div class="cmd-icon">&#9889;</div>
-      <div class="cmd-title" data-i18n="jira-title">Sprint Intelligence Hub</div>
-      <div class="cmd-tags">
-        <span class="cmd-tag">Jira API</span>
-        <span class="cmd-tag">Outlook</span>
-        <span class="cmd-tag">Auto-Reports</span>
-      </div>
-      <p class="cmd-desc" data-i18n="jira-desc">
-        Automated daily sprint reports generated from Jira boards and dispatched via Outlook — PM intelligence on autopilot, saving 3hr+ per week per PM.
-      </p>
-      <div class="cmd-status" data-i18n="jira-status">&#129001; Active</div>
-    </div>
-
-    <!-- Card C: Governance -->
-    <div class="cmd-card rv" data-delay="3">
-      <div class="cmd-icon">&#128737;&#65039;</div>
-      <div class="cmd-title" data-i18n="gov-title">Governance Engines</div>
-      <div class="gov-nodes">
-        <div class="gov-node">
-          <div class="gov-node-name">Zimam</div>
-          <div class="gov-node-desc" data-i18n="zimam-desc">Executive audit dashboard for governance visibility</div>
-        </div>
-        <div class="gov-node">
-          <div class="gov-node-name">HubEat</div>
-          <div class="gov-node-desc" data-i18n="hubeat-desc">GCP-powered gathering logistics &amp; fleet optimization hub</div>
-        </div>
-        <div class="gov-node">
-          <div class="gov-node-name">REMS</div>
-          <div class="gov-node-desc" data-i18n="rems-desc">Real Estate Management System — security &amp; compliance engine</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================
-     CLIENT MARQUEE
-============================= -->
-<div class="marquee-section">
-  <div class="marquee-label" data-i18n="marquee-label">Powering Saudi Arabia's Leading Enterprises</div>
-  <div class="marquee-wrapper">
-    <div class="marquee-track" id="marquee-track">
-      <span class="client-chip">Petromin</span>
-      <span class="client-chip">SASCO</span>
-      <span class="client-chip">Saudi Water Authority</span>
-      <span class="client-chip">MEWA</span>
-      <span class="client-chip">Ministry of Energy</span>
-      <span class="client-chip">ZATCA</span>
-      <!-- Duplicate for seamless infinite loop -->
-      <span class="client-chip">Petromin</span>
-      <span class="client-chip">SASCO</span>
-      <span class="client-chip">Saudi Water Authority</span>
-      <span class="client-chip">MEWA</span>
-      <span class="client-chip">Ministry of Energy</span>
-      <span class="client-chip">ZATCA</span>
-    </div>
+<div class="view-switch-bar">
+  <div class="view-switch" role="group" aria-label="Profile view selector">
+    <button class="view-btn active" id="vbtn-general" onclick="setView('general')">
+      <span class="vdot"></span><span data-i18n="view-general">General PM Profile</span>
+    </button>
+    <button class="view-btn" id="vbtn-energy" onclick="setView('energy')">
+      <span class="vdot"></span><span data-i18n="view-energy">Energy &amp; Water Tailored View</span>
+    </button>
   </div>
 </div>
 
-<!-- ============================
-     PRODUCT STORY
-============================= -->
-<section id="story" style="background: var(--bg0);">
-  <div class="section-eyebrow rv" style="font-family:var(--font-mono);">&gt; mojaz.sprint()</div>
-  <div class="section-title rv" data-i18n="story-title">The Mojaz Sprint — From Idea to #1</div>
+<!-- ====================================================
+     VIEW 1 — CORE TECHNICAL PRODUCT MANAGER (GENERAL)
+==================================================== -->
+<div class="view view-active view-shown" id="view-general">
 
-  <div class="story-phases">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow rv" data-i18n="g-eyebrow">Technical Product Manager</div>
 
-    <div class="phase-card rv" data-delay="1">
-      <div class="phase-num"  data-i18n="phase1-num">Phase 01</div>
-      <div class="phase-name" data-i18n="phase1-name">Discover</div>
-      <div class="phase-time" data-i18n="phase1-time">Week 1–2</div>
-      <p class="phase-desc"   data-i18n="phase1-desc">User research + competitive analysis → product brief. Defined core value proposition and identified top friction points in the market.</p>
-      <div class="progress-bar-wrap">
-        <div class="progress-label">
-          <span data-i18n="prog-completion">Completion</span>
-          <span>100%</span>
-        </div>
-        <div class="progress-track">
-          <div class="progress-fill" data-p="1.0"></div>
-        </div>
+      <h1 class="hero-h1 rv" data-delay="1">
+        <span data-i18n="g-h1-plain">I take products from a blank board to </span><em data-i18n="g-h1-em">the #1 spot.</em>
+      </h1>
+
+      <p class="hero-sub rv" data-delay="2" data-i18n="g-sub">
+        Five products launched, twenty-five million impressions, and download growth north of 250%. I sit between the engineers and the market and make sure both get what they need.
+      </p>
+
+      <div class="stats-chips rv" data-delay="3">
+        <span class="chip" data-i18n="g-chip1">#1 App Store</span>
+        <span class="chip" data-i18n="g-chip2">25M+ Impressions</span>
+        <span class="chip" data-i18n="g-chip3">+250% Downloads</span>
       </div>
+
+      <a href="#capabilities" class="cta-btn rv" data-delay="4">
+        <span data-i18n="g-cta">See the work</span>
+        <span aria-hidden="true">&#8594;</span>
+      </a>
     </div>
 
-    <div class="phase-card rv" data-delay="2">
-      <div class="phase-num"  data-i18n="phase2-num">Phase 02</div>
-      <div class="phase-name" data-i18n="phase2-name">Ship</div>
-      <div class="phase-time" data-i18n="phase2-time">Week 3–8</div>
-      <p class="phase-desc"   data-i18n="phase2-desc">Sprint cycles, A/B tests, 25M impressions milestone. Iterative development with continuous user feedback loops and data-driven prioritization.</p>
-      <div class="progress-bar-wrap">
-        <div class="progress-label">
-          <span data-i18n="prog-completion">Completion</span>
-          <span>92%</span>
+    <div class="hero-right rv" data-delay="2">
+      <div class="profile-wrap">
+        <div class="profile-glass">
+          <img
+            src="abdulrahman.png"
+            alt="Abdulrahman Alhumud"
+            class="profile-avatar-premium"
+            onerror="this.style.display='none';document.getElementById('av-fb-g').style.display='flex'">
+          <div id="av-fb-g" class="avatar-fallback" style="display:none">AA</div>
         </div>
-        <div class="progress-track">
-          <div class="progress-fill" data-p="0.92"></div>
-        </div>
+        <div class="profile-ring r1"></div>
+        <div class="profile-ring r2"></div>
+        <div class="float-badge b1" data-i18n="g-badge1">#1 RANK</div>
+        <div class="float-badge b2" data-i18n="g-badge2">+250%</div>
       </div>
     </div>
+  </section>
 
-    <div class="phase-card rv" data-delay="3">
-      <div class="phase-num"  data-i18n="phase3-num">Phase 03</div>
-      <div class="phase-name" data-i18n="phase3-name">Scale</div>
-      <div class="phase-time" data-i18n="phase3-time">Week 9–12</div>
-      <p class="phase-desc"   data-i18n="phase3-desc">#1 App Store, +250% downloads. Scaling infrastructure, optimizing performance, and maintaining top position through continuous iteration.</p>
-      <div class="progress-bar-wrap">
-        <div class="progress-label">
-          <span data-i18n="prog-completion">Completion</span>
-          <span>88%</span>
+  <!-- METRICS BENTO -->
+  <section id="metrics" style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="g-bento-eyebrow">&gt; metrics.load()</div>
+    <div class="section-title rv"   data-i18n="g-bento-title">The numbers behind the work</div>
+
+    <div class="bento-grid">
+      <div class="b-card feat rv" data-delay="1">
+        <span class="feat-num">#1</span>
+        <div class="feat-label" data-i18n="g-feat-label">APP STORE RANKING</div>
+        <div class="feat-sub"   data-i18n="g-feat-sub">Mojaz reached #1 on the Saudi App Store</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="2">
+        <div class="count-wrap">
+          <span class="count-num" data-target="25">0</span>
+          <span class="count-suffix">M+</span>
         </div>
-        <div class="progress-track">
-          <div class="progress-fill" data-p="0.88"></div>
+        <div class="b-label" data-i18n="g-count1-label">Impressions on Mojaz</div>
+      </div>
+
+      <div class="b-card span-3 rv" data-delay="3">
+        <div class="count-wrap">
+          <span class="count-suffix" style="color:var(--accent-l);font-size:2rem;">+</span>
+          <span class="count-num" data-target="250">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="g-count2-label">Download growth</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="1">
+        <div class="count-wrap">
+          <span class="count-suffix" style="color:var(--accent-l);font-size:2rem;">+</span>
+          <span class="count-num" data-target="500">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="g-count3-label">Fleet growth (HubEat)</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="2">
+        <div class="count-wrap">
+          <span class="count-num" data-target="40">0</span>
+          <span class="count-suffix">+</span>
+        </div>
+        <div class="b-label" data-i18n="g-count4-label">Purchase Orders managed</div>
+      </div>
+
+      <div class="b-card span-4 dark-card rv" data-delay="3">
+        <div class="stack-title" data-i18n="g-stack-title">Stack &amp; Tooling</div>
+        <div class="tech-chips">
+          <span class="tech-chip">GCP</span>
+          <span class="tech-chip">Firebase</span>
+          <span class="tech-chip">BigQuery</span>
+          <span class="tech-chip">Mixpanel</span>
+          <span class="tech-chip">Odoo</span>
+          <span class="tech-chip">Zoho CRM</span>
+          <span class="tech-chip">Jira</span>
+          <span class="tech-chip">MS Outlook</span>
+          <span class="tech-chip">Figma</span>
+          <span class="tech-chip">Vercel</span>
         </div>
       </div>
-    </div>
 
+      <div class="b-card span-2 rv" data-delay="4">
+        <div class="count-wrap">
+          <span class="count-num" data-target="55">0</span>
+          <span class="count-suffix">+</span>
+        </div>
+        <div class="b-label" data-i18n="g-count5-label">Legal contracts handled</div>
+      </div>
+
+      <div class="b-card span-4 quote-card rv" data-delay="2">
+        <p class="quote-text" data-i18n="g-quote">A product manager's job is simple to say and hard to do: keep everyone pointed at the same outcome, sprint after sprint.</p>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="3">
+        <div class="count-wrap">
+          <span class="count-num" data-target="5">0</span>
+        </div>
+        <div class="b-label" data-i18n="g-count6-label">Core products + 12 supporting services</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES / SYSTEMS -->
+  <section class="command-center" id="capabilities">
+    <div class="section-eyebrow rv" data-i18n="g-cmd-eyebrow">&gt; what.i.do()</div>
+    <div class="section-title rv" data-i18n="g-cmd-title">Where I spend my time</div>
+    <p class="section-intro rv" data-i18n="g-cmd-intro">Two stints shaped how I work: a consumer product I pushed to the top of the charts, and a platform business I rebuilt on the cloud and wired together end to end.</p>
+
+    <div class="cmd-grid">
+      <div class="cmd-card rv" data-delay="1">
+        <div class="cmd-icon">&#128241;</div>
+        <div class="cmd-kicker" data-i18n="g-c1-kicker">Mojaz · B2C</div>
+        <div class="cmd-title" data-i18n="g-c1-title">A consumer app that reached #1</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Growth</span>
+          <span class="cmd-tag">A/B Testing</span>
+          <span class="cmd-tag">Retention</span>
+        </div>
+        <p class="cmd-desc" data-i18n="g-c1-desc">
+          I owned the roadmap for Mojaz from early sprints through launch. We hit 25M+ impressions, grew downloads by more than 250%, and held the #1 App Store spot through steady iteration on the things users actually cared about.
+        </p>
+        <div class="cmd-status" data-i18n="g-c1-status">&#129001; Shipped</div>
+      </div>
+
+      <div class="cmd-card rv" data-delay="2">
+        <div class="cmd-icon">&#9729;&#65039;</div>
+        <div class="cmd-kicker" data-i18n="g-c2-kicker">Rased · Cloud</div>
+        <div class="cmd-title" data-i18n="g-c2-title">A full GCP migration, run on schedule</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">GCP</span>
+          <span class="cmd-tag">Migration</span>
+          <span class="cmd-tag">Architecture</span>
+        </div>
+        <p class="cmd-desc" data-i18n="g-c2-desc">
+          At Rased I led the move to Google Cloud and scaled the portfolio to 5 core products and 12 supporting services. The work stayed on schedule and inside budget, with security and data integrity locked down throughout.
+        </p>
+        <div class="cmd-status" data-i18n="g-c2-status">&#129001; Live</div>
+      </div>
+
+      <div class="cmd-card rv" data-delay="3">
+        <div class="cmd-icon">&#128279;</div>
+        <div class="cmd-kicker" data-i18n="g-c3-kicker">Integrations</div>
+        <div class="cmd-title" data-i18n="g-c3-title">Tools that talk to each other</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Odoo</span>
+          <span class="cmd-tag">Zoho CRM</span>
+          <span class="cmd-tag">Jira &#8594; Outlook</span>
+        </div>
+        <p class="cmd-desc" data-i18n="g-c3-desc">
+          I connected Odoo and Zoho CRM into one workflow and set up automated Jira reporting that lands straight in MS Outlook, so the team gets its updates without logging in or chasing anyone. Less friction, fewer dropped balls.
+        </p>
+        <div class="cmd-status" data-i18n="g-c3-status">&#129001; Automated</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-label" data-i18n="marquee-label">Work delivered alongside</div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track marquee-general">
+        <span class="client-chip">Petromin</span>
+        <span class="client-chip">SASCO</span>
+        <span class="client-chip">Saudi Water Authority</span>
+        <span class="client-chip">MEWA</span>
+        <span class="client-chip">Ministry of Energy</span>
+        <span class="client-chip">ZATCA</span>
+        <span class="client-chip">Petromin</span>
+        <span class="client-chip">SASCO</span>
+        <span class="client-chip">Saudi Water Authority</span>
+        <span class="client-chip">MEWA</span>
+        <span class="client-chip">Ministry of Energy</span>
+        <span class="client-chip">ZATCA</span>
+      </div>
+    </div>
   </div>
-</section>
 
-<!-- ============================
-     CREDENTIALS
-============================= -->
-<section style="background: var(--bg1);">
-  <div class="section-eyebrow rv" style="font-family:var(--font-mono);">&gt; certs.verify()</div>
-  <div class="section-title rv" data-i18n="cred-title">Credentials &amp; Tooling</div>
+  <!-- TRACK RECORD / STORY -->
+  <section id="story" style="background: var(--bg0);">
+    <div class="section-eyebrow rv" data-i18n="g-story-eyebrow">&gt; mojaz.timeline()</div>
+    <div class="section-title rv" data-i18n="g-story-title">From idea to top of the charts</div>
 
-  <div class="cred-grid">
-    <div class="cred-card rv" data-delay="1">
-      <span class="cred-icon">&#127942;</span>
-      <div class="cred-title" data-i18n="cred1-title">PMP® Certified</div>
-      <div class="cred-sub"   data-i18n="cred1-sub">Project Management Professional — PMI</div>
+    <div class="story-phases">
+      <div class="phase-card rv" data-delay="1">
+        <div class="phase-num"  data-i18n="g-p1-num">Phase 01</div>
+        <div class="phase-name" data-i18n="g-p1-name">Discover</div>
+        <div class="phase-time" data-i18n="g-p1-time">Weeks 1–2</div>
+        <p class="phase-desc"   data-i18n="g-p1-desc">User research and a hard look at the competition turned into a clear brief. We agreed on the one thing the product had to nail and the friction points worth removing first.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="g-prog">Completion</span><span>100%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="1.0"></div></div>
+        </div>
+      </div>
+
+      <div class="phase-card rv" data-delay="2">
+        <div class="phase-num"  data-i18n="g-p2-num">Phase 02</div>
+        <div class="phase-name" data-i18n="g-p2-name">Ship</div>
+        <div class="phase-time" data-i18n="g-p2-time">Weeks 3–8</div>
+        <p class="phase-desc"   data-i18n="g-p2-desc">Tight sprint cycles, real A/B tests, and the 25M impressions milestone. We let the data decide what shipped next and kept the feedback loop short.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="g-prog">Completion</span><span>92%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="0.92"></div></div>
+        </div>
+      </div>
+
+      <div class="phase-card rv" data-delay="3">
+        <div class="phase-num"  data-i18n="g-p3-num">Phase 03</div>
+        <div class="phase-name" data-i18n="g-p3-name">Scale</div>
+        <div class="phase-time" data-i18n="g-p3-time">Weeks 9–12</div>
+        <p class="phase-desc"   data-i18n="g-p3-desc">#1 on the App Store and downloads up 250%. From there it was about holding the position: tuning performance, watching the funnel, and keeping the iteration cadence honest.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="g-prog">Completion</span><span>88%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="0.88"></div></div>
+        </div>
+      </div>
     </div>
-    <div class="cred-card rv" data-delay="2">
-      <span class="cred-icon">&#9729;&#65039;</span>
-      <div class="cred-title" data-i18n="cred2-title">GCP Cloud Infrastructure</div>
-      <div class="cred-sub"   data-i18n="cred2-sub">Google Cloud Platform — Data &amp; DevOps</div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="g-cred-eyebrow">&gt; certs.verify()</div>
+    <div class="section-title rv" data-i18n="g-cred-title">Credentials &amp; tooling</div>
+
+    <div class="cred-grid">
+      <div class="cred-card rv" data-delay="1">
+        <span class="cred-icon">&#127942;</span>
+        <div class="cred-title" data-i18n="g-cred1-title">PMP&#174; Certified</div>
+        <div class="cred-sub"   data-i18n="g-cred1-sub">Project Management Professional — PMI</div>
+      </div>
+      <div class="cred-card rv" data-delay="2">
+        <span class="cred-icon">&#9729;&#65039;</span>
+        <div class="cred-title" data-i18n="g-cred2-title">GCP Cloud Infrastructure</div>
+        <div class="cred-sub"   data-i18n="g-cred2-sub">Google Cloud — data &amp; DevOps</div>
+      </div>
+      <div class="cred-card rv" data-delay="3">
+        <span class="cred-icon">&#128161;</span>
+        <div class="cred-title" data-i18n="g-cred3-title">Design Thinking</div>
+        <div class="cred-sub"   data-i18n="g-cred3-sub">Human-centred product work</div>
+      </div>
+      <div class="cred-card rv" data-delay="4">
+        <span class="cred-icon">&#128202;</span>
+        <div class="cred-title" data-i18n="g-cred4-title">Product Analytics</div>
+        <div class="cred-sub"   data-i18n="g-cred4-sub">Mixpanel · BigQuery · funnel analysis</div>
+      </div>
     </div>
-    <div class="cred-card rv" data-delay="3">
-      <span class="cred-icon">&#128161;</span>
-      <div class="cred-title" data-i18n="cred3-title">Design Thinking</div>
-      <div class="cred-sub"   data-i18n="cred3-sub">Human-centered product innovation</div>
+  </section>
+
+</div><!-- /view-general -->
+
+
+<!-- ====================================================
+     VIEW 2 — ENERGY & NATURAL RESOURCES LEADER
+==================================================== -->
+<div class="view" id="view-energy">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow rv" data-i18n="e-eyebrow">Energy &amp; Natural Resources · PM</div>
+
+      <h1 class="hero-h1 rv" data-delay="1">
+        <span data-i18n="e-h1-plain">Building digital products for </span><em data-i18n="e-h1-em">energy &amp; water.</em>
+      </h1>
+
+      <p class="hero-sub rv" data-delay="2" data-i18n="e-sub">
+        I have already shipped for the Saudi Water Authority, MEWA, the Ministry of Energy and ZATCA — automating field operations, logistics and compliance for the sector this role serves.
+      </p>
+
+      <div class="stats-chips rv" data-delay="3">
+        <span class="chip" data-i18n="e-chip1">SWA · MEWA · MoEnergy</span>
+        <span class="chip" data-i18n="e-chip2">+400% Revenue</span>
+        <span class="chip" data-i18n="e-chip3">380+ Enterprise Clients</span>
+      </div>
+
+      <a href="#capabilities-e" class="cta-btn rv" data-delay="4">
+        <span data-i18n="e-cta">See the fit</span>
+        <span aria-hidden="true">&#8594;</span>
+      </a>
     </div>
-    <div class="cred-card rv" data-delay="4">
-      <span class="cred-icon">&#129302;</span>
-      <div class="cred-title" data-i18n="cred4-title">AI Product Tooling</div>
-      <div class="cred-sub"   data-i18n="cred4-sub">Gemini API · Mixpanel · Predictive Analytics</div>
+
+    <div class="hero-right rv" data-delay="2">
+      <div class="profile-wrap">
+        <div class="profile-glass">
+          <img
+            src="abdulrahman.png"
+            alt="Abdulrahman Alhumud"
+            class="profile-avatar-premium"
+            onerror="this.style.display='none';document.getElementById('av-fb-e').style.display='flex'">
+          <div id="av-fb-e" class="avatar-fallback" style="display:none">AA</div>
+        </div>
+        <div class="profile-ring r1"></div>
+        <div class="profile-ring r2"></div>
+        <div class="float-badge b1" data-i18n="e-badge1">SWA · MEWA</div>
+        <div class="float-badge b2" data-i18n="e-badge2">+400%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS BENTO -->
+  <section id="metrics-e" style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="e-bento-eyebrow">&gt; sector.metrics()</div>
+    <div class="section-title rv"   data-i18n="e-bento-title">Proof points for this role</div>
+
+    <div class="bento-grid">
+      <div class="b-card feat rv" data-delay="1">
+        <span class="feat-num">4&#215;</span>
+        <div class="feat-label" data-i18n="e-feat-label">REVENUE GROWTH</div>
+        <div class="feat-sub"   data-i18n="e-feat-sub">400% revenue growth across the portfolio</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="2">
+        <div class="count-wrap">
+          <span class="count-num" data-target="380">0</span>
+          <span class="count-suffix">+</span>
+        </div>
+        <div class="b-label" data-i18n="e-count1-label">Enterprise clients</div>
+      </div>
+
+      <div class="b-card span-3 rv" data-delay="3">
+        <div class="count-wrap">
+          <span class="count-num" data-target="38">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="e-count2-label">Product adoption after onboarding redesign (tripled)</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="1">
+        <div class="count-wrap">
+          <span class="count-num" data-target="4">0</span>
+        </div>
+        <div class="b-label" data-i18n="e-count3-label">Products launched in 2025</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="2">
+        <div class="count-wrap">
+          <span class="count-num" data-target="100">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="e-count4-label">Security &amp; data-integrity compliance</div>
+      </div>
+
+      <div class="b-card span-4 dark-card rv" data-delay="3">
+        <div class="stack-title" data-i18n="e-stack-title">Sector partners &amp; systems</div>
+        <div class="tech-chips">
+          <span class="tech-chip">SWA</span>
+          <span class="tech-chip">MEWA</span>
+          <span class="tech-chip">Ministry of Energy</span>
+          <span class="tech-chip">ZATCA</span>
+          <span class="tech-chip">GCP</span>
+          <span class="tech-chip">Field Ops</span>
+          <span class="tech-chip">Inspection</span>
+          <span class="tech-chip">Logistics</span>
+        </div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="4">
+        <div class="count-wrap">
+          <span class="count-num" data-target="40">0</span>
+          <span class="count-suffix">+</span>
+        </div>
+        <div class="b-label" data-i18n="e-count5-label">Cross-functional team led</div>
+      </div>
+
+      <div class="b-card span-4 quote-card rv" data-delay="2">
+        <p class="quote-text" data-i18n="e-quote">In the public sector, a feature only counts when it survives the field, the audit, and the regulator. That's the bar I build to.</p>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="3">
+        <div class="count-wrap">
+          <span class="count-num" data-target="5">0</span>
+        </div>
+        <div class="b-label" data-i18n="e-count6-label">Government &amp; sector entities served</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES MAPPED TO VACANCY -->
+  <section class="command-center" id="capabilities-e">
+    <div class="section-eyebrow rv" data-i18n="e-cmd-eyebrow">&gt; vacancy.match()</div>
+    <div class="section-title rv" data-i18n="e-cmd-title">Mapped to the role</div>
+    <p class="section-intro rv" data-i18n="e-cmd-intro">Each part of the Energy &amp; Natural Resources PM brief, matched to work I have already delivered. The energy and water solutions come first, because that is where the fit is sharpest.</p>
+
+    <div class="cmd-grid">
+      <!-- Priority: SWA -->
+      <div class="cmd-card priority rv" data-delay="1">
+        <div class="cmd-icon">&#128688;</div>
+        <div class="cmd-kicker" data-i18n="e-c1-kicker">Energy &amp; Water Solutions</div>
+        <div class="cmd-title" data-i18n="e-c1-title">Saudi Water Authority — tanker logistics</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">SWA</span>
+          <span class="cmd-tag">Tracking</span>
+          <span class="cmd-tag">Logistics</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c1-desc">
+          Built automated logistics and tracking systems for water tankers — turning a manual dispatch process into a live, monitored operation the team can actually trust day to day.
+        </p>
+        <div class="cmd-status" data-i18n="e-c1-status">&#129001; Delivered</div>
+      </div>
+
+      <!-- Priority: MEWA -->
+      <div class="cmd-card priority rv" data-delay="2">
+        <div class="cmd-icon">&#127807;</div>
+        <div class="cmd-kicker" data-i18n="e-c2-kicker">Energy &amp; Water Solutions</div>
+        <div class="cmd-title" data-i18n="e-c2-title">MEWA — field ops &amp; compliance</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Inspection</span>
+          <span class="cmd-tag">Compliance</span>
+          <span class="cmd-tag">Field Ops</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c2-desc">
+          Led the digital transformation of field operations for the Ministry of Environment, Water &amp; Agriculture — inspection workflows and regulatory compliance monitoring that hold up to scrutiny.
+        </p>
+        <div class="cmd-status" data-i18n="e-c2-status">&#129001; Live</div>
+      </div>
+
+      <!-- Priority: MoEnergy / ZATCA -->
+      <div class="cmd-card priority rv" data-delay="3">
+        <div class="cmd-icon">&#9889;</div>
+        <div class="cmd-kicker" data-i18n="e-c3-kicker">Energy &amp; Water Solutions</div>
+        <div class="cmd-title" data-i18n="e-c3-title">Ministry of Energy &amp; ZATCA — national scale</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">National Scale</span>
+          <span class="cmd-tag">Security</span>
+          <span class="cmd-tag">Data Integrity</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c3-desc">
+          Drove cross-functional alignment for national-level rollouts with the Ministry of Energy and ZATCA, holding 100% security and data-integrity compliance the whole way through.
+        </p>
+        <div class="cmd-status" data-i18n="e-c3-status">&#129001; Compliant</div>
+      </div>
+
+      <!-- Market studies -->
+      <div class="cmd-card rv" data-delay="1">
+        <div class="cmd-icon">&#128270;</div>
+        <div class="cmd-kicker" data-i18n="e-c4-kicker">Market Studies &amp; Insights</div>
+        <div class="cmd-title" data-i18n="e-c4-title">Reading the customer correctly</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Research</span>
+          <span class="cmd-tag">Onboarding</span>
+          <span class="cmd-tag">Adoption</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c4-desc">
+          A data-driven onboarding redesign tripled product adoption to 38%. It came from listening to where users were getting stuck and fixing the real pain points, not the assumed ones.
+        </p>
+        <div class="cmd-status" data-i18n="e-c4-status">&#129001; Validated</div>
+      </div>
+
+      <!-- Lifecycle & strategy -->
+      <div class="cmd-card rv" data-delay="2">
+        <div class="cmd-icon">&#128260;</div>
+        <div class="cmd-kicker" data-i18n="e-c5-kicker">Lifecycle &amp; Strategy</div>
+        <div class="cmd-title" data-i18n="e-c5-title">Agile delivery, on time and on budget</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Agile</span>
+          <span class="cmd-tag">Lean</span>
+          <span class="cmd-tag">GCP</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c5-desc">
+          Launched 4 products in 2025 and ran a complex GCP cloud migration that landed on schedule and inside budget — managed through an Agile and Lean cadence end to end.
+        </p>
+        <div class="cmd-status" data-i18n="e-c5-status">&#129001; Shipped</div>
+      </div>
+
+      <!-- GTM -->
+      <div class="cmd-card rv" data-delay="3">
+        <div class="cmd-icon">&#128200;</div>
+        <div class="cmd-kicker" data-i18n="e-c6-kicker">Go-to-Market</div>
+        <div class="cmd-title" data-i18n="e-c6-title">Commercialisation &amp; P&amp;L</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">GTM</span>
+          <span class="cmd-tag">P&amp;L</span>
+          <span class="cmd-tag">Revenue</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c6-desc">
+          Scaled the enterprise client base past 380, kept a close eye on department P&amp;L, and grew revenue 4×. Go-to-market that ties back to the bottom line, not just sign-ups.
+        </p>
+        <div class="cmd-status" data-i18n="e-c6-status">&#129001; 4&#215; Growth</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAKEHOLDER MANAGEMENT -->
+  <section id="story-e" style="background: var(--bg0);">
+    <div class="section-eyebrow rv" data-i18n="e-stk-eyebrow">&gt; stakeholders.align()</div>
+    <div class="section-title rv" data-i18n="e-stk-title">Leading the room, not just the backlog</div>
+    <p class="section-intro rv" data-i18n="e-stk-intro">Public-sector delivery lives or dies on alignment. I run matrix leadership across a 20–40+ person cross-functional team plus external partners — keeping everyone moving in the same direction.</p>
+
+    <div class="story-phases">
+      <div class="phase-card rv" data-delay="1">
+        <div class="phase-num"  data-i18n="e-s1-num">Internal</div>
+        <div class="phase-name" data-i18n="e-s1-name">The build team</div>
+        <div class="phase-time" data-i18n="e-s1-time">20–40+ people</div>
+        <p class="phase-desc"   data-i18n="e-s1-desc">Infrastructure, Cybersecurity, Application, and Database teams — all coordinated under one roadmap so the technical decisions line up instead of pulling against each other.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="e-prog">Alignment</span><span>100%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="1.0"></div></div>
+        </div>
+      </div>
+
+      <div class="phase-card rv" data-delay="2">
+        <div class="phase-num"  data-i18n="e-s2-num">Commercial</div>
+        <div class="phase-name" data-i18n="e-s2-name">Sales &amp; procurement</div>
+        <div class="phase-time" data-i18n="e-s2-time">Cross-department</div>
+        <p class="phase-desc"   data-i18n="e-s2-desc">Working hand in hand with Sales and Procurement — 40+ purchase orders and 55+ legal contracts handled — so what we promise clients is what we can actually deliver and bill for.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="e-prog">Alignment</span><span>95%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="0.95"></div></div>
+        </div>
+      </div>
+
+      <div class="phase-card rv" data-delay="3">
+        <div class="phase-num"  data-i18n="e-s3-num">External</div>
+        <div class="phase-name" data-i18n="e-s3-name">Partners &amp; ecosystem</div>
+        <div class="phase-time" data-i18n="e-s3-time">Govt + vendors</div>
+        <p class="phase-desc"   data-i18n="e-s3-desc">Government stakeholders and external partners, including the Google team on cloud work. Managing the ecosystem so national-scale rollouts stay coordinated and compliant.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="e-prog">Alignment</span><span>92%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="0.92"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-label" data-i18n="e-marquee-label">Trusted across the energy &amp; water sector</div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track marquee-energy">
+        <span class="client-chip">Saudi Water Authority</span>
+        <span class="client-chip">MEWA</span>
+        <span class="client-chip">Ministry of Energy</span>
+        <span class="client-chip">ZATCA</span>
+        <span class="client-chip">Petromin</span>
+        <span class="client-chip">SASCO</span>
+        <span class="client-chip">Saudi Water Authority</span>
+        <span class="client-chip">MEWA</span>
+        <span class="client-chip">Ministry of Energy</span>
+        <span class="client-chip">ZATCA</span>
+        <span class="client-chip">Petromin</span>
+        <span class="client-chip">SASCO</span>
+      </div>
     </div>
   </div>
-</section>
+
+  <!-- DOMAIN CREDENTIALS -->
+  <section style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="e-cred-eyebrow">&gt; readiness.check()</div>
+    <div class="section-title rv" data-i18n="e-cred-title">Why this is the right seat</div>
+
+    <div class="cred-grid">
+      <div class="cred-card rv" data-delay="1">
+        <span class="cred-icon">&#127942;</span>
+        <div class="cred-title" data-i18n="e-cred1-title">PMP&#174; Certified</div>
+        <div class="cred-sub"   data-i18n="e-cred1-sub">Disciplined delivery for regulated programs</div>
+      </div>
+      <div class="cred-card rv" data-delay="2">
+        <span class="cred-icon">&#9729;&#65039;</span>
+        <div class="cred-title" data-i18n="e-cred2-title">GCP Migration Lead</div>
+        <div class="cred-sub"   data-i18n="e-cred2-sub">On-schedule, in-budget cloud delivery</div>
+      </div>
+      <div class="cred-card rv" data-delay="3">
+        <span class="cred-icon">&#128737;&#65039;</span>
+        <div class="cred-title" data-i18n="e-cred3-title">Compliance-First</div>
+        <div class="cred-sub"   data-i18n="e-cred3-sub">100% security &amp; data-integrity track record</div>
+      </div>
+      <div class="cred-card rv" data-delay="4">
+        <span class="cred-icon">&#129309;</span>
+        <div class="cred-title" data-i18n="e-cred4-title">Matrix Leadership</div>
+        <div class="cred-sub"   data-i18n="e-cred4-sub">20–40+ team across govt &amp; vendors</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /view-energy -->
+
 
 <!-- ============================
-     CONTACT
+     CONTACT (SHARED)
 ============================= -->
 <section class="contact-section" id="contact">
   <div class="contact-inner">
-    <h2 class="contact-h2 rv" data-i18n="contact-h2">Let's Build the Next #1.</h2>
-    <p class="contact-sub rv" data-delay="1" data-i18n="contact-sub">Open to product leadership roles, consulting, and advisory positions.</p>
+    <h2 class="contact-h2 rv" data-i18n="contact-h2">Let's talk.</h2>
+    <p class="contact-sub rv" data-delay="1" data-i18n="contact-sub">Open to product leadership roles in technology and the energy &amp; water sector.</p>
 
     <div class="contact-links rv" data-delay="2">
       <a href="tel:+966593935677" class="contact-row">
@@ -1326,156 +1779,345 @@ footer {
         <div class="contact-icon">&#9993;&#65039;</div>
         <span>A.alhumud0@gmail.com</span>
       </a>
-      <a href="https://linkedin.com/in/aalhumud" target="_blank" rel="noopener" class="contact-row">
+      <a href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener" class="contact-row">
         <div class="contact-icon">&#128188;</div>
-        <span>linkedin.com/in/aalhumud</span>
+        <span>www.linkedin.com/in/aalhumud</span>
       </a>
     </div>
   </div>
 </section>
 
 <footer>
-  <span data-i18n="footer">© 2025 Abdulrahman Alhumud · Shipping products that matter.</span>
+  <span data-i18n="footer">© 2026 Abdulrahman Alhumud · Product Manager</span>
 </footer>
 
 <!-- ============================
      JAVASCRIPT
 ============================= -->
 <script>
-/* ---- i18n Strings ---- */
+/* ======================================
+   i18n STRINGS
+====================================== */
 const i18n = {
   en: {
-    'eyebrow':        'Product Manager · Builder',
-    'hero-h1-plain':  "I don't build features. I build ",
-    'hero-h1-em':     'products that hit #1.',
-    'hero-sub':       '5 products launched. 25M+ impressions. +250% downloads. Engineering product-market fit from first sprint to #1 App Store ranking.',
-    'chip1':          '#1 App Store',
-    'chip2':          '25M+ Impressions',
-    'chip3':          '+250% Downloads',
-    'cta':            'See Products',
-    'badge1':         '#1 RANK',
-    'badge2':         '+250%',
-    'nav-product':    'Product',
+    /* shared */
+    'view-general':   'General PM Profile',
+    'view-energy':    'Energy & Water Tailored View',
+    'nav-product':    'Capabilities',
     'nav-metrics':    'Metrics',
-    'nav-systems':    'Systems',
+    'nav-systems':    'Track Record',
     'nav-contact':    'Contact',
-    'bento-eyebrow':  '> metrics.load()',
-    'bento-title':    'Numbers That Ship Products',
-    'feat-label':     'APP STORE RANKING',
-    'feat-sub':       'Ranked #1 on Saudi App Store',
-    'count1-label':   'Impressions',
-    'count2-label':   'YoY Downloads Growth',
-    'count3-label':   'Products Launched',
-    'count4-label':   'Core Services',
-    'stack-title':    'Tech Stack',
-    'quote':          "Great products aren’t shipped — they’re crafted sprint by sprint.",
-    'cmd-title':      'Product Automation Systems',
-    'crm-title':      'CRM Architecture Module',
-    'crm-desc':       'Deployed a fully integrated CRM pipeline — Odoo & Zoho connected via OAuth 2.0 on Vercel. Automated lead tracking across 380+ enterprise clients.',
-    'crm-status':     '🟢 Live',
-    'jira-title':     'Sprint Intelligence Hub',
-    'jira-desc':      'Automated daily sprint reports generated from Jira boards and dispatched via Outlook — PM intelligence on autopilot, saving 3hr+ per week per PM.',
-    'jira-status':    '🟢 Active',
-    'gov-title':      'Governance Engines',
-    'zimam-desc':     'Executive audit dashboard for governance visibility',
-    'hubeat-desc':    'GCP-powered gathering logistics & fleet optimization hub',
-    'rems-desc':      'Real Estate Management System — security & compliance engine',
-    'marquee-label':  "Powering Saudi Arabia’s Leading Enterprises",
-    'story-title':    'The Mojaz Sprint — From Idea to #1',
-    'phase1-num':     'Phase 01',
-    'phase1-name':    'Discover',
-    'phase1-time':    'Week 1–2',
-    'phase1-desc':    'User research + competitive analysis → product brief. Defined core value proposition and identified top friction points in the market.',
-    'phase2-num':     'Phase 02',
-    'phase2-name':    'Ship',
-    'phase2-time':    'Week 3–8',
-    'phase2-desc':    'Sprint cycles, A/B tests, 25M impressions milestone. Iterative development with continuous user feedback loops and data-driven prioritization.',
-    'phase3-num':     'Phase 03',
-    'phase3-name':    'Scale',
-    'phase3-time':    'Week 9–12',
-    'phase3-desc':    '#1 App Store, +250% downloads. Scaling infrastructure, optimizing performance, and maintaining top position through continuous iteration.',
-    'prog-completion':'Completion',
-    'cred-title':     'Credentials & Tooling',
-    'cred1-title':    'PMP® Certified',
-    'cred1-sub':      'Project Management Professional — PMI',
-    'cred2-title':    'GCP Cloud Infrastructure',
-    'cred2-sub':      'Google Cloud Platform — Data & DevOps',
-    'cred3-title':    'Design Thinking',
-    'cred3-sub':      'Human-centered product innovation',
-    'cred4-title':    'AI Product Tooling',
-    'cred4-sub':      'Gemini API · Mixpanel · Predictive Analytics',
-    'contact-h2':     "Let’s Build the Next #1.",
-    'contact-sub':    'Open to product leadership roles, consulting, and advisory positions.',
-    'footer':         '© 2025 Abdulrahman Alhumud · Shipping products that matter.',
+    'marquee-label':  'Work delivered alongside',
+    'contact-h2':     "Let's talk.",
+    'contact-sub':    'Open to product leadership roles in technology and the energy & water sector.',
+    'footer':         '© 2026 Abdulrahman Alhumud · Product Manager',
+
+    /* ---- VIEW 1: GENERAL ---- */
+    'g-eyebrow':      'Technical Product Manager',
+    'g-h1-plain':     'I take products from a blank board to ',
+    'g-h1-em':        'the #1 spot.',
+    'g-sub':          'Five products launched, twenty-five million impressions, and download growth north of 250%. I sit between the engineers and the market and make sure both get what they need.',
+    'g-chip1':        '#1 App Store',
+    'g-chip2':        '25M+ Impressions',
+    'g-chip3':        '+250% Downloads',
+    'g-cta':          'See the work',
+    'g-badge1':       '#1 RANK',
+    'g-badge2':       '+250%',
+    'g-bento-eyebrow':'> metrics.load()',
+    'g-bento-title':  'The numbers behind the work',
+    'g-feat-label':   'APP STORE RANKING',
+    'g-feat-sub':     'Mojaz reached #1 on the Saudi App Store',
+    'g-count1-label': 'Impressions on Mojaz',
+    'g-count2-label': 'Download growth',
+    'g-count3-label': 'Fleet growth (HubEat)',
+    'g-count4-label': 'Purchase Orders managed',
+    'g-count5-label': 'Legal contracts handled',
+    'g-count6-label': 'Core products + 12 supporting services',
+    'g-stack-title':  'Stack & Tooling',
+    'g-quote':        "A product manager's job is simple to say and hard to do: keep everyone pointed at the same outcome, sprint after sprint.",
+    'g-cmd-eyebrow':  '> what.i.do()',
+    'g-cmd-title':    'Where I spend my time',
+    'g-cmd-intro':    'Two stints shaped how I work: a consumer product I pushed to the top of the charts, and a platform business I rebuilt on the cloud and wired together end to end.',
+    'g-c1-kicker':    'Mojaz · B2C',
+    'g-c1-title':     'A consumer app that reached #1',
+    'g-c1-desc':      'I owned the roadmap for Mojaz from early sprints through launch. We hit 25M+ impressions, grew downloads by more than 250%, and held the #1 App Store spot through steady iteration on the things users actually cared about.',
+    'g-c1-status':    '🟢 Shipped',
+    'g-c2-kicker':    'Rased · Cloud',
+    'g-c2-title':     'A full GCP migration, run on schedule',
+    'g-c2-desc':      'At Rased I led the move to Google Cloud and scaled the portfolio to 5 core products and 12 supporting services. The work stayed on schedule and inside budget, with security and data integrity locked down throughout.',
+    'g-c2-status':    '🟢 Live',
+    'g-c3-kicker':    'Integrations',
+    'g-c3-title':     'Tools that talk to each other',
+    'g-c3-desc':      'I connected Odoo and Zoho CRM into one workflow and set up automated Jira reporting that lands straight in MS Outlook, so the team gets its updates without logging in or chasing anyone. Less friction, fewer dropped balls.',
+    'g-c3-status':    '🟢 Automated',
+    'g-story-eyebrow':'> mojaz.timeline()',
+    'g-story-title':  'From idea to top of the charts',
+    'g-p1-num':       'Phase 01',
+    'g-p1-name':      'Discover',
+    'g-p1-time':      'Weeks 1–2',
+    'g-p1-desc':      'User research and a hard look at the competition turned into a clear brief. We agreed on the one thing the product had to nail and the friction points worth removing first.',
+    'g-p2-num':       'Phase 02',
+    'g-p2-name':      'Ship',
+    'g-p2-time':      'Weeks 3–8',
+    'g-p2-desc':      'Tight sprint cycles, real A/B tests, and the 25M impressions milestone. We let the data decide what shipped next and kept the feedback loop short.',
+    'g-p3-num':       'Phase 03',
+    'g-p3-name':      'Scale',
+    'g-p3-time':      'Weeks 9–12',
+    'g-p3-desc':      '#1 on the App Store and downloads up 250%. From there it was about holding the position: tuning performance, watching the funnel, and keeping the iteration cadence honest.',
+    'g-prog':         'Completion',
+    'g-cred-eyebrow': '> certs.verify()',
+    'g-cred-title':   'Credentials & tooling',
+    'g-cred1-title':  'PMP® Certified',
+    'g-cred1-sub':    'Project Management Professional — PMI',
+    'g-cred2-title':  'GCP Cloud Infrastructure',
+    'g-cred2-sub':    'Google Cloud — data & DevOps',
+    'g-cred3-title':  'Design Thinking',
+    'g-cred3-sub':    'Human-centred product work',
+    'g-cred4-title':  'Product Analytics',
+    'g-cred4-sub':    'Mixpanel · BigQuery · funnel analysis',
+
+    /* ---- VIEW 2: ENERGY ---- */
+    'e-eyebrow':      'Energy & Natural Resources · PM',
+    'e-h1-plain':     'Building digital products for ',
+    'e-h1-em':        'energy & water.',
+    'e-sub':          'I have already shipped for the Saudi Water Authority, MEWA, the Ministry of Energy and ZATCA — automating field operations, logistics and compliance for the sector this role serves.',
+    'e-chip1':        'SWA · MEWA · MoEnergy',
+    'e-chip2':        '+400% Revenue',
+    'e-chip3':        '380+ Enterprise Clients',
+    'e-cta':          'See the fit',
+    'e-badge1':       'SWA · MEWA',
+    'e-badge2':       '+400%',
+    'e-bento-eyebrow':'> sector.metrics()',
+    'e-bento-title':  'Proof points for this role',
+    'e-feat-label':   'REVENUE GROWTH',
+    'e-feat-sub':     '400% revenue growth across the portfolio',
+    'e-count1-label': 'Enterprise clients',
+    'e-count2-label': 'Product adoption after onboarding redesign (tripled)',
+    'e-count3-label': 'Products launched in 2025',
+    'e-count4-label': 'Security & data-integrity compliance',
+    'e-count5-label': 'Cross-functional team led',
+    'e-count6-label': 'Government & sector entities served',
+    'e-stack-title':  'Sector partners & systems',
+    'e-quote':        "In the public sector, a feature only counts when it survives the field, the audit, and the regulator. That's the bar I build to.",
+    'e-cmd-eyebrow':  '> vacancy.match()',
+    'e-cmd-title':    'Mapped to the role',
+    'e-cmd-intro':    'Each part of the Energy & Natural Resources PM brief, matched to work I have already delivered. The energy and water solutions come first, because that is where the fit is sharpest.',
+    'e-c1-kicker':    'Energy & Water Solutions',
+    'e-c1-title':     'Saudi Water Authority — tanker logistics',
+    'e-c1-desc':      'Built automated logistics and tracking systems for water tankers — turning a manual dispatch process into a live, monitored operation the team can actually trust day to day.',
+    'e-c1-status':    '🟢 Delivered',
+    'e-c2-kicker':    'Energy & Water Solutions',
+    'e-c2-title':     'MEWA — field ops & compliance',
+    'e-c2-desc':      'Led the digital transformation of field operations for the Ministry of Environment, Water & Agriculture — inspection workflows and regulatory compliance monitoring that hold up to scrutiny.',
+    'e-c2-status':    '🟢 Live',
+    'e-c3-kicker':    'Energy & Water Solutions',
+    'e-c3-title':     'Ministry of Energy & ZATCA — national scale',
+    'e-c3-desc':      'Drove cross-functional alignment for national-level rollouts with the Ministry of Energy and ZATCA, holding 100% security and data-integrity compliance the whole way through.',
+    'e-c3-status':    '🟢 Compliant',
+    'e-c4-kicker':    'Market Studies & Insights',
+    'e-c4-title':     'Reading the customer correctly',
+    'e-c4-desc':      'A data-driven onboarding redesign tripled product adoption to 38%. It came from listening to where users were getting stuck and fixing the real pain points, not the assumed ones.',
+    'e-c4-status':    '🟢 Validated',
+    'e-c5-kicker':    'Lifecycle & Strategy',
+    'e-c5-title':     'Agile delivery, on time and on budget',
+    'e-c5-desc':      'Launched 4 products in 2025 and ran a complex GCP cloud migration that landed on schedule and inside budget — managed through an Agile and Lean cadence end to end.',
+    'e-c5-status':    '🟢 Shipped',
+    'e-c6-kicker':    'Go-to-Market',
+    'e-c6-title':     'Commercialisation & P&L',
+    'e-c6-desc':      'Scaled the enterprise client base past 380, kept a close eye on department P&L, and grew revenue 4×. Go-to-market that ties back to the bottom line, not just sign-ups.',
+    'e-c6-status':    '🟢 4× Growth',
+    'e-stk-eyebrow':  '> stakeholders.align()',
+    'e-stk-title':    'Leading the room, not just the backlog',
+    'e-stk-intro':    'Public-sector delivery lives or dies on alignment. I run matrix leadership across a 20–40+ person cross-functional team plus external partners — keeping everyone moving in the same direction.',
+    'e-s1-num':       'Internal',
+    'e-s1-name':      'The build team',
+    'e-s1-time':      '20–40+ people',
+    'e-s1-desc':      'Infrastructure, Cybersecurity, Application, and Database teams — all coordinated under one roadmap so the technical decisions line up instead of pulling against each other.',
+    'e-s2-num':       'Commercial',
+    'e-s2-name':      'Sales & procurement',
+    'e-s2-time':      'Cross-department',
+    'e-s2-desc':      'Working hand in hand with Sales and Procurement — 40+ purchase orders and 55+ legal contracts handled — so what we promise clients is what we can actually deliver and bill for.',
+    'e-s3-num':       'External',
+    'e-s3-name':      'Partners & ecosystem',
+    'e-s3-time':      'Govt + vendors',
+    'e-s3-desc':      'Government stakeholders and external partners, including the Google team on cloud work. Managing the ecosystem so national-scale rollouts stay coordinated and compliant.',
+    'e-prog':         'Alignment',
+    'e-marquee-label':'Trusted across the energy & water sector',
+    'e-cred-eyebrow': '> readiness.check()',
+    'e-cred-title':   'Why this is the right seat',
+    'e-cred1-title':  'PMP® Certified',
+    'e-cred1-sub':    'Disciplined delivery for regulated programs',
+    'e-cred2-title':  'GCP Migration Lead',
+    'e-cred2-sub':    'On-schedule, in-budget cloud delivery',
+    'e-cred3-title':  'Compliance-First',
+    'e-cred3-sub':    '100% security & data-integrity track record',
+    'e-cred4-title':  'Matrix Leadership',
+    'e-cred4-sub':    '20–40+ team across govt & vendors',
   },
+
   ar: {
-    'eyebrow':        'مدير منتج · بنّاء',
-    'hero-h1-plain':  'ما أصنع مجرّد ميزات.. ',
-    'hero-h1-em':     'أصنع منتجات تتصدّر.',
-    'hero-sub':       'خمس منتجات أطلقتها، 25 مليون ظهور، ونمو 250%.. وكل واحدة وصلت للقمة.',
-    'chip1':          '#1 تطبيقات',
-    'chip2':          '+25 مليون ظهور',
-    'chip3':          '+250% تحميل',
-    'cta':            'استعرض المنتجات ←',
-    'badge1':         'المرتبة #1',
-    'badge2':         '+250%',
-    'nav-product':    'المنتجات',
+    /* shared */
+    'view-general':   'الرؤية العامة',
+    'view-energy':    'تخصيص قطاع الطاقة والمياه',
+    'nav-product':    'القدرات',
     'nav-metrics':    'الأرقام',
-    'nav-systems':    'الأنظمة',
+    'nav-systems':    'السجل العملي',
     'nav-contact':    'التواصل',
-    'bento-eyebrow':  '> metrics.load()',
-    'bento-title':    'أرقام تُشحن معها المنتجات',
-    'feat-label':     'تصنيف متجر التطبيقات',
-    'feat-sub':       'المرتبة #1 في متجر التطبيقات السعودي',
-    'count1-label':   'ظهور',
-    'count2-label':   'نمو التحميلات سنوياً',
-    'count3-label':   'منتجات أُطلقت',
-    'count4-label':   'خدمات أساسية',
-    'stack-title':    'التقنيات المستخدمة',
-    'quote':          'المنتجات العظيمة لا تُشحن — تُصنع سبرينتاً بعد سبرينت.',
-    'cmd-title':      'أنظمة أتمتة المنتجات',
-    'crm-title':      'وحدة بنية إدارة العملاء',
-    'crm-desc':       'نشر منظومة CRM متكاملة — Odoo وZoho مربوطتان عبر OAuth 2.0 على Vercel. تتبع تلقائي للعملاء عبر 380+ عميل مؤسسي.',
-    'crm-status':     '🟢 مباشر',
-    'jira-title':     'مركز ذكاء السبرينت',
-    'jira-desc':      'تقارير سبرينت يومية مؤتمتة من لوحات Jira وترسل عبر Outlook — ذكاء اصطناعي لمدير المنتج يوفر +3 ساعات أسبوعياً لكل مدير.',
-    'jira-status':    '🟢 نشط',
-    'gov-title':      'محركات الحوكمة',
-    'zimam-desc':     'لوحة تدقيق تنفيذية لرؤية حوكمة المؤسسة',
-    'hubeat-desc':    'منصة لوجستيات وأسطول مدعومة بـ GCP',
-    'rems-desc':      'نظام إدارة العقارات — محرك الأمان والامتثال',
-    'marquee-label':  'ندعم كبرى مؤسسات المملكة العربية السعودية',
-    'story-title':    'سبرينت مجاز — من الفكرة إلى المرتبة #1',
-    'phase1-num':     'المرحلة 01',
-    'phase1-name':    'الاكتشاف',
-    'phase1-time':    'الأسبوع 1–2',
-    'phase1-desc':    'بحث المستخدمين + تحليل المنافسين → وثيقة المنتج. تحديد عرض القيمة وأبرز نقاط الاحتكاك في السوق.',
-    'phase2-num':     'المرحلة 02',
-    'phase2-name':    'الإطلاق',
-    'phase2-time':    'الأسبوع 3–8',
-    'phase2-desc':    'دورات سبرينت، اختبارات A/B، وبلوغ 25 مليون ظهور. تطوير تكراري مع حلقات تغذية راجعة مستمرة.',
-    'phase3-num':     'المرحلة 03',
-    'phase3-name':    'التوسع',
-    'phase3-time':    'الأسبوع 9–12',
-    'phase3-desc':    '#1 متجر التطبيقات، +250% تحميل. توسيع البنية التحتية والحفاظ على الصدارة عبر التحسين المستمر.',
-    'prog-completion':'الإنجاز',
-    'cred-title':     'الشهادات والأدوات',
-    'cred1-title':    'شهادة PMP®',
-    'cred1-sub':      'محترف إدارة المشاريع — PMI',
-    'cred2-title':    'بنية GCP السحابية',
-    'cred2-sub':      'منصة Google Cloud — البيانات و DevOps',
-    'cred3-title':    'التفكير التصميمي',
-    'cred3-sub':      'ابتكار منتجات يمحوره الإنسان',
-    'cred4-title':    'أدوات منتج الذكاء الاصطناعي',
-    'cred4-sub':      'Gemini API · Mixpanel · تحليل تنبؤي',
-    'contact-h2':     'لنبني المنتج الرائد القادم.',
-    'contact-sub':    'متاح لمناصب قيادة المنتج، الاستشارات، والأدوار الاستشارية.',
-    'footer':         '© 2025 عبدالرحمن الحمود · نشحن منتجات تُحدث فرقاً.',
+    'marquee-label':  'أعمال نُفّذت مع',
+    'contact-h2':     'نتواصل؟',
+    'contact-sub':    'متاح لأدوار قيادة المنتج في التقنية وقطاع الطاقة والمياه.',
+    'footer':         '© 2026 عبدالرحمن الحمود · مدير منتجات',
+
+    /* ---- VIEW 1: GENERAL ---- */
+    'g-eyebrow':      'مدير منتجات تقني',
+    'g-h1-plain':     'آخذ المنتج من لوحة فاضية لين يوصل ',
+    'g-h1-em':        'للمركز الأول.',
+    'g-sub':          'خمس منتجات أطلقتها، 25 مليون ظهور، ونمو تحميلات تعدّى 250%. شغلي إني أقعد بين المطوّرين والسوق وأتأكد إن كل طرف ياخذ اللي يحتاجه.',
+    'g-chip1':        'الأول في المتجر',
+    'g-chip2':        '+25 مليون ظهور',
+    'g-chip3':        '+250% تحميلات',
+    'g-cta':          'شوف الشغل',
+    'g-badge1':       'المركز الأول',
+    'g-badge2':       '+250%',
+    'g-bento-eyebrow':'> metrics.load()',
+    'g-bento-title':  'الأرقام اللي وراء الشغل',
+    'g-feat-label':   'ترتيب متجر التطبيقات',
+    'g-feat-sub':     'مجاز وصل المركز الأول في متجر التطبيقات السعودي',
+    'g-count1-label': 'ظهور على مجاز',
+    'g-count2-label': 'نمو التحميلات',
+    'g-count3-label': 'نمو الأسطول (HubEat)',
+    'g-count4-label': 'أوامر شراء أُديرت',
+    'g-count5-label': 'عقود قانونية تمّت إدارتها',
+    'g-count6-label': 'منتجات أساسية + 12 خدمة مساندة',
+    'g-stack-title':  'الأدوات والتقنيات',
+    'g-quote':        'شغل مدير المنتج سهل بالكلام صعب بالتطبيق: تخلّي الكل ماشي على نفس الهدف، سبرينت ورا سبرينت.',
+    'g-cmd-eyebrow':  '> what.i.do()',
+    'g-cmd-title':    'وين أصرف وقتي',
+    'g-cmd-intro':    'تجربتين شكّلوا طريقتي: منتج للمستهلك وصّلته لقمة المتجر، ومنصّة أعدت بنائها على السحابة وربطتها من البداية للنهاية.',
+    'g-c1-kicker':    'مجاز · مستهلك',
+    'g-c1-title':     'تطبيق وصل المركز الأول',
+    'g-c1-desc':      'مسكت خارطة طريق مجاز من أول السبرينتات لين الإطلاق. وصلنا +25 مليون ظهور، ورفعنا التحميلات أكثر من 250%، وثبّتنا المركز الأول بتحسين مستمر على اللي يهمّ المستخدم فعلاً.',
+    'g-c1-status':    '🟢 أُطلِق',
+    'g-c2-kicker':    'راصد · سحابة',
+    'g-c2-title':     'ترحيل كامل لـ GCP بوقته',
+    'g-c2-desc':      'في راصد قدت الانتقال لـ Google Cloud ووسّعنا المحفظة لـ 5 منتجات أساسية و12 خدمة مساندة. الشغل مشى بالوقت وداخل الميزانية، والأمان وسلامة البيانات مضبوطين من أول الطريق لآخره.',
+    'g-c2-status':    '🟢 مباشر',
+    'g-c3-kicker':    'تكاملات',
+    'g-c3-title':     'أدوات تتكلّم مع بعض',
+    'g-c3-desc':      'ربطت Odoo وZoho CRM في مسار واحد، وسوّيت تقارير Jira تلقائية توصل مباشرة على MS Outlook، عشان الفريق ياخذ تحديثاته بدون ما يسجّل دخول أو يلاحق أحد. احتكاك أقل وأخطاء أقل.',
+    'g-c3-status':    '🟢 مؤتمت',
+    'g-story-eyebrow':'> mojaz.timeline()',
+    'g-story-title':  'من فكرة لين قمة المتجر',
+    'g-p1-num':       'المرحلة 01',
+    'g-p1-name':      'الاكتشاف',
+    'g-p1-time':      'الأسبوع 1–2',
+    'g-p1-desc':      'بحث المستخدمين ونظرة جادّة للمنافسين طلّعوا لنا وثيقة واضحة. اتفقنا على الشيء الوحيد اللي لازم المنتج يضبطه، ونقاط الاحتكاك اللي نشيلها أول.',
+    'g-p2-num':       'المرحلة 02',
+    'g-p2-name':      'الإطلاق',
+    'g-p2-time':      'الأسبوع 3–8',
+    'g-p2-desc':      'دورات سبرينت مضبوطة، اختبارات A/B حقيقية، وبلوغ 25 مليون ظهور. خلّينا البيانات تقرر وش ينزل بعدين وخلّينا حلقة الملاحظات قصيرة.',
+    'g-p3-num':       'المرحلة 03',
+    'g-p3-name':      'التوسّع',
+    'g-p3-time':      'الأسبوع 9–12',
+    'g-p3-desc':      'المركز الأول في المتجر وتحميلات +250%. بعدها الشغل كله إننا نثبّت المركز: نضبط الأداء، نراقب المسار، ونحافظ على إيقاع تحسين صادق.',
+    'g-prog':         'الإنجاز',
+    'g-cred-eyebrow': '> certs.verify()',
+    'g-cred-title':   'الشهادات والأدوات',
+    'g-cred1-title':  'شهادة PMP®',
+    'g-cred1-sub':    'محترف إدارة المشاريع — PMI',
+    'g-cred2-title':  'بنية GCP السحابية',
+    'g-cred2-sub':    'Google Cloud — بيانات و DevOps',
+    'g-cred3-title':  'التفكير التصميمي',
+    'g-cred3-sub':    'شغل منتج محوره الإنسان',
+    'g-cred4-title':  'تحليلات المنتج',
+    'g-cred4-sub':    'Mixpanel · BigQuery · تحليل المسارات',
+
+    /* ---- VIEW 2: ENERGY ---- */
+    'e-eyebrow':      'الطاقة والموارد الطبيعية · مدير منتج',
+    'e-h1-plain':     'أبني منتجات رقمية لقطاع ',
+    'e-h1-em':        'الطاقة والمياه.',
+    'e-sub':          'سبق ونفّذت للهيئة السعودية للمياه، ووزارة البيئة والمياه والزراعة، ووزارة الطاقة، وهيئة الزكاة والضريبة — أتمتة للعمليات الميدانية واللوجستيات والامتثال، وهذا بالضبط القطاع اللي الدور يخدمه.',
+    'e-chip1':        'المياه · البيئة · الطاقة',
+    'e-chip2':        '+400% إيرادات',
+    'e-chip3':        '+380 عميل مؤسسي',
+    'e-cta':          'شوف التطابق',
+    'e-badge1':       'المياه · البيئة',
+    'e-badge2':       '+400%',
+    'e-bento-eyebrow':'> sector.metrics()',
+    'e-bento-title':  'أدلّة جاهزية لهذا الدور',
+    'e-feat-label':   'نمو الإيرادات',
+    'e-feat-sub':     'نمو إيرادات 400% عبر المحفظة',
+    'e-count1-label': 'عملاء مؤسسيون',
+    'e-count2-label': 'تبنّي المنتج بعد إعادة تصميم الإعداد (تضاعف ثلاث مرات)',
+    'e-count3-label': 'منتجات أُطلقت في 2025',
+    'e-count4-label': 'امتثال أمني وسلامة بيانات',
+    'e-count5-label': 'فريق متعدد التخصصات قدته',
+    'e-count6-label': 'جهات حكومية وقطاعية خدمتها',
+    'e-stack-title':  'شركاء وأنظمة القطاع',
+    'e-quote':        'في القطاع الحكومي، الميزة ما تنحسب إلا لمّا تصمد في الميدان، والتدقيق، والجهة التنظيمية. هذا المعيار اللي أبني عليه.',
+    'e-cmd-eyebrow':  '> vacancy.match()',
+    'e-cmd-title':    'تطابق مع متطلبات الدور',
+    'e-cmd-intro':    'كل بند في وصف وظيفة مدير منتج الطاقة والموارد الطبيعية، مربوط بشغل سبق ونفّذته. حلول الطاقة والمياه جايّة أول، لأن هذا مكان التطابق الأقوى.',
+    'e-c1-kicker':    'حلول الطاقة والمياه',
+    'e-c1-title':     'الهيئة السعودية للمياه — لوجستيات الصهاريج',
+    'e-c1-desc':      'بنيت أنظمة لوجستيات وتتبّع تلقائية لصهاريج المياه — حوّلنا عملية إرسال يدوية لعملية مباشرة ومراقبة يقدر الفريق يعتمد عليها يومياً.',
+    'e-c1-status':    '🟢 سُلِّم',
+    'e-c2-kicker':    'حلول الطاقة والمياه',
+    'e-c2-title':     'البيئة والمياه والزراعة — الميدان والامتثال',
+    'e-c2-desc':      'قدت التحول الرقمي للعمليات الميدانية لوزارة البيئة والمياه والزراعة — مسارات تفتيش ومراقبة امتثال تنظيمي تصمد أمام التدقيق.',
+    'e-c2-status':    '🟢 مباشر',
+    'e-c3-kicker':    'حلول الطاقة والمياه',
+    'e-c3-title':     'وزارة الطاقة وهيئة الزكاة — على مستوى وطني',
+    'e-c3-desc':      'قدت المواءمة بين الفرق لإطلاقات على مستوى وطني مع وزارة الطاقة وهيئة الزكاة والضريبة، مع المحافظة على امتثال أمني وسلامة بيانات 100% طول الطريق.',
+    'e-c3-status':    '🟢 ممتثل',
+    'e-c4-kicker':    'دراسات السوق والعملاء',
+    'e-c4-title':     'قراءة العميل صح',
+    'e-c4-desc':      'إعادة تصميم الإعداد المبني على البيانات ضاعفت تبنّي المنتج ثلاث مرات لين 38%. جت من إننا سمعنا وين المستخدم يعلق وحلّينا نقاط الألم الحقيقية، مو المفترضة.',
+    'e-c4-status':    '🟢 مُتحقَّق',
+    'e-c5-kicker':    'دورة حياة المنتج والاستراتيجية',
+    'e-c5-title':     'تسليم رشيق، بوقته وداخل الميزانية',
+    'e-c5-desc':      'أطلقت 4 منتجات في 2025 وقدت ترحيل GCP معقّد نزل بوقته وداخل الميزانية — مُدار بإيقاع Agile وLean من البداية للنهاية.',
+    'e-c5-status':    '🟢 أُطلِق',
+    'e-c6-kicker':    'الانطلاق للسوق',
+    'e-c6-title':     'التسويق التجاري والأرباح والخسائر',
+    'e-c6-desc':      'وسّعت قاعدة العملاء المؤسسيين لأكثر من 380، وراعيت أرباح وخسائر الإدارة عن قرب، ورفعت الإيراد 4 أضعاف. انطلاق للسوق يرجع للنتيجة المالية، مو بس تسجيلات.',
+    'e-c6-status':    '🟢 نمو 4×',
+    'e-stk-eyebrow':  '> stakeholders.align()',
+    'e-stk-title':    'أقود الغرفة، مو بس قائمة المهام',
+    'e-stk-intro':    'التسليم الحكومي يقوم أو يقع على المواءمة. أدير قيادة مصفوفية عبر فريق متعدد التخصصات من 20 لـ 40+ شخص مع شركاء خارجيين — أخلّي الكل ماشي على نفس الاتجاه.',
+    'e-s1-num':       'داخلي',
+    'e-s1-name':      'فريق البناء',
+    'e-s1-time':      '20–40+ شخص',
+    'e-s1-desc':      'فرق البنية التحتية والأمن السيبراني والتطبيقات وقواعد البيانات — كلهم منسّقين تحت خارطة طريق وحدة عشان القرارات التقنية تتوافق بدل ما تتشدّ على بعض.',
+    'e-s2-num':       'تجاري',
+    'e-s2-name':      'المبيعات والمشتريات',
+    'e-s2-time':      'عبر الإدارات',
+    'e-s2-desc':      'شغل يد بيد مع المبيعات والمشتريات — 40+ أمر شراء و55+ عقد قانوني تمّت إدارتها — عشان اللي نوعد فيه العميل هو اللي فعلاً نقدر نسلّمه ونفوتره.',
+    'e-s3-num':       'خارجي',
+    'e-s3-name':      'الشركاء والمنظومة',
+    'e-s3-time':      'حكومة + موردين',
+    'e-s3-desc':      'جهات حكومية وشركاء خارجيين، ومنهم فريق Google في شغل السحابة. أدير المنظومة عشان الإطلاقات على المستوى الوطني تظل منسّقة وممتثلة.',
+    'e-prog':         'المواءمة',
+    'e-marquee-label':'موثوق عبر قطاع الطاقة والمياه',
+    'e-cred-eyebrow': '> readiness.check()',
+    'e-cred-title':   'ليش هذا المكان الصح',
+    'e-cred1-title':  'شهادة PMP®',
+    'e-cred1-sub':    'تسليم منضبط للبرامج المنظَّمة',
+    'e-cred2-title':  'قيادة ترحيل GCP',
+    'e-cred2-sub':    'تسليم سحابي بوقته وداخل الميزانية',
+    'e-cred3-title':  'الامتثال أولاً',
+    'e-cred3-sub':    'سجل امتثال أمني وسلامة بيانات 100%',
+    'e-cred4-title':  'القيادة المصفوفية',
+    'e-cred4-sub':    'فريق 20–40+ عبر الحكومة والموردين',
   }
 };
 
 let currentLang = 'en';
+let currentView = 'general';
 
+/* ======================================
+   LANGUAGE SWITCH
+====================================== */
 function setLang(l) {
   currentLang = l;
   const html = document.documentElement;
@@ -1485,35 +2127,89 @@ function setLang(l) {
   document.getElementById('btn-en').classList.toggle('active', l === 'en');
   document.getElementById('btn-ar').classList.toggle('active', l === 'ar');
 
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (i18n[l] && i18n[l][key] !== undefined) {
-      el.textContent = i18n[l][key];
-    }
-  });
-
-  // Marquee direction
-  const track = document.getElementById('marquee-track');
-  if (track) {
-    track.classList.toggle('rtl-marquee', l === 'ar');
-  }
+  applyI18n();
+  updateMarquees();
 }
 
-/* ---- Scroll Reveal ---- */
+function applyI18n() {
+  const dict = i18n[currentLang] || {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+}
+
+function updateMarquees() {
+  const rtl = currentLang === 'ar';
+  document.querySelectorAll('.marquee-track').forEach(t => {
+    t.classList.toggle('rtl-marquee', rtl);
+  });
+}
+
+/* ======================================
+   VIEW SWITCH (DUAL-VIEW ENGINE)
+====================================== */
+function setView(v) {
+  if (v === currentView) return;
+  currentView = v;
+
+  // Recolor whole site (glow, chips, marquee, borders) via CSS var override
+  document.body.classList.toggle('view-energy', v === 'energy');
+
+  // Toggle switch buttons
+  document.getElementById('vbtn-general').classList.toggle('active', v === 'general');
+  document.getElementById('vbtn-energy').classList.toggle('active', v === 'energy');
+
+  const incoming = document.getElementById(v === 'general' ? 'view-general' : 'view-energy');
+  const outgoing = document.getElementById(v === 'general' ? 'view-energy' : 'view-general');
+
+  // Cross-fade: fade out current, then swap + fade in new
+  outgoing.classList.remove('view-shown');
+  setTimeout(() => {
+    outgoing.classList.remove('view-active');
+    incoming.classList.add('view-active');
+
+    // Reset reveals so the new view animates in
+    incoming.querySelectorAll('.rv').forEach(el => el.classList.remove('visible'));
+
+    // Force reflow then trigger fade-in
+    void incoming.offsetWidth;
+    incoming.classList.add('view-shown');
+
+    // Re-run the data-driven animations for the now-visible view
+    revealAll(incoming);
+    runCounters(incoming);
+    runProgressBars(incoming);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 380);
+}
+
+/* ======================================
+   SCROLL REVEAL
+====================================== */
+let revealObserver;
 function initReveal() {
-  const observer = new IntersectionObserver((entries) => {
+  revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.rv').forEach(el => observer.observe(el));
+  document.querySelectorAll('.view-active .rv').forEach(el => revealObserver.observe(el));
 }
 
-/* ---- CountUp ---- */
+// Observe reveals within a freshly-shown view
+function revealAll(scope) {
+  scope.querySelectorAll('.rv').forEach(el => revealObserver.observe(el));
+}
+
+/* ======================================
+   COUNT-UP
+====================================== */
 function countUp(el, target, duration) {
   const start = performance.now();
   function update(now) {
@@ -1526,34 +2222,54 @@ function countUp(el, target, duration) {
   requestAnimationFrame(update);
 }
 
+let counterObserver;
 function initCounters() {
-  const observer = new IntersectionObserver((entries) => {
+  counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const target = parseInt(entry.target.dataset.target, 10);
         countUp(entry.target, target, 1800);
-        observer.unobserve(entry.target);
+        counterObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.5 });
-  document.querySelectorAll('.count-num').forEach(c => observer.observe(c));
+  document.querySelectorAll('.view-active .count-num').forEach(c => counterObserver.observe(c));
 }
 
-/* ---- Progress Bars ---- */
+function runCounters(scope) {
+  scope.querySelectorAll('.count-num').forEach(c => {
+    c.textContent = '0';
+    counterObserver.observe(c);
+  });
+}
+
+/* ======================================
+   PROGRESS BARS
+====================================== */
+let progressObserver;
 function initProgressBars() {
-  const observer = new IntersectionObserver((entries) => {
+  progressObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const p = parseFloat(entry.target.dataset.p);
         entry.target.style.width = (p * 100) + '%';
-        observer.unobserve(entry.target);
+        progressObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.4 });
-  document.querySelectorAll('.progress-fill').forEach(f => observer.observe(f));
+  document.querySelectorAll('.view-active .progress-fill').forEach(f => progressObserver.observe(f));
 }
 
-/* ---- Mouse Glow on Bento Cards ---- */
+function runProgressBars(scope) {
+  scope.querySelectorAll('.progress-fill').forEach(f => {
+    f.style.width = '0%';
+    progressObserver.observe(f);
+  });
+}
+
+/* ======================================
+   MOUSE GLOW ON BENTO CARDS
+====================================== */
 function initCardGlow() {
   document.querySelectorAll('.b-card').forEach(card => {
     card.addEventListener('mousemove', e => {
@@ -1564,12 +2280,15 @@ function initCardGlow() {
   });
 }
 
-/* ---- Boot ---- */
+/* ======================================
+   BOOT
+====================================== */
 document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initCounters();
   initProgressBars();
   initCardGlow();
+  updateMarquees();
 });
 </script>
 
