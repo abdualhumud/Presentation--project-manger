@@ -12,17 +12,17 @@
    DESIGN TOKENS
 ====================================== */
 :root {
-  --bg0: #080C16;
-  --bg1: #0F172A;
-  --bg2: #1E293B;
-  --accent: #1E40AF;
-  --accent-l: #60A5FA;
-  --violet: #6366F1;
-  --violet-l: #A5B4FC;
-  --accent-rgb: 30,64,175;
-  --violet-rgb: 99,102,241;
-  --text: #F1F5F9;
-  --muted: #64748B;
+  --bg0: #060913;
+  --bg1: #0E1526;
+  --bg2: #1B2537;
+  --accent: #3B82F6;
+  --accent-l: #93C5FD;
+  --violet: #8B5CF6;
+  --violet-l: #C4B5FD;
+  --accent-rgb: 59,130,246;
+  --violet-rgb: 139,92,246;
+  --text: #FFFFFF;
+  --muted: #AEBBD0;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;
@@ -33,12 +33,12 @@
 
 /* ---- VIEW 2: Energy & Water palette override ---- */
 body.view-energy {
-  --accent: #065F46;
-  --accent-l: #34D399;
-  --violet: #0D9488;
-  --violet-l: #5EEAD4;
-  --accent-rgb: 6,95,70;
-  --violet-rgb: 13,148,136;
+  --accent: #0D9488;
+  --accent-l: #5EEAD4;
+  --violet: #06B6D4;
+  --violet-l: #67E8F9;
+  --accent-rgb: 13,148,136;
+  --violet-rgb: 6,182,212;
 }
 
 /* ======================================
@@ -1117,6 +1117,38 @@ footer {
 [dir="rtl"] .eyebrow      { flex-direction: row-reverse; }
 [dir="rtl"] .contact-inner { direction: rtl; }
 [dir="rtl"] .cmd-card::after { left: auto; right: 0; }
+
+/* ==========================================================
+   SCREEN-SHARE READABILITY OVERRIDES
+   Larger, heavier, pure-white text for Teams/Zoom on 13-15"
+========================================================== */
+body { font-weight: 500; }
+
+.hero-h1        { color: #FFFFFF; font-size: clamp(2.7rem, 4.6vw, 4.4rem); font-weight: 800; line-height: 1.1; }
+.section-title  { color: #FFFFFF; font-weight: 800; font-size: clamp(1.9rem, 3vw, 2.7rem); }
+.cmd-title      { color: #FFFFFF; font-weight: 800; font-size: clamp(1.2rem, 1.55vw, 1.42rem); line-height: 1.25; }
+.feat-num, .count-num, .count-suffix { color: var(--accent-l); }
+
+/* body copy — high contrast, heavier, ~20-25% larger */
+.hero-sub, .section-intro, .cmd-desc, .phase-desc {
+  color: #E8EDF6; font-weight: 600;
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem); line-height: 1.7;
+}
+.b-label        { color: #E8EDF6; font-weight: 600; font-size: clamp(0.92rem, 1.15vw, 1.08rem); }
+.feat-label     { color: #E8EDF6; font-weight: 700; font-size: clamp(0.95rem, 1.2vw, 1.12rem); }
+
+/* labels, chips, kickers — bolder & a touch bigger */
+.eyebrow, .section-eyebrow { font-weight: 700; }
+.chip           { font-weight: 700; font-size: 0.9rem; }
+.tech-chip      { font-weight: 700; font-size: 0.84rem; }
+.cmd-kicker     { color: var(--accent-l); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.05em; }
+.cmd-status     { font-weight: 700; font-size: 0.9rem; }
+.cmd-tag        { font-weight: 700; }
+nav a           { font-weight: 600; }
+.phase-name     { color: #FFFFFF; font-weight: 800; }
+
+/* keep the hero comfortably within a laptop viewport */
+.hero { min-height: auto; padding-top: clamp(48px, 7vh, 90px); padding-bottom: clamp(48px, 7vh, 90px); }
 </style>
 </head>
 
@@ -1713,8 +1745,8 @@ footer {
         <div class="cmd-title" data-i18n="e-f2-title">Competitive intelligence &#8594; strategic pivots</div>
         <div class="cmd-tags">
           <span class="cmd-tag">43+ competitors</span>
-          <span class="cmd-tag">6 pivots</span>
-          <span class="cmd-tag">22M SAR</span>
+          <span class="cmd-tag">System audit</span>
+          <span class="cmd-tag">Ops &amp; devices</span>
         </div>
         <p class="cmd-desc" data-i18n="e-f2-desc">
           I built competitive-intelligence programs tracking 43+ local and global competitors, driving 6 strategic product pivots that protected our market position. I identified operational gaps projected to add 22M SAR in potential annual revenue, managed with disciplined P&amp;L.
@@ -1767,8 +1799,8 @@ footer {
         <div class="cmd-title" data-i18n="e-g3-title">RFPs, RFQs &amp; business models</div>
         <div class="cmd-tags">
           <span class="cmd-tag">RFP / RFQ</span>
-          <span class="cmd-tag">Ministry of Investment</span>
-          <span class="cmd-tag">ZATCA</span>
+          <span class="cmd-tag">Investment · ZATCA</span>
+          <span class="cmd-tag">22M SAR / yr</span>
         </div>
         <p class="cmd-desc" data-i18n="e-g3-desc">
           High-level coordination to prepare technical and financial proposals (RFPs/RFQs) and build business models for government and private entities — including the Ministry of Investment, ZATCA, and partnerships with Petromin and SASCO.
@@ -1955,7 +1987,7 @@ const i18n = {
     'g-cmd-intro':    'Two stints shaped how I work: a consumer product I pushed to the top of the charts, and a platform business I rebuilt on the cloud and wired together end to end.',
     'g-c1-kicker':    'Mojaz · Market & Growth',
     'g-c1-title':     'Cracking the automotive market',
-    'g-c1-desc':      'At Mojaz the focus was breaking into the car market and driving awareness of the platform. I led marketing and business-development campaigns with 25+ influencers and car showrooms — landing 25M+ impressions, +250% app downloads, and record user-base growth.',
+    'g-c1-desc':      'At Mojaz the focus was breaking into the car market and building awareness of the platform. I led marketing and business-development campaigns with 25+ influencers and car showrooms, plus detailed behavioural analysis of 800+ customers — landing 25M+ impressions, +250% app downloads, and a real, tangible gain in market share from the first quarter.',
     'g-c1-status':    '🟢 25M+ reach',
     'g-c2-kicker':    'Rased · Cloud & AI',
     'g-c2-title':     'Full product lifecycle on GCP',
@@ -2054,11 +2086,11 @@ const i18n = {
     'e-f1-status':    '🟢 Product-market fit',
     'e-f2-kicker':    'Accountability · Strategy & P&L',
     'e-f2-title':     'Competitive intelligence → strategic pivots',
-    'e-f2-desc':      'I built competitive-intelligence programs tracking 43+ local and global competitors, driving 6 strategic product pivots that protected our market position. I identified operational gaps projected to add 22M SAR in potential annual revenue, managed with disciplined P&L.',
+    'e-f2-desc':      'I built a full competitive-intelligence program tracking 43+ local and global competitors. The analysis went two ways: a technical & engineering system audit, and an operational, on-the-ground view — operations, devices, installation and geographical distribution (install methods, device governance, coverage) — which drove 6 pivotal strategic product decisions.',
     'e-f2-status':    '🟢 Position held',
     'e-gov-eyebrow':  '> portfolio.gov()',
     'e-gov-title':    'Government portfolio & domain solutions',
-    'e-gov-intro':    'Direct experience across the ministries and authorities this role is built to serve.',
+    'e-gov-intro':    'My hands-on experience with regulators transfers straight to the energy & water sector at Elm.',
     'e-g1-kicker':    'Saudi Water Authority',
     'e-g1-title':     '3 strategic projects — tanker logistics governance',
     'e-g1-desc':      'Launched 3 strategic projects centred on automating and governing the logistics and tracking of water tankers.',
@@ -2069,7 +2101,7 @@ const i18n = {
     'e-g2-status':    '🟢 100% compliant',
     'e-g3-kicker':    'Cross-entity · Bids & Models',
     'e-g3-title':     'RFPs, RFQs & business models',
-    'e-g3-desc':      'High-level coordination to prepare technical and financial proposals (RFPs/RFQs) and build business models for government and private entities — including the Ministry of Investment, ZATCA, and partnerships with Petromin and SASCO.',
+    'e-g3-desc':      'High-level coordination to prepare technical and financial proposals (RFPs/RFQs) and build business models for government and private entities — including the Ministry of Investment, ZATCA, and partnerships with Petromin and SASCO — with a projected 22M SAR in additional annual revenue.',
     'e-g3-status':    '🟢 Won & delivered',
     'e-stk-eyebrow':  '> stakeholders.align()',
     'e-stk-title':    'Aligning the room, not just the backlog',
@@ -2127,8 +2159,8 @@ const i18n = {
     'g-bento-eyebrow':'> metrics.load()',
     'g-bento-title':  'الأرقام اللي وراء الشغل',
     'g-feat-label':   'ترتيب متجر التطبيقات',
-    'g-feat-sub':     'مجاز وصل المركز الأول في متجر التطبيقات السعودي',
-    'g-count1-label': 'ظهور على مجاز',
+    'g-feat-sub':     'موجز وصل المركز الأول في متجر التطبيقات السعودي',
+    'g-count1-label': 'ظهور على موجز',
     'g-count2-label': 'نمو التحميلات',
     'g-count3-label': 'نمو الأسطول (HubEat)',
     'g-count4-label': 'تسليم خارطة الطريق بوقته',
@@ -2141,7 +2173,7 @@ const i18n = {
     'g-cmd-intro':    'تجربتين شكّلوا طريقتي: منتج للمستهلك وصّلته لقمة المتجر، ومنصّة أعدت بنائها على السحابة وربطتها من البداية للنهاية.',
     'g-c1-kicker':    'موجز · تسويق ونمو',
     'g-c1-title':     'اختراق سوق السيارات',
-    'g-c1-desc':      'في موجز، كان التركيز على اختراق سوق السيارات ورفع الوعي بالمنصة. نجحت في قيادة حملات تسويقية وتطوير أعمال بالتكامل مع أكثر من 25 مؤثر ومعارض السيارات، والنتيجة كانت تحقيق 25 مليون ظهور، وزيادة تحميل التطبيق بنسبة 250%، وتوسيع قاعدة المستخدمين بشكل قياسي.',
+    'g-c1-desc':      'في تطبيق موجز، ركّزنا على اختراق سوق السيارات وبناء الوعي بالمنصة. قدت حملات تسويقية وتطوير أعمال بالتكامل مع أكثر من 25 مؤثر ومعارض السيارات، بالإضافة إلى إجراء تحليل سلوكي دقيق لأكثر من 800 عميل، والنتيجة كانت تحقيق 25 مليون ظهور، وزيادة تحميل التطبيق بنسبة 250%، مع زيادة ملموسة وحقيقية في الحصة السوقية من الربع الأول.',
     'g-c1-status':    '🟢 +25 مليون وصول',
     'g-c2-kicker':    'راصد · سحابة وذكاء',
     'g-c2-title':     'دورة حياة منتج كاملة على GCP',
@@ -2240,11 +2272,11 @@ const i18n = {
     'e-f1-status':    '🟢 ملاءمة للسوق',
     'e-f2-kicker':    'مسؤولية · استراتيجية وأرباح',
     'e-f2-title':     'ذكاء تنافسي ← قرارات محورية',
-    'e-f2-desc':      'قمت ببناء برامج الذكاء التنافسي وتتبع أكثر من 43 منافس محلي وعالمي، مما ساعدنا في اتخاذ 6 قرارات محورية (Strategic Product Pivots) حافظت على مركزنا في السوق. حددت فجوات تشغيلية ساهمت في توقع تحقيق 22 مليون ريال كإيرادات سنوية إضافية محتملة مع إدارة ذكية لمعايير الـ P&L.',
+    'e-f2-desc':      'بنيت برنامج ذكاء تنافسي متكامل تتبعنا فيه أكثر من 43 منافس محلي وعالمي. التحليل لم يكن سطحياً، بل شمل جانبين: الأول تقني وهندسي من جانب النظام (System & Technical Audit)، والثاني تشغيلي وميداني يخص العمليات (Operations, Devices, Installation & Geographical Distribution) مثل طرق التركيب، حوكمة الأجهزة، والتوزيع الجغرافي، مما ساعدنا في اتخاذ 6 قرارات استراتيجية محورية لمنتجاتنا.',
     'e-f2-status':    '🟢 حافظنا على المركز',
     'e-gov-eyebrow':  '> portfolio.gov()',
     'e-gov-title':    'المحفظة الحكومية وحلول القطاع',
-    'e-gov-intro':    'خبرة مباشرة مع الوزارات والجهات اللي هذا الدور موجود عشانها.',
+    'e-gov-intro':    'خبرتي الميدانية مع الجهات التنظيمية جاهزة للنقل فوراً لقطاع الطاقة والمياه في علم.',
     'e-g1-kicker':    'الهيئة السعودية للمياه',
     'e-g1-title':     '3 مشاريع استراتيجية — حوكمة لوجستيات الصهاريج',
     'e-g1-desc':      'إطلاق 3 مشاريع إستراتيجية ركزت على أتمتة وحوكمة لوجستيات تتبع صهاريج المياه.',
@@ -2255,7 +2287,7 @@ const i18n = {
     'e-g2-status':    '🟢 امتثال 100%',
     'e-g3-kicker':    'عابر للجهات · مناقصات ونماذج',
     'e-g3-title':     'مقترحات فنية ومالية ونماذج أعمال',
-    'e-g3-desc':      'التنسيق عالي المستوى لإعداد المقترحات الفنية والمالية (RFPs/RFQs) وبناء نماذج الأعمال للجهات الحكومية والخاصة (مثل وزارة الاستثمار، زاتكا، وشراكات بترومين وساسكو).',
+    'e-g3-desc':      'التنسيق لإعداد المقترحات الفنية والمالية (RFPs/RFQs) وبناء نماذج الأعمال للجهات الحكومية والخاصة (مثل وزارة الاستثمار، زاتكا، وشراكات بترومين وساسكو) متوقعاً تحقيق 22 مليون ريال كإيرادات سنوية إضافية.',
     'e-g3-status':    '🟢 فوز وتسليم',
     'e-stk-eyebrow':  '> stakeholders.align()',
     'e-stk-title':    'أواءم الغرفة، مو بس قائمة المهام',
