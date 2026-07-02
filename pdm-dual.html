@@ -1,0 +1,2504 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdulrahman Alhumud · Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ======================================
+   DESIGN TOKENS
+====================================== */
+:root {
+  --bg0: #060913;
+  --bg1: #0E1526;
+  --bg2: #1B2537;
+  --accent: #3B82F6;
+  --accent-l: #93C5FD;
+  --violet: #8B5CF6;
+  --violet-l: #C4B5FD;
+  --accent-rgb: 59,130,246;
+  --violet-rgb: 139,92,246;
+  --text: #FFFFFF;
+  --muted: #AEBBD0;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --font-sans: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ---- VIEW 2: Energy & Water palette override ---- */
+body.view-energy {
+  --accent: #0D9488;
+  --accent-l: #5EEAD4;
+  --violet: #06B6D4;
+  --violet-l: #67E8F9;
+  --accent-rgb: 13,148,136;
+  --violet-rgb: 6,182,212;
+}
+
+/* ======================================
+   RESET & BASE
+====================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, var(--bg0) 0%, #0B1120 100%);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  transition: background 0.5s ease;
+}
+
+/* BG glow */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 85% -10%, rgba(var(--accent-rgb),0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 15% 110%, rgba(var(--violet-rgb),0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.5s ease;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+* { position: relative; z-index: 1; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+em { font-style: italic; }
+
+/* ======================================
+   FLOATING LANG TOGGLE
+====================================== */
+.lang-toggle {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  background: rgba(15,23,42,0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(var(--accent-rgb),0.25);
+  border-radius: 100px;
+  padding: 4px;
+  gap: 2px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  transition: border-color 0.4s ease;
+}
+
+[dir="rtl"] .lang-toggle {
+  right: auto;
+  left: 24px;
+}
+
+.lang-btn {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted);
+  transition: all 0.22s ease;
+}
+
+.lang-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ======================================
+   TOPBAR
+====================================== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 80px);
+  height: 68px;
+  background: rgba(8,12,22,0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(var(--accent-rgb),0.12);
+  transition: border-color 0.4s ease;
+}
+
+.logo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-l);
+  letter-spacing: -0.01em;
+  transition: color 0.4s ease;
+  white-space: nowrap;
+}
+.logo span { color: var(--text); }
+
+nav { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 32px); }
+nav a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+nav a:hover { color: var(--text); }
+
+/* ======================================
+   VIEW SWITCH (DUAL-VIEW ENGINE)
+====================================== */
+.view-switch-bar {
+  display: flex;
+  justify-content: center;
+  padding: 22px clamp(20px, 5vw, 80px) 6px;
+}
+
+.view-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(15,23,42,0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(var(--accent-rgb),0.25);
+  border-radius: 100px;
+  padding: 5px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  max-width: 100%;
+  transition: border-color 0.4s ease;
+}
+
+.view-btn {
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 1.1vw, 0.86rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 9px clamp(14px, 2vw, 26px);
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.view-btn .vdot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: currentColor; opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.view-btn.active {
+  background: linear-gradient(135deg, var(--accent), var(--violet));
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(var(--accent-rgb),0.45);
+}
+.view-btn.active .vdot { opacity: 1; box-shadow: 0 0 8px #fff; }
+
+/* ======================================
+   VIEW CONTAINERS / CROSS-FADE
+====================================== */
+.view {
+  display: none;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.view.view-active {
+  display: block;
+}
+.view.view-shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ======================================
+   HERO
+====================================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: clamp(40px, 5vh, 80px) clamp(20px, 5vw, 80px);
+  gap: clamp(40px, 6vw, 80px);
+}
+
+.hero-left { display: flex; flex-direction: column; gap: 24px; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 18px;
+  border: 1px solid rgba(var(--accent-rgb),0.45);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-l);
+  background: rgba(var(--accent-rgb),0.06);
+  width: fit-content;
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero-h1 {
+  font-size: clamp(2rem, 3.8vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.hero-h1 em {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+[dir="rtl"] .hero-h1 { letter-spacing: 0; }
+
+.hero-sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.stats-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.chip {
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.18) 0%, rgba(var(--violet-rgb),0.18) 100%);
+  border: 1px solid rgba(var(--accent-rgb),0.35);
+  color: var(--accent-l);
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.22s ease;
+  letter-spacing: 0.01em;
+}
+
+.cta-btn:hover {
+  background: var(--accent-l);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(var(--accent-rgb),0.4);
+}
+
+/* ---- Profile ---- */
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-wrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  max-width: 70vw;
+}
+
+.profile-glass {
+  position: absolute;
+  inset: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(var(--accent-rgb),0.4);
+  box-shadow: 0 0 80px -20px rgba(var(--accent-rgb),0.5), inset 0 0 40px rgba(var(--accent-rgb),0.04);
+  background: rgba(var(--accent-rgb),0.08);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-avatar-premium {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-fallback {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.profile-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px dashed;
+}
+
+.r1 {
+  border-color: rgba(var(--accent-rgb),0.25);
+  animation: spin 18s linear infinite;
+}
+
+.r2 {
+  inset: 10px;
+  border-color: rgba(var(--violet-rgb),0.15);
+  animation: spin 30s linear infinite reverse;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.float-badge {
+  position: absolute;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: rgba(15,23,42,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(var(--accent-rgb),0.35);
+  color: var(--accent-l);
+  box-shadow: 0 4px 20px rgba(var(--accent-rgb),0.25);
+  animation: floatBadge 4s ease-in-out infinite;
+  white-space: nowrap;
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.b1 { top: 30px; right: 0; animation-delay: 0s; }
+.b2 { bottom: 30px; left: 0; animation-delay: 2s; }
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ======================================
+   SECTION SHARED
+====================================== */
+section {
+  padding: clamp(54px, 7vw, 96px) clamp(20px, 5vw, 80px);
+}
+
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  transition: color 0.4s ease;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.section-intro {
+  font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+  color: var(--muted);
+  max-width: 720px;
+  line-height: 1.7;
+  margin-bottom: 44px;
+}
+
+[dir="rtl"] .section-title { letter-spacing: 0; }
+
+/* ======================================
+   BENTO GRID
+====================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-auto-rows: minmax(140px, auto);
+  gap: 16px;
+}
+
+.b-card {
+  background: var(--bg1);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  --mx: 50%;
+  --my: 50%;
+}
+
+.b-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 180px at var(--mx) var(--my), rgba(var(--accent-rgb),0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.b-card:hover::before { opacity: 1; }
+
+.b-card:hover {
+  box-shadow: 0 8px 40px rgba(var(--accent-rgb),0.3), 0 2px 8px rgba(0,0,0,0.5);
+  border-color: rgba(var(--accent-rgb),0.3);
+  transform: scale(1.02) translateY(-3px);
+}
+
+.b-card.span-3 { grid-column: span 3; }
+.b-card.span-2 { grid-column: span 2; }
+.b-card.span-4 { grid-column: span 4; }
+
+.b-card.feat {
+  grid-column: span 3;
+  grid-row: span 2;
+  background: linear-gradient(145deg, rgba(var(--accent-rgb),0.12), rgba(var(--violet-rgb),0.08));
+  border-color: rgba(var(--accent-rgb),0.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.feat-num {
+  font-size: clamp(4rem, 7vw, 6rem);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--violet) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.feat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.feat-sub {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.count-wrap { display: flex; align-items: baseline; gap: 4px; }
+
+.count-num {
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  font-weight: 800;
+  color: var(--accent-l);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  transition: color 0.4s ease;
+}
+
+.count-suffix {
+  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.b-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.dark-card {
+  background: rgba(8,12,22,0.8);
+  border-color: rgba(var(--accent-rgb),0.15);
+}
+
+.stack-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.tech-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.tech-chip {
+  padding: 5px 12px;
+  background: rgba(var(--accent-rgb),0.08);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-l);
+  font-weight: 500;
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.quote-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(145deg, rgba(var(--violet-rgb),0.08), rgba(var(--accent-rgb),0.05));
+  border-color: rgba(var(--violet-rgb),0.2);
+}
+
+.quote-text {
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-style: italic;
+  color: var(--violet-l);
+  line-height: 1.65;
+  font-weight: 500;
+  transition: color 0.4s ease;
+}
+
+.quote-text::before { content: '\201C'; }
+.quote-text::after  { content: '\201D'; }
+
+/* ======================================
+   COMMAND CENTER / CAPABILITY GRID
+====================================== */
+.command-center { background: var(--bg1); }
+
+.cmd-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cmd-card {
+  background: var(--bg2);
+  border: 1px solid rgba(var(--accent-rgb),0.12);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cmd-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--violet));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cmd-card:hover::after { opacity: 1; }
+
+.cmd-card:hover {
+  border-color: rgba(var(--accent-rgb),0.3);
+  box-shadow: 0 12px 48px rgba(var(--accent-rgb),0.2);
+  transform: scale(1.02) translateY(-4px);
+}
+
+/* Energy-priority emphasis card */
+.cmd-card.priority {
+  background: linear-gradient(150deg, rgba(var(--accent-rgb),0.16), rgba(var(--violet-rgb),0.08));
+  border-color: rgba(var(--accent-rgb),0.4);
+}
+
+.cmd-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.2), rgba(var(--violet-rgb),0.15));
+  border: 1px solid rgba(var(--accent-rgb),0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  transition: border-color 0.4s ease;
+}
+
+.cmd-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  transition: color 0.4s ease;
+}
+
+.cmd-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.cmd-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+
+.cmd-tag {
+  padding: 3px 10px;
+  background: rgba(var(--accent-rgb),0.1);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
+  border-radius: 100px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent-l);
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  transition: border-color 0.4s ease, color 0.4s ease;
+}
+
+.cmd-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.cmd-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #34D399;
+}
+
+.gov-nodes { display: flex; flex-direction: column; gap: 14px; }
+
+.gov-node {
+  padding: 14px 16px;
+  background: rgba(var(--accent-rgb),0.05);
+  border: 1px solid rgba(var(--accent-rgb),0.12);
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.gov-node:hover {
+  background: rgba(var(--accent-rgb),0.1);
+  border-color: rgba(var(--accent-rgb),0.25);
+}
+
+.gov-node-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.gov-node-desc {
+  font-size: 0.77rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ======================================
+   CLIENT MARQUEE
+====================================== */
+.marquee-section {
+  padding: clamp(40px, 5vw, 60px) 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb),0.03), transparent);
+}
+
+.marquee-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+  padding: 0 20px;
+}
+
+.marquee-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 8px 0;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 160px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg0), transparent);
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--bg0), transparent);
+}
+
+[dir="rtl"] .marquee-wrapper::before {
+  left: auto; right: 0;
+  background: linear-gradient(-90deg, var(--bg0), transparent);
+}
+
+[dir="rtl"] .marquee-wrapper::after {
+  right: auto; left: 0;
+  background: linear-gradient(90deg, var(--bg0), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track.rtl-marquee { animation-direction: reverse; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.client-chip {
+  padding: 10px 24px;
+  background: rgba(30,41,59,0.6);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: all 0.3s;
+  cursor: default;
+  letter-spacing: 0.02em;
+  filter: grayscale(1);
+}
+
+.client-chip:hover {
+  color: var(--accent-l);
+  border-color: rgba(var(--accent-rgb),0.4);
+  box-shadow: 0 4px 20px rgba(var(--accent-rgb),0.25);
+  background: rgba(var(--accent-rgb),0.08);
+  filter: grayscale(0);
+}
+
+/* ======================================
+   PRODUCT STORY / TIMELINE
+====================================== */
+.story-phases {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.phase-card {
+  background: var(--bg1);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 0.3s ease;
+}
+
+.phase-card:hover {
+  border-color: rgba(var(--accent-rgb),0.25);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb),0.15);
+  transform: scale(1.02);
+}
+
+.phase-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  transition: color 0.4s ease;
+}
+
+.phase-name {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.phase-time {
+  font-size: 0.77rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.phase-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.progress-bar-wrap { display: flex; flex-direction: column; gap: 6px; }
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.progress-track {
+  height: 4px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--violet));
+  border-radius: 100px;
+  width: 0%;
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ======================================
+   CREDENTIALS
+====================================== */
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.cred-card {
+  background: var(--bg1);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.cred-card:hover {
+  border-color: rgba(var(--accent-rgb),0.3);
+  box-shadow: 0 8px 32px rgba(var(--accent-rgb),0.2);
+  transform: scale(1.02) translateY(-3px);
+}
+
+.cred-icon { font-size: 2.2rem; margin-bottom: 12px; display: block; }
+
+.cred-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.cred-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ======================================
+   CONTACT / FOOTER (shared, outside views)
+====================================== */
+.contact-section {
+  background: linear-gradient(180deg, var(--bg0), var(--bg1));
+  border-top: 1px solid rgba(var(--accent-rgb),0.1);
+  transition: border-color 0.4s ease;
+}
+
+.contact-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+.contact-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.contact-row:hover { color: var(--accent-l); }
+
+.contact-icon {
+  width: 36px; height: 36px;
+  background: rgba(var(--accent-rgb),0.1);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: border-color 0.4s ease;
+}
+
+footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ======================================
+   REVEAL ANIMATIONS
+====================================== */
+.rv {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+
+.rv.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rv[data-delay="1"] { transition-delay: 0.10s; }
+.rv[data-delay="2"] { transition-delay: 0.20s; }
+.rv[data-delay="3"] { transition-delay: 0.30s; }
+.rv[data-delay="4"] { transition-delay: 0.40s; }
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+@media (max-width: 1100px) {
+  .bento-grid { grid-template-columns: repeat(6, 1fr); }
+  .b-card.feat   { grid-column: span 3; grid-row: span 2; }
+  .b-card.span-3 { grid-column: span 3; }
+  .b-card.span-2 { grid-column: span 3; }
+  .b-card.span-4 { grid-column: span 6; }
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-top: 40px; }
+  .hero-right { order: -1; }
+  .profile-wrap { width: 240px; height: 240px; }
+  .cmd-grid { grid-template-columns: 1fr; }
+  .story-phases { grid-template-columns: 1fr; }
+  .cred-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .bento-grid { grid-template-columns: 1fr 1fr; }
+  .b-card.feat,
+  .b-card.span-3,
+  .b-card.span-2,
+  .b-card.span-4 { grid-column: span 2; }
+  nav { display: none; }
+  .cred-grid { grid-template-columns: 1fr 1fr; }
+  .view-switch { flex-wrap: wrap; justify-content: center; }
+}
+
+/* ======================================
+   RTL OVERRIDES
+====================================== */
+[dir="rtl"] {
+  font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+}
+
+[dir="rtl"] .hero-sub     { max-width: 100%; }
+[dir="rtl"] .section-intro { max-width: 100%; }
+[dir="rtl"] .topbar       { flex-direction: row-reverse; }
+[dir="rtl"] nav           { flex-direction: row-reverse; }
+[dir="rtl"] .stats-chips  { flex-direction: row-reverse; }
+[dir="rtl"] .hero-left    { align-items: flex-end; text-align: right; }
+[dir="rtl"] .eyebrow      { flex-direction: row-reverse; }
+[dir="rtl"] .contact-inner { direction: rtl; }
+[dir="rtl"] .cmd-card::after { left: auto; right: 0; }
+
+/* ==========================================================
+   SCREEN-SHARE READABILITY OVERRIDES
+   Larger, heavier, pure-white text for Teams/Zoom on 13-15"
+========================================================== */
+body { font-weight: 500; }
+
+.hero-h1        { color: #FFFFFF; font-size: clamp(2.7rem, 4.6vw, 4.4rem); font-weight: 800; line-height: 1.1; }
+.section-title  { color: #FFFFFF; font-weight: 800; font-size: clamp(1.9rem, 3vw, 2.7rem); }
+.cmd-title      { color: #FFFFFF; font-weight: 800; font-size: clamp(1.2rem, 1.55vw, 1.42rem); line-height: 1.25; }
+.feat-num, .count-num, .count-suffix { color: var(--accent-l); }
+
+/* body copy — high contrast, heavier, ~20-25% larger */
+.hero-sub, .section-intro, .cmd-desc, .phase-desc {
+  color: #E8EDF6; font-weight: 600;
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem); line-height: 1.7;
+}
+.b-label        { color: #E8EDF6; font-weight: 600; font-size: clamp(0.92rem, 1.15vw, 1.08rem); }
+.feat-label     { color: #E8EDF6; font-weight: 700; font-size: clamp(0.95rem, 1.2vw, 1.12rem); }
+
+/* labels, chips, kickers — bolder & a touch bigger */
+.eyebrow, .section-eyebrow { font-weight: 700; }
+.chip           { font-weight: 700; font-size: 0.9rem; }
+.tech-chip      { font-weight: 700; font-size: 0.84rem; }
+.cmd-kicker     { color: var(--accent-l); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.05em; }
+.cmd-status     { font-weight: 700; font-size: 0.9rem; }
+.cmd-tag        { font-weight: 700; }
+nav a           { font-weight: 600; }
+.phase-name     { color: #FFFFFF; font-weight: 800; }
+
+/* keep the hero comfortably within a laptop viewport */
+.hero { min-height: auto; padding-top: clamp(48px, 7vh, 90px); padding-bottom: clamp(48px, 7vh, 90px); }
+</style>
+</head>
+
+<body>
+
+<!-- ============================
+     LANG TOGGLE (frosted floating)
+============================= -->
+<div class="lang-toggle" role="group" aria-label="Language selector">
+  <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn"        id="btn-ar" onclick="setLang('ar')">AR</button>
+</div>
+
+<!-- ============================
+     TOPBAR
+============================= -->
+<header class="topbar">
+  <div class="logo">Abdulrahman <span>· PdM</span></div>
+  <nav>
+    <a href="#capabilities" data-i18n="nav-product">Capabilities</a>
+    <a href="#metrics"      data-i18n="nav-metrics">Metrics</a>
+    <a href="#story"        data-i18n="nav-systems">Track Record</a>
+    <a href="#contact"      data-i18n="nav-contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ============================
+     VIEW SWITCH (DUAL-VIEW ENGINE)
+============================= -->
+<div class="view-switch-bar">
+  <div class="view-switch" role="group" aria-label="Profile view selector">
+    <button class="view-btn active" id="vbtn-general" onclick="setView('general')">
+      <span class="vdot"></span><span data-i18n="view-general">General PM Profile</span>
+    </button>
+    <button class="view-btn" id="vbtn-energy" onclick="setView('energy')">
+      <span class="vdot"></span><span data-i18n="view-energy">Energy &amp; Water Tailored View</span>
+    </button>
+  </div>
+</div>
+
+<!-- ====================================================
+     VIEW 1 — CORE TECHNICAL PRODUCT MANAGER (GENERAL)
+==================================================== -->
+<div class="view view-active view-shown" id="view-general">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow rv" data-i18n="g-eyebrow">Technical Product Manager</div>
+
+      <h1 class="hero-h1 rv" data-delay="1">
+        <span data-i18n="g-h1-plain">I take products from a blank board to </span><em data-i18n="g-h1-em">the #1 spot.</em>
+      </h1>
+
+      <p class="hero-sub rv" data-delay="2" data-i18n="g-sub">
+        Five products launched, twenty-five million impressions, and download growth north of 250%. I sit between the engineers and the market and make sure both get what they need.
+      </p>
+
+      <div class="stats-chips rv" data-delay="3">
+        <span class="chip" data-i18n="g-chip1">#1 App Store</span>
+        <span class="chip" data-i18n="g-chip2">25M+ Impressions</span>
+        <span class="chip" data-i18n="g-chip3">+250% Downloads</span>
+      </div>
+
+      <a href="#capabilities" class="cta-btn rv" data-delay="4">
+        <span data-i18n="g-cta">See the work</span>
+        <span aria-hidden="true">&#8594;</span>
+      </a>
+    </div>
+
+    <div class="hero-right rv" data-delay="2">
+      <div class="profile-wrap">
+        <div class="profile-glass">
+          <img
+            src="abdulrahman.png"
+            alt="Abdulrahman Alhumud"
+            class="profile-avatar-premium"
+            onerror="this.style.display='none';document.getElementById('av-fb-g').style.display='flex'">
+          <div id="av-fb-g" class="avatar-fallback" style="display:none">AA</div>
+        </div>
+        <div class="profile-ring r1"></div>
+        <div class="profile-ring r2"></div>
+        <div class="float-badge b1" data-i18n="g-badge1">#1 RANK</div>
+        <div class="float-badge b2" data-i18n="g-badge2">+250%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS BENTO -->
+  <section id="metrics" style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="g-bento-eyebrow">&gt; metrics.load()</div>
+    <div class="section-title rv"   data-i18n="g-bento-title">The numbers behind the work</div>
+
+    <div class="bento-grid">
+      <div class="b-card feat rv" data-delay="1">
+        <span class="feat-num">#1</span>
+        <div class="feat-label" data-i18n="g-feat-label">APP STORE RANKING</div>
+        <div class="feat-sub"   data-i18n="g-feat-sub">Mojaz reached #1 on the Saudi App Store</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="2">
+        <div class="count-wrap">
+          <span class="count-num" data-target="25">0</span>
+          <span class="count-suffix">M+</span>
+        </div>
+        <div class="b-label" data-i18n="g-count1-label">Impressions on Mojaz</div>
+      </div>
+
+      <div class="b-card span-3 rv" data-delay="3">
+        <div class="count-wrap">
+          <span class="count-suffix" style="color:var(--accent-l);font-size:2rem;">+</span>
+          <span class="count-num" data-target="250">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="g-count2-label">Download growth</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="1">
+        <div class="count-wrap">
+          <span class="count-suffix" style="color:var(--accent-l);font-size:2rem;">+</span>
+          <span class="count-num" data-target="500">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="g-count3-label">Fleet growth (HubEat)</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="2">
+        <div class="count-wrap">
+          <span class="count-num" data-target="85">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="g-count4-label">On-time roadmap delivery</div>
+      </div>
+
+      <div class="b-card span-4 dark-card rv" data-delay="3">
+        <div class="stack-title" data-i18n="g-stack-title">Stack &amp; Tooling</div>
+        <div class="tech-chips">
+          <span class="tech-chip">GCP</span>
+          <span class="tech-chip">Vibe Coding</span>
+          <span class="tech-chip">Autonomous Agents</span>
+          <span class="tech-chip">BigQuery</span>
+          <span class="tech-chip">Mixpanel</span>
+          <span class="tech-chip">Odoo</span>
+          <span class="tech-chip">Zoho CRM</span>
+          <span class="tech-chip">Jira</span>
+          <span class="tech-chip">MS Outlook</span>
+          <span class="tech-chip">Figma</span>
+        </div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="4">
+        <div class="count-wrap">
+          <span class="count-num" data-target="38">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="g-count5-label">Onboarding adoption (up from 12%)</div>
+      </div>
+
+      <div class="b-card span-4 quote-card rv" data-delay="2">
+        <p class="quote-text" data-i18n="g-quote">A product manager's job is simple to say and hard to do: keep everyone pointed at the same outcome, sprint after sprint.</p>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="3">
+        <div class="count-wrap">
+          <span class="count-num" data-target="45">0</span>
+        </div>
+        <div class="b-label" data-i18n="g-count6-label">Cross-functional team (worked alongside)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES / SYSTEMS -->
+  <section class="command-center" id="capabilities">
+    <div class="section-eyebrow rv" data-i18n="g-cmd-eyebrow">&gt; what.i.do()</div>
+    <div class="section-title rv" data-i18n="g-cmd-title">Where I spend my time</div>
+    <p class="section-intro rv" data-i18n="g-cmd-intro">Two stints shaped how I work: a consumer product I pushed to the top of the charts, and a platform business I rebuilt on the cloud and wired together end to end.</p>
+
+    <div class="cmd-grid">
+      <div class="cmd-card rv" data-delay="1">
+        <div class="cmd-icon">&#128241;</div>
+        <div class="cmd-kicker" data-i18n="g-c1-kicker">Mojaz · Market &amp; Growth</div>
+        <div class="cmd-title" data-i18n="g-c1-title">Cracking the automotive market</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Marketing</span>
+          <span class="cmd-tag">Influencers</span>
+          <span class="cmd-tag">Growth</span>
+        </div>
+        <p class="cmd-desc" data-i18n="g-c1-desc">
+          At Mojaz the focus was breaking into the car market and driving awareness of the platform. I led marketing and business-development campaigns with 25+ influencers and car showrooms — landing 25M+ impressions, +250% app downloads, and record user-base growth.
+        </p>
+        <div class="cmd-status" data-i18n="g-c1-status">&#129001; Shipped</div>
+      </div>
+
+      <div class="cmd-card rv" data-delay="2">
+        <div class="cmd-icon">&#9729;&#65039;</div>
+        <div class="cmd-kicker" data-i18n="g-c2-kicker">Rased · Cloud &amp; AI</div>
+        <div class="cmd-title" data-i18n="g-c2-title">Full product lifecycle on GCP</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">GCP</span>
+          <span class="cmd-tag">Vibe Coding</span>
+          <span class="cmd-tag">Autonomous Agents</span>
+        </div>
+        <p class="cmd-desc" data-i18n="g-c2-desc">
+          I owned the full product lifecycle on GCP — launching 4 new products and 8 innovative services from the behaviour of 1,000+ customers. I used Vibe Coding and autonomous agents to automate dashboards and Jira reporting and cut production costs, working alongside a 45-member cross-functional team (engineering, security, sales, operations).
+        </p>
+        <div class="cmd-status" data-i18n="g-c2-status">&#129001; Live</div>
+      </div>
+
+      <div class="cmd-card rv" data-delay="3">
+        <div class="cmd-icon">&#128279;</div>
+        <div class="cmd-kicker" data-i18n="g-c3-kicker">Integrations</div>
+        <div class="cmd-title" data-i18n="g-c3-title">Tools that talk to each other</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Odoo</span>
+          <span class="cmd-tag">Zoho CRM</span>
+          <span class="cmd-tag">Jira &#8594; Outlook</span>
+        </div>
+        <p class="cmd-desc" data-i18n="g-c3-desc">
+          I connected Odoo and Zoho CRM into one workflow and set up automated Jira reporting that lands straight in MS Outlook, so the team gets its updates without logging in or chasing anyone. Less friction, fewer dropped balls.
+        </p>
+        <div class="cmd-status" data-i18n="g-c3-status">&#129001; Automated</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-label" data-i18n="marquee-label">Work delivered alongside</div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track marquee-general">
+        <span class="client-chip">Petromin</span>
+        <span class="client-chip">SASCO</span>
+        <span class="client-chip">Saudi Water Authority</span>
+        <span class="client-chip">MEWA</span>
+        <span class="client-chip">Ministry of Energy</span>
+        <span class="client-chip">ZATCA</span>
+        <span class="client-chip">Petromin</span>
+        <span class="client-chip">SASCO</span>
+        <span class="client-chip">Saudi Water Authority</span>
+        <span class="client-chip">MEWA</span>
+        <span class="client-chip">Ministry of Energy</span>
+        <span class="client-chip">ZATCA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRACK RECORD / STORY -->
+  <section id="story" style="background: var(--bg0);">
+    <div class="section-eyebrow rv" data-i18n="g-story-eyebrow">&gt; mojaz.timeline()</div>
+    <div class="section-title rv" data-i18n="g-story-title">From idea to top of the charts</div>
+
+    <div class="story-phases">
+      <div class="phase-card rv" data-delay="1">
+        <div class="phase-num"  data-i18n="g-p1-num">Phase 01</div>
+        <div class="phase-name" data-i18n="g-p1-name">Discover</div>
+        <div class="phase-time" data-i18n="g-p1-time">Weeks 1–2</div>
+        <p class="phase-desc"   data-i18n="g-p1-desc">User research and a hard look at the competition turned into a clear brief. We agreed on the one thing the product had to nail and the friction points worth removing first.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="g-prog">Completion</span><span>100%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="1.0"></div></div>
+        </div>
+      </div>
+
+      <div class="phase-card rv" data-delay="2">
+        <div class="phase-num"  data-i18n="g-p2-num">Phase 02</div>
+        <div class="phase-name" data-i18n="g-p2-name">Ship</div>
+        <div class="phase-time" data-i18n="g-p2-time">Weeks 3–8</div>
+        <p class="phase-desc"   data-i18n="g-p2-desc">Tight sprint cycles, real A/B tests, and the 25M impressions milestone. We let the data decide what shipped next and kept the feedback loop short.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="g-prog">Completion</span><span>92%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="0.92"></div></div>
+        </div>
+      </div>
+
+      <div class="phase-card rv" data-delay="3">
+        <div class="phase-num"  data-i18n="g-p3-num">Phase 03</div>
+        <div class="phase-name" data-i18n="g-p3-name">Scale</div>
+        <div class="phase-time" data-i18n="g-p3-time">Weeks 9–12</div>
+        <p class="phase-desc"   data-i18n="g-p3-desc">#1 on the App Store and downloads up 250%. From there it was about holding the position: tuning performance, watching the funnel, and keeping the iteration cadence honest.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="g-prog">Completion</span><span>88%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="0.88"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="g-cred-eyebrow">&gt; certs.verify()</div>
+    <div class="section-title rv" data-i18n="g-cred-title">Credentials &amp; tooling</div>
+
+    <div class="cred-grid">
+      <div class="cred-card rv" data-delay="1">
+        <span class="cred-icon">&#127942;</span>
+        <div class="cred-title" data-i18n="g-cred1-title">PMP&#174; Certified</div>
+        <div class="cred-sub"   data-i18n="g-cred1-sub">Project Management Professional — PMI</div>
+      </div>
+      <div class="cred-card rv" data-delay="2">
+        <span class="cred-icon">&#9729;&#65039;</span>
+        <div class="cred-title" data-i18n="g-cred2-title">GCP Cloud Infrastructure</div>
+        <div class="cred-sub"   data-i18n="g-cred2-sub">Google Cloud — data &amp; DevOps</div>
+      </div>
+      <div class="cred-card rv" data-delay="3">
+        <span class="cred-icon">&#128161;</span>
+        <div class="cred-title" data-i18n="g-cred3-title">Design Thinking</div>
+        <div class="cred-sub"   data-i18n="g-cred3-sub">Human-centred product work</div>
+      </div>
+      <div class="cred-card rv" data-delay="4">
+        <span class="cred-icon">&#128202;</span>
+        <div class="cred-title" data-i18n="g-cred4-title">Product Analytics</div>
+        <div class="cred-sub"   data-i18n="g-cred4-sub">Mixpanel · BigQuery · funnel analysis</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /view-general -->
+
+
+<!-- ====================================================
+     VIEW 2 — ENERGY & NATURAL RESOURCES LEADER
+==================================================== -->
+<div class="view" id="view-energy">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="eyebrow rv" data-i18n="e-eyebrow">Energy &amp; Natural Resources · PM</div>
+
+      <h1 class="hero-h1 rv" data-delay="1">
+        <span data-i18n="e-h1-plain">Building digital products for </span><em data-i18n="e-h1-em">energy &amp; water.</em>
+      </h1>
+
+      <p class="hero-sub rv" data-delay="2" data-i18n="e-sub">
+        I have already shipped for the Saudi Water Authority, MEWA, the Ministry of Energy and ZATCA — automating field operations, logistics and compliance for the sector this role serves.
+      </p>
+
+      <div class="stats-chips rv" data-delay="3">
+        <span class="chip" data-i18n="e-chip1">SWA · MEWA · MoEnergy</span>
+        <span class="chip" data-i18n="e-chip2">+400% Revenue</span>
+        <span class="chip" data-i18n="e-chip3">380+ Enterprise Clients</span>
+      </div>
+
+      <a href="#capabilities-e" class="cta-btn rv" data-delay="4">
+        <span data-i18n="e-cta">See the fit</span>
+        <span aria-hidden="true">&#8594;</span>
+      </a>
+    </div>
+
+    <div class="hero-right rv" data-delay="2">
+      <div class="profile-wrap">
+        <div class="profile-glass">
+          <img
+            src="abdulrahman.png"
+            alt="Abdulrahman Alhumud"
+            class="profile-avatar-premium"
+            onerror="this.style.display='none';document.getElementById('av-fb-e').style.display='flex'">
+          <div id="av-fb-e" class="avatar-fallback" style="display:none">AA</div>
+        </div>
+        <div class="profile-ring r1"></div>
+        <div class="profile-ring r2"></div>
+        <div class="float-badge b1" data-i18n="e-badge1">SWA · MEWA</div>
+        <div class="float-badge b2" data-i18n="e-badge2">+400%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS BENTO -->
+  <section id="metrics-e" style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="e-bento-eyebrow">&gt; sector.metrics()</div>
+    <div class="section-title rv"   data-i18n="e-bento-title">Proof points for this role</div>
+
+    <div class="bento-grid">
+      <div class="b-card feat rv" data-delay="1">
+        <span class="feat-num">13K+</span>
+        <div class="feat-label" data-i18n="e-feat-label">VEHICLES ON PLATFORM</div>
+        <div class="feat-sub"   data-i18n="e-feat-sub">A fleet &amp; fuel platform I delivered for the Ministry of Energy</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="2">
+        <div class="count-wrap">
+          <span class="count-num" data-target="350">0</span>
+          <span class="count-suffix">+</span>
+        </div>
+        <div class="b-label" data-i18n="e-count1-label">Customer interviews run per year</div>
+      </div>
+
+      <div class="b-card span-3 rv" data-delay="3">
+        <div class="count-wrap">
+          <span class="count-suffix" style="color:var(--accent-l);font-size:2rem;">+</span>
+          <span class="count-num" data-target="33">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="e-count2-label">Conversion lift from churn analysis</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="1">
+        <div class="count-wrap">
+          <span class="count-num" data-target="43">0</span>
+          <span class="count-suffix">+</span>
+        </div>
+        <div class="b-label" data-i18n="e-count3-label">Competitors tracked (competitive intel)</div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="2">
+        <div class="count-wrap">
+          <span class="count-num" data-target="100">0</span>
+          <span class="count-suffix">%</span>
+        </div>
+        <div class="b-label" data-i18n="e-count4-label">Security &amp; data-integrity compliance</div>
+      </div>
+
+      <div class="b-card span-4 dark-card rv" data-delay="3">
+        <div class="stack-title" data-i18n="e-stack-title">Systems I built for the sector</div>
+        <div class="tech-chips">
+          <span class="tech-chip">Fleet &amp; Fuel Platform</span>
+          <span class="tech-chip">Fuel Wallet</span>
+          <span class="tech-chip">Station Orders</span>
+          <span class="tech-chip">Smart Nozzle IoT</span>
+          <span class="tech-chip">Tanker Logistics</span>
+          <span class="tech-chip">&#8220;Hafiz&#8221; Field Ops</span>
+          <span class="tech-chip">GCP</span>
+          <span class="tech-chip">ZATCA e-Invoicing</span>
+        </div>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="4">
+        <div class="count-wrap">
+          <span class="count-num" data-target="22">0</span>
+          <span class="count-suffix">M+</span>
+        </div>
+        <div class="b-label" data-i18n="e-count5-label">SAR potential annual revenue identified</div>
+      </div>
+
+      <div class="b-card span-4 quote-card rv" data-delay="2">
+        <p class="quote-text" data-i18n="e-quote">In the public sector, a feature only counts when it survives the field, the audit, and the regulator. That's the bar I build to.</p>
+      </div>
+
+      <div class="b-card span-2 rv" data-delay="3">
+        <div class="count-wrap">
+          <span class="count-num" data-target="6">0</span>
+        </div>
+        <div class="b-label" data-i18n="e-count6-label">Strategic product pivots</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES MAPPED TO VACANCY -->
+  <section class="command-center" id="capabilities-e">
+    <div class="section-eyebrow rv" data-i18n="e-cmd-eyebrow">&gt; vacancy.match()</div>
+    <div class="section-title rv" data-i18n="e-cmd-title">Mapped to the role</div>
+    <p class="section-intro rv" data-i18n="e-cmd-intro">Each part of the Energy &amp; Natural Resources PM brief, matched to work I have already delivered. The energy and water solutions come first, because that is where the fit is sharpest.</p>
+
+    <div class="cmd-grid">
+      <!-- Flagship: Ministry of Energy — 13K vehicles -->
+      <div class="cmd-card priority rv" data-delay="1">
+        <div class="cmd-icon">&#128663;</div>
+        <div class="cmd-kicker" data-i18n="e-c1-kicker">Ministry of Energy · Flagship</div>
+        <div class="cmd-title" data-i18n="e-c1-title">Fleet &amp; fuel platform for 13,000+ vehicles</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Ministry of Energy</span>
+          <span class="cmd-tag">Fleet</span>
+          <span class="cmd-tag">Fuel</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c1-desc">
+          I built and ran a platform managing a government fleet of 13,000+ vehicles — vehicle registry, fuel entitlements, and live tracking in one source of truth the ministry relies on every day.
+        </p>
+        <div class="cmd-status" data-i18n="e-c1-status">&#129001; Live · 13K+ vehicles</div>
+      </div>
+
+      <!-- Flagship: Fuel expense wallet -->
+      <div class="cmd-card priority rv" data-delay="2">
+        <div class="cmd-icon">&#128092;</div>
+        <div class="cmd-kicker" data-i18n="e-c2-kicker">Ministry of Energy · FinOps</div>
+        <div class="cmd-title" data-i18n="e-c2-title">Fuel expense wallet</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">FinOps</span>
+          <span class="cmd-tag">Budget Control</span>
+          <span class="cmd-tag">Wallet</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c2-desc">
+          Developed a digital fuel-expense wallet that controls and allocates spend down to each individual vehicle — with live budget control and spend analytics that replaced manual tracking and leakage.
+        </p>
+        <div class="cmd-status" data-i18n="e-c2-status">&#129001; Live</div>
+      </div>
+
+      <!-- Flagship: Won bids -->
+      <div class="cmd-card priority rv" data-delay="3">
+        <div class="cmd-icon">&#128220;</div>
+        <div class="cmd-kicker" data-i18n="e-c3-kicker">Bids · Won</div>
+        <div class="cmd-title" data-i18n="e-c3-title">Government RFPs I wrote &amp; won</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">RFP</span>
+          <span class="cmd-tag">POC</span>
+          <span class="cmd-tag">Use Case</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c3-desc">
+          I personally authored two winning government bids: a full RFP and proof-of-concept for the Ministry of Hajj &amp; Umrah, and a use case for the Ministry of Industry &amp; Mineral Resources.
+        </p>
+        <div class="cmd-status" data-i18n="e-c3-status">&#129001; 2 wins</div>
+      </div>
+
+      <!-- Station fuel-order management -->
+      <div class="cmd-card rv" data-delay="1">
+        <div class="cmd-icon">&#9981;</div>
+        <div class="cmd-kicker" data-i18n="e-c4-kicker">Downstream · Stations</div>
+        <div class="cmd-title" data-i18n="e-c4-title">Station fuel-order management</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">Stations</span>
+          <span class="cmd-tag">Ordering</span>
+          <span class="cmd-tag">Automation</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c4-desc">
+          A custom solution that manages fuel-replenishment requests for stations end to end — request, approval, dispatch — fully automated to cut turnaround time and human error.
+        </p>
+        <div class="cmd-status" data-i18n="e-c4-status">&#129001; Live</div>
+      </div>
+
+      <!-- Smart nozzle verification -->
+      <div class="cmd-card rv" data-delay="2">
+        <div class="cmd-icon">&#128268;</div>
+        <div class="cmd-kicker" data-i18n="e-c5-kicker">IoT · Verification</div>
+        <div class="cmd-title" data-i18n="e-c5-title">Smart fuel-nozzle verification</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">IoT</span>
+          <span class="cmd-tag">Anti-fraud</span>
+          <span class="cmd-tag">Verification</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c5-desc">
+          Led the integration of a smart fuel nozzle with a Chinese hardware manufacturer to verify every dispensing transaction at the nozzle itself — stopping tampering and protecting operational integrity.
+        </p>
+        <div class="cmd-status" data-i18n="e-c5-status">&#129001; In production</div>
+      </div>
+
+      <!-- SWA tanker logistics -->
+      <div class="cmd-card rv" data-delay="3">
+        <div class="cmd-icon">&#128666;</div>
+        <div class="cmd-kicker" data-i18n="e-c6-kicker">Saudi Water Authority</div>
+        <div class="cmd-title" data-i18n="e-c6-title">Water-tanker logistics &amp; tracking</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">SWA</span>
+          <span class="cmd-tag">Tracking</span>
+          <span class="cmd-tag">Logistics</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c6-desc">
+          Built automated logistics and tracking for water tankers with the Saudi Water Authority — turning manual dispatch into a live, monitored operation the team trusts day to day.
+        </p>
+        <div class="cmd-status" data-i18n="e-c6-status">&#129001; Delivered</div>
+      </div>
+
+      <!-- MEWA Hafiz field ops -->
+      <div class="cmd-card rv" data-delay="4">
+        <div class="cmd-icon">&#127807;</div>
+        <div class="cmd-kicker" data-i18n="e-c7-kicker">MEWA · &#8220;Hafiz&#8221;</div>
+        <div class="cmd-title" data-i18n="e-c7-title">Field-inspector operations</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">MEWA</span>
+          <span class="cmd-tag">Inspection</span>
+          <span class="cmd-tag">Compliance</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-c7-desc">
+          Digitised the operations of field inspectors at the Ministry of Environment, Water &amp; Agriculture through the &#8220;Hafiz&#8221; platform — field inspection, compliance monitoring, and real-time reporting that holds up to audit.
+        </p>
+        <div class="cmd-status" data-i18n="e-c7-status">&#129001; Live</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELM ACCOUNTABILITIES -->
+  <section id="fit-e" style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="e-fit-eyebrow">&gt; accountabilities.map()</div>
+    <div class="section-title rv" data-i18n="e-fit-title">Mapped to Elm's key accountabilities</div>
+    <p class="section-intro rv" data-i18n="e-fit-intro">The resume, translated into the exact accountabilities of the Energy &amp; Natural Resources product role.</p>
+
+    <div class="cmd-grid">
+      <div class="cmd-card priority rv" data-delay="1">
+        <div class="cmd-icon">&#128269;</div>
+        <div class="cmd-kicker" data-i18n="e-f1-kicker">Accountability · Customer Insight</div>
+        <div class="cmd-title" data-i18n="e-f1-title">Research programs that de-risk features</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">350+ interviews/yr</span>
+          <span class="cmd-tag">950 churn analysed</span>
+          <span class="cmd-tag">+33% conversion</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-f1-desc">
+          I run customer-research programs at scale — 350+ interviews a year to validate new-feature hypotheses. Analysing the behaviour of 950 customers who didn't convert lifted conversion by 33% and secured real product-market fit.
+        </p>
+        <div class="cmd-status" data-i18n="e-f1-status">&#129001; Product-market fit</div>
+      </div>
+
+      <div class="cmd-card priority rv" data-delay="2">
+        <div class="cmd-icon">&#9878;&#65039;</div>
+        <div class="cmd-kicker" data-i18n="e-f2-kicker">Accountability · Strategy &amp; P&amp;L</div>
+        <div class="cmd-title" data-i18n="e-f2-title">Competitive intelligence &#8594; strategic pivots</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">43+ competitors</span>
+          <span class="cmd-tag">System audit</span>
+          <span class="cmd-tag">Ops &amp; devices</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-f2-desc">
+          I built competitive-intelligence programs tracking 43+ local and global competitors, driving 6 strategic product pivots that protected our market position. I identified operational gaps projected to add 22M SAR in potential annual revenue, managed with disciplined P&amp;L.
+        </p>
+        <div class="cmd-status" data-i18n="e-f2-status">&#129001; Position held</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOVERNMENT PORTFOLIO -->
+  <section id="gov-e" style="background: var(--bg0);">
+    <div class="section-eyebrow rv" data-i18n="e-gov-eyebrow">&gt; portfolio.gov()</div>
+    <div class="section-title rv" data-i18n="e-gov-title">Government portfolio &amp; domain solutions</div>
+    <p class="section-intro rv" data-i18n="e-gov-intro">Direct experience across the ministries and authorities this role is built to serve.</p>
+
+    <div class="cmd-grid">
+      <div class="cmd-card rv" data-delay="1">
+        <div class="cmd-icon">&#128167;</div>
+        <div class="cmd-kicker" data-i18n="e-g1-kicker">Saudi Water Authority</div>
+        <div class="cmd-title" data-i18n="e-g1-title">3 strategic projects — tanker logistics governance</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">SWA</span>
+          <span class="cmd-tag">Logistics</span>
+          <span class="cmd-tag">Governance</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-g1-desc">
+          Launched 3 strategic projects centred on automating and governing the logistics and tracking of water tankers.
+        </p>
+        <div class="cmd-status" data-i18n="e-g1-status">&#129001; 3 projects</div>
+      </div>
+
+      <div class="cmd-card rv" data-delay="2">
+        <div class="cmd-icon">&#9889;</div>
+        <div class="cmd-kicker" data-i18n="e-g2-kicker">MEWA · Ministry of Energy</div>
+        <div class="cmd-title" data-i18n="e-g2-title">Field-inspection products, 100% compliant</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">MEWA</span>
+          <span class="cmd-tag">Ministry of Energy</span>
+          <span class="cmd-tag">100% Compliance</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-g2-desc">
+          Led the launch of digital products and field-inspection services for MEWA and the Ministry of Energy, holding 100% compliance with cybersecurity and data-integrity standards.
+        </p>
+        <div class="cmd-status" data-i18n="e-g2-status">&#129001; 100% compliant</div>
+      </div>
+
+      <div class="cmd-card rv" data-delay="3">
+        <div class="cmd-icon">&#129309;</div>
+        <div class="cmd-kicker" data-i18n="e-g3-kicker">Cross-entity · Bids &amp; Models</div>
+        <div class="cmd-title" data-i18n="e-g3-title">RFPs, RFQs &amp; business models</div>
+        <div class="cmd-tags">
+          <span class="cmd-tag">RFP / RFQ</span>
+          <span class="cmd-tag">Investment · ZATCA</span>
+          <span class="cmd-tag">22M SAR / yr</span>
+        </div>
+        <p class="cmd-desc" data-i18n="e-g3-desc">
+          High-level coordination to prepare technical and financial proposals (RFPs/RFQs) and build business models for government and private entities — including the Ministry of Investment, ZATCA, and partnerships with Petromin and SASCO.
+        </p>
+        <div class="cmd-status" data-i18n="e-g3-status">&#129001; Won &amp; delivered</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAKEHOLDER MANAGEMENT -->
+  <section id="story-e" style="background: var(--bg0);">
+    <div class="section-eyebrow rv" data-i18n="e-stk-eyebrow">&gt; stakeholders.align()</div>
+    <div class="section-title rv" data-i18n="e-stk-title">Aligning the room, not just the backlog</div>
+    <p class="section-intro rv" data-i18n="e-stk-intro">Public-sector delivery lives or dies on alignment. I work alongside a 45-member cross-functional team plus external partners — keeping everyone moving in the same direction.</p>
+
+    <div class="story-phases">
+      <div class="phase-card rv" data-delay="1">
+        <div class="phase-num"  data-i18n="e-s1-num">Internal</div>
+        <div class="phase-name" data-i18n="e-s1-name">The product team</div>
+        <div class="phase-time" data-i18n="e-s1-time">45 people</div>
+        <p class="phase-desc"   data-i18n="e-s1-desc">Worked alongside a 45-member cross-functional team — engineering, cybersecurity, application, and database — under one roadmap so technical and commercial decisions line up instead of pulling against each other.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="e-prog">Alignment</span><span>100%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="1.0"></div></div>
+        </div>
+      </div>
+
+      <div class="phase-card rv" data-delay="2">
+        <div class="phase-num"  data-i18n="e-s2-num">Commercial</div>
+        <div class="phase-name" data-i18n="e-s2-name">Sales &amp; procurement</div>
+        <div class="phase-time" data-i18n="e-s2-time">Cross-department</div>
+        <p class="phase-desc"   data-i18n="e-s2-desc">Partnered closely with Sales and Procurement so what we promise clients is what we can actually deliver — product governance and structural compliance, not paperwork.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="e-prog">Alignment</span><span>95%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="0.95"></div></div>
+        </div>
+      </div>
+
+      <div class="phase-card rv" data-delay="3">
+        <div class="phase-num"  data-i18n="e-s3-num">External</div>
+        <div class="phase-name" data-i18n="e-s3-name">Partners &amp; ecosystem</div>
+        <div class="phase-time" data-i18n="e-s3-time">Govt + vendors</div>
+        <p class="phase-desc"   data-i18n="e-s3-desc">Government stakeholders and external partners, including the Google team on cloud work. Managing the ecosystem so national-scale rollouts stay coordinated and compliant.</p>
+        <div class="progress-bar-wrap">
+          <div class="progress-label"><span data-i18n="e-prog">Alignment</span><span>92%</span></div>
+          <div class="progress-track"><div class="progress-fill" data-p="0.92"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-label" data-i18n="e-marquee-label">Trusted across the energy &amp; water sector</div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track marquee-energy">
+        <span class="client-chip">Ministry of Energy</span>
+        <span class="client-chip">Saudi Water Authority</span>
+        <span class="client-chip">MEWA</span>
+        <span class="client-chip">ZATCA</span>
+        <span class="client-chip">Ministry of Hajj &amp; Umrah</span>
+        <span class="client-chip">Ministry of Industry</span>
+        <span class="client-chip">Petromin</span>
+        <span class="client-chip">SASCO</span>
+        <span class="client-chip">Ministry of Energy</span>
+        <span class="client-chip">Saudi Water Authority</span>
+        <span class="client-chip">MEWA</span>
+        <span class="client-chip">ZATCA</span>
+        <span class="client-chip">Ministry of Hajj &amp; Umrah</span>
+        <span class="client-chip">Ministry of Industry</span>
+        <span class="client-chip">Petromin</span>
+        <span class="client-chip">SASCO</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOMAIN CREDENTIALS -->
+  <section style="background: var(--bg1);">
+    <div class="section-eyebrow rv" data-i18n="e-cred-eyebrow">&gt; readiness.check()</div>
+    <div class="section-title rv" data-i18n="e-cred-title">Why this is the right seat</div>
+
+    <div class="cred-grid">
+      <div class="cred-card rv" data-delay="1">
+        <span class="cred-icon">&#127942;</span>
+        <div class="cred-title" data-i18n="e-cred1-title">PMP&#174; Certified</div>
+        <div class="cred-sub"   data-i18n="e-cred1-sub">Disciplined delivery for regulated programs</div>
+      </div>
+      <div class="cred-card rv" data-delay="2">
+        <span class="cred-icon">&#9729;&#65039;</span>
+        <div class="cred-title" data-i18n="e-cred2-title">GCP Migration Lead</div>
+        <div class="cred-sub"   data-i18n="e-cred2-sub">On-schedule, in-budget cloud delivery</div>
+      </div>
+      <div class="cred-card rv" data-delay="3">
+        <span class="cred-icon">&#128737;&#65039;</span>
+        <div class="cred-title" data-i18n="e-cred3-title">Compliance-First</div>
+        <div class="cred-sub"   data-i18n="e-cred3-sub">100% security &amp; data-integrity track record</div>
+      </div>
+      <div class="cred-card rv" data-delay="4">
+        <span class="cred-icon">&#129309;</span>
+        <div class="cred-title" data-i18n="e-cred4-title">Cross-functional collaboration</div>
+        <div class="cred-sub"   data-i18n="e-cred4-sub">45-member team across govt &amp; vendors</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /view-energy -->
+
+
+<!-- ============================
+     CONTACT (SHARED)
+============================= -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-h2 rv" data-i18n="contact-h2">Let's talk.</h2>
+    <p class="contact-sub rv" data-delay="1" data-i18n="contact-sub">Open to product leadership roles in technology and the energy &amp; water sector.</p>
+
+    <div class="contact-links rv" data-delay="2">
+      <a href="tel:+966593935677" class="contact-row">
+        <div class="contact-icon">&#128222;</div>
+        <span>+966 59 393 5677</span>
+      </a>
+      <a href="mailto:A.alhumud0@gmail.com" class="contact-row">
+        <div class="contact-icon">&#9993;&#65039;</div>
+        <span>A.alhumud0@gmail.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/aalhumud" target="_blank" rel="noopener" class="contact-row">
+        <div class="contact-icon">&#128188;</div>
+        <span>www.linkedin.com/in/aalhumud</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span data-i18n="footer">© 2026 Abdulrahman Alhumud · Product Manager</span>
+</footer>
+
+<!-- ============================
+     JAVASCRIPT
+============================= -->
+<script>
+/* ======================================
+   i18n STRINGS
+====================================== */
+const i18n = {
+  en: {
+    /* shared */
+    'view-general':   'General PM Profile',
+    'view-energy':    'Energy & Water Tailored View',
+    'nav-product':    'Capabilities',
+    'nav-metrics':    'Metrics',
+    'nav-systems':    'Track Record',
+    'nav-contact':    'Contact',
+    'marquee-label':  'Work delivered alongside',
+    'contact-h2':     "Let's talk.",
+    'contact-sub':    'Open to product leadership roles in technology and the energy & water sector.',
+    'footer':         '© 2026 Abdulrahman Alhumud · Product Manager',
+
+    /* ---- VIEW 1: GENERAL ---- */
+    'g-eyebrow':      'Technical Product Manager',
+    'g-h1-plain':     'I build digital products that solve ',
+    'g-h1-em':        'real customer problems.',
+    'g-sub':          'Every decision backed by numbers and real market behaviour — products that move the business, not just the roadmap.',
+    'g-chip1':        '25M+ Impressions',
+    'g-chip2':        '+250% Downloads',
+    'g-chip3':        '85% On-Time',
+    'g-cta':          'See the work',
+    'g-badge1':       '25M+ Reach',
+    'g-badge2':       '85% On-Time',
+    'g-bento-eyebrow':'> metrics.load()',
+    'g-bento-title':  'The numbers behind the work',
+    'g-feat-label':   'APP STORE RANKING',
+    'g-feat-sub':     'Mojaz reached #1 on the Saudi App Store',
+    'g-count1-label': 'Impressions on Mojaz',
+    'g-count2-label': 'Download growth',
+    'g-count3-label': 'Fleet growth (HubEat)',
+    'g-count4-label': 'On-time roadmap delivery',
+    'g-count5-label': 'Onboarding adoption (up from 12%)',
+    'g-count6-label': 'Cross-functional team (worked alongside)',
+    'g-stack-title':  'Stack & Tooling',
+    'g-quote':        "A product manager's job is simple to say and hard to do: keep everyone pointed at the same outcome, sprint after sprint.",
+    'g-cmd-eyebrow':  '> what.i.do()',
+    'g-cmd-title':    'Where I spend my time',
+    'g-cmd-intro':    'Two stints shaped how I work: a consumer product I pushed to the top of the charts, and a platform business I rebuilt on the cloud and wired together end to end.',
+    'g-c1-kicker':    'Mojaz · Market & Growth',
+    'g-c1-title':     'Cracking the automotive market',
+    'g-c1-desc':      'At Mojaz the focus was breaking into the car market and building awareness of the platform. I led marketing and business-development campaigns with 25+ influencers and car showrooms, plus detailed behavioural analysis of 800+ customers — landing 25M+ impressions, +250% app downloads, and a real, tangible gain in market share from the first quarter.',
+    'g-c1-status':    '🟢 25M+ reach',
+    'g-c2-kicker':    'Rased · Cloud & AI',
+    'g-c2-title':     'Full product lifecycle on GCP',
+    'g-c2-desc':      'I owned the full product lifecycle on GCP — launching 4 new products and 8 innovative services from the behaviour of 1,000+ customers. I used Vibe Coding and autonomous agents to automate dashboards and Jira reporting and cut production costs, working alongside a 45-member cross-functional team (engineering, security, sales, operations).',
+    'g-c2-status':    '🟢 Live',
+    'g-c3-kicker':    'Integrations',
+    'g-c3-title':     'Tools that talk to each other',
+    'g-c3-desc':      'I connected Odoo and Zoho CRM into one workflow and set up automated Jira reporting that lands straight in MS Outlook, so the team gets its updates without logging in or chasing anyone. Less friction, fewer dropped balls.',
+    'g-c3-status':    '🟢 Automated',
+    'g-story-eyebrow':'> mojaz.timeline()',
+    'g-story-title':  'From idea to top of the charts',
+    'g-p1-num':       'Phase 01',
+    'g-p1-name':      'Discover',
+    'g-p1-time':      'Weeks 1–2',
+    'g-p1-desc':      'User research and a hard look at the competition turned into a clear brief. We agreed on the one thing the product had to nail and the friction points worth removing first.',
+    'g-p2-num':       'Phase 02',
+    'g-p2-name':      'Ship',
+    'g-p2-time':      'Weeks 3–8',
+    'g-p2-desc':      'Tight sprint cycles, real A/B tests, and the 25M impressions milestone. We let the data decide what shipped next and kept the feedback loop short.',
+    'g-p3-num':       'Phase 03',
+    'g-p3-name':      'Scale',
+    'g-p3-time':      'Weeks 9–12',
+    'g-p3-desc':      '#1 on the App Store and downloads up 250%. From there it was about holding the position: tuning performance, watching the funnel, and keeping the iteration cadence honest.',
+    'g-prog':         'Completion',
+    'g-cred-eyebrow': '> certs.verify()',
+    'g-cred-title':   'Credentials & tooling',
+    'g-cred1-title':  'PMP® Certified',
+    'g-cred1-sub':    'Project Management Professional — PMI',
+    'g-cred2-title':  'GCP Cloud Infrastructure',
+    'g-cred2-sub':    'Google Cloud — data & DevOps',
+    'g-cred3-title':  'Design Thinking',
+    'g-cred3-sub':    'Human-centred product work',
+    'g-cred4-title':  'Product Analytics',
+    'g-cred4-sub':    'Mixpanel · BigQuery · funnel analysis',
+
+    /* ---- VIEW 2: ENERGY ---- */
+    'e-eyebrow':      'Energy & Natural Resources · Product Manager',
+    'e-h1-plain':     "The energy & water sector isn't new to me — ",
+    'e-h1-em':        "I've already built for it.",
+    'e-sub':          "13,000+ government vehicles run on a fleet-and-fuel platform I delivered for the Ministry of Energy. A fuel-expense wallet, station fuel-order management, smart-nozzle verification with a hardware partner, and MEWA's field-inspection system — all live. Plus two government bids I wrote and won.",
+    'e-chip1':        '13K+ Vehicles · MoEnergy',
+    'e-chip2':        'Fuel Wallet · Live',
+    'e-chip3':        '2 Gov Bids Won',
+    'e-cta':          'See the proof',
+    'e-badge1':       '13K+ Vehicles',
+    'e-badge2':       'MoEnergy',
+    'e-bento-eyebrow':'> sector.proof()',
+    'e-bento-title':  "What I've already shipped for the sector",
+    'e-feat-label':   'VEHICLES ON PLATFORM',
+    'e-feat-sub':     'A fleet & fuel platform I delivered for the Ministry of Energy',
+    'e-count1-label': 'Customer interviews run per year',
+    'e-count2-label': 'Conversion lift from churn analysis',
+    'e-count3-label': 'Competitors tracked (competitive intel)',
+    'e-count4-label': 'Security & data-integrity compliance',
+    'e-count5-label': 'SAR potential annual revenue identified',
+    'e-count6-label': 'Strategic product pivots',
+    'e-stack-title':  'Systems I built for the sector',
+    'e-quote':        "In the public sector, a feature only counts when it survives the field, the audit, and the regulator. That's the bar I build to.",
+    'e-cmd-eyebrow':  '> solutions.shipped()',
+    'e-cmd-title':    'Flagship energy & water solutions',
+    'e-cmd-intro':    "Not slideware — systems that are live in the field. This is the work I've delivered for energy, water and the wider public sector.",
+    'e-c1-kicker':    'Ministry of Energy · Flagship',
+    'e-c1-title':     'Fleet & fuel platform for 13,000+ vehicles',
+    'e-c1-desc':      'I built and ran a platform managing a government fleet of 13,000+ vehicles — vehicle registry, fuel entitlements, and live tracking in one source of truth the ministry relies on every day.',
+    'e-c1-status':    '🟢 Live · 13K+ vehicles',
+    'e-c2-kicker':    'Ministry of Energy · FinOps',
+    'e-c2-title':     'Fuel expense wallet',
+    'e-c2-desc':      'Developed a digital fuel-expense wallet that controls and allocates spend down to each individual vehicle — with live budget control and spend analytics that replaced manual tracking and leakage.',
+    'e-c2-status':    '🟢 Live',
+    'e-c3-kicker':    'Bids · Won',
+    'e-c3-title':     'Government RFPs I wrote & won',
+    'e-c3-desc':      'I personally authored two winning government bids: a full RFP and proof-of-concept for the Ministry of Hajj & Umrah, and a use case for the Ministry of Industry & Mineral Resources.',
+    'e-c3-status':    '🟢 2 wins',
+    'e-c4-kicker':    'Downstream · Stations',
+    'e-c4-title':     'Station fuel-order management',
+    'e-c4-desc':      'A custom solution that manages fuel-replenishment requests for stations end to end — request, approval, dispatch — fully automated to cut turnaround time and human error.',
+    'e-c4-status':    '🟢 Live',
+    'e-c5-kicker':    'IoT · Verification',
+    'e-c5-title':     'Smart fuel-nozzle verification',
+    'e-c5-desc':      'Led the integration of a smart fuel nozzle with a Chinese hardware manufacturer to verify every dispensing transaction at the nozzle itself — stopping tampering and protecting operational integrity.',
+    'e-c5-status':    '🟢 In production',
+    'e-c6-kicker':    'Saudi Water Authority',
+    'e-c6-title':     'Water-tanker logistics & tracking',
+    'e-c6-desc':      'Built automated logistics and tracking for water tankers with the Saudi Water Authority — turning manual dispatch into a live, monitored operation the team trusts day to day.',
+    'e-c6-status':    '🟢 Delivered',
+    'e-c7-kicker':    'MEWA · “Hafiz”',
+    'e-c7-title':     'Field-inspector operations',
+    'e-c7-desc':      'Digitised the operations of field inspectors at the Ministry of Environment, Water & Agriculture through the “Hafiz” platform — field inspection, compliance monitoring, and real-time reporting that holds up to audit.',
+    'e-c7-status':    '🟢 Live',
+    'e-fit-eyebrow':  '> accountabilities.map()',
+    'e-fit-title':    "Mapped to Elm's key accountabilities",
+    'e-fit-intro':    'The resume, translated into the exact accountabilities of the Energy & Natural Resources product role.',
+    'e-f1-kicker':    'Accountability · Customer Insight',
+    'e-f1-title':     'Research programs that de-risk features',
+    'e-f1-desc':      "I run customer-research programs at scale — 350+ interviews a year to validate new-feature hypotheses. Analysing the behaviour of 950 customers who didn't convert lifted conversion by 33% and secured real product-market fit.",
+    'e-f1-status':    '🟢 Product-market fit',
+    'e-f2-kicker':    'Accountability · Strategy & P&L',
+    'e-f2-title':     'Competitive intelligence → strategic pivots',
+    'e-f2-desc':      'I built a full competitive-intelligence program tracking 43+ local and global competitors. The analysis went two ways: a technical & engineering system audit, and an operational, on-the-ground view — operations, devices, installation and geographical distribution (install methods, device governance, coverage) — which drove 6 pivotal strategic product decisions.',
+    'e-f2-status':    '🟢 Position held',
+    'e-gov-eyebrow':  '> portfolio.gov()',
+    'e-gov-title':    'Government portfolio & domain solutions',
+    'e-gov-intro':    'My hands-on experience with regulators transfers straight to the energy & water sector at Elm.',
+    'e-g1-kicker':    'Saudi Water Authority',
+    'e-g1-title':     '3 strategic projects — tanker logistics governance',
+    'e-g1-desc':      'Launched 3 strategic projects centred on automating and governing the logistics and tracking of water tankers.',
+    'e-g1-status':    '🟢 3 projects',
+    'e-g2-kicker':    'MEWA · Ministry of Energy',
+    'e-g2-title':     'Field-inspection products, 100% compliant',
+    'e-g2-desc':      'Led the launch of digital products and field-inspection services for MEWA and the Ministry of Energy, holding 100% compliance with cybersecurity and data-integrity standards.',
+    'e-g2-status':    '🟢 100% compliant',
+    'e-g3-kicker':    'Cross-entity · Bids & Models',
+    'e-g3-title':     'RFPs, RFQs & business models',
+    'e-g3-desc':      'High-level coordination to prepare technical and financial proposals (RFPs/RFQs) and build business models for government and private entities — including the Ministry of Investment, ZATCA, and partnerships with Petromin and SASCO — with a projected 22M SAR in additional annual revenue.',
+    'e-g3-status':    '🟢 Won & delivered',
+    'e-stk-eyebrow':  '> stakeholders.align()',
+    'e-stk-title':    'Aligning the room, not just the backlog',
+    'e-stk-intro':    'Public-sector delivery lives or dies on alignment. I work alongside a 45-member cross-functional team plus external partners — keeping everyone moving in the same direction.',
+    'e-s1-num':       'Internal',
+    'e-s1-name':      'The product team',
+    'e-s1-time':      '45 people',
+    'e-s1-desc':      'Worked alongside a 45-member cross-functional team — engineering, cybersecurity, application, and database — under one roadmap so technical and commercial decisions line up instead of pulling against each other.',
+    'e-s2-num':       'Commercial',
+    'e-s2-name':      'Sales & procurement',
+    'e-s2-time':      'Cross-department',
+    'e-s2-desc':      'Partnered closely with Sales and Procurement so what we promise clients is what we can actually deliver — product governance and structural compliance, not paperwork.',
+    'e-s3-num':       'External',
+    'e-s3-name':      'Partners & ecosystem',
+    'e-s3-time':      'Govt + vendors',
+    'e-s3-desc':      'Government stakeholders and external partners, including the Google team on cloud work. Managing the ecosystem so national-scale rollouts stay coordinated and compliant.',
+    'e-prog':         'Alignment',
+    'e-marquee-label':'Delivered across energy, water & the public sector',
+    'e-cred-eyebrow': '> readiness.check()',
+    'e-cred-title':   'Why this is the right seat',
+    'e-cred1-title':  'PMP® Certified',
+    'e-cred1-sub':    'Disciplined delivery for regulated programs',
+    'e-cred2-title':  'GCP Migration Lead',
+    'e-cred2-sub':    'On-schedule, in-budget cloud delivery',
+    'e-cred3-title':  'Compliance-First',
+    'e-cred3-sub':    '100% security & data-integrity track record',
+    'e-cred4-title':  'Cross-functional collaboration',
+    'e-cred4-sub':    '45-member team across govt & vendors',
+  },
+
+  ar: {
+    /* shared */
+    'view-general':   'الرؤية العامة',
+    'view-energy':    'تخصيص قطاع الطاقة والمياه',
+    'nav-product':    'القدرات',
+    'nav-metrics':    'الأرقام',
+    'nav-systems':    'السجل العملي',
+    'nav-contact':    'التواصل',
+    'marquee-label':  'أعمال نُفّذت مع',
+    'contact-h2':     'نتواصل؟',
+    'contact-sub':    'متاح لأدوار قيادة المنتج في التقنية وقطاع الطاقة والمياه.',
+    'footer':         '© 2026 عبدالرحمن الحمود · مدير منتجات',
+
+    /* ---- VIEW 1: GENERAL ---- */
+    'g-eyebrow':      'مدير منتجات تقني',
+    'g-h1-plain':     'أبني منتجات رقمية تحل ',
+    'g-h1-em':        'مشاكل حقيقية للعميل.',
+    'g-sub':          'أبني منتجات رقمية تحل مشاكل حقيقية للعميل، وتدعم مستهدفات العمل بالأرقام والبيانات المستخرجة من سلوك السوق.',
+    'g-chip1':        '+25 مليون ظهور',
+    'g-chip2':        '+250% تحميلات',
+    'g-chip3':        '85% تسليم بوقته',
+    'g-cta':          'شوف الشغل',
+    'g-badge1':       '+25 مليون وصول',
+    'g-badge2':       '85% بوقته',
+    'g-bento-eyebrow':'> metrics.load()',
+    'g-bento-title':  'الأرقام اللي وراء الشغل',
+    'g-feat-label':   'ترتيب متجر التطبيقات',
+    'g-feat-sub':     'موجز وصل المركز الأول في متجر التطبيقات السعودي',
+    'g-count1-label': 'ظهور على موجز',
+    'g-count2-label': 'نمو التحميلات',
+    'g-count3-label': 'نمو الأسطول (HubEat)',
+    'g-count4-label': 'تسليم خارطة الطريق بوقته',
+    'g-count5-label': 'تبنّي الإعداد (ارتفع من 12%)',
+    'g-count6-label': 'فريق عابر للوظائف (عملت معه)',
+    'g-stack-title':  'الأدوات والتقنيات',
+    'g-quote':        'شغل مدير المنتج سهل بالكلام صعب بالتطبيق: تخلّي الكل ماشي على نفس الهدف، سبرينت ورا سبرينت.',
+    'g-cmd-eyebrow':  '> what.i.do()',
+    'g-cmd-title':    'وين أصرف وقتي',
+    'g-cmd-intro':    'تجربتين شكّلوا طريقتي: منتج للمستهلك وصّلته لقمة المتجر، ومنصّة أعدت بنائها على السحابة وربطتها من البداية للنهاية.',
+    'g-c1-kicker':    'موجز · تسويق ونمو',
+    'g-c1-title':     'اختراق سوق السيارات',
+    'g-c1-desc':      'في تطبيق موجز، ركّزنا على اختراق سوق السيارات وبناء الوعي بالمنصة. قدت حملات تسويقية وتطوير أعمال بالتكامل مع أكثر من 25 مؤثر ومعارض السيارات، بالإضافة إلى إجراء تحليل سلوكي دقيق لأكثر من 800 عميل، والنتيجة كانت تحقيق 25 مليون ظهور، وزيادة تحميل التطبيق بنسبة 250%، مع زيادة ملموسة وحقيقية في الحصة السوقية من الربع الأول.',
+    'g-c1-status':    '🟢 +25 مليون وصول',
+    'g-c2-kicker':    'راصد · سحابة وذكاء',
+    'g-c2-title':     'دورة حياة منتج كاملة على GCP',
+    'g-c2-desc':      'أدرت دورة حياة المنتج بالكامل على سحابة GCP، وأطلقنا 4 منتجات جديدة و8 خدمات مبتكرة بناءً على تحليل سلوك أكثر من 1,000 عميل. وظفت تقنيات الـ Vibe Coding وبناء الـ Autonomous Agents لأتمتة لوحات متابعة وتقارير الـ Jira لتقليل تكاليف الإنتاج، بالتعاون مع فريق داخلي عابر للوظائف يضم 45 محترفاً (هندسة، سيكيورتي، مبيعات، وتشغيل).',
+    'g-c2-status':    '🟢 مباشر',
+    'g-c3-kicker':    'تكاملات',
+    'g-c3-title':     'أدوات تتكلّم مع بعض',
+    'g-c3-desc':      'ربطت Odoo وZoho CRM في مسار واحد، وسوّيت تقارير Jira تلقائية توصل مباشرة على MS Outlook، عشان الفريق ياخذ تحديثاته بدون ما يسجّل دخول أو يلاحق أحد. احتكاك أقل وأخطاء أقل.',
+    'g-c3-status':    '🟢 مؤتمت',
+    'g-story-eyebrow':'> mojaz.timeline()',
+    'g-story-title':  'من فكرة لين قمة المتجر',
+    'g-p1-num':       'المرحلة 01',
+    'g-p1-name':      'الاكتشاف',
+    'g-p1-time':      'الأسبوع 1–2',
+    'g-p1-desc':      'بحث المستخدمين ونظرة جادّة للمنافسين طلّعوا لنا وثيقة واضحة. اتفقنا على الشيء الوحيد اللي لازم المنتج يضبطه، ونقاط الاحتكاك اللي نشيلها أول.',
+    'g-p2-num':       'المرحلة 02',
+    'g-p2-name':      'الإطلاق',
+    'g-p2-time':      'الأسبوع 3–8',
+    'g-p2-desc':      'دورات سبرينت مضبوطة، اختبارات A/B حقيقية، وبلوغ 25 مليون ظهور. خلّينا البيانات تقرر وش ينزل بعدين وخلّينا حلقة الملاحظات قصيرة.',
+    'g-p3-num':       'المرحلة 03',
+    'g-p3-name':      'التوسّع',
+    'g-p3-time':      'الأسبوع 9–12',
+    'g-p3-desc':      'المركز الأول في المتجر وتحميلات +250%. بعدها الشغل كله إننا نثبّت المركز: نضبط الأداء، نراقب المسار، ونحافظ على إيقاع تحسين صادق.',
+    'g-prog':         'الإنجاز',
+    'g-cred-eyebrow': '> certs.verify()',
+    'g-cred-title':   'الشهادات والأدوات',
+    'g-cred1-title':  'شهادة PMP®',
+    'g-cred1-sub':    'محترف إدارة المشاريع — PMI',
+    'g-cred2-title':  'بنية GCP السحابية',
+    'g-cred2-sub':    'Google Cloud — بيانات و DevOps',
+    'g-cred3-title':  'التفكير التصميمي',
+    'g-cred3-sub':    'شغل منتج محوره الإنسان',
+    'g-cred4-title':  'تحليلات المنتج',
+    'g-cred4-sub':    'Mixpanel · BigQuery · تحليل المسارات',
+
+    /* ---- VIEW 2: ENERGY ---- */
+    'e-eyebrow':      'الطاقة والموارد الطبيعية · مدير منتج',
+    'e-h1-plain':     'قطاع الطاقة والمياه مو جديد عليّ — ',
+    'e-h1-em':        'بنيت له وسلّمت بالفعل.',
+    'e-sub':          'أكثر من 13,000 مركبة حكومية تشتغل على منصّة أسطول ووقود سلّمتها لوزارة الطاقة. ومعها محفظة مصروفات وقود، وإدارة طلبات وقود للمحطات، والتحقّق الذكي من مسدس الوقود مع شريك أجهزة، ونظام التفتيش الميداني لوزارة البيئة والمياه — كلها شغّالة على أرض الواقع. وفوق هذا، كراستين حكوميّتين كتبتهم بنفسي وفزنا فيهم.',
+    'e-chip1':        '+13 ألف مركبة · الطاقة',
+    'e-chip2':        'محفظة الوقود · شغّالة',
+    'e-chip3':        'كراستان حكوميّتان فائزتان',
+    'e-cta':          'شوف الإثبات',
+    'e-badge1':       '+13 ألف مركبة',
+    'e-badge2':       'وزارة الطاقة',
+    'e-bento-eyebrow':'> sector.proof()',
+    'e-bento-title':  'وش سلّمته فعلاً لهذا القطاع',
+    'e-feat-label':   'مركبات على المنصّة',
+    'e-feat-sub':     'منصّة أسطول ووقود سلّمتها لوزارة الطاقة',
+    'e-count1-label': 'مقابلات عملاء أُجريها سنوياً',
+    'e-count2-label': 'ارتفاع التحويل من تحليل المتسرّبين',
+    'e-count3-label': 'منافسون نتتبّعهم (ذكاء تنافسي)',
+    'e-count4-label': 'امتثال أمني وسلامة بيانات',
+    'e-count5-label': 'إيرادات سنوية محتملة حدّدتها (ريال)',
+    'e-count6-label': 'قرارات محورية استراتيجية',
+    'e-stack-title':  'أنظمة بنيتها للقطاع',
+    'e-quote':        'في القطاع الحكومي، الميزة ما تنحسب إلا لمّا تصمد في الميدان، والتدقيق، والجهة التنظيمية. هذا المعيار اللي أبني عليه.',
+    'e-cmd-eyebrow':  '> solutions.shipped()',
+    'e-cmd-title':    'أبرز حلول الطاقة والمياه اللي سلّمتها',
+    'e-cmd-intro':    'مو عروض تقديمية — أنظمة شغّالة فعلاً في الميدان. هذا اللي سلّمته لقطاع الطاقة والمياه والقطاع الحكومي بشكل عام.',
+    'e-c1-kicker':    'وزارة الطاقة · الأبرز',
+    'e-c1-title':     'منصّة أسطول ووقود لأكثر من 13,000 مركبة',
+    'e-c1-desc':      'بنيت وأدرت منصّة تدير أسطول حكومي يتجاوز 13 ألف مركبة — تسجيل المركبات، واستحقاقات الوقود، والتتبّع اللحظي، في مصدر واحد موثوق تعتمد عليه الوزارة كل يوم.',
+    'e-c1-status':    '🟢 شغّال · +13 ألف مركبة',
+    'e-c2-kicker':    'وزارة الطاقة · إدارة مصروفات',
+    'e-c2-title':     'محفظة مصروفات الوقود',
+    'e-c2-desc':      'طوّرت محفظة رقمية تضبط مصروف الوقود وتوزّعه على مستوى كل مركبة — مع تحكّم بالميزانية وتحليلات صرف لحظية بدّلت التتبّع اليدوي والتسريبات.',
+    'e-c2-status':    '🟢 شغّالة',
+    'e-c3-kicker':    'مناقصات · فوز',
+    'e-c3-title':     'كراسات حكومية كتبتها وفزنا فيها',
+    'e-c3-desc':      'كتبت بنفسي كراستين حكوميّتين وفزنا فيهم: كراسة RFP وإثبات مفهوم (POC) لوزارة الحج والعمرة، وحالة استخدام لوزارة الصناعة والثروة المعدنية.',
+    'e-c3-status':    '🟢 فوزان',
+    'e-c4-kicker':    'التجزئة · المحطات',
+    'e-c4-title':     'إدارة طلبات الوقود للمحطات',
+    'e-c4-desc':      'حل تقني مخصّص يدير طلبات تزويد الوقود للمحطات من الطلب للاعتماد للصرف — أتمتة كاملة تقلّل وقت الإنجاز والأخطاء البشرية.',
+    'e-c4-status':    '🟢 شغّال',
+    'e-c5-kicker':    'إنترنت الأشياء · تحقّق',
+    'e-c5-title':     'التحقّق الذكي من مسدس الوقود',
+    'e-c5-desc':      'قدت التكامل مع مسدس وقود ذكي بالشراكة مع شركة صينية مصنّعة، عشان نتحقّق من كل عملية تزويد عند المسدس نفسه — نوقف التلاعب ونحمي سلامة العمليات.',
+    'e-c5-status':    '🟢 في الإنتاج',
+    'e-c6-kicker':    'الهيئة السعودية للمياه',
+    'e-c6-title':     'لوجستيات وتتبّع صهاريج المياه',
+    'e-c6-desc':      'بنيت نظام لوجستيات وتتبّع تلقائي لصهاريج المياه مع الهيئة السعودية للمياه — حوّلنا الإرسال اليدوي لعملية مباشرة ومراقبة يعتمد عليها الفريق يومياً.',
+    'e-c6-status':    '🟢 سُلِّم',
+    'e-c7-kicker':    'البيئة والمياه · «حافظ»',
+    'e-c7-title':     'العمليات التشغيلية للمراقبين الميدانيين',
+    'e-c7-desc':      'رقمنت العمليات التشغيلية للمراقبين الميدانيين في وزارة البيئة والمياه والزراعة عبر منصّة «حافظ» — تفتيش ميداني، ورصد امتثال، وتقارير لحظية تصمد أمام التدقيق.',
+    'e-c7-status':    '🟢 شغّال',
+    'e-fit-eyebrow':  '> accountabilities.map()',
+    'e-fit-title':    'مربوط بمسؤوليات علم الأساسية',
+    'e-fit-intro':    'السيرة الذاتية، مترجمة لنفس مسؤوليات دور منتج قطاع الطاقة والموارد الطبيعية.',
+    'e-f1-kicker':    'مسؤولية · فهم العميل',
+    'e-f1-title':     'برامج أبحاث تقلّل مخاطر الميزات',
+    'e-f1-desc':      'أمتلك خبرة عملية في إدارة برامج أبحاث العملاء عبر إجراء أكثر من 350 مقابلة سنوياً للتحقق من فرضيات الميزات الجديدة. وحللت سلوك الشرائح لـ 950 عميلاً لم تكتمل عملياتهم، مما مكننا من رفع نسب التحويل بـ 33% وتحقيق الملاءمة المثالية للمنتج في السوق (Product-Market Fit).',
+    'e-f1-status':    '🟢 ملاءمة للسوق',
+    'e-f2-kicker':    'مسؤولية · استراتيجية وأرباح',
+    'e-f2-title':     'ذكاء تنافسي ← قرارات محورية',
+    'e-f2-desc':      'بنيت برنامج ذكاء تنافسي متكامل تتبعنا فيه أكثر من 43 منافس محلي وعالمي. التحليل لم يكن سطحياً، بل شمل جانبين: الأول تقني وهندسي من جانب النظام (System & Technical Audit)، والثاني تشغيلي وميداني يخص العمليات (Operations, Devices, Installation & Geographical Distribution) مثل طرق التركيب، حوكمة الأجهزة، والتوزيع الجغرافي، مما ساعدنا في اتخاذ 6 قرارات استراتيجية محورية لمنتجاتنا.',
+    'e-f2-status':    '🟢 حافظنا على المركز',
+    'e-gov-eyebrow':  '> portfolio.gov()',
+    'e-gov-title':    'المحفظة الحكومية وحلول القطاع',
+    'e-gov-intro':    'خبرتي الميدانية مع الجهات التنظيمية جاهزة للنقل فوراً لقطاع الطاقة والمياه في علم.',
+    'e-g1-kicker':    'الهيئة السعودية للمياه',
+    'e-g1-title':     '3 مشاريع استراتيجية — حوكمة لوجستيات الصهاريج',
+    'e-g1-desc':      'إطلاق 3 مشاريع إستراتيجية ركزت على أتمتة وحوكمة لوجستيات تتبع صهاريج المياه.',
+    'e-g1-status':    '🟢 3 مشاريع',
+    'e-g2-kicker':    'البيئة والمياه · الطاقة',
+    'e-g2-title':     'منتجات تفتيش ميدانية بامتثال 100%',
+    'e-g2-desc':      'قيادة إطلاق المنتجات الرقمية والخدمات التفتيشية الميدانية لوزارة البيئة والمياه والزراعة ووزارة الطاقة، مع ضمان الامتثال بنسبة 100% لمعايير الأمن السيبراني وسلامة البيانات.',
+    'e-g2-status':    '🟢 امتثال 100%',
+    'e-g3-kicker':    'عابر للجهات · مناقصات ونماذج',
+    'e-g3-title':     'مقترحات فنية ومالية ونماذج أعمال',
+    'e-g3-desc':      'التنسيق لإعداد المقترحات الفنية والمالية (RFPs/RFQs) وبناء نماذج الأعمال للجهات الحكومية والخاصة (مثل وزارة الاستثمار، زاتكا، وشراكات بترومين وساسكو) متوقعاً تحقيق 22 مليون ريال كإيرادات سنوية إضافية.',
+    'e-g3-status':    '🟢 فوز وتسليم',
+    'e-stk-eyebrow':  '> stakeholders.align()',
+    'e-stk-title':    'أواءم الغرفة، مو بس قائمة المهام',
+    'e-stk-intro':    'التسليم الحكومي يقوم أو يقع على المواءمة. عملت مع فريق داخلي عابر للوظائف يضم 45 محترفاً مع شركاء خارجيين — أخلّي الكل ماشي على نفس الاتجاه.',
+    'e-s1-num':       'داخلي',
+    'e-s1-name':      'فريق المنتج',
+    'e-s1-time':      '45 شخص',
+    'e-s1-desc':      'عملت مع فريق داخلي عابر للوظائف يضم 45 محترفاً تقنياً وتجارياً (هندسة، سيكيورتي، تطبيقات، وقواعد بيانات) تحت خارطة طريق وحدة عشان القرارات التقنية والتجارية تتوافق بدل ما تتشدّ على بعض.',
+    'e-s2-num':       'تجاري',
+    'e-s2-name':      'المبيعات والمشتريات',
+    'e-s2-time':      'عبر الإدارات',
+    'e-s2-desc':      'شغل يد بيد مع المبيعات والمشتريات عشان اللي نوعد فيه العميل هو اللي فعلاً نقدر نسلّمه — حوكمة منتج وامتثال هيكلي، مو أوراق إدارية.',
+    'e-s3-num':       'خارجي',
+    'e-s3-name':      'الشركاء والمنظومة',
+    'e-s3-time':      'حكومة + موردين',
+    'e-s3-desc':      'جهات حكومية وشركاء خارجيين، ومنهم فريق Google في شغل السحابة. أدير المنظومة عشان الإطلاقات على المستوى الوطني تظل منسّقة وممتثلة.',
+    'e-prog':         'المواءمة',
+    'e-marquee-label':'مُسلَّم عبر الطاقة والمياه والقطاع الحكومي',
+    'e-cred-eyebrow': '> readiness.check()',
+    'e-cred-title':   'ليش هذا المكان الصح',
+    'e-cred1-title':  'شهادة PMP®',
+    'e-cred1-sub':    'تسليم منضبط للبرامج المنظَّمة',
+    'e-cred2-title':  'قيادة ترحيل GCP',
+    'e-cred2-sub':    'تسليم سحابي بوقته وداخل الميزانية',
+    'e-cred3-title':  'الامتثال أولاً',
+    'e-cred3-sub':    'سجل امتثال أمني وسلامة بيانات 100%',
+    'e-cred4-title':  'تعاون عابر للوظائف',
+    'e-cred4-sub':    'فريق من 45 عبر الحكومة والموردين',
+  }
+};
+
+let currentLang = 'en';
+let currentView = 'general';
+
+/* ======================================
+   LANGUAGE SWITCH
+====================================== */
+function setLang(l) {
+  currentLang = l;
+  const html = document.documentElement;
+  html.lang = l;
+  html.dir = l === 'ar' ? 'rtl' : 'ltr';
+
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-ar').classList.toggle('active', l === 'ar');
+
+  applyI18n();
+  updateMarquees();
+}
+
+function applyI18n() {
+  const dict = i18n[currentLang] || {};
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+}
+
+function updateMarquees() {
+  const rtl = currentLang === 'ar';
+  document.querySelectorAll('.marquee-track').forEach(t => {
+    t.classList.toggle('rtl-marquee', rtl);
+  });
+}
+
+/* ======================================
+   VIEW SWITCH (DUAL-VIEW ENGINE)
+====================================== */
+function setView(v) {
+  if (v === currentView) return;
+  currentView = v;
+
+  // Recolor whole site (glow, chips, marquee, borders) via CSS var override
+  document.body.classList.toggle('view-energy', v === 'energy');
+
+  // Toggle switch buttons
+  document.getElementById('vbtn-general').classList.toggle('active', v === 'general');
+  document.getElementById('vbtn-energy').classList.toggle('active', v === 'energy');
+
+  const incoming = document.getElementById(v === 'general' ? 'view-general' : 'view-energy');
+  const outgoing = document.getElementById(v === 'general' ? 'view-energy' : 'view-general');
+
+  // Cross-fade: fade out current, then swap + fade in new
+  outgoing.classList.remove('view-shown');
+  setTimeout(() => {
+    outgoing.classList.remove('view-active');
+    incoming.classList.add('view-active');
+
+    // Reset reveals so the new view animates in
+    incoming.querySelectorAll('.rv').forEach(el => el.classList.remove('visible'));
+
+    // Force reflow then trigger fade-in
+    void incoming.offsetWidth;
+    incoming.classList.add('view-shown');
+
+    // Re-run the data-driven animations for the now-visible view
+    revealAll(incoming);
+    runCounters(incoming);
+    runProgressBars(incoming);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 380);
+}
+
+/* ======================================
+   SCROLL REVEAL
+====================================== */
+let revealObserver;
+function initReveal() {
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.view-active .rv').forEach(el => revealObserver.observe(el));
+}
+
+// Observe reveals within a freshly-shown view
+function revealAll(scope) {
+  scope.querySelectorAll('.rv').forEach(el => revealObserver.observe(el));
+}
+
+/* ======================================
+   COUNT-UP
+====================================== */
+function countUp(el, target, duration) {
+  const start = performance.now();
+  function update(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(target * eased);
+    if (p < 1) requestAnimationFrame(update);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(update);
+}
+
+let counterObserver;
+function initCounters() {
+  counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = parseInt(entry.target.dataset.target, 10);
+        countUp(entry.target, target, 1800);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.view-active .count-num').forEach(c => counterObserver.observe(c));
+}
+
+function runCounters(scope) {
+  scope.querySelectorAll('.count-num').forEach(c => {
+    c.textContent = '0';
+    counterObserver.observe(c);
+  });
+}
+
+/* ======================================
+   PROGRESS BARS
+====================================== */
+let progressObserver;
+function initProgressBars() {
+  progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const p = parseFloat(entry.target.dataset.p);
+        entry.target.style.width = (p * 100) + '%';
+        progressObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.view-active .progress-fill').forEach(f => progressObserver.observe(f));
+}
+
+function runProgressBars(scope) {
+  scope.querySelectorAll('.progress-fill').forEach(f => {
+    f.style.width = '0%';
+    progressObserver.observe(f);
+  });
+}
+
+/* ======================================
+   MOUSE GLOW ON BENTO CARDS
+====================================== */
+function initCardGlow() {
+  document.querySelectorAll('.b-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+    });
+  });
+}
+
+/* ======================================
+   BOOT
+====================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  setLang(currentLang);
+  initReveal();
+  initCounters();
+  initProgressBars();
+  initCardGlow();
+  updateMarquees();
+});
+</script>
+
+</body>
+</html>
