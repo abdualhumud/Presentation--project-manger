@@ -235,6 +235,15 @@ footer{padding:34px 0;text-align:center;color:var(--muted-2);font-size:.9rem;bor
 .rv.in{opacity:1;transform:none}
 .rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
 </style>
+<style id="logo-wall-css">
+.logo-tile{display:inline-flex;align-items:center;justify-content:center;height:74px;min-width:148px;padding:14px 22px;margin:0 9px;border-radius:14px;background:#fff;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 26px rgba(0,0,0,.30);overflow:hidden;filter:grayscale(1);opacity:.92;transition:.25s;flex:0 0 auto;vertical-align:middle}
+.logo-tile:hover{filter:none;opacity:1;transform:translateY(-3px)}
+.logo-tile img{max-height:100%;max-width:150px;object-fit:contain;display:block}
+.logo-tile .lf{display:none;font-weight:800;color:#0b1220;font-size:.95rem;text-align:center;line-height:1.2;white-space:nowrap}
+.logo-tile.is-text{background:#0f1830;border:1px solid rgba(255,255,255,.18);filter:none;opacity:1}
+.logo-tile.is-text .lf{display:block;color:#fff}
+[dir="rtl"] .logo-tile{font-family:'Tajawal',sans-serif}
+</style>
 </head>
 <body>
 
@@ -280,14 +289,18 @@ footer{padding:34px 0;text-align:center;color:var(--muted-2);font-size:.9rem;bor
   <div class="wrap">
     <div class="label">جهات تم العمل على منتجاتها ومبادراتها</div>
     <div class="ent-row rv">
-      <span class="ent">الهيئة السعودية للمياه</span>
-      <span class="ent">وزارة الطاقة</span>
-      <span class="ent">وزارة البيئة والمياه والزراعة</span>
-      <span class="ent">أمانة جدة</span>
-      <span class="ent">هيئة الزكاة والضريبة والجمارك</span>
-      <span class="ent">وزارة الاستثمار</span>
-      <span class="ent">بترومين</span>
-      <span class="ent">ساسكو</span>
+      <span class="logo-tile"><img src="https://logo.clearbit.com/aramco.com?size=200" alt="أرامكو" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">أرامكو</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/petromin.com?size=200" alt="بترومين" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">بترومين</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/sasco.com.sa?size=200" alt="ساسكو" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">ساسكو</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/catrion.com?size=200" alt="كاتريون" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">كاتريون</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/supermile.com.sa?size=200" alt="سوبر مايل" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">سوبر مايل</b></span>
+        <span class="logo-tile is-text"><b class="lf">تايتونكا</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/swa.gov.sa?size=200" alt="هيئة المياه" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">هيئة المياه</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/moenergy.gov.sa?size=200" alt="وزارة الطاقة" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">وزارة الطاقة</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/mewa.gov.sa?size=200" alt="وزارة البيئة والمياه والزراعة" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">وزارة البيئة والمياه والزراعة</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/zatca.gov.sa?size=200" alt="زاتكا" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">زاتكا</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/misa.gov.sa?size=200" alt="وزارة الاستثمار" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">وزارة الاستثمار</b></span>
+        <span class="logo-tile"><img src="https://logo.clearbit.com/jeddah.gov.sa?size=200" alt="أمانة جدة" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">أمانة جدة</b></span>
     </div>
   </div>
 </div>
