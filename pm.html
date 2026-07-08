@@ -700,6 +700,15 @@
       .contact-items { flex-direction: column; align-items: center; }
     }
   </style>
+<style id="logo-wall-css">
+.logo-tile{display:inline-flex;align-items:center;justify-content:center;height:74px;min-width:148px;padding:14px 22px;margin:0 9px;border-radius:14px;background:#fff;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 26px rgba(0,0,0,.30);overflow:hidden;filter:grayscale(1);opacity:.92;transition:.25s;flex:0 0 auto;vertical-align:middle}
+.logo-tile:hover{filter:none;opacity:1;transform:translateY(-3px)}
+.logo-tile img{max-height:100%;max-width:150px;object-fit:contain;display:block}
+.logo-tile .lf{display:none;font-weight:800;color:#0b1220;font-size:.95rem;text-align:center;line-height:1.2;white-space:nowrap}
+.logo-tile.is-text{background:#0f1830;border:1px solid rgba(255,255,255,.18);filter:none;opacity:1}
+.logo-tile.is-text .lf{display:block;color:#fff}
+[dir="rtl"] .logo-tile{font-family:'Tajawal',sans-serif}
+</style>
 </head>
 <body>
 
@@ -891,34 +900,58 @@
     <div class="marquee-rows rv" style="transition-delay:0.1s">
       <div class="marquee-outer">
         <div class="marquee-track" id="track1">
-          <div class="client-chip">Petromin</div>
-          <div class="client-chip">SASCO</div>
-          <div class="client-chip">Saudi Water Authority</div>
-          <div class="client-chip">MEWA</div>
-          <div class="client-chip">Ministry of Energy</div>
-          <div class="client-chip">ZATCA</div>
-          <div class="client-chip">Petromin</div>
-          <div class="client-chip">SASCO</div>
-          <div class="client-chip">Saudi Water Authority</div>
-          <div class="client-chip">MEWA</div>
-          <div class="client-chip">Ministry of Energy</div>
-          <div class="client-chip">ZATCA</div>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/aramco.com?size=200" alt="Aramco" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Aramco</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/petromin.com?size=200" alt="Petromin" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Petromin</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/sasco.com.sa?size=200" alt="SASCO" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">SASCO</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/catrion.com?size=200" alt="Catrion" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Catrion</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/supermile.com.sa?size=200" alt="Super Mile" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Super Mile</b></span>
+          <span class="logo-tile is-text"><b class="lf">Titonka</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/swa.gov.sa?size=200" alt="Saudi Water Authority" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Saudi Water Authority</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/moenergy.gov.sa?size=200" alt="Ministry of Energy" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Ministry of Energy</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/mewa.gov.sa?size=200" alt="MEWA" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">MEWA</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/zatca.gov.sa?size=200" alt="ZATCA" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">ZATCA</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/misa.gov.sa?size=200" alt="Ministry of Investment" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Ministry of Investment</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/jeddah.gov.sa?size=200" alt="Jeddah Municipality" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Jeddah Municipality</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/aramco.com?size=200" alt="Aramco" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Aramco</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/petromin.com?size=200" alt="Petromin" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Petromin</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/sasco.com.sa?size=200" alt="SASCO" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">SASCO</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/catrion.com?size=200" alt="Catrion" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Catrion</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/supermile.com.sa?size=200" alt="Super Mile" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Super Mile</b></span>
+          <span class="logo-tile is-text"><b class="lf">Titonka</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/swa.gov.sa?size=200" alt="Saudi Water Authority" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Saudi Water Authority</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/moenergy.gov.sa?size=200" alt="Ministry of Energy" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Ministry of Energy</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/mewa.gov.sa?size=200" alt="MEWA" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">MEWA</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/zatca.gov.sa?size=200" alt="ZATCA" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">ZATCA</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/misa.gov.sa?size=200" alt="Ministry of Investment" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Ministry of Investment</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/jeddah.gov.sa?size=200" alt="Jeddah Municipality" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Jeddah Municipality</b></span>
         </div>
       </div>
       <div class="marquee-outer">
         <div class="marquee-track reverse" id="track2">
-          <div class="client-chip">ZATCA</div>
-          <div class="client-chip">Ministry of Energy</div>
-          <div class="client-chip">MEWA</div>
-          <div class="client-chip">Saudi Water Authority</div>
-          <div class="client-chip">SASCO</div>
-          <div class="client-chip">Petromin</div>
-          <div class="client-chip">ZATCA</div>
-          <div class="client-chip">Ministry of Energy</div>
-          <div class="client-chip">MEWA</div>
-          <div class="client-chip">Saudi Water Authority</div>
-          <div class="client-chip">SASCO</div>
-          <div class="client-chip">Petromin</div>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/aramco.com?size=200" alt="Aramco" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Aramco</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/petromin.com?size=200" alt="Petromin" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Petromin</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/sasco.com.sa?size=200" alt="SASCO" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">SASCO</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/catrion.com?size=200" alt="Catrion" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Catrion</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/supermile.com.sa?size=200" alt="Super Mile" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Super Mile</b></span>
+          <span class="logo-tile is-text"><b class="lf">Titonka</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/swa.gov.sa?size=200" alt="Saudi Water Authority" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Saudi Water Authority</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/moenergy.gov.sa?size=200" alt="Ministry of Energy" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Ministry of Energy</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/mewa.gov.sa?size=200" alt="MEWA" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">MEWA</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/zatca.gov.sa?size=200" alt="ZATCA" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">ZATCA</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/misa.gov.sa?size=200" alt="Ministry of Investment" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Ministry of Investment</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/jeddah.gov.sa?size=200" alt="Jeddah Municipality" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Jeddah Municipality</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/aramco.com?size=200" alt="Aramco" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Aramco</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/petromin.com?size=200" alt="Petromin" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Petromin</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/sasco.com.sa?size=200" alt="SASCO" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">SASCO</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/catrion.com?size=200" alt="Catrion" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Catrion</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/supermile.com.sa?size=200" alt="Super Mile" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Super Mile</b></span>
+          <span class="logo-tile is-text"><b class="lf">Titonka</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/swa.gov.sa?size=200" alt="Saudi Water Authority" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Saudi Water Authority</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/moenergy.gov.sa?size=200" alt="Ministry of Energy" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Ministry of Energy</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/mewa.gov.sa?size=200" alt="MEWA" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">MEWA</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/zatca.gov.sa?size=200" alt="ZATCA" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">ZATCA</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/misa.gov.sa?size=200" alt="Ministry of Investment" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Ministry of Investment</b></span>
+          <span class="logo-tile"><img src="https://logo.clearbit.com/jeddah.gov.sa?size=200" alt="Jeddah Municipality" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">Jeddah Municipality</b></span>
         </div>
       </div>
     </div>
