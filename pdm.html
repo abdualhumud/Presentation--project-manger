@@ -195,6 +195,40 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 .rv.in{opacity:1;transform:none}
 .rv.d1{transition-delay:.07s}.rv.d2{transition-delay:.14s}.rv.d3{transition-delay:.21s}.rv.d4{transition-delay:.28s}
+
+/* INNOVATION FLOW */
+.flowline{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-top:34px}
+.fstep{flex:1 1 132px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 14px;text-align:center}
+.fstep .i{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.06em}
+.fstep .t{font-weight:700;font-size:.97rem;margin-top:6px;line-height:1.35}
+.fstep.last{background:var(--accent-soft);border-color:var(--accent-line)}
+.fstep.last .t{color:var(--accent)}
+
+/* LENSES / IDEATION SOURCES */
+.lenses{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+@media(max-width:820px){.lenses{grid-template-columns:1fr}}
+.lens{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 18px}
+.lens .k{font-family:var(--mono);font-size:.75rem;color:var(--accent);letter-spacing:.05em}
+.lens h4{font-size:1.05rem;font-weight:800;margin:7px 0 5px}
+.lens p{color:var(--muted);font-size:.92rem;font-weight:500;line-height:1.6}
+.note{margin-top:22px;background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:14px;padding:20px 22px;color:#dfe7f2;font-weight:500;font-size:1.02rem;line-height:1.75}
+.note b{color:#fff;font-weight:700}
+.src{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}
+@media(max-width:700px){.src{grid-template-columns:1fr}}
+.srcItem{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.srcItem .t{font-weight:700;font-size:.98rem;color:#fff}
+.srcItem .d{color:var(--muted);font-size:.9rem;font-weight:500;margin-top:4px;line-height:1.55}
+.gv-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}
+@media(max-width:620px){.gv-metrics{grid-template-columns:1fr}}
+.gv-m{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.gv-m .n{font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1}
+.gv-m .l{color:var(--muted);font-size:.88rem;font-weight:500;margin-top:6px;line-height:1.5}
+
+.fw6{grid-template-columns:repeat(6,1fr)}
+@media(max-width:1080px){.fw6{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.fw6{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.fw6{grid-template-columns:1fr}}
+.flowline .fstep{min-width:0}
 </style>
 </head>
 <body>
@@ -210,6 +244,7 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
     <div class="nav-links">
       <a href="#portfolio" data-i18n="nav-pf">Portfolio</a>
       <a href="#impact" data-i18n="nav-im">Impact</a>
+      <a href="#innovation" data-i18n="nav-in">Innovation</a>
       <a href="#cases" data-i18n="nav-cs">Case Studies</a>
       <a href="#gov" data-i18n="nav-gov">Government &amp; Logistics</a>
       <a href="#contact" data-i18n="nav-ct">Contact</a>
@@ -221,15 +256,14 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="badge rv" data-i18n="h-badge">Product Strategy · Government Platforms · Measurable Impact</span>
-      <h1 class="rv d1"><span data-i18n="h-title-1">Product strategy for </span><span class="a" data-i18n="h-title-2">government platforms, mobility and logistics.</span></h1>
-      <p class="sub rv d2" data-i18n="h-sub">I build and scale digital products across government services, fleet and logistics — from customer discovery and product strategy through launch, governance and performance.</p>
-      <p class="transfer rv d3" data-i18n="h-transfer">Experience in fleet, logistics operations and regulated government field work — directly transferable to logistics and air services.</p>
+      <span class="badge rv" data-i18n="h-badge">Product Strategy · Innovation · Government Platforms</span>
+      <h1 class="rv d1"><span data-i18n="h-t1">Product strategy, innovation and </span><span class="a" data-i18n="h-t2">measurable impact.</span></h1>
+      <p class="sub rv d2" data-i18n="h-sub">Managing and scaling digital products across government services, mobility and logistics — from customer discovery and product ideation to launch, growth, governance and measurable business outcomes.</p>
       <div class="hero-metrics rv d4">
-        <div class="hm"><div class="n">13K+</div><div class="l" data-i18n="h-m1">Government fleet vehicles on a platform I built</div></div>
-        <div class="hm"><div class="n">12</div><div class="l" data-i18n="h-m2">Products &amp; services shipped at Rased</div></div>
-        <div class="hm"><div class="n">45</div><div class="l" data-i18n="h-m3">Cross-functional team I work alongside</div></div>
-        <div class="hm"><div class="n">#1</div><div class="l" data-i18n="h-m4">Mojaz on the Saudi App Store</div></div>
+        <div class="hm"><div class="n">14K+</div><div class="l" data-i18n="h-m1">Vehicles supported through Rased</div></div>
+        <div class="hm"><div class="n">13K+</div><div class="l" data-i18n="h-m2">Vehicles across government fleet solutions</div></div>
+        <div class="hm"><div class="n">4 + 8</div><div class="l" data-i18n="h-m3">Products and services launched across B2B / B2G</div></div>
+        <div class="hm"><div class="n">43+</div><div class="l" data-i18n="h-m4">Competitors analysed, turned into 6 product decisions</div></div>
       </div>
     </div>
     <div class="portrait rv d2">
@@ -246,47 +280,52 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="wrap">
-    <div class="q rv" data-i18n="q-pf">What have you worked on?</div>
-    <h2 class="h2 rv d1" data-i18n="pf-h">Product portfolio</h2>
-    <p class="intro rv d2" data-i18n="pf-intro">Three areas, one thread: turning complex operations into digital products people rely on daily.</p>
+    <h2 class="h2 rv" data-i18n="pf-h">Product portfolio</h2>
+    <p class="intro rv d2" data-i18n="pf-intro">Three product areas, each demanding a different side of product management.</p>
     <div class="pf-grid">
       <div class="pf rv">
         <div class="tag">Rased</div>
-        <h3 data-i18n="pf1-h">Fleet &amp; Logistics Platform</h3>
-        <div class="role" data-i18n="pf1-r">Government fleet operations · B2G</div>
-        <p data-i18n="pf1-p">A platform that runs government fleet and logistics operations end to end.</p>
+        <h3 data-i18n="pf1-h">Fleet Management &amp; Operations Platform</h3>
+        <div class="role" data-i18n="pf1-r">B2B / B2G · ~14K vehicles</div>
+        <p data-i18n="pf1-p">A fleet management platform covering tracking, operations, maintenance, expenses, driver behaviour and government integrations.</p>
         <div class="caps">
-          <span data-i18n="pf1-c1">Fleet tracking</span>
-          <span data-i18n="pf1-c2">Operations</span>
+          <span data-i18n="pf1-c1">Live &amp; historical tracking</span>
+          <span data-i18n="pf1-c2">Operations management</span>
           <span data-i18n="pf1-c3">Maintenance</span>
           <span data-i18n="pf1-c4">Fuel &amp; expense</span>
           <span data-i18n="pf1-c5">Driver behaviour</span>
-          <span data-i18n="pf1-c6">Government integrations</span>
+          <span data-i18n="pf1-c6">IoT / telematics</span>
+          <span data-i18n="pf1-c7">Operational analytics</span>
+          <span data-i18n="pf1-c8">Government integrations</span>
         </div>
       </div>
       <div class="pf rv d1">
         <div class="tag" data-i18n="pf2-tag">Government Digital Solutions</div>
-        <h3 data-i18n="pf2-h">B2G Product Portfolio</h3>
-        <div class="role" data-i18n="pf2-r">Regulated logistics &amp; field operations</div>
-        <p data-i18n="pf2-p">Selected B2G products built for tracking, compliance and operational governance.</p>
+        <h3 data-i18n="pf2-h">Government Fleet &amp; Field Operations</h3>
+        <div class="role" data-i18n="pf2-r">B2G · ~13K vehicles · multiple entities</div>
+        <p data-i18n="pf2-p">Digital solutions supporting government fleet, field operations and regulated service workflows across multiple government entities.</p>
         <div class="caps">
-          <span data-i18n="pf2-c1">Logistics</span>
-          <span data-i18n="pf2-c2">Fleet &amp; fuel</span>
-          <span data-i18n="pf2-c3">Field operations</span>
-          <span data-i18n="pf2-c4">Regulatory integrations</span>
-          <span data-i18n="pf2-c5">Operational governance</span>
+          <span data-i18n="pf2-c1">Fleet &amp; fuel</span>
+          <span data-i18n="pf2-c2">Government operations</span>
+          <span data-i18n="pf2-c3">Field workflows</span>
+          <span data-i18n="pf2-c4">Regulatory requirements</span>
+          <span data-i18n="pf2-c5">Tracking &amp; governance</span>
+          <span data-i18n="pf2-c6">Operational visibility</span>
+          <span data-i18n="pf2-c7">Government integrations</span>
         </div>
       </div>
       <div class="pf rv d2">
         <div class="tag">Mojaz</div>
-        <h3 data-i18n="pf3-h">Consumer Automotive Product</h3>
-        <div class="role" data-i18n="pf3-r">Customer &amp; market · B2C</div>
-        <p data-i18n="pf3-p">A consumer product where the discipline is understanding the customer and the market.</p>
+        <h3 data-i18n="pf3-h">Consumer Automotive — Growth &amp; Adoption</h3>
+        <div class="role" data-i18n="pf3-r">B2C · customer &amp; market</div>
+        <p data-i18n="pf3-p">A consumer product where the work is customer insight, acquisition and turning interest into active usage.</p>
         <div class="caps">
           <span data-i18n="pf3-c1">Customer analytics</span>
-          <span data-i18n="pf3-c2">Market growth</span>
+          <span data-i18n="pf3-c2">Market insight</span>
           <span data-i18n="pf3-c3">Go-to-market</span>
-          <span data-i18n="pf3-c4">Adoption</span>
+          <span data-i18n="pf3-c4">Product adoption</span>
+          <span data-i18n="pf3-c5">Experimentation</span>
+          <span data-i18n="pf3-c6">User acquisition</span>
         </div>
       </div>
     </div>
@@ -298,21 +337,56 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <!-- IMPACT -->
 <section id="impact">
   <div class="wrap">
-    <div class="q rv" data-i18n="q-im">What did you achieve?</div>
-    <h2 class="h2 rv d1" data-i18n="im-h">Impact</h2>
-    <p class="intro rv d2" data-i18n="im-intro">Numbers that already exist in the work — each one tied to a decision or an outcome.</p>
+    <h2 class="h2 rv" data-i18n="im-h">Selected impact</h2>
+    <p class="intro rv d2" data-i18n="im-intro">Each number belongs to a specific product and a specific decision.</p>
     <div class="impact-grid">
-      <div class="mt rv"><div class="n">13K+</div><div class="l" data-i18n="im1">Government fleet vehicles managed on the platform</div></div>
-      <div class="mt rv"><div class="n">500%</div><div class="l" data-i18n="im2">Fleet growth on the logistics platform (HubEat)</div></div>
-      <div class="mt rv"><div class="n">43+</div><div class="l" data-i18n="im3">Competitors analysed — technical and operational</div></div>
-      <div class="mt rv"><div class="n">6</div><div class="l" data-i18n="im4">Strategic product decisions from that analysis</div></div>
-      <div class="mt rv"><div class="n">350+</div><div class="l" data-i18n="im5">Customer interviews a year to validate features</div></div>
-      <div class="mt rv"><div class="n">+33%</div><div class="l" data-i18n="im6">Conversion lift after analysing 950 customers</div></div>
-      <div class="mt rv"><div class="n">25M+</div><div class="l" data-i18n="im7">Impressions on Mojaz</div></div>
-      <div class="mt rv"><div class="n">+250%</div><div class="l" data-i18n="im8">Download growth on Mojaz</div></div>
-      <div class="mt rv"><div class="n">85%</div><div class="l" data-i18n="im9">On-time roadmap delivery</div></div>
-      <div class="mt rv"><div class="n">100%</div><div class="l" data-i18n="im10">Cybersecurity &amp; data-integrity compliance</div></div>
+      <div class="mt rv"><div class="n">14K+</div><div class="l" data-i18n="im1">Vehicles supported through the Rased platform</div></div>
+      <div class="mt rv"><div class="n">13K+</div><div class="l" data-i18n="im2">Vehicles across government fleet solutions</div></div>
+      <div class="mt rv"><div class="n">4 + 8</div><div class="l" data-i18n="im3">Products and new customer-centric services launched</div></div>
+      <div class="mt rv"><div class="n">43+</div><div class="l" data-i18n="im4">Competitors analysed — technical and operational</div></div>
+      <div class="mt rv"><div class="n">6</div><div class="l" data-i18n="im5">Strategic product decisions taken from that analysis</div></div>
+      <div class="mt rv"><div class="n">950+</div><div class="l" data-i18n="im6">Customers analysed, leading to +33% conversion</div></div>
+      <div class="mt rv"><div class="n">540K</div><div class="l" data-i18n="im7">Registrations on Mojaz</div></div>
+      <div class="mt rv"><div class="n">20%</div><div class="l" data-i18n="im8">Faster time-to-market on new releases</div></div>
     </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- INNOVATION & LAUNCH -->
+<section id="innovation">
+  <div class="wrap">
+    <h2 class="h2 rv" data-i18n="inv-h">Product innovation &amp; launch</h2>
+    <p class="intro rv d2" data-i18n="inv-intro">New value, not only maintenance of what already exists. Ideas start from evidence and end at a measured launch.</p>
+
+    <div class="flowline rv">
+      <div class="fstep"><div class="i">01</div><div class="t" data-i18n="iv1">Customer signal</div></div>
+      <div class="fstep"><div class="i">02</div><div class="t" data-i18n="iv2">Opportunity</div></div>
+      <div class="fstep"><div class="i">03</div><div class="t" data-i18n="iv3">Idea</div></div>
+      <div class="fstep"><div class="i">04</div><div class="t" data-i18n="iv4">Validation</div></div>
+      <div class="fstep"><div class="i">05</div><div class="t" data-i18n="iv5">MVP</div></div>
+      <div class="fstep"><div class="i">06</div><div class="t" data-i18n="iv6">Launch</div></div>
+      <div class="fstep last"><div class="i">07</div><div class="t" data-i18n="iv7">Measure</div></div>
+    </div>
+
+    <div class="note rv" data-i18n="inv-ex"><b>One example:</b> field and operations teams kept raising the same friction in fuel handling. That became a scoped service — a fuel-expense wallet and station fuel-order management — validated with the entity, launched as part of the government fleet solution, then tracked in use. <b>8 new customer-centric services</b> came out of this way of working, and release cycles got <b>20% faster</b>.</div>
+
+    <p class="intro rv" style="margin-top:34px" data-i18n="idea-h">Where ideas come from</p>
+    <div class="src">
+      <div class="srcItem rv"><div class="t" data-i18n="src1-t">Customer-led</div><div class="d" data-i18n="src1-d">Behaviour and feedback expose needs no one has served yet — 950+ customers analysed on a single question.</div></div>
+      <div class="srcItem rv d1"><div class="t" data-i18n="src2-t">Market-led</div><div class="d" data-i18n="src2-d">Competitive intelligence across 43+ players showed white space in integration and operational readiness.</div></div>
+      <div class="srcItem rv d2"><div class="t" data-i18n="src3-t">Operations-led</div><div class="d" data-i18n="src3-d">Field pain points become product workflows — inspection, tanker movement, fuel handling.</div></div>
+      <div class="srcItem rv d3"><div class="t" data-i18n="src4-t">Technology-enabled</div><div class="d" data-i18n="src4-d">Technology is used where it solves a real operational or customer problem, such as IoT verification at the fuel nozzle.</div></div>
+    </div>
+
+    <p class="intro rv" style="margin-top:34px" data-i18n="lens-h">How an idea earns a place on the roadmap</p>
+    <div class="lenses">
+      <div class="lens rv"><div class="k">01</div><h4 data-i18n="ln1-h">Customer</h4><p data-i18n="ln1-p">Pain points, behaviour, feedback and unmet needs.</p></div>
+      <div class="lens rv d1"><div class="k">02</div><h4 data-i18n="ln2-h">Market</h4><p data-i18n="ln2-p">Competitors, trends, segments and white spaces.</p></div>
+      <div class="lens rv d2"><div class="k">03</div><h4 data-i18n="ln3-h">Business</h4><p data-i18n="ln3-p">Revenue potential, strategic fit, feasibility and scalability.</p></div>
+    </div>
+    <div class="note rv" data-i18n="lens-note">Good product ideas start with evidence — customer behaviour, a market gap or operational friction — then compete for roadmap priority on value and feasibility.</div>
   </div>
 </section>
 
@@ -321,50 +395,49 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <!-- CASE STUDIES -->
 <section id="cases">
   <div class="wrap">
-    <div class="q rv" data-i18n="q-cs">How do you actually manage products?</div>
-    <h2 class="h2 rv d1" data-i18n="cs-h">Selected case studies</h2>
-    <p class="intro rv d2" data-i18n="cs-intro">Three products. In each one, information changed a product decision — not just an activity log.</p>
+    <h2 class="h2 rv" data-i18n="cs-h">Case studies</h2>
+    <p class="intro rv d2" data-i18n="cs-intro">Three products. In each one, evidence changed a product decision.</p>
 
     <div class="cases">
-      <!-- CASE 1 -->
+      <!-- CASE 1 — RASED -->
       <div class="cs rv">
-        <div class="cs-head"><h3 data-i18n="cs1-h">Rased — scaling a fleet &amp; logistics platform</h3><span class="n" data-i18n="cs1-n">Fleet · Logistics · B2G</span></div>
+        <div class="cs-head"><h3 data-i18n="cs1-h">Rased — building and scaling a fleet platform</h3><span class="n" data-i18n="cs1-n">Fleet · B2B / B2G</span></div>
         <div class="cs-body">
-          <div class="cl"><div class="k" data-i18n="k-ctx">Context</div><div class="v" data-i18n="cs1-ctx">Rased runs government fleet and logistics operations on Google Cloud — multiple entities, thousands of vehicles, strict compliance requirements.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-ch">Challenge</div><div class="v" data-i18n="cs1-ch">Operations were fragmented and partly manual. The product had to scale across entities without losing governance or compliance.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-in">Insight</div><div class="v" data-i18n="cs1-in">A two-part audit of <b>43+ local and global competitors</b> — technical (system architecture, devices, install methods, integrations) and operational (field operations, geographic distribution, services, business models) — showed the real gaps were in government integration and operational readiness, not features.</div></div>
-          <div class="cl key"><div class="k" data-i18n="k-dec">Decision</div><div class="v" data-i18n="cs1-dec">Prioritise the roadmap around integration and operational governance first, instead of chasing feature parity. That analysis produced <b>6 strategic product decisions</b>.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-ex">Execution</div><div class="v" data-i18n="cs1-ex">Aligned product, engineering, cybersecurity, operations, sales and procurement under one roadmap — a <b>45-person cross-functional team</b> — holding <b>100% cybersecurity and data-integrity compliance</b> throughout.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-out">Outcome</div><div class="v" data-i18n="cs1-out"><b>4 products and 8 services</b> shipped, and a <b>13,000+ vehicle</b> government fleet running on the platform for the Ministry of Energy.</div></div>
-          <div class="flow"><b data-i18n="fl-in">Insight</b><span class="ar">→</span><b data-i18n="fl-dec">Decision</b><span class="ar">→</span><b data-i18n="fl-ch">Product change</b><span class="ar">→</span><b data-i18n="fl-out">Outcome</b></div>
+          <div class="cl"><div class="k" data-i18n="k-ctx">Context</div><div class="v" data-i18n="cs1-ctx">Rased operates in a complex B2B/B2G fleet environment: commercial customers, government requirements, IoT devices in the field, daily operations and multiple integrations.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-dis">Discovery</div><div class="v" data-i18n="cs1-dis">Customer interviews and usage data on one side, market and competitor research on the other. A two-part audit of <b>43+ local and global competitors</b> covered the technical layer (architecture, devices, install methods, integrations) and the operational layer (field operations, geographic coverage, services, business models).</div></div>
+          <div class="cl"><div class="k" data-i18n="k-opp">Opportunity</div><div class="v" data-i18n="cs1-opp">The gap was not features. Competitors were weakest on government integration and operational readiness — and customers were asking for services around the fleet, not more dashboards.</div></div>
+          <div class="cl key"><div class="k" data-i18n="k-dec">Product decisions</div><div class="v" data-i18n="cs1-dec">Reprioritised the roadmap around integrations and operational capability instead of feature parity, and opened a services layer on top of tracking — maintenance, fuel and expense, driver behaviour. <b>6 strategic product decisions</b> came out of this.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-lau">Launch</div><div class="v" data-i18n="cs1-lau">Scoped each service to an MVP, wrote the requirements with engineering, aligned operations and sales on onboarding, then released in stages rather than one large launch.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-scale">Scale &amp; performance</div><div class="v" data-i18n="cs1-scale">The platform supports <b>~14K vehicles</b>, with <b>4 products and 8 new services</b> launched and release cycles <b>20% faster</b>.</div></div>
+          <div class="flow"><b data-i18n="fl-dis">Discovery</b><span class="ar">→</span><b data-i18n="fl-inv">Innovation</b><span class="ar">→</span><b data-i18n="fl-pri">Prioritisation</b><span class="ar">→</span><b data-i18n="fl-lau">Launch</b><span class="ar">→</span><b data-i18n="fl-sc">Scale</b></div>
         </div>
       </div>
 
-      <!-- CASE 2 -->
+      <!-- CASE 2 — GOVERNMENT -->
       <div class="cs rv">
-        <div class="cs-head"><h3 data-i18n="cs2-h">Digitising government logistics operations</h3><span class="n" data-i18n="cs2-n">Regulated · Field · Governance</span></div>
+        <div class="cs-head"><h3 data-i18n="cs2-h">Government fleet &amp; field operations</h3><span class="n" data-i18n="cs2-n">B2G · regulated environment</span></div>
         <div class="cs-body">
-          <div class="cl"><div class="k" data-i18n="k-ctx">Context</div><div class="v" data-i18n="cs2-ctx">Government logistics and field work across water and energy — tanker movements, fuel distribution, field inspection — largely manual or spread across disconnected tools.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-ch">Problem</div><div class="v" data-i18n="cs2-ch">No reliable operational visibility. Compliance and governance were hard to enforce, and workflows lived on paper.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-in">Insight</div><div class="v" data-i18n="cs2-in">Mapping the actual field workflow — not just vehicle positions — showed the real gap was <b>structured operations and regulatory data</b>, not GPS tracking.</div></div>
-          <div class="cl key"><div class="k" data-i18n="k-dec">Decision</div><div class="v" data-i18n="cs2-dec">Build products around operational workflows, entitlements and governance — with government integrations — rather than a tracking dashboard.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-sol">Solution</div><div class="v" data-i18n="cs2-sol"><b>Ministry of Energy:</b> a fleet &amp; fuel platform (13,000+ vehicles) with a fuel-expense wallet, station fuel-order management, and smart-nozzle verification with a hardware partner. <b>Saudi Water Authority:</b> 3 strategic projects for tanker logistics governance across potable, non-potable and Jeddah municipality sewage use-cases. <b>MEWA “Hafiz”:</b> a field-inspection product for daily tasks, reporting and field workflow.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-imp">Impact</div><div class="v" data-i18n="cs2-imp">Fragmented, manual operations became structured digital products the entities use daily — with <b>100% cybersecurity and data-integrity compliance</b>.</div></div>
-          <div class="flow"><b data-i18n="fl-ctx">Context</b><span class="ar">→</span><b data-i18n="fl-pr">Problem</b><span class="ar">→</span><b data-i18n="fl-in">Insight</b><span class="ar">→</span><b data-i18n="fl-dec">Decision</b><span class="ar">→</span><b data-i18n="fl-sol">Solution</b><span class="ar">→</span><b data-i18n="fl-imp">Impact</b></div>
+          <div class="cl"><div class="k" data-i18n="k-pr">Problem</div><div class="v" data-i18n="cs2-pr">Government fleet and field work across water and energy ran on manual or disconnected processes — tanker movements, fuel handling, field inspection. No reliable operational picture.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-dis">Discovery</div><div class="v" data-i18n="cs2-dis">Time with field users and entity teams to map the actual workflow, the regulatory requirements behind it, and what had to integrate with existing government systems.</div></div>
+          <div class="cl key"><div class="k" data-i18n="k-des">Product design</div><div class="v" data-i18n="cs2-des">Built around operational workflows, entitlements and traceability rather than a tracking dashboard. Position alone answered none of the questions the entities actually had.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-inv">Innovation</div><div class="v" data-i18n="cs2-inv">Some of this was new, not digitised paper: a <b>fuel-expense wallet</b> and <b>station fuel-order management</b>, and <b>smart-nozzle verification</b> with a hardware partner to confirm dispensing at the source. For Saudi Water Authority, tanker logistics governance across potable, non-potable and Jeddah municipality sewage use-cases. For MEWA, “Hafiz” for field inspectors — daily tasks, reporting and field workflow.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-del">Delivery</div><div class="v" data-i18n="cs2-del">Product, engineering, operations, cybersecurity and the entity's own teams aligned on one scope, with regulatory compliance treated as a requirement from the start rather than a review at the end.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-val">Scale &amp; value</div><div class="v" data-i18n="cs2-val"><b>~13K vehicles</b> across government fleet solutions. Manual and fragmented work became structured digital workflows with clearer operational visibility, less manual effort and traceable records.</div></div>
+          <div class="flow"><b data-i18n="fl-pr">Problem</b><span class="ar">→</span><b data-i18n="fl-dis">Discovery</b><span class="ar">→</span><b data-i18n="fl-des">Design</b><span class="ar">→</span><b data-i18n="fl-inv">Innovation</b><span class="ar">→</span><b data-i18n="fl-del">Delivery</b><span class="ar">→</span><b data-i18n="fl-sc">Scale</b></div>
         </div>
       </div>
 
-      <!-- CASE 3 -->
+      <!-- CASE 3 — MOJAZ -->
       <div class="cs rv">
-        <div class="cs-head"><h3 data-i18n="cs3-h">Mojaz — from customer insight to market growth</h3><span class="n" data-i18n="cs3-n">Customer · Market · B2C</span></div>
+        <div class="cs-head"><h3 data-i18n="cs3-h">Mojaz — customer insight into growth</h3><span class="n" data-i18n="cs3-n">B2C · growth &amp; adoption</span></div>
         <div class="cs-body">
-          <div class="cl"><div class="k" data-i18n="k-ctx">Context</div><div class="v" data-i18n="cs3-ctx">A consumer automotive platform entering a competitive market and needing real adoption, not just installs.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-ch">Challenge</div><div class="v" data-i18n="cs3-ch">Break into the market and turn interest into active usage.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-in">Insight</div><div class="v" data-i18n="cs3-in">Behavioural analysis of <b>800+ customers</b>, plus a read on which channels actually moved the market (influencers and car showrooms), showed where users dropped off in onboarding.</div></div>
-          <div class="cl key"><div class="k" data-i18n="k-dec">Decision</div><div class="v" data-i18n="cs3-dec">Point go-to-market at influencer and showroom integration, and fix the onboarding drop-off — moving adoption from <b>12% to 38%</b>.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-ex">Experimentation</div><div class="v" data-i18n="cs3-ex">A/B tests and short feedback loops, letting data decide what shipped next.</div></div>
-          <div class="cl"><div class="k" data-i18n="k-out">Outcome</div><div class="v" data-i18n="cs3-out"><b>25M+ impressions</b>, <b>+250% downloads</b>, <b>#1 on the Saudi App Store</b>, and a tangible first-quarter market-share gain.</div></div>
-          <div class="flow"><b data-i18n="fl-in">Insight</b><span class="ar">→</span><b data-i18n="fl-dec">Decision</b><span class="ar">→</span><b data-i18n="fl-ch">Product change</b><span class="ar">→</span><b data-i18n="fl-out">Outcome</b></div>
+          <div class="cl"><div class="k" data-i18n="k-ctx">Context</div><div class="v" data-i18n="cs3-ctx">A consumer automotive platform entering a competitive market, needing real usage rather than installs.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-dat">Customer data</div><div class="v" data-i18n="cs3-dat">Behavioural analysis of <b>800+ customers</b>, plus a read on which channels actually moved this market.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-ins">Insight</div><div class="v" data-i18n="cs3-ins">Users were arriving but dropping out during onboarding, and the channels that converted were influencers and car showrooms — not general awareness spend.</div></div>
+          <div class="cl key"><div class="k" data-i18n="k-idea">Product &amp; GTM decision</div><div class="v" data-i18n="cs3-idea">Rebuilt the onboarding flow around where users were dropping, and pointed go-to-market at influencer and showroom integration.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-exp">Experiment</div><div class="v" data-i18n="cs3-exp">A/B tests and short feedback loops, with data deciding what shipped next.</div></div>
+          <div class="cl"><div class="k" data-i18n="k-ado">Adoption &amp; growth</div><div class="v" data-i18n="cs3-ado">Onboarding adoption moved from <b>12% to 38%</b>. The product reached <b>540K registrations</b>, <b>25M+ impressions</b>, <b>+250% downloads</b> and <b>#1 on the Saudi App Store</b>.</div></div>
+          <div class="flow"><b data-i18n="fl-dat">Customer data</b><span class="ar">→</span><b data-i18n="fl-ins">Insight</b><span class="ar">→</span><b data-i18n="fl-idea">Idea</b><span class="ar">→</span><b data-i18n="fl-exp">Experiment</b><span class="ar">→</span><b data-i18n="fl-ado">Adoption</b></div>
         </div>
       </div>
     </div>
@@ -376,15 +449,15 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <!-- DECISION FRAMEWORK -->
 <section id="framework">
   <div class="wrap">
-    <div class="q rv" data-i18n="q-df">How do you think?</div>
-    <h2 class="h2 rv d1" data-i18n="df-h">Product decision framework</h2>
-    <p class="intro rv d2" data-i18n="df-intro">The thinking behind the case studies — not a lecture on product management.</p>
-    <div class="fw">
-      <div class="fw-step rv"><div class="s">01</div><h4 data-i18n="df1-h">Discover</h4><p data-i18n="df1-p">Understand customer, operational and regulatory needs.</p></div>
-      <div class="fw-step rv d1"><div class="s">02</div><h4 data-i18n="df2-h">Evaluate</h4><p data-i18n="df2-p">Assess market opportunity, business value, feasibility and risk.</p></div>
-      <div class="fw-step rv d2"><div class="s">03</div><h4 data-i18n="df3-h">Prioritize</h4><p data-i18n="df3-p">Balance customer value, business impact, dependencies and capacity.</p></div>
-      <div class="fw-step rv d3"><div class="s">04</div><h4 data-i18n="df4-h">Deliver</h4><p data-i18n="df4-p">Align product, engineering, operations and stakeholders on clear outcomes.</p></div>
-      <div class="fw-step rv d4"><div class="s">05</div><h4 data-i18n="df5-h">Measure</h4><p data-i18n="df5-p">Track adoption, service performance, customer experience and business value.</p></div>
+    <h2 class="h2 rv" data-i18n="df-h">How decisions get made</h2>
+    <p class="intro rv d2" data-i18n="df-intro">The thinking behind the case studies.</p>
+    <div class="fw fw6">
+      <div class="fw-step rv"><div class="s">01</div><h4 data-i18n="df1-h">Discover</h4><p data-i18n="df1-p">Understand customer, market, operational and regulatory needs.</p></div>
+      <div class="fw-step rv d1"><div class="s">02</div><h4 data-i18n="df2-h">Ideate</h4><p data-i18n="df2-p">Turn insight into product opportunities and solution concepts.</p></div>
+      <div class="fw-step rv d2"><div class="s">03</div><h4 data-i18n="df3-h">Validate</h4><p data-i18n="df3-p">Test desirability, business value and feasibility before scaling.</p></div>
+      <div class="fw-step rv d3"><div class="s">04</div><h4 data-i18n="df4-h">Prioritize</h4><p data-i18n="df4-p">Balance customer value, impact, risk, dependencies and capacity.</p></div>
+      <div class="fw-step rv d4"><div class="s">05</div><h4 data-i18n="df5-h">Launch</h4><p data-i18n="df5-p">Align product, technology and operations to bring it to market.</p></div>
+      <div class="fw-step rv d4"><div class="s">06</div><h4 data-i18n="df6-h">Measure</h4><p data-i18n="df6-p">Track adoption, experience, operational performance and value.</p></div>
     </div>
   </div>
 </section>
@@ -394,23 +467,22 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <!-- GOVERNMENT & LOGISTICS -->
 <section id="gov">
   <div class="wrap">
-    <div class="q rv" data-i18n="q-gov">Why is your experience relevant?</div>
-    <h2 class="h2 rv d1" data-i18n="gov-h">Government &amp; logistics experience</h2>
-    <p class="intro rv d2" data-i18n="gov-intro">Working at the intersection of government regulation, logistics operations, digital platforms and field execution.</p>
+    <h2 class="h2 rv" data-i18n="gov-h">Government &amp; logistics experience</h2>
+    <p class="intro rv d2" data-i18n="gov-intro">Products built where regulation, logistics operations and field execution meet.</p>
     <div class="stack">
       <div class="layers rv">
-        <div class="layer"><span class="ix">01</span><div><div class="t" data-i18n="gl1-t">Government regulation</div><div class="d" data-i18n="gl1-d">Compliance, entitlements, data-integrity standards</div></div></div>
+        <div class="layer"><span class="ix">01</span><div><div class="t" data-i18n="gl1-t">Regulation</div><div class="d" data-i18n="gl1-d">Compliance requirements, entitlements, approvals</div></div></div>
         <div class="layer-arrow">↓</div>
-        <div class="layer"><span class="ix">02</span><div><div class="t" data-i18n="gl2-t">Digital products</div><div class="d" data-i18n="gl2-d">Fleet, fuel, inspection and logistics platforms</div></div></div>
+        <div class="layer"><span class="ix">02</span><div><div class="t" data-i18n="gl2-t">Digital products</div><div class="d" data-i18n="gl2-d">Fleet, fuel, inspection and operations platforms</div></div></div>
         <div class="layer-arrow">↓</div>
-        <div class="layer"><span class="ix">03</span><div><div class="t" data-i18n="gl3-t">Logistics &amp; operations</div><div class="d" data-i18n="gl3-d">Tanker movements, fuel distribution, field operations</div></div></div>
+        <div class="layer"><span class="ix">03</span><div><div class="t" data-i18n="gl3-t">Logistics &amp; operations</div><div class="d" data-i18n="gl3-d">Tanker movement, fuel handling, field operations</div></div></div>
         <div class="layer-arrow">↓</div>
-        <div class="layer"><span class="ix">04</span><div><div class="t" data-i18n="gl4-t">Data &amp; integrations</div><div class="d" data-i18n="gl4-d">Government integrations, tracking, operational visibility</div></div></div>
+        <div class="layer"><span class="ix">04</span><div><div class="t" data-i18n="gl4-t">Data &amp; integrations</div><div class="d" data-i18n="gl4-d">Government integrations, telematics, operational visibility</div></div></div>
         <div class="layer-arrow">↓</div>
-        <div class="layer"><span class="ix">05</span><div><div class="t" data-i18n="gl5-t">End users</div><div class="d" data-i18n="gl5-d">Field teams, operators and government entities</div></div></div>
+        <div class="layer"><span class="ix">05</span><div><div class="t" data-i18n="gl5-t">End users</div><div class="d" data-i18n="gl5-d">Field teams, operators and entity stakeholders</div></div></div>
       </div>
       <div>
-        <p class="stack-note rv" data-i18n="gov-note">The same problem shows up in most government logistics work: <b>manual, fragmented operations that have to become structured, compliant digital products</b>. That is the work — and it transfers directly to logistics and air services.</p>
+        <p class="stack-note rv" data-i18n="gov-note">The pattern repeats in most regulated logistics work: <b>manual, fragmented operations that have to become structured digital products</b> — with movement, assets and compliance tracked end to end. That is the transferable part.</p>
         <div class="logos rv d1" id="gov-logos"></div>
       </div>
     </div>
@@ -419,12 +491,11 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 
 <div class="rule"></div>
 
-<!-- STAKEHOLDERS -->
-<section id="stakeholders">
+<!-- GOVERNANCE & STAKEHOLDER ALIGNMENT -->
+<section id="governance">
   <div class="wrap">
-    <div class="q rv" data-i18n="q-stk">Can you operate at Associate Principal level?</div>
-    <h2 class="h2 rv d1" data-i18n="stk-h">Stakeholder complexity</h2>
-    <p class="intro rv d2" data-i18n="stk-intro">B2G products succeed on alignment. Product direction sits at the centre of a wide ecosystem.</p>
+    <h2 class="h2 rv" data-i18n="stk-h">Product governance &amp; stakeholder alignment</h2>
+    <p class="intro rv d2" data-i18n="stk-intro">Governance exists to improve the quality and speed of product decisions — not to add process.</p>
     <div class="eco">
       <div class="orbit rv">
         <div class="center-node" data-i18n="stk-center">Product Direction</div>
@@ -433,13 +504,17 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
         <div class="snode" style="left:90%;top:54%" data-i18n="stk-n3">Engineering</div>
         <div class="snode" style="left:80%;top:88%" data-i18n="stk-n4">Cybersecurity</div>
         <div class="snode" style="left:46%;top:96%" data-i18n="stk-n5">Operations</div>
-        <div class="snode" style="left:14%;top:86%" data-i18n="stk-n6">Sales</div>
+        <div class="snode" style="left:14%;top:86%" data-i18n="stk-n6">Sales &amp; Marketing</div>
         <div class="snode" style="left:8%;top:52%" data-i18n="stk-n7">Procurement</div>
         <div class="snode" style="left:18%;top:20%" data-i18n="stk-n8">Partners</div>
       </div>
       <div class="eco-note">
-        <div class="k" data-i18n="stk-ex-k">One real example</div>
-        <p class="rv" data-i18n="stk-ex"><b>On the Ministry of Energy platform</b>, aligning the ministry's requirements, cybersecurity, operations and a hardware partner around one roadmap is what kept <b>100% compliance</b> while still shipping fleet, fuel and verification features. Alignment first, features second.</p>
+        <div class="k" data-i18n="stk-ex-k">In practice</div>
+        <p class="rv" data-i18n="stk-ex">Led and coordinated work across a <b>45+ person cross-functional environment</b> spanning product, engineering, sales, marketing, operations, cybersecurity and procurement. The job is a shared roadmap, clear ownership of decisions, visible dependencies, and resolving conflicts before they reach delivery.</p>
+        <div class="gv-metrics">
+          <div class="gv-m"><div class="n">88%</div><div class="l" data-i18n="gv1">of a 24-month product roadmap delivered on schedule</div></div>
+          <div class="gv-m"><div class="n">85%</div><div class="l" data-i18n="gv2">on-time delivery across product initiatives</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -450,15 +525,15 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <!-- PERFORMANCE & VALUE -->
 <section id="performance">
   <div class="wrap">
-    <div class="q rv" data-i18n="q-pf2">Do you measure value after launch?</div>
-    <h2 class="h2 rv d1" data-i18n="perf-h">Product performance &amp; value</h2>
-    <p class="intro rv d2" data-i18n="perf-intro">Product work does not stop at launch. One real chain from signal to result:</p>
+    <h2 class="h2 rv" data-i18n="perf-h">Product performance</h2>
+    <p class="intro rv d2" data-i18n="perf-intro">The work continues after launch. One real loop:</p>
     <div class="perf rv">
-      <div class="pstep"><div class="s" data-i18n="pf-s1">Customer signal</div><div class="v" data-i18n="pf-v1">950 customers were not converting.</div></div>
-      <div class="pstep"><div class="s" data-i18n="pf-s2">Insight</div><div class="v" data-i18n="pf-v2">Behavioural analysis pointed to onboarding and entitlement friction.</div></div>
-      <div class="pstep"><div class="s" data-i18n="pf-s3">Product decision</div><div class="v" data-i18n="pf-v3">Redesigned the onboarding and entitlement flow.</div></div>
-      <div class="pstep res"><div class="s" data-i18n="pf-s4">Measured result</div><div class="v" data-i18n="pf-v4">+33% conversion; adoption moved from 12% to 38%.</div></div>
+      <div class="pstep"><div class="s" data-i18n="pf-s1">Signal</div><div class="v" data-i18n="pf-v1">A large group of customers was not completing the journey.</div></div>
+      <div class="pstep"><div class="s" data-i18n="pf-s2">Insight</div><div class="v" data-i18n="pf-v2">Analysis of 950+ customers pointed to specific friction points.</div></div>
+      <div class="pstep"><div class="s" data-i18n="pf-s3">Decision</div><div class="v" data-i18n="pf-v3">Reworked the flow where customers were dropping out.</div></div>
+      <div class="pstep res"><div class="s" data-i18n="pf-s4">Result</div><div class="v" data-i18n="pf-v4">+33% conversion, then kept under review for the next iteration.</div></div>
     </div>
+    <div class="note rv" data-i18n="perf-note">Adoption, customer behaviour, operational performance and business value are tracked after release — and they feed the next round of roadmap decisions.</div>
   </div>
 </section>
 
@@ -467,7 +542,7 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <!-- CREDENTIALS -->
 <section id="credentials">
   <div class="wrap">
-    <h2 class="h2 rv" data-i18n="cr-h">Credentials &amp; tooling</h2>
+    <h2 class="h2 rv" data-i18n="cr-h">Credentials &amp; tools</h2>
     <div class="cr-wrap">
       <div class="cr-box rv">
         <div class="k" data-i18n="cr-k1">Credentials</div>
@@ -490,15 +565,15 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
         </div>
       </div>
     </div>
+    <div class="note rv" data-i18n="tech-note"><b>Technology &amp; product innovation:</b> uses AI-enabled tools, rapid prototyping and workflow automation to test product ideas, cut manual work and shorten validation — as a way of working, not as the product.</div>
   </div>
 </section>
 
 <!-- CLOSING -->
 <section id="contact" class="close">
   <div class="wrap">
-    <div class="q rv" data-i18n="q-cl">What professional value do you bring?</div>
-    <h2 class="h2 rv d1" data-i18n="cl-h">Product leadership that connects regulation, logistics and digital products.</h2>
-    <p class="rv d2" data-i18n="cl-p">Government platforms built and scaled with the customer and the numbers kept in view. Fleet, logistics and regulated field experience that transfers directly to logistics and air services.</p>
+    <h2 class="h2 rv" data-i18n="cl-h">Products created, launched, scaled and measured.</h2>
+    <p class="rv d2" data-i18n="cl-p">Digital products across government services, fleet and mobility — built from customer and market evidence, launched with cross-functional teams, and judged on what they deliver after release.</p>
     <div class="contact rv d3">
       <a href="tel:+966593935677">+966 59 393 5677</a>
       <a href="mailto:A.alhumud0@gmail.com">A.alhumud0@gmail.com</a>
@@ -510,100 +585,122 @@ footer{padding:30px 0;text-align:center;color:var(--muted-2);font-size:.88rem;bo
 <footer>Abdulrahman Alhumud · Product Manager</footer>
 
 <script>
-/* ---- company logos (verified government/logistics ecosystem) ---- */
+/* ---------- entity logos: local file → Clearbit → favicon → wordmark ---------- */
 const ENTITIES=[
- {d:'moenergy.gov.sa', en:'Ministry of Energy',  ar:'وزارة الطاقة'},
- {d:'swa.gov.sa',      en:'Saudi Water Authority',ar:'هيئة المياه'},
- {d:'mewa.gov.sa',     en:'MEWA',                ar:'البيئة والمياه والزراعة'},
- {d:'zatca.gov.sa',    en:'ZATCA',               ar:'زاتكا'},
- {d:'misa.gov.sa',     en:'Ministry of Investment',ar:'وزارة الاستثمار'},
- {d:'petromin.com',    en:'Petromin',            ar:'بترومين'},
- {d:'sasco.com.sa',    en:'SASCO',               ar:'ساسكو'},
- {d:'jeddah.gov.sa',   en:'Jeddah Municipality', ar:'أمانة جدة'},
+ {s:'moenergy', d:'moenergy.gov.sa', en:'Ministry of Energy',      ar:'وزارة الطاقة'},
+ {s:'swa',      d:'swa.gov.sa',      en:'Saudi Water Authority',   ar:'الهيئة السعودية للمياه'},
+ {s:'mewa',     d:'mewa.gov.sa',     en:'MEWA',                    ar:'البيئة والمياه والزراعة'},
+ {s:'zatca',    d:'zatca.gov.sa',    en:'ZATCA',                   ar:'زاتكا'},
+ {s:'misa',     d:'misa.gov.sa',     en:'Ministry of Investment',  ar:'وزارة الاستثمار'},
+ {s:'petromin', d:'petromin.com',    en:'Petromin',                ar:'بترومين'},
+ {s:'sasco',    d:'sasco.com.sa',    en:'SASCO',                   ar:'ساسكو'},
+ {s:'jeddah',   d:'jeddah.gov.sa',   en:'Jeddah Municipality',     ar:'أمانة جدة'},
 ];
+function logoFallback(img){
+  const step=+(img.dataset.step||0), d=img.dataset.domain, s=img.dataset.slug;
+  if(step===0){ img.dataset.step=1; img.src='https://logo.clearbit.com/'+d+'?size=200'; return; }
+  if(step===1){ img.dataset.step=2; img.src='https://www.google.com/s2/favicons?domain='+d+'&sz=128'; return; }
+  img.parentElement.classList.add('is-text'); img.remove();
+}
 function renderLogos(lang){
   const host=document.getElementById('gov-logos'); if(!host) return;
   host.innerHTML=ENTITIES.map(c=>{
     const name=lang==='ar'?c.ar:c.en;
-    return `<span class="logo-tile"><img src="https://logo.clearbit.com/${c.d}?size=180" alt="${name}" loading="lazy" onerror="this.parentElement.classList.add('is-text');this.remove()"><b class="lf">${name}</b></span>`;
+    return '<span class="logo-tile"><img alt="'+name+'" loading="lazy" data-slug="'+c.s+'" data-domain="'+c.d+'" data-step="0" src="logos/'+c.s+'.png" onerror="logoFallback(this)"><b class="lf">'+name+'</b></span>';
   }).join('');
 }
 
-/* ---- i18n ---- */
-const I18N={
- en:{}, // English lives in the HTML defaults; toggling back restores them
- ar:{
-  'nav-pf':'أعمال','nav-im':'الأثر','nav-cs':'دراسات الحالة','nav-gov':'الحكومة واللوجستيات','nav-ct':'تواصل',
-  'h-badge':'استراتيجية المنتج · منصات حكومية · أثر قابل للقياس',
-  'h-title-1':'استراتيجية منتج لمنصات ','h-title-2':'حكومية، وتنقّل، ولوجستيات.',
-  'h-sub':'أبني وأوسّع منتجات رقمية في الخدمات الحكومية والأساطيل واللوجستيات — من اكتشاف العميل واستراتيجية المنتج حتى الإطلاق والحوكمة وقياس الأداء.',
-  'h-transfer':'خبرة في الأساطيل والعمليات اللوجستية والعمل الميداني الحكومي المنظَّم — قابلة للانتقال مباشرة إلى اللوجستيات وخدمات الطيران.',
-  'h-m1':'مركبة حكومية على منصة تم بناؤها','h-m2':'منتجاً وخدمة تم إطلاقها في راصد','h-m3':'فريق متعدد التخصصات نعمل معه','h-m4':'موجز في متجر التطبيقات السعودي',
-  'q-pf':'وش الأعمال اللي اشتغلت عليها؟','pf-h':'محفظة المنتجات','pf-intro':'ثلاثة مجالات يربطها خيط واحد: تحويل العمليات المعقّدة إلى منتجات رقمية يعتمد عليها الناس يومياً.',
-  'pf1-h':'منصة الأساطيل واللوجستيات','pf1-r':'عمليات الأساطيل الحكومية · B2G','pf1-p':'منصة تدير عمليات الأساطيل واللوجستيات الحكومية من طرف إلى طرف.',
-  'pf1-c1':'تتبّع الأسطول','pf1-c2':'العمليات','pf1-c3':'الصيانة','pf1-c4':'الوقود والمصروفات','pf1-c5':'سلوك السائق','pf1-c6':'تكاملات حكومية',
-  'pf2-tag':'الحلول الرقمية الحكومية','pf2-h':'محفظة منتجات B2G','pf2-r':'لوجستيات وعمليات ميدانية منظَّمة','pf2-p':'منتجات B2G مختارة للتتبّع والامتثال والحوكمة التشغيلية.',
-  'pf2-c1':'اللوجستيات','pf2-c2':'الأسطول والوقود','pf2-c3':'العمليات الميدانية','pf2-c4':'تكاملات تنظيمية','pf2-c5':'الحوكمة التشغيلية',
-  'pf3-h':'منتج سيارات استهلاكي','pf3-r':'العميل والسوق · B2C','pf3-p':'منتج استهلاكي جوهره فهم العميل والسوق.',
-  'pf3-c1':'تحليلات العملاء','pf3-c2':'نمو السوق','pf3-c3':'الانطلاق للسوق','pf3-c4':'التبنّي',
-  'q-im':'وش حقّقت؟','im-h':'الأثر','im-intro':'أرقام موجودة فعلاً في العمل — كل رقم مرتبط بقرار أو نتيجة.',
-  'im1':'مركبة حكومية تُدار على المنصة','im2':'نمو الأسطول على منصة اللوجستيات (HubEat)','im3':'منافساً تم تحليلهم — تقنياً وتشغيلياً','im4':'قرارات منتج استراتيجية من ذلك التحليل','im5':'مقابلة عميل سنوياً للتحقق من الميزات','im6':'ارتفاع في التحويل بعد تحليل 950 عميلاً','im7':'ظهور على موجز','im8':'نمو التحميلات على موجز','im9':'تسليم خارطة الطريق في الوقت','im10':'امتثال للأمن السيبراني وسلامة البيانات',
-  'q-cs':'كيف تدير المنتجات فعلياً؟','cs-h':'دراسات حالة مختارة','cs-intro':'ثلاثة منتجات. في كل واحد منها، غيّرت المعلومة قرار المنتج — لا مجرد سرد للنشاط.',
-  'k-ctx':'السياق','k-ch':'التحدي','k-in':'الرؤية','k-dec':'القرار','k-ex':'التنفيذ','k-out':'النتيجة','k-sol':'الحل','k-imp':'الأثر',
-  'cs1-h':'راصد — توسيع منصة أساطيل ولوجستيات','cs1-n':'أسطول · لوجستيات · B2G',
-  'cs1-ctx':'راصد يدير عمليات الأساطيل واللوجستيات الحكومية على Google Cloud — جهات متعددة، آلاف المركبات، ومتطلبات امتثال صارمة.',
-  'cs1-ch':'كانت العمليات مجزّأة وجزء منها يدوي. المنتج لازم يتوسّع عبر الجهات دون فقدان الحوكمة أو الامتثال.',
-  'cs1-in':'تحليل من جانبين لأكثر من <b>43 منافساً محلياً وعالمياً</b> — تقني (معمارية النظام، الأجهزة، طرق التركيب، التكاملات) وتشغيلي (العمليات الميدانية، التوزيع الجغرافي، الخدمات، نماذج العمل) — أظهر أن الفجوات الحقيقية في التكامل الحكومي والجاهزية التشغيلية، لا في الميزات.',
-  'cs1-dec':'ترتيب خارطة الطريق حول التكامل والحوكمة التشغيلية أولاً، بدل ملاحقة تعادل الميزات. أنتج هذا التحليل <b>6 قرارات منتج استراتيجية</b>.',
-  'cs1-ex':'مواءمة المنتج والهندسة والأمن السيبراني والعمليات والمبيعات والمشتريات تحت خارطة طريق واحدة — <b>فريق من 45 شخصاً متعدد التخصصات</b> — مع الحفاظ على <b>امتثال 100% للأمن السيبراني وسلامة البيانات</b> طوال الطريق.',
-  'cs1-out':'إطلاق <b>4 منتجات و8 خدمات</b>، وأسطول حكومي بأكثر من <b>13,000 مركبة</b> يعمل على المنصة لوزارة الطاقة.',
-  'fl-in':'الرؤية','fl-dec':'القرار','fl-ch':'تغيير في المنتج','fl-out':'النتيجة','fl-ctx':'السياق','fl-pr':'المشكلة','fl-sol':'الحل','fl-imp':'الأثر',
-  'cs2-h':'رقمنة العمليات اللوجستية الحكومية','cs2-n':'منظَّم · ميداني · حوكمة',
-  'cs2-ctx':'لوجستيات وعمل ميداني حكومي في قطاعي المياه والطاقة — حركة الصهاريج، توزيع الوقود، التفتيش الميداني — أغلبه يدوي أو موزّع على أدوات غير مترابطة.',
-  'cs2-ch':'لا توجد رؤية تشغيلية موثوقة. الامتثال والحوكمة صعبا الإنفاذ، وسير العمل على الورق.',
-  'cs2-in':'رسم سير العمل الميداني الفعلي — لا مواقع المركبات فقط — أظهر أن الفجوة الحقيقية في <b>العمليات المنظَّمة والبيانات التنظيمية</b>، لا في تتبّع الـ GPS.',
-  'cs2-dec':'بناء منتجات حول سير العمل التشغيلي والاستحقاقات والحوكمة — مع تكاملات حكومية — بدل لوحة تتبّع.',
-  'cs2-sol':'<b>وزارة الطاقة:</b> منصة أسطول ووقود (أكثر من 13,000 مركبة) مع محفظة مصروفات وقود، وإدارة طلبات وقود للمحطات، وتحقّق ذكي من المسدس مع شريك أجهزة. <b>هيئة المياه:</b> 3 مشاريع استراتيجية لحوكمة لوجستيات الصهاريج عبر حالات المياه الصالحة للشرب وغير الصالحة ومياه الصرف الصحي لأمانة جدة. <b>حافظ (البيئة والمياه):</b> منتج تفتيش ميداني للمهام اليومية والتقارير وسير العمل.',
-  'cs2-imp':'تحوّلت العمليات المجزّأة واليدوية إلى منتجات رقمية منظَّمة تستخدمها الجهات يومياً — مع <b>امتثال 100% للأمن السيبراني وسلامة البيانات</b>.',
-  'cs3-h':'موجز — من رؤية العميل إلى نمو السوق','cs3-n':'العميل · السوق · B2C',
-  'cs3-ctx':'منصة سيارات استهلاكية تدخل سوقاً تنافسية وتحتاج تبنّياً حقيقياً، لا مجرد تنزيلات.',
-  'cs3-ch':'اختراق السوق وتحويل الاهتمام إلى استخدام فعلي.',
-  'cs3-in':'تحليل سلوكي لأكثر من <b>800 عميل</b>، مع قراءة للقنوات التي تحرّك السوق فعلاً (المؤثرون ومعارض السيارات)، أظهر أين يتوقف المستخدمون في رحلة الإعداد.',
-  'cs3-dec':'توجيه الانطلاق للسوق نحو التكامل مع المؤثرين والمعارض، ومعالجة التوقف في الإعداد — لرفع التبنّي من <b>12% إلى 38%</b>.',
-  'cs3-ex':'اختبارات A/B وحلقات تغذية راجعة قصيرة، مع ترك البيانات تقرّر ما يُطلق تالياً.',
-  'cs3-out':'<b>أكثر من 25 مليون ظهور</b>، <b>+250% تحميلات</b>، <b>المركز الأول في متجر التطبيقات السعودي</b>، ومكسب ملموس في الحصة السوقية في الربع الأول.',
-  'q-df':'كيف تفكّر؟','df-h':'إطار قرار المنتج','df-intro':'التفكير خلف دراسات الحالة — لا محاضرة في إدارة المنتج.',
-  'df1-h':'الاكتشاف','df1-p':'فهم احتياجات العميل والتشغيل والتنظيم.',
-  'df2-h':'التقييم','df2-p':'تقييم فرصة السوق والقيمة والجدوى والمخاطر.',
-  'df3-h':'الترتيب','df3-p':'موازنة قيمة العميل والأثر والاعتماديات والقدرة.',
-  'df4-h':'التسليم','df4-p':'مواءمة المنتج والهندسة والعمليات وأصحاب المصلحة على نتائج واضحة.',
-  'df5-h':'القياس','df5-p':'متابعة التبنّي وأداء الخدمة وتجربة العميل والقيمة.',
-  'q-gov':'ليش خبرتك ذات صلة؟','gov-h':'خبرة الحكومة واللوجستيات','gov-intro':'العمل عند تقاطع التنظيم الحكومي والعمليات اللوجستية والمنصات الرقمية والتنفيذ الميداني.',
-  'gl1-t':'التنظيم الحكومي','gl1-d':'الامتثال، الاستحقاقات، معايير سلامة البيانات',
-  'gl2-t':'المنتجات الرقمية','gl2-d':'منصات الأسطول والوقود والتفتيش واللوجستيات',
-  'gl3-t':'اللوجستيات والعمليات','gl3-d':'حركة الصهاريج، توزيع الوقود، العمليات الميدانية',
-  'gl4-t':'البيانات والتكاملات','gl4-d':'تكاملات حكومية، تتبّع، رؤية تشغيلية',
-  'gl5-t':'المستخدمون النهائيون','gl5-d':'الفرق الميدانية والمشغّلون والجهات الحكومية',
-  'gov-note':'المشكلة نفسها تتكرّر في أغلب العمل اللوجستي الحكومي: <b>عمليات يدوية ومجزّأة يجب أن تصبح منتجات رقمية منظَّمة وممتثلة</b>. هذا هو العمل — وينتقل مباشرة إلى اللوجستيات وخدمات الطيران.',
-  'q-stk':'هل تقدر تشتغل على مستوى Associate Principal؟','stk-h':'تعقيد أصحاب المصلحة','stk-intro':'منتجات B2G تنجح بالمواءمة. توجيه المنتج في قلب منظومة واسعة.',
-  'stk-center':'توجيه المنتج',
-  'stk-n1':'الجهات الحكومية','stk-n2':'العملاء','stk-n3':'الهندسة','stk-n4':'الأمن السيبراني','stk-n5':'العمليات','stk-n6':'المبيعات','stk-n7':'المشتريات','stk-n8':'الشركاء',
-  'stk-ex-k':'مثال واقعي واحد',
-  'stk-ex':'<b>في منصة وزارة الطاقة</b>، مواءمة متطلبات الوزارة والأمن السيبراني والعمليات وشريك الأجهزة حول خارطة طريق واحدة هي ما حافظ على <b>امتثال 100%</b> مع الاستمرار في إطلاق ميزات الأسطول والوقود والتحقّق. المواءمة أولاً، ثم الميزات.',
-  'q-pf2':'هل تقيس القيمة بعد الإطلاق؟','perf-h':'أداء المنتج والقيمة','perf-intro':'عمل المنتج لا يتوقف عند الإطلاق. سلسلة واقعية من الإشارة إلى النتيجة:',
-  'pf-s1':'إشارة العميل','pf-v1':'950 عميلاً لا يكملون التحويل.',
-  'pf-s2':'الرؤية','pf-v2':'التحليل السلوكي أشار إلى احتكاك في الإعداد والاستحقاقات.',
-  'pf-s3':'قرار المنتج','pf-v3':'إعادة تصميم رحلة الإعداد والاستحقاقات.',
-  'pf-s4':'نتيجة مقيسة','pf-v4':'+33% تحويل؛ والتبنّي انتقل من 12% إلى 38%.',
-  'cr-h':'الاعتمادات والأدوات','cr-k1':'الاعتمادات','cr-c2':'إدارة المنتجات','cr-c4':'التفكير التصميمي','cr-c5':'تحليلات المنتج','cr-k2':'الأدوات',
-  'q-cl':'وش القيمة المهنية اللي تقدّمها؟','cl-h':'قيادة منتج تربط التنظيم واللوجستيات والمنتجات الرقمية.',
-  'cl-p':'منصات حكومية بُنيت ووُسِّعت مع إبقاء العميل والأرقام في الحسبان. خبرة في الأساطيل واللوجستيات والعمل الميداني المنظَّم تنتقل مباشرة إلى اللوجستيات وخدمات الطيران.',
- }
-};
-// capture English defaults so we can toggle back
-(function captureEN(){
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ I18N.en[el.getAttribute('data-i18n')]=el.innerHTML; });
-})();
+/* ---------- i18n: Arabic is written independently, not translated ---------- */
+const I18N={en:{},ar:{
+ 'nav-pf':'المنتجات','nav-im':'أبرز النتائج','nav-in':'الابتكار','nav-cs':'دراسات حالة','nav-gov':'الخبرة الحكومية','nav-ct':'تواصل',
+ 'h-badge':'استراتيجية المنتج · الابتكار · المنتجات الحكومية',
+ 'h-t1':'من احتياج العميل ','h-t2':'إلى منتج قابل للتوسع.',
+ 'h-sub':'أعمل على تطوير وإدارة منتجات رقمية للقطاعين الحكومي والخاص في مجالات التنقل والأساطيل والخدمات اللوجستية: من فهم المشكلة وتقييم الفرصة، إلى تطوير الفكرة وإطلاقها وتوسعتها وقياس أثرها.',
+ 'h-m1':'مركبة ضمن منصة راصد','h-m2':'مركبة ضمن حلول أساطيل حكومية','h-m3':'منتجات وخدمات تم إطلاقها','h-m4':'منافس تم تحليلهم، نتج عنها 6 قرارات',
+ 'pf-h':'محفظة المنتجات','pf-intro':'ثلاثة مجالات، كل واحد منها يحتاج جانب مختلف من إدارة المنتجات.',
+ 'pf1-h':'منصة إدارة الأساطيل والعمليات','pf1-r':'B2B / B2G · قرابة 14 ألف مركبة',
+ 'pf1-p':'منصة لإدارة الأساطيل تغطي التتبع والعمليات والصيانة والمصروفات وسلوك السائقين والتكامل مع الأنظمة الحكومية.',
+ 'pf1-c1':'تتبع مباشر وسجل تاريخي','pf1-c2':'إدارة العمليات','pf1-c3':'الصيانة','pf1-c4':'الوقود والمصروفات','pf1-c5':'سلوك السائق','pf1-c6':'إنترنت الأشياء والتليماتكس','pf1-c7':'تحليلات تشغيلية','pf1-c8':'تكامل مع أنظمة حكومية',
+ 'pf2-tag':'الحلول الرقمية الحكومية','pf2-h':'أساطيل وعمليات ميدانية حكومية','pf2-r':'B2G · قرابة 13 ألف مركبة · جهات متعددة',
+ 'pf2-p':'حلول رقمية تخدم الأساطيل الحكومية والعمليات الميدانية وإجراءات الخدمات المنظمة في أكثر من جهة حكومية.',
+ 'pf2-c1':'الأسطول والوقود','pf2-c2':'العمليات الحكومية','pf2-c3':'الإجراءات الميدانية','pf2-c4':'المتطلبات التنظيمية','pf2-c5':'التتبع والحوكمة','pf2-c6':'وضوح تشغيلي','pf2-c7':'تكامل مع أنظمة حكومية',
+ 'pf3-h':'منتج سيارات استهلاكي — نمو وتبنّي','pf3-r':'B2C · العميل والسوق',
+ 'pf3-p':'منتج للمستهلك، الشغل فيه على فهم العميل واستقطابه وتحويل الاهتمام إلى استخدام فعلي.',
+ 'pf3-c1':'تحليلات العملاء','pf3-c2':'قراءة السوق','pf3-c3':'استراتيجية الإطلاق','pf3-c4':'تبنّي المنتج','pf3-c5':'تجارب واختبارات','pf3-c6':'استقطاب المستخدمين',
+ 'im-h':'أبرز النتائج','im-intro':'كل رقم يخص منتجًا محددًا وقرارًا محددًا.',
+ 'im1':'مركبة ضمن منصة راصد','im2':'مركبة ضمن حلول أساطيل حكومية','im3':'منتجات وخدمات جديدة تم إطلاقها','im4':'منافس تم تحليلهم تقنيًا وتشغيليًا','im5':'قرارات منتج استراتيجية خرجت من التحليل','im6':'عميل تم تحليل سلوكهم، ونتج عنه ارتفاع التحويل 33%','im7':'تسجيل في تطبيق موجز','im8':'تقليل في زمن الوصول للسوق',
+ 'inv-h':'الابتكار وإطلاق المنتجات','inv-intro':'بناء قيمة جديدة، مو فقط تشغيل المنتج الحالي. الفكرة تبدأ من دليل واضح وتنتهي بإطلاق يُقاس أثره.',
+ 'iv1':'إشارة من العميل','iv2':'فرصة','iv3':'فكرة','iv4':'تحقق','iv5':'MVP','iv6':'إطلاق','iv7':'قياس',
+ 'inv-ex':'<b>مثال:</b> فرق التشغيل والميدان كانوا يرفعون نفس المشكلة في التعامل مع الوقود. تحولت إلى خدمة محددة النطاق — محفظة مصروفات وقود وإدارة طلبات الوقود للمحطات — تم اختبارها مع الجهة، ثم أُطلقت ضمن حلول الأسطول الحكومي وتُوبعت بعد التشغيل. بهذي الطريقة خرجت <b>8 خدمات جديدة</b>، وصار زمن الإطلاق <b>أسرع بـ 20%</b>.',
+ 'idea-h':'من وين تجي الأفكار',
+ 'src1-t':'من العميل','src1-d':'سلوك العملاء وملاحظاتهم تكشف احتياج ما أحد غطاه — تحليل أكثر من 950 عميل على سؤال واحد.',
+ 'src2-t':'من السوق','src2-d':'تحليل أكثر من 43 منافس أظهر فراغًا في التكامل والجاهزية التشغيلية.',
+ 'src3-t':'من التشغيل','src3-d':'مشاكل الميدان تتحول إلى إجراءات داخل المنتج: التفتيش، حركة الصهاريج، التعامل مع الوقود.',
+ 'src4-t':'من التقنية','src4-d':'نستخدم التقنية لما تحل مشكلة تشغيلية أو مشكلة عميل فعلية، مثل التحقق من التزويد عند مسدس الوقود.',
+ 'lens-h':'كيف تستحق الفكرة مكان في خارطة الطريق',
+ 'ln1-h':'العميل','ln1-p':'المشاكل والسلوك والملاحظات والاحتياج غير المخدوم.',
+ 'ln2-h':'السوق','ln2-p':'المنافسون والاتجاهات والشرائح والفراغات.',
+ 'ln3-h':'العمل','ln3-p':'الإيراد المحتمل والملاءمة الاستراتيجية والجدوى وقابلية التوسع.',
+ 'lens-note':'الأفكار الجيدة تبدأ من دليل: سلوك عميل، فجوة في السوق، أو احتكاك تشغيلي. بعدها تتنافس على الأولوية حسب القيمة والجدوى.',
+ 'cs-h':'دراسات حالة','cs-intro':'ثلاثة منتجات. في كل واحد منها، غيّر الدليل قرار المنتج.',
+ 'k-ctx':'السياق','k-dis':'الاكتشاف','k-opp':'الفرصة','k-dec':'قرارات المنتج','k-lau':'الإطلاق','k-scale':'التوسع والأداء',
+ 'k-pr':'المشكلة','k-des':'تصميم المنتج','k-inv':'الابتكار','k-del':'التنفيذ','k-val':'التوسع والقيمة',
+ 'k-dat':'بيانات العملاء','k-ins':'الاستنتاج','k-idea':'قرار المنتج والإطلاق','k-exp':'التجربة','k-ado':'التبنّي والنمو',
+ 'cs1-h':'راصد — بناء منصة أساطيل وتوسعتها','cs1-n':'أساطيل · B2B / B2G',
+ 'cs1-ctx':'راصد تشتغل في بيئة أساطيل معقدة: عملاء تجاريون، متطلبات جهات حكومية، أجهزة في الميدان، عمليات يومية، وتكاملات متعددة.',
+ 'cs1-dis':'من جهة مقابلات مع العملاء وبيانات الاستخدام، ومن جهة ثانية تحليل السوق والمنافسين. غطّى التحليل أكثر من <b>43 منافس محلي وعالمي</b> على مستويين: التقني (البنية، الأجهزة، طرق التركيب، التكاملات) والتشغيلي (العمليات الميدانية، التغطية الجغرافية، الخدمات، نماذج العمل).',
+ 'cs1-opp':'الفجوة ما كانت في المزايا. المنافسون كانوا أضعف في التكامل الحكومي والجاهزية التشغيلية، والعملاء يطلبون خدمات حول الأسطول مو لوحات إضافية.',
+ 'cs1-dec':'أعدنا ترتيب خارطة الطريق حول التكاملات والقدرات التشغيلية بدل اللحاق بمزايا المنافسين، وفتحنا طبقة خدمات فوق التتبع: الصيانة، الوقود والمصروفات، سلوك السائق. خرج من هذا <b>6 قرارات منتج استراتيجية</b>.',
+ 'cs1-lau':'حددنا نطاق كل خدمة كـ MVP، وكتبنا المتطلبات مع الهندسة، ووحّدنا التشغيل والمبيعات على آلية تفعيل العملاء، ثم أطلقنا على مراحل بدل إطلاق واحد كبير.',
+ 'cs1-scale':'المنصة تخدم <b>قرابة 14 ألف مركبة</b>، مع إطلاق <b>4 منتجات و8 خدمات جديدة</b>، وزمن إطلاق <b>أسرع بـ 20%</b>.',
+ 'fl-dis':'اكتشاف','fl-inv':'ابتكار','fl-pri':'ترتيب أولويات','fl-lau':'إطلاق','fl-sc':'توسع',
+ 'fl-pr':'مشكلة','fl-des':'تصميم','fl-del':'تنفيذ','fl-dat':'بيانات','fl-ins':'استنتاج','fl-idea':'فكرة','fl-exp':'تجربة','fl-ado':'تبنّي',
+ 'cs2-h':'أساطيل وعمليات ميدانية حكومية','cs2-n':'B2G · بيئة تنظيمية',
+ 'cs2-pr':'العمل الحكومي في المياه والطاقة كان يمشي بإجراءات يدوية أو أنظمة غير مترابطة: حركة الصهاريج، التعامل مع الوقود، التفتيش الميداني. ما فيه صورة تشغيلية يعتمد عليها.',
+ 'cs2-dis':'قضينا وقت مع المستخدمين الميدانيين وفرق الجهة لرسم الإجراء الفعلي، والمتطلبات التنظيمية وراه، وما الذي يجب أن يتكامل مع الأنظمة الحكومية القائمة.',
+ 'cs2-des':'بنينا المنتج حول الإجراءات التشغيلية والاستحقاقات وإمكانية التتبع، لا حول لوحة تتبع. الموقع وحده ما كان يجاوب على أسئلة الجهات الحقيقية.',
+ 'cs2-inv':'جزء من هذا كان جديد، مو رقمنة أوراق: <b>محفظة مصروفات الوقود</b> و<b>إدارة طلبات الوقود للمحطات</b>، و<b>التحقق الذكي من مسدس الوقود</b> مع شريك أجهزة لتأكيد عملية التزويد من مصدرها. ومع الهيئة السعودية للمياه، حوكمة لوجستيات الصهاريج للمياه الصالحة وغير الصالحة ومياه الصرف لأمانة جدة. ومع وزارة البيئة والمياه والزراعة، «حافظ» للمراقبين الميدانيين: المهام اليومية والتقارير وسير العمل.',
+ 'cs2-del':'وحّدنا الأولويات بين المنتج والهندسة والتشغيل والأمن السيبراني وفرق الجهة على نطاق واحد، وتعاملنا مع المتطلبات التنظيمية كجزء من التصميم من البداية، مو كمراجعة في النهاية.',
+ 'cs2-val':'<b>قرابة 13 ألف مركبة</b> ضمن حلول الأساطيل الحكومية. تحوّل العمل اليدوي والمتفرق إلى إجراءات رقمية منظمة، مع وضوح تشغيلي أعلى، جهد يدوي أقل، وسجلات قابلة للتتبع.',
+ 'cs3-h':'موجز — من فهم العميل إلى النمو','cs3-n':'B2C · نمو وتبنّي',
+ 'cs3-ctx':'منصة سيارات للمستهلك تدخل سوق فيه منافسة، وتحتاج استخدام فعلي مو مجرد تحميلات.',
+ 'cs3-dat':'تحليل سلوكي لأكثر من <b>800 عميل</b>، مع قراءة للقنوات التي تحرك هذا السوق فعلًا.',
+ 'cs3-ins':'المستخدمون يوصلون لكن يتوقفون أثناء التسجيل، والقنوات التي تحوّل فعلًا كانت المؤثرين ومعارض السيارات، مو الإعلانات العامة.',
+ 'cs3-idea':'أعدنا بناء رحلة التسجيل حول النقطة التي يتوقف عندها المستخدم، ووجّهنا خطة الإطلاق نحو التكامل مع المؤثرين والمعارض.',
+ 'cs3-exp':'اختبارات A/B وحلقات ملاحظات قصيرة، والبيانات هي التي تحدد ما يُطلق بعدين.',
+ 'cs3-ado':'ارتفع التبنّي في رحلة التسجيل من <b>12% إلى 38%</b>. ووصل المنتج إلى <b>540 ألف تسجيل</b>، و<b>أكثر من 25 مليون ظهور</b>، و<b>+250% تحميلات</b>، و<b>المركز الأول في متجر التطبيقات السعودي</b>.',
+ 'df-h':'منهجية اتخاذ القرار','df-intro':'الطريقة التي بُنيت عليها دراسات الحالة.',
+ 'df1-h':'اكتشاف','df1-p':'فهم احتياج العميل والسوق والتشغيل والمتطلبات التنظيمية.',
+ 'df2-h':'تطوير الفكرة','df2-p':'تحويل الاستنتاجات إلى فرص منتج ومفاهيم حلول.',
+ 'df3-h':'تحقق','df3-p':'اختبار الرغبة والقيمة والجدوى قبل التوسع.',
+ 'df4-h':'ترتيب الأولويات','df4-p':'موازنة قيمة العميل والأثر والمخاطر والاعتماديات والقدرة.',
+ 'df5-h':'إطلاق','df5-p':'توحيد المنتج والتقنية والتشغيل للوصول للسوق.',
+ 'df6-h':'قياس','df6-p':'متابعة التبنّي والتجربة والأداء التشغيلي وقيمة المنتج.',
+ 'gov-h':'الخبرة الحكومية واللوجستية','gov-intro':'منتجات بُنيت عند تقاطع التنظيم والعمليات اللوجستية والتنفيذ الميداني.',
+ 'gl1-t':'التنظيم','gl1-d':'المتطلبات التنظيمية والاستحقاقات والاعتمادات',
+ 'gl2-t':'المنتجات الرقمية','gl2-d':'منصات الأسطول والوقود والتفتيش والعمليات',
+ 'gl3-t':'اللوجستيات والتشغيل','gl3-d':'حركة الصهاريج، التعامل مع الوقود، العمليات الميدانية',
+ 'gl4-t':'البيانات والتكاملات','gl4-d':'تكاملات حكومية، تليماتكس، وضوح تشغيلي',
+ 'gl5-t':'المستخدم النهائي','gl5-d':'الفرق الميدانية والمشغّلون وفرق الجهات',
+ 'gov-note':'النمط يتكرر في أغلب العمل اللوجستي المنظّم: <b>عمليات يدوية ومتفرقة لازم تتحول إلى منتجات رقمية منظمة</b>، مع تتبع الحركة والأصول والالتزام من البداية للنهاية. هذا هو الجزء القابل للانتقال لأي مجال لوجستي آخر.',
+ 'stk-h':'حوكمة المنتج ومواءمة الأطراف المعنية','stk-intro':'الهدف من الحوكمة تحسين جودة القرار وسرعة التنفيذ، وليس زيادة الإجراءات.',
+ 'stk-center':'قرار المنتج',
+ 'stk-n1':'الجهات الحكومية','stk-n2':'العملاء','stk-n3':'الهندسة','stk-n4':'الأمن السيبراني','stk-n5':'التشغيل','stk-n6':'المبيعات والتسويق','stk-n7':'المشتريات','stk-n8':'الشركاء',
+ 'stk-ex-k':'على أرض الواقع',
+ 'stk-ex':'قدت ونسّقت العمل ضمن بيئة متعددة التخصصات تضم <b>أكثر من 45 شخص</b> بين المنتج والهندسة والمبيعات والتسويق والتشغيل والأمن السيبراني والمشتريات. الشغل هنا: خارطة طريق واحدة، وضوح في من يملك القرار، اعتماديات ظاهرة، وحل الخلافات قبل ما توصل مرحلة التنفيذ.',
+ 'gv1':'من خارطة طريق مدتها 24 شهر تم تسليمها في وقتها','gv2':'التزام بالمواعيد في مبادرات المنتج',
+ 'perf-h':'أداء المنتج','perf-intro':'الشغل ما يوقف عند الإطلاق. مثال حقيقي على الدورة:',
+ 'pf-s1':'إشارة','pf-v1':'عدد كبير من العملاء ما يكمّلون الرحلة.',
+ 'pf-s2':'استنتاج','pf-v2':'تحليل أكثر من 950 عميل حدد نقاط الاحتكاك.',
+ 'pf-s3':'قرار','pf-v3':'أعدنا بناء المسار عند النقطة التي يتوقف عندها العميل.',
+ 'pf-s4':'نتيجة','pf-v4':'ارتفاع التحويل 33%، مع متابعة مستمرة للتحسين التالي.',
+ 'perf-note':'نتابع بعد الإطلاق: التبنّي، سلوك العميل، الأداء التشغيلي، وقيمة المنتج. ونتائج المتابعة هي التي تحدد أولويات خارطة الطريق بعدها.',
+ 'cr-h':'الشهادات والأدوات','cr-k1':'الشهادات','cr-c2':'إدارة المنتجات','cr-c4':'التفكير التصميمي','cr-c5':'تحليلات المنتج','cr-k2':'الأدوات',
+ 'tech-note':'<b>التقنية وابتكار المنتج:</b> استخدام أدوات مدعومة بالذكاء الاصطناعي والنماذج السريعة وأتمتة الإجراءات لاختبار أفكار المنتج وتقليل العمل اليدوي وتسريع التحقق — كطريقة عمل، مو كمنتج بحد ذاته.',
+ 'cl-h':'منتجات بُنيت وأُطلقت وتوسّعت وقيس أثرها.',
+ 'cl-p':'منتجات رقمية في الخدمات الحكومية والأساطيل والتنقل: تبدأ من دليل واضح من العميل والسوق، تُطلق مع فرق متعددة التخصصات، ويُحكم عليها بما تحققه بعد الإطلاق.',
+}};
+(function captureEN(){document.querySelectorAll('[data-i18n]').forEach(el=>{I18N.en[el.getAttribute('data-i18n')]=el.innerHTML;});})();
 let lang='en';
 function setLang(l){
   lang=l;
@@ -612,17 +709,13 @@ function setLang(l){
   document.getElementById('b-en').classList.toggle('on',l==='en');
   document.getElementById('b-ar').classList.toggle('on',l==='ar');
   const d=I18N[l]||{};
-  document.querySelectorAll('[data-i18n]').forEach(el=>{ const k=el.getAttribute('data-i18n'); if(d[k]!==undefined) el.innerHTML=d[k]; });
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(d[k]!==undefined) el.innerHTML=d[k];});
   renderLogos(l);
 }
-
-/* reveal + nav + count-up */
-const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.14});
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const nav=document.getElementById('nav');
 const onScroll=()=>nav.classList.toggle('stuck',scrollY>8); onScroll(); addEventListener('scroll',onScroll,{passive:true});
-
-document.addEventListener('DOMContentLoaded',()=>{ setLang('en'); });
 setLang('en');
 </script>
 </body>
